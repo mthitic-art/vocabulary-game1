@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>CVN Word World · K1–P6 Vocabulary</title>
+<!--
+  CVN Word World — multi-file build (K1–P6)
+  Structure:
+    index.html              ← this file (markup only)
+    css/style.css           ← all styles
+    data/vocabulary.json    ← words (generated from Excel via tools/excel_to_json.py)
+    js/vocabulary.js        ← loads JSON, data accessors
+    js/audio.js             ← pronunciation + sound fx
+    js/progress.js          ← localStorage, SRS, gamification
+    js/game.js              ← FX, modes, dashboard, boot
+    assets/<LEVEL>/<word>.png ← optional images (emoji fallback if missing)
+
+  Must be served over http(s) (GitHub Pages / Netlify / local server),
+  because data/vocabulary.json is loaded with fetch().
+-->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<canvas id="fx"></canvas>
+<div class="wrap">
+  <header>
+    <h1>🌈 CVN Word World</h1>
+    <div class="subline">
+      <span class="chip">🔥 <b id="streakChip">0</b> day streak</span>
+      <span class="chip">⭐ <b id="starChip">0</b> stars</span>
+      <span class="chip">🏅 <b id="badgeChip">0</b> badges</span>
+    </div>
+  </header>
+
+  <div class="topnav">
+    <button class="nav-btn" id="navHome" aria-label="Home">🏠 Home</button>
+    <button class="nav-btn" id="navDash" aria-label="Progress dashboard">📊 My Progress</button>
+  </div>
+
+  <!-- HOME -->
+  <div id="home">
+    <!-- Level pills are built by game.js from the LEVELS list -->
+    <div class="levels" id="levels" role="tablist" aria-label="Choose level"></div>
+    <p class="hint" style="text-align:center" id="unlockHint"></p>
+
+    <div class="menu" id="menu">
+      <button class="card c1" data-game="quiz"><span class="ico">⭐</span><h3>Word Quiz</h3><p>Listen &amp; pick</p></button>
+      <button class="card c2" data-game="flashcard"><span class="ico">🃏</span><h3>Flashcards</h3><p>Flip &amp; learn</p></button>
+      <button class="card c5" data-game="adventure"><span class="ico">🗺️</span><h3>Adventure</h3><p>Beat each stage</p></button>
+      <button class="card c6" data-game="memory"><span class="ico">🧠</span><h3>Memory Match</h3><p>Find the pairs</p></button>
+      <button class="card c3" data-game="review"><span class="ico">🔁</span><h3>Review Words</h3><p>Fix your misses</p></button>
+    </div>
+  </div>
+
+  <!-- GAME SCREEN -->
+  <div class="screen" id="screen">
+    <div class="bar">
+      <button class="back" id="back" aria-label="Back to menu">← Menu</button>
+      <div class="score" id="score" aria-live="polite">⭐ 0</div>
+    </div>
+    <div class="prog"><div id="progbar"></div></div>
+    <div id="play"></div>
+  </div>
+
+  <!-- DASHBOARD -->
+  <div class="dash" id="dash">
+    <div class="bar"><button class="back" id="dashBack">← Home</button><div class="score">📊 Progress</div></div>
+    <div class="dgrid" id="dashStats"></div>
+    <div class="section-t">🚀 My Learning Journey</div>
+    <div id="dashJourney"></div>
+    <div class="section-t">🏅 Badges</div>
+    <div class="badges" id="dashBadges"></div>
+    <div class="section-t">📚 Word Mastery (<span id="curLvLabel">K1</span>)</div>
+    <div class="masterlist" id="dashMastery"></div>
+    <div style="text-align:center;margin-top:14px">
+      <button class="btn warn" id="resetBtn">🗑️ Reset All Progress</button>
+    </div>
+  </div>
+
+  <footer>CVN Word World · K1–P6 · served over http(s) · Chrome / Edge / Safari for audio</footer>
+</div>
+
+<div class="toast" id="toast"><span class="te">🏅</span><span id="toastMsg"></span></div>
+
+<!-- Load order matters: data → audio → progress → game -->
+<script src="js/vocabulary.js"></script>
+<script src="js/audio.js"></script>
+<script src="js/progress.js"></script>
+<script src="js/game.js"></script>
+</body>
+</html>
