@@ -48,6 +48,12 @@ header h1{font-size:clamp(1.9rem,7vw,3.2rem);color:var(--coral);line-height:1;
 .pill.on[data-lv="K1"]{background:var(--coral);border-color:#c43a4d;color:#fff}
 .pill.on[data-lv="K2"]{background:var(--sky);border-color:#157a73;color:#fff}
 .pill.on[data-lv="K3"]{background:var(--grape);border-color:#642fa3;color:#fff}
+.pill.on[data-lv="P1"]{background:#E8527F;border-color:#c43a4d;color:#fff}
+.pill.on[data-lv="P2"]{background:#E84A5F;border-color:#b33a4d;color:#fff}
+.pill.on[data-lv="P3"]{background:#D85A30;border-color:#a84520;color:#fff}
+.pill.on[data-lv="P4"]{background:#BA7517;border-color:#8a5510;color:#fff}
+.pill.on[data-lv="P5"]{background:#4E9A2E;border-color:#3a7322;color:#fff}
+.pill.on[data-lv="P6"]{background:#085041;border-color:#04342C;color:#fff}
 .pill.locked{opacity:.5;cursor:not-allowed}
 .pill .lock{position:absolute;top:-8px;right:-6px;font-size:1.1rem}
 
