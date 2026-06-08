@@ -141,8 +141,10 @@ header h1{font-size:clamp(1.9rem,7vw,3.2rem);color:var(--coral);line-height:1;
 .advnode.cur{border-color:var(--sun);animation:pulse 1.4s infinite}
 .advnode.done{border-color:var(--grass);background:#f1fbed}
 .advnode.next{opacity:.92}
+.advnode.lock{opacity:.5;cursor:not-allowed;background:#f3f3f5}
 .advnode.boss{border-color:var(--grape);background:#f3ecfd}
 .advnode.boss .num{background:var(--grape)}
+.advneed{display:block;font-size:.72rem;color:var(--muted);font-weight:600;font-family:'Fredoka',sans-serif}
 
 /* RPG battle screen */
 .battle{display:flex;flex-direction:column;align-items:center;gap:10px;margin-bottom:14px}
@@ -227,3 +229,19 @@ footer{text-align:center;color:#a4a7ba;font-size:.82rem;margin:20px 0 6px;font-w
 .jstep .jgoal{font-size:.85rem;color:var(--muted)}
 .jstep .jcheck{font-size:1.4rem}
 .jline{width:4px;height:16px;background:#ddd;margin-left:39px;border-radius:4px}
+
+/* Subject filter bar (P1 only) */
+.subjectbar{display:flex;align-items:center;gap:10px;justify-content:center;flex-wrap:wrap;
+  margin:10px 0 4px;background:#fff;border-radius:20px;padding:10px 16px;
+  box-shadow:0 4px 0 var(--shadow)}
+.subjectlabel{font-size:.88rem;color:var(--muted);font-weight:600;white-space:nowrap}
+.subjectpills{display:flex;gap:8px;flex-wrap:wrap;justify-content:center}
+.spill{border:none;cursor:pointer;font-family:'Baloo 2';font-weight:700;font-size:.95rem;
+  padding:7px 16px;border-radius:30px;background:#f1f1f4;color:var(--ink);
+  box-shadow:0 3px 0 var(--shadow);transition:transform .12s;border:2px solid transparent}
+.spill:active{transform:translateY(2px);box-shadow:0 1px 0 var(--shadow)}
+.spill.on{background:var(--sky);color:#fff;border-color:#157a73}
+.spill[data-s="All"].on{background:var(--ink);border-color:#000}
+.spill[data-s="Go Get Maths"].on{background:#E84A5F;border-color:#c43a4d;color:#fff}
+.spill[data-s="Science"].on{background:#4E9A2E;border-color:#3a7322;color:#fff}
+.spill[data-s="English"].on{background:var(--grape);border-color:#642fa3;color:#fff}

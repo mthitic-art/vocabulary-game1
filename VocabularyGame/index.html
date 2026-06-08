@@ -43,6 +43,13 @@
   <div id="home">
     <!-- Level pills are built by game.js from the LEVELS list -->
     <div class="levels" id="levels" role="tablist" aria-label="Choose level"></div>
+
+    <!-- Subject filter: shown only when P1 is selected -->
+    <div class="subjectbar" id="subjectBar" style="display:none">
+      <span class="subjectlabel">📚 วิชา / Subject:</span>
+      <div class="subjectpills" id="subjectPills" role="tablist" aria-label="Filter by subject"></div>
+    </div>
+
     <p class="hint" style="text-align:center" id="unlockHint"></p>
 
     <div class="menu" id="menu">

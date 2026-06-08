@@ -85,7 +85,7 @@ let LV = "K1", MODE = "", score = 0, qi = 0, queue = [], total = 0, reviewMode =
 function showScreen(){ $('#home').style.display='none'; $('#dash').classList.remove('show'); $('#screen').classList.add('show'); }
 function goHome(){ if (window.speechSynthesis) speechSynthesis.cancel();
   $('#screen').classList.remove('show'); $('#dash').classList.remove('show');
-  $('#home').style.display='block'; refreshChips(); refreshLocks(); }
+  $('#home').style.display='block'; refreshChips(); refreshLocks(); updateSubjectBar(); }
 function setScore(){ $('#score').textContent = '⭐ ' + score; }
 function setProg(p){ $('#progbar').style.width = p + '%'; }
 
@@ -101,7 +101,7 @@ function afterRound(){ // shared post-round bookkeeping
 function startQuiz(useReview){
   reviewMode = !!useReview; MODE = useReview ? "review" : "quiz";
   score = 0; qi = 0;
-  const pool = useReview ? SRS.wrongList(LV) : SRS.pickWeighted(LV, 10);
+  const pool = useReview ? SRS.wrongList(LV, wordsFiltered(LV)) : SRS.pickWeighted(LV, 10, wordsFiltered(LV));
   if (useReview && pool.length === 0){
     showScreen();
     $('#play').innerHTML =
@@ -118,7 +118,7 @@ function nextQuiz(){
   setProg(qi/total*100);
   const word = queue[qi];
   const n = CHOICES[LV] || 4;
-  const wrongs = shuffle(wordsOf(LV).filter(w=>w!==word)).slice(0, n-1);
+  const wrongs = shuffle(wordsFiltered(LV).filter(w=>w!==word)).slice(0, n-1);
   const choices = shuffle([word, ...wrongs]);
   $('#play').innerHTML = `
     <div class="prompt">
@@ -169,7 +169,7 @@ function choose(el, word, advance){
    MODE 2 · FLASHCARD — flip, hear, self-paced
    ============================================================ */
 function startFlash(){
-  MODE = "flashcard"; queue = shuffle(SRS.pickWeighted(LV, wordsOf(LV).length)); qi = 0;
+  MODE = "flashcard"; queue = shuffle(SRS.pickWeighted(LV, wordsFiltered(LV).length, wordsFiltered(LV))); qi = 0;
   showScreen(); renderFlash();
 }
 function renderFlash(){
@@ -206,6 +206,10 @@ const ADV_STAGES = 10;          // 10 stages
 const ADV_WORDS_PER = 5;        // 5 words each  -> 50 words total
 const ADV_START_HEARTS = 3;     // player lives per stage
 
+// Passing score per stage: stages 1-5 need 3/5 correct, stages 6-10 need 4/5.
+// (stageIdx is 0-based, so 0-4 = stages 1-5, 5-9 = stages 6-10.)
+function passMark(stageIdx){ return stageIdx < 5 ? 3 : 4; }
+
 // Monster lineup. Last one is the boss. Pure emoji art — no assets needed.
 const MONSTERS = [
   {e:"🐛", n:"Wiggly"},   {e:"🐌", n:"Snaily"},  {e:"🦗", n:"Hoppy"},
@@ -214,32 +218,53 @@ const MONSTERS = [
   {e:"🐉", n:"DRAGON BOSS"}
 ];
 
+// Highest stage cleared for the CURRENT level (per-grade progress).
+// Returns 0..10. A stage index i is unlocked if i <= clearedStages(LV).
+function clearedStages(){ return (DB.advCleared && DB.advCleared[LV]) || 0; }
+function setClearedStages(n){
+  if (!DB.advCleared) DB.advCleared = {};
+  // only ever increase — replaying an earlier stage can't lower progress
+  if (n > (DB.advCleared[LV]||0)) { DB.advCleared[LV] = n; Store.save(DB); }
+}
+
 let advStage = 0;          // 0-based current stage index
 let advHearts = 0;         // player hearts in current stage
 let monHP = 0, monMax = 0; // monster hit points
 
 function startAdventure(){ MODE = "adventure"; advStage = 0; renderAdvMap(); }
 
-/* The world map: shows all 10 stages, which are cleared, which is current. */
+/* The world map: stages unlock one at a time. A stage is unlocked if its
+   index <= the number of stages already cleared for this grade. Locked
+   stages can't be tapped. Progress is saved per level (per grade). */
 function renderAdvMap(){
-  showScreen(); setProg(advStage/ADV_STAGES*100);
-  $('#score').textContent = '🗺️ ' + advStage + '/' + ADV_STAGES + ' cleared';
+  showScreen();
+  const cleared = clearedStages();
+  setProg(cleared/ADV_STAGES*100);
+  $('#score').textContent = '🗺️ ' + cleared + '/' + ADV_STAGES + ' cleared · ' + LV;
   let nodes = '';
   for (let i=0;i<ADV_STAGES;i++){
     const m = MONSTERS[i];
-    const state = i<advStage ? 'done' : i===advStage ? 'cur' : 'next';
     const isBoss = i===ADV_STAGES-1;
-    nodes += `<button class="advnode ${state} ${isBoss?'boss':''}" data-i="${i}">
+    const isDone = i < cleared;          // already beaten
+    const isCurrent = i === cleared;     // the next one to play (unlocked)
+    const isLocked = i > cleared;        // not reachable yet
+    const state = isDone ? 'done' : isCurrent ? 'cur' : 'lock';
+    const need = passMark(i);
+    const right = isLocked ? '🔒' : (isDone ? '✅' : m.e);
+    nodes += `<button class="advnode ${state} ${isBoss?'boss':''}" data-i="${i}" ${isLocked?'disabled':''}>
       <span class="num">${i+1}</span>
-      <span style="flex:1;text-align:left;font-weight:600">${isBoss?'BOSS · ':''}${m.n}</span>
-      <span style="font-size:1.6rem">${i<advStage?'✅':m.e}</span></button>`;
+      <span style="flex:1;text-align:left">
+        <span style="font-weight:700">${isBoss?'BOSS · ':''}${m.n}</span>
+        <span class="advneed">pass ${need}/5</span>
+      </span>
+      <span style="font-size:1.6rem">${right}</span></button>`;
   }
+  const allDone = cleared >= ADV_STAGES;
   $('#play').innerHTML = `<p class="hint" style="text-align:center;margin-bottom:8px">
-      Defeat all 10 monsters! Each battle has 5 words.</p>
+      ${allDone ? '🎉 You cleared all 10 stages!' : 'Beat each monster to unlock the next stage!'}</p>
     <div class="advmap">${nodes}</div>`;
-  // All stages are tappable (no hard locking) so kids can replay any battle,
-  // but the "current" one is highlighted as the suggested next step.
   document.querySelectorAll('.advnode').forEach(nd=>{
+    if (nd.disabled) return;             // locked stages do nothing
     nd.onclick = () => startBattle(parseInt(nd.dataset.i,10));
   });
 }
@@ -249,8 +274,10 @@ function startBattle(stageIdx){
   advStage = stageIdx;
   score = 0; qi = 0; total = ADV_WORDS_PER;
   advHearts = ADV_START_HEARTS;
-  monMax = ADV_WORDS_PER; monHP = ADV_WORDS_PER;   // 5 correct hits = defeated
-  queue = shuffle(SRS.pickWeighted(LV, ADV_WORDS_PER));
+  // Monster HP equals the pass mark, so emptying its HP bar = clearing the
+  // stage (3 correct on stages 1-5, 4 correct on stages 6-10).
+  monMax = passMark(stageIdx); monHP = monMax;
+  queue = shuffle(SRS.pickWeighted(LV, ADV_WORDS_PER, wordsFiltered(LV)));
   nextBattleWord();
 }
 
@@ -271,11 +298,13 @@ function battleBar(){
 }
 
 function nextBattleWord(){
-  if (advHearts<=0){ return battleLost(); }
-  if (monHP<=0 || qi>=total){ return battleWon(); }
+  // The battle runs through all 5 words (monster HP is visual only).
+  // Out of hearts ends early. Pass/fail is judged on correct count at the end.
+  if (advHearts<=0){ return battleEnd(); }
+  if (qi>=total){ return battleEnd(); }
   setProg(advStage/ADV_STAGES*100 + (qi/total)*(100/ADV_STAGES));
   const word = queue[qi]; const n = CHOICES[LV] || 4;
-  const wrongs = shuffle(wordsOf(LV).filter(w=>w!==word)).slice(0, n-1);
+  const wrongs = shuffle(wordsFiltered(LV).filter(w=>w!==word)).slice(0, n-1);
   const choices = shuffle([word, ...wrongs]);
   $('#score').textContent = '⚔️ Stage ' + (advStage+1) + '/' + ADV_STAGES;
   $('#play').innerHTML = battleBar() + `
@@ -301,7 +330,7 @@ function battleChoose(el,word){
   const ok = el.dataset.w===word; SRS.record(LV,word,ok);
   const monEl = document.getElementById('mon');
   if (ok){
-    el.classList.add('right'); score++; monHP--; Audio2.good(); Audio2.speak(word);
+    el.classList.add('right'); score++; monHP=Math.max(0,monHP-1); Audio2.good(); Audio2.speak(word);
     if (monEl){ monEl.classList.add('mon-hurt'); setTimeout(()=>monEl.classList.remove('mon-hurt'),400); }
     const hpEl=document.getElementById('monHP'); if(hpEl) hpEl.style.width=Math.max(0,Math.round(monHP/monMax*100))+'%';
     $('#fb').textContent='💥 '+praise(); $('#fb').style.color='var(--grass)';
@@ -317,40 +346,43 @@ function battleChoose(el,word){
   setTimeout(nextBattleWord, 1250);
 }
 
-function battleWon(){
+function battleEnd(){
   const isBoss = advStage===ADV_STAGES-1;
-  if (advStage+1 > advStageCleared()) {/* track via history below */}
-  FX.confetti(isBoss?200:90); Audio2.win();
+  const need = passMark(advStage);          // 3 (stages 1-5) or 4 (stages 6-10)
+  const passed = score >= need;
+  // Record the round either way (counts toward stars/streak/mastery).
   Gamify.recordRound("adventure", LV, score, total); afterRound();
-  const wasLast = advStage>=ADV_STAGES-1;
-  const nextIdx = advStage+1;
-  $('#play').innerHTML = `<div class="done">
-    <div class="trophy">${isBoss?'👑':'⚔️'}</div>
-    <h2>${isBoss?'BOSS DEFEATED!':'Monster defeated!'}</h2>
-    <div class="res">${MONSTERS[advStage].e} ${MONSTERS[advStage].n} is beaten · +${score} ⭐</div>
-    ${wasLast
-      ? `<p class="hint" style="margin-bottom:10px">You cleared all 10 stages! 🎉</p>
-         <button class="btn" onclick="startAdventure()">🔁 Play Again</button>`
-      : `<button class="btn" id="nextStage">➡️ Next Monster</button>
-         <button class="btn alt" onclick="renderAdvMap()">🗺️ Map</button>`}
-    <button class="btn alt" onclick="goHome()">🏠 Home</button></div>`;
-  const ns=document.getElementById('nextStage');
-  if (ns) ns.onclick=()=>startBattle(nextIdx);
-}
-// helper: highest stage cleared from history (so the map shows progress)
-function advStageCleared(){
-  return DB.history.filter(h=>h.mode==='adventure'&&h.lv===LV).length;
-}
 
-function battleLost(){
-  Audio2.bad();
-  $('#play').innerHTML = `<div class="done">
-    <div class="trophy">💔</div><h2>Out of hearts!</h2>
-    <div class="res">${MONSTERS[advStage].e} ${MONSTERS[advStage].n} was too strong this time.</div>
-    <button class="btn" id="retry">🔄 Try Again</button>
-    <button class="btn alt" onclick="renderAdvMap()">🗺️ Map</button>
-    <button class="btn alt" onclick="goHome()">🏠 Home</button></div>`;
-  document.getElementById('retry').onclick=()=>startBattle(advStage);
+  if (passed){
+    // Unlock the next stage for THIS grade.
+    setClearedStages(advStage+1);
+    FX.confetti(isBoss?200:90); Audio2.win();
+    const wasLast = advStage>=ADV_STAGES-1;
+    const nextIdx = advStage+1;
+    $('#play').innerHTML = `<div class="done">
+      <div class="trophy">${isBoss?'👑':'⚔️'}</div>
+      <h2>${isBoss?'BOSS DEFEATED!':'Stage cleared!'}</h2>
+      <div class="res">${MONSTERS[advStage].e} ${MONSTERS[advStage].n} beaten · ${score}/${total} correct · +${score} ⭐</div>
+      ${wasLast
+        ? `<p class="hint" style="margin-bottom:10px">You cleared all 10 stages! 🎉</p>
+           <button class="btn" onclick="startAdventure()">🔁 Play Again</button>`
+        : `<button class="btn" id="nextStage">➡️ Next Stage</button>
+           <button class="btn alt" onclick="renderAdvMap()">🗺️ Map</button>`}
+      <button class="btn alt" onclick="goHome()">🏠 Home</button></div>`;
+    const ns=document.getElementById('nextStage');
+    if (ns) ns.onclick=()=>startBattle(nextIdx);
+  } else {
+    // Did not reach the pass mark — must retry this stage.
+    Audio2.bad();
+    const reason = advHearts<=0 ? 'Out of hearts!' : 'Almost there!';
+    $('#play').innerHTML = `<div class="done">
+      <div class="trophy">💔</div><h2>${reason}</h2>
+      <div class="res">You got ${score}/${total}. You need ${need}/${total} to pass this stage.</div>
+      <button class="btn" id="retry">🔄 Try Again</button>
+      <button class="btn alt" onclick="renderAdvMap()">🗺️ Map</button>
+      <button class="btn alt" onclick="goHome()">🏠 Home</button></div>`;
+    document.getElementById('retry').onclick=()=>startBattle(advStage);
+  }
 }
 
 /* ============================================================
@@ -359,7 +391,7 @@ function battleLost(){
 let memFlipped = [], memLock = false, memPairs = 0;
 function startMemory(){
   MODE = "memory"; memFlipped = []; memLock = false;
-  const pool = shuffle(SRS.pickWeighted(LV, 6)); memPairs = pool.length;
+  const pool = shuffle(SRS.pickWeighted(LV, 6, wordsFiltered(LV))); memPairs = pool.length;
   let deck = [];
   pool.forEach(w => { deck.push({w,type:'word'}); deck.push({w,type:'pic'}); });
   deck = shuffle(deck);
@@ -458,7 +490,7 @@ function renderDash(){
     `<div class="badge ${DB.badges[a.id]?'earned':''}"><div class="be">${a.e}</div><div class="bn">${a.n}</div></div>`).join('');
   renderJourney(mastered);
   $('#curLvLabel').textContent = LV;
-  $('#dashMastery').innerHTML = wordsOf(LV).map(w=>{
+  $('#dashMastery').innerHTML = wordsFiltered(LV).map(w=>{
     const p = Math.round(SRS.pct(LV,w)*100);
     return `<div class="mrow"><span class="w">${emojiOf(LV,w)} ${w}</span>
       <span class="mbar"><div style="width:${p}%"></div></span><span class="mpct">${p}%</span></div>`;
@@ -509,10 +541,37 @@ function pickLevel(b){
   const lv = b.dataset.lv;
   document.querySelectorAll('.pill').forEach(p=>{ p.classList.remove('on'); p.setAttribute('aria-selected','false'); });
   b.classList.add('on'); b.setAttribute('aria-selected','true'); LV = lv;
+  // Reset subject filter when switching level, then show/hide bar.
+  SUBJECT_FILTER = "All";
+  updateSubjectBar();
+}
+
+/* Build and show subject filter bar for P1; hide for other levels. */
+function updateSubjectBar(){
+  const bar = document.getElementById('subjectBar');
+  const pillBox = document.getElementById('subjectPills');
+  if (LV !== "P1"){ bar.style.display = 'none'; return; }
+  bar.style.display = 'flex';
+  const subjects = ["All", ...P1_SUBJECTS];
+  pillBox.innerHTML = subjects.map(s =>
+    `<button class="spill ${SUBJECT_FILTER===s?'on':''}" data-s="${s}" role="tab"
+      aria-selected="${SUBJECT_FILTER===s}">${s==="All"?"🌐 All":s}</button>`
+  ).join('');
+  pillBox.querySelectorAll('.spill').forEach(p => p.onclick = () => {
+    SUBJECT_FILTER = p.dataset.s;
+    updateSubjectBar();   // re-render pills with new selection
+  });
 }
 function routeGame(g){
   // No level locking: every grade can play its own level right away.
-  if (!hasLevelWords(LV)){ toast("📭","No words for "+LV+" this month."); return; }
+  // Check using filtered words so subject filter is respected.
+  const filtered = wordsFiltered(LV);
+  if (!filtered.length){
+    toast("📭", LV==="P1"
+      ? `No words for P1 · ${SUBJECT_FILTER} this month.`
+      : `No words for ${LV} this month.`);
+    return;
+  }
   // K1 (youngest) sees a quick bilingual how-to-play card the first time
   // they open a game in a session.
   if (LV==="K1" && !sessionInstShown[g]){ sessionInstShown[g]=true; return showK1Instructions(g); }
@@ -560,6 +619,7 @@ async function boot(){
     return;
   }
   buildLevelPills();
+  updateSubjectBar();   // show/hide subject bar based on default level (K1)
   document.querySelectorAll('.card').forEach(c=> c.onclick = () => routeGame(c.dataset.game));
   $('#back').onclick = goHome; $('#navHome').onclick = goHome;
   $('#navDash').onclick = openDash; $('#dashBack').onclick = goHome;

@@ -24,6 +24,7 @@ const Store = (() => {
       badges:{}, unlocked: allOpen,
       mastery:{},                          // "LV::word": {seen,correct}
       wrong:{},                            // "LV": ["word", ...]
+      advCleared:{},                       // "LV": highest adventure stage cleared (0-10), per grade
       history:[]                           // {date,mode,lv,score,max}
     };
   }
@@ -62,14 +63,20 @@ const SRS = {
   },
   pct(lv,w){ const m = DB.mastery[this.key(lv,w)]; return (m && m.seen) ? m.correct/m.seen : 0; },
   // Pick N words weighted toward weak/unseen ones.
-  pickWeighted(lv,n){
-    const ws = wordsOf(lv);
+  // wordList is optional — pass wordsFiltered(lv) to respect subject filter.
+  pickWeighted(lv, n, wordList){
+    const ws = wordList || wordsOf(lv);
     const scored = ws.map(w => ({ w, weight: 1.2 - this.pct(lv,w) + (DB.mastery[this.key(lv,w)] ? 0 : 0.5) }));
     scored.forEach(o => o.r = Math.random() * o.weight);
     scored.sort((a,b)=> b.r - a.r);
     return scored.slice(0, Math.min(n, ws.length)).map(o => o.w);
   },
-  wrongList(lv){ return [...new Set(DB.wrong[lv] || [])]; }
+  // Return only wrong words that are in the current filtered list.
+  wrongList(lv, wordList){
+    const all = [...new Set(DB.wrong[lv] || [])];
+    if (!wordList) return all;
+    return all.filter(w => wordList.includes(w));
+  }
 };
 
 /* ---------- [GAMIFY] stars, streak, badges, unlocks ---------- */

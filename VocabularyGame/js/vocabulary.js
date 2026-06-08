@@ -41,3 +41,21 @@ function wordsOf(lv)   { return levelData(lv).map(e => e.word); }
 function entryOf(lv, w){ return levelData(lv).find(e => e.word === w) || { word:w }; }
 function emojiOf(lv, w){ const e = entryOf(lv, w); return e.emoji || "🔡"; }
 function hasLevelWords(lv){ return levelData(lv).length > 0; }
+
+// Subject filter — only P1 has subjects; other levels return all words.
+// SUBJECT_FILTER is set by the UI when a filter pill is chosen.
+let SUBJECT_FILTER = "All";  // "All" | "Go Get Maths" | "Science" | "English"
+const P1_SUBJECTS = ["Go Get Maths", "Science", "English"];
+
+// Returns words for current level, filtered by subject if applicable.
+function wordsFiltered(lv){
+  const data = levelData(lv);
+  if (lv !== "P1" || SUBJECT_FILTER === "All") return data.map(e => e.word);
+  return data.filter(e => e.subject === SUBJECT_FILTER).map(e => e.word);
+}
+// Same but returns full entry objects (for pic/emoji rendering).
+function entriesFiltered(lv){
+  const data = levelData(lv);
+  if (lv !== "P1" || SUBJECT_FILTER === "All") return data;
+  return data.filter(e => e.subject === SUBJECT_FILTER);
+}
