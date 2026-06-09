@@ -221,7 +221,16 @@ footer{text-align:center;color:#a4a7ba;font-size:.82rem;margin:20px 0 6px;font-w
 @keyframes floatStar{0%{transform:translateY(0) scale(.6);opacity:1}100%{transform:translateY(-130px) scale(1.4);opacity:0}}
 .floatstar{position:fixed;font-size:2rem;pointer-events:none;z-index:9500;animation:floatStar 1s ease-out forwards}
 
-@media(max-width:480px){.opt{font-size:1.1rem;min-height:76px}.opts.n6{gap:8px}}
+@media(max-width:480px){
+  .opt{font-size:1.1rem;min-height:88px}
+  .opts.n6{gap:8px}
+  .opt .oimg{width:80px;height:80px;font-size:3.2rem}
+  .opt .oimg img{width:100%;height:100%}
+  .wordimg{width:clamp(160px,52vw,220px);height:clamp(160px,52vw,220px)}
+  .memback .oimg{font-size:3rem}
+  .opts.n2 .opt{min-height:110px}
+  .opts.n2 .opt .oimg{width:96px;height:96px;font-size:4rem}
+}
 @media(prefers-reduced-motion:reduce){*{animation-duration:.001ms!important;transition-duration:.05ms!important}}
 /* Learning journey path (dashboard) */
 .journey{display:flex;flex-direction:column;align-items:stretch;gap:0;margin:4px 0}
@@ -251,3 +260,23 @@ footer{text-align:center;color:#a4a7ba;font-size:.82rem;margin:20px 0 6px;font-w
 .spill[data-s="Go Get Maths"].on{background:#E84A5F;border-color:#c43a4d;color:#fff}
 .spill[data-s="Science"].on{background:#4E9A2E;border-color:#3a7322;color:#fff}
 .spill[data-s="English"].on{background:var(--grape);border-color:#642fa3;color:#fff}
+
+/* Spelling Quest */
+.spellprompt{text-align:center;margin:6px 0 10px}
+.spellanswer{display:flex;gap:6px;justify-content:center;flex-wrap:wrap;margin:8px 0 10px;min-height:48px}
+.spellabox{width:42px;height:48px;border-radius:10px;border:3px solid var(--sky);background:#fff;
+  display:flex;align-items:center;justify-content:center;font-family:'Baloo 2';font-weight:800;
+  font-size:1.4rem;transition:.15s}
+.spellabox.filled{background:#e8f4ff;border-color:#185FA5}
+.spellabox.correct{background:#dff5d8;border-color:var(--grass);animation:rightP .4s}
+.spellabox.wrong{background:#ffe0e0;border-color:var(--coral);animation:shake .4s}
+.spelltiles{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin:6px 0}
+.spelltile{width:44px;height:48px;border-radius:10px;border:3px solid var(--sun);background:#fff;
+  font-family:'Baloo 2';font-weight:800;font-size:1.3rem;cursor:pointer;
+  box-shadow:0 4px 0 var(--shadow);transition:.12s;color:var(--ink)}
+.spelltile:active{transform:translateY(3px);box-shadow:0 1px 0 var(--shadow)}
+.spelltile.used{opacity:.3;pointer-events:none;background:#eee;border-color:#ccc}
+@media(max-width:480px){
+  .spellabox{width:36px;height:42px;font-size:1.2rem}
+  .spelltile{width:38px;height:42px;font-size:1.1rem}
+}
