@@ -25,6 +25,7 @@ const Store = (() => {
       mastery:{},                          // "LV::word": {seen,correct}
       wrong:{},                            // "LV": ["word", ...]
       advCleared:{},                       // "LV": highest adventure stage cleared (0-10), per grade
+      spellCleared:{},                     // "LV": highest spelling stage cleared (0-10), per grade
       history:[]                           // {date,mode,lv,score,max}
     };
   }

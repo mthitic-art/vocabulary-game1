@@ -438,8 +438,193 @@ function memTap(el){
 }
 
 /* ============================================================
-   Completion — stars, confetti, history, unlocks/achievements
+   MODE 5 · SPELLING ADVENTURE
+   10 stages × 5 words. See the picture + hear the word, then
+   tap scrambled letter tiles to spell it correctly.
+   Stage 1-5: short words (≤5 letters), pass mark 3/5.
+   Stage 6-10: any length, pass mark 4/5.
+   Progress saved per level in DB.spellCleared (same pattern as advCleared).
    ============================================================ */
+const SPELL_STAGES = 10, SPELL_PER = 5;
+function spellPass(idx){ return idx < 5 ? 3 : 4; }
+function spellCleared(){ return (DB.spellCleared && DB.spellCleared[LV]) || 0; }
+function setSpellCleared(n){
+  if (!DB.spellCleared) DB.spellCleared = {};
+  if (n > (DB.spellCleared[LV]||0)){ DB.spellCleared[LV] = n; Store.save(DB); }
+}
+
+let spellStage=0, spellScore=0, spellQi=0, spellQueue=[], spellHearts=0;
+let spellWord='', spellChosen=[], spellTiles=[];
+
+function startSpelling(){ MODE="spelling"; spellStage=0; renderSpellMap(); }
+
+function renderSpellMap(){
+  showScreen();
+  const cleared = spellCleared();
+  setProg(cleared/SPELL_STAGES*100);
+  $('#score').textContent = '✏️ ' + cleared + '/' + SPELL_STAGES + ' · ' + LV;
+  let nodes='';
+  for(let i=0;i<SPELL_STAGES;i++){
+    const m=MONSTERS[i], isBoss=i===SPELL_STAGES-1;
+    const isDone=i<cleared, isCur=i===cleared, isLock=i>cleared;
+    const state=isDone?'done':isCur?'cur':'lock';
+    const need=spellPass(i);
+    nodes+=`<button class="advnode ${state} ${isBoss?'boss':''}" data-i="${i}" ${isLock?'disabled':''}>
+      <span class="num">${i+1}</span>
+      <span style="flex:1;text-align:left">
+        <span style="font-weight:700">${isBoss?'BOSS · ':''}${m.n}</span>
+        <span class="advneed">pass ${need}/5 · spell it!</span>
+      </span>
+      <span style="font-size:1.6rem">${isLock?'🔒':isDone?'✅':m.e}</span></button>`;
+  }
+  $('#play').innerHTML=`<p class="hint" style="text-align:center;margin-bottom:8px">
+    Spell the word to defeat each monster!</p>
+    <div class="advmap">${nodes}</div>`;
+  document.querySelectorAll('.advnode').forEach(nd=>{
+    if(nd.disabled)return;
+    nd.onclick=()=>startSpellBattle(parseInt(nd.dataset.i,10));
+  });
+}
+
+/* Pick words appropriate for the stage difficulty */
+function spellWordsForStage(stageIdx){
+  const all = wordsFiltered(LV);
+  // stages 1-5: prefer shorter words
+  const short = all.filter(w => w.replace(/\s/g,'').length <= 5);
+  const pool = stageIdx < 5
+    ? (short.length >= SPELL_PER ? short : all)
+    : all;
+  return SRS.pickWeighted(LV, SPELL_PER, pool);
+}
+
+function startSpellBattle(idx){
+  spellStage=idx; spellScore=0; spellQi=0; spellHearts=3;
+  spellQueue = spellWordsForStage(idx);
+  nextSpellWord();
+}
+
+function nextSpellWord(){
+  if(spellHearts<=0||spellQi>=SPELL_PER) return spellBattleEnd();
+  setProg(spellStage/SPELL_STAGES*100+(spellQi/SPELL_PER)*(100/SPELL_STAGES));
+  spellWord = spellQueue[spellQi];
+  spellChosen = [];
+  // Scramble letters (no spaces — join multi-word as one spelling challenge)
+  const letters = spellWord.toLowerCase().replace(/\s/g,'').split('');
+  // shuffle with at least 1 change if >2 letters
+  spellTiles = shuffle([...letters]);
+  if(letters.length>2 && spellTiles.join('')===letters.join('')) spellTiles = shuffle(spellTiles);
+  const hearts='❤️'.repeat(spellHearts)+'🤍'.repeat(3-spellHearts);
+  const m=MONSTERS[spellStage], isBoss=spellStage===SPELL_STAGES-1;
+  const hp=Math.max(0,Math.round((spellPass(spellStage)-spellScore)/spellPass(spellStage)*100));
+  $('#score').textContent='✏️ Stage '+(spellStage+1)+'/'+SPELL_STAGES;
+  $('#play').innerHTML=`
+    <div class="battle">
+      <div class="mon ${isBoss?'bossmon':''}" id="mon">
+        <div class="mon-emoji">${m.e}</div>
+        <div class="mon-name">${isBoss?'⚔️ ':''}${m.n}</div>
+        <div class="hpbar"><div id="monHP" style="width:${hp}%"></div></div>
+      </div>
+      <div class="hearts">${hearts}</div>
+    </div>
+    <div class="spellprompt">
+      ${pic(LV,spellWord,'wordimg')}
+      <button class="speak" id="sp" style="margin-top:8px" aria-label="Play sound">🔊</button>
+    </div>
+    <div class="spellanswer" id="spellanswer">
+      ${spellWord.replace(/\s/g,'').split('').map((_,i)=>`<div class="spellabox" id="sa${i}"></div>`).join('')}
+    </div>
+    <div class="spelltiles" id="spelltiles">
+      ${spellTiles.map((l,i)=>`<button class="spelltile" id="st${i}" data-i="${i}" data-l="${l}">${l.toUpperCase()}</button>`).join('')}
+    </div>
+    <div style="text-align:center;margin-top:8px">
+      <button class="btn alt" id="spellclear" style="padding:8px 18px;font-size:.95rem">↩ Clear</button>
+    </div>
+    <div class="fb" id="fb" aria-live="assertive"></div>`;
+  $('#sp').onclick=()=>Audio2.speak(spellWord);
+  setTimeout(()=>Audio2.speak(spellWord),300);
+  document.querySelectorAll('.spelltile').forEach(t=>t.onclick=()=>tapTile(t));
+  $('#spellclear').onclick=()=>clearSpell();
+}
+
+function tapTile(t){
+  if(t.classList.contains('used'))return;
+  const l=t.dataset.l, i=parseInt(t.dataset.i,10);
+  spellChosen.push({l,i});
+  t.classList.add('used');
+  // fill next empty answer box
+  const idx=spellChosen.length-1;
+  const box=document.getElementById('sa'+idx);
+  if(box){ box.textContent=l.toUpperCase(); box.classList.add('filled'); }
+  // auto-check when all boxes filled
+  const target=spellWord.replace(/\s/g,'');
+  if(spellChosen.length>=target.length) checkSpell();
+}
+
+function clearSpell(){
+  spellChosen=[];
+  document.querySelectorAll('.spelltile').forEach(t=>t.classList.remove('used'));
+  document.querySelectorAll('.spellabox').forEach(b=>{ b.textContent=''; b.classList.remove('filled','correct','wrong'); });
+  $('#fb').textContent='';
+}
+
+function checkSpell(){
+  const target=spellWord.replace(/\s/g,'').toLowerCase();
+  const attempt=spellChosen.map(c=>c.l).join('').toLowerCase();
+  const ok=attempt===target;
+  SRS.record(LV,spellWord,ok);
+  document.querySelectorAll('.spellabox').forEach(b=>b.classList.add(ok?'correct':'wrong'));
+  document.querySelectorAll('.spelltile').forEach(t=>t.style.pointerEvents='none');
+  document.getElementById('spellclear').style.pointerEvents='none';
+  const monEl=document.getElementById('mon');
+  if(ok){
+    spellScore++; Audio2.good(); Audio2.speak(spellWord);
+    if(monEl){ monEl.classList.add('mon-hurt'); setTimeout(()=>monEl.classList.remove('mon-hurt'),400); }
+    $('#fb').textContent='🎉 '+praise(); $('#fb').style.color='var(--grass)';
+    const r=document.getElementById('spellanswer').getBoundingClientRect();
+    for(let i=0;i<5;i++) setTimeout(()=>FX.star(r.left+r.width/2+(Math.random()-.5)*60,r.top),i*80);
+  } else {
+    spellHearts--; Audio2.hit();
+    if(monEl){ monEl.classList.add('mon-attack'); setTimeout(()=>monEl.classList.remove('mon-attack'),400); }
+    $('#fb').textContent='💪 It\'s: '+spellWord.toUpperCase(); $('#fb').style.color='var(--coral)';
+  }
+  spellQi++;
+  setTimeout(nextSpellWord,1400);
+}
+
+function spellBattleEnd(){
+  const need=spellPass(spellStage), isBoss=spellStage===SPELL_STAGES-1;
+  const passed=spellScore>=need;
+  Gamify.recordRound("spelling",LV,spellScore,SPELL_PER); afterRound();
+  if(passed){
+    setSpellCleared(spellStage+1);
+    FX.confetti(isBoss?200:90); Audio2.win();
+    const wasLast=spellStage>=SPELL_STAGES-1;
+    const nextIdx=spellStage+1;
+    $('#play').innerHTML=`<div class="done">
+      <div class="trophy">${isBoss?'👑':'✏️'}</div>
+      <h2>${isBoss?'BOSS DEFEATED!':'Stage cleared!'}</h2>
+      <div class="res">${MONSTERS[spellStage].e} defeated · ${spellScore}/${SPELL_PER} correct · +${spellScore} ⭐</div>
+      ${wasLast
+        ?`<p class="hint" style="margin-bottom:10px">All 10 spelling stages cleared! 🎉</p>
+          <button class="btn" onclick="startSpelling()">🔁 Play Again</button>`
+        :`<button class="btn" id="nextSp">➡️ Next Stage</button>
+          <button class="btn alt" onclick="renderSpellMap()">🗺️ Map</button>`}
+      <button class="btn alt" onclick="goHome()">🏠 Home</button></div>`;
+    const ns=document.getElementById('nextSp');
+    if(ns) ns.onclick=()=>startSpellBattle(nextIdx);
+  } else {
+    Audio2.bad();
+    $('#play').innerHTML=`<div class="done">
+      <div class="trophy">💔</div><h2>${spellHearts<=0?'Out of hearts!':'Almost!'}</h2>
+      <div class="res">You spelled ${spellScore}/${SPELL_PER}. Need ${need}/${SPELL_PER} to pass.</div>
+      <button class="btn" id="retrySp">🔄 Try Again</button>
+      <button class="btn alt" onclick="renderSpellMap()">🗺️ Map</button>
+      <button class="btn alt" onclick="goHome()">🏠 Home</button></div>`;
+    document.getElementById('retrySp').onclick=()=>startSpellBattle(spellStage);
+  }
+}
+
+
 function finishRound(silent){
   setProg(100);
   if (silent){ // flashcards: friendly end card, no scoring
@@ -576,7 +761,7 @@ function routeGame(g){
   // they open a game in a session.
   if (LV==="K1" && !sessionInstShown[g]){ sessionInstShown[g]=true; return showK1Instructions(g); }
   ({ quiz:()=>startQuiz(false), review:()=>startQuiz(true), flashcard:startFlash,
-     adventure:startAdventure, memory:startMemory }[g] || (()=>{}))();
+     adventure:startAdventure, memory:startMemory, spelling:startSpelling }[g] || (()=>{}))();
 }
 
 /* ---- Bilingual (EN/TH) instructions for the youngest learners (K1) ---- */
@@ -586,7 +771,8 @@ const K1_INSTRUCTIONS = {
   flashcard: {en:"Tap the card to flip it and hear the word.",        th:"แตะการ์ดเพื่อพลิกดูคำและฟังเสียง"},
   adventure: {en:"Beat monsters! Tap the right word to attack.",      th:"สู้มอนสเตอร์! แตะคำที่ถูกเพื่อโจมตี"},
   memory:    {en:"Find the word and its picture pair.",               th:"จับคู่คำกับรูปภาพให้ตรงกัน"},
-  review:    {en:"Practise the words you missed before.",             th:"ฝึกคำที่เคยตอบผิด"}
+  review:    {en:"Practise the words you missed before.",             th:"ฝึกคำที่เคยตอบผิด"},
+  spelling:  {en:"See the picture, then tap letters to spell the word.", th:"ดูภาพแล้วแตะตัวอักษรเรียงสะกดคำ"}
 };
 function showK1Instructions(g){
   const ins = K1_INSTRUCTIONS[g] || K1_INSTRUCTIONS.quiz;
@@ -602,7 +788,7 @@ function showK1Instructions(g){
     <button class="btn alt" onclick="goHome()">🏠 Home</button></div>`;
   document.getElementById('startNow').onclick = () => {
     ({ quiz:()=>startQuiz(false), review:()=>startQuiz(true), flashcard:startFlash,
-       adventure:startAdventure, memory:startMemory }[g] || (()=>{}))();
+       adventure:startAdventure, memory:startMemory, spelling:startSpelling }[g] || (()=>{}))();
   };
 }
 
