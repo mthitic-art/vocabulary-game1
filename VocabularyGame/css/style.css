@@ -19,7 +19,7 @@ body{
   color:var(--ink); min-height:100vh; padding:16px;
 }
 h1,h2,h3,h4,.display{font-family:'Baloo 2',cursive}
-.wrap{max-width:900px;margin:0 auto}
+.wrap{max-width:100%;margin:0 auto;padding:0 8px}
 
 /* Focus ring for keyboard users (A11Y) */
 :focus-visible{outline:4px solid var(--focus);outline-offset:3px;border-radius:14px}
@@ -40,9 +40,11 @@ header h1{font-size:clamp(1.9rem,7vw,3.2rem);color:var(--coral);line-height:1;
 .nav-btn:active{transform:translateY(3px);box-shadow:0 0 0 var(--shadow)}
 
 /* LEVEL PILLS */
-.levels{display:flex;gap:10px;justify-content:center;margin:14px 0 4px;flex-wrap:wrap}
-.pill{border:none;cursor:pointer;font-family:'Baloo 2';font-weight:700;font-size:1.1rem;
-  padding:10px 24px;border-radius:40px;background:#fff;color:var(--ink);
+.levels{display:flex;gap:8px;justify-content:center;margin:14px 0 4px;flex-wrap:wrap}
+.pill{border:none;cursor:pointer;font-family:'Baloo 2';font-weight:700;
+  font-size:clamp(.85rem,3.2vw,1.1rem);
+  padding:clamp(7px,2vw,10px) clamp(14px,3.5vw,24px);
+  border-radius:40px;background:#fff;color:var(--ink);
   box-shadow:0 4px 0 var(--shadow);transition:transform .12s;border:3px solid transparent;position:relative}
 .pill:active{transform:translateY(3px);box-shadow:0 1px 0 var(--shadow)}
 .pill.on[data-lv="K1"]{background:var(--coral);border-color:#c43a4d;color:#fff}
@@ -58,15 +60,16 @@ header h1{font-size:clamp(1.9rem,7vw,3.2rem);color:var(--coral);line-height:1;
 .pill .lock{position:absolute;top:-8px;right:-6px;font-size:1.1rem}
 
 /* MENU GRID */
-.menu{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:14px;margin:18px 0}
-.card{cursor:pointer;border:none;background:var(--paper);border-radius:22px;padding:22px 14px;
+.menu{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:12px;margin:16px 0}
+.card{cursor:pointer;border:none;background:var(--paper);border-radius:22px;
+  padding:clamp(16px,4vw,22px) 14px;
   text-align:center;box-shadow:0 8px 0 var(--shadow);border:3px solid #fff;
   transition:transform .18s cubic-bezier(.34,1.56,.64,1)}
 .card:hover{transform:translateY(-5px) rotate(-1deg)}
 .card:active{transform:translateY(3px)}
-.card .ico{font-size:3rem;display:block;margin-bottom:6px;transition:transform .2s}
+.card .ico{font-size:clamp(2.6rem,7vw,3rem);display:block;margin-bottom:6px;transition:transform .2s}
 .card:hover .ico{transform:scale(1.15) rotate(8deg)}
-.card h3{font-size:1.2rem} .card p{font-size:.82rem;color:var(--muted);font-weight:500}
+.card h3{font-size:clamp(1rem,3.5vw,1.2rem)} .card p{font-size:.82rem;color:var(--muted);font-weight:500}
 .card.c1{border-color:var(--coral)} .card.c2{border-color:var(--sky)}
 .card.c3{border-color:var(--grass)} .card.c4{border-color:var(--grape)}
 .card.c5{border-color:var(--sun)} .card.c6{border-color:#E8527F}
@@ -87,27 +90,35 @@ header h1{font-size:clamp(1.9rem,7vw,3.2rem);color:var(--coral);line-height:1;
 
 /* PROMPT + WORD IMAGE */
 .prompt{text-align:center;margin:4px 0 16px}
-.wordimg{width:clamp(130px,42vw,190px);height:clamp(130px,42vw,190px);margin:0 auto;
+.wordimg{width:clamp(160px,48vw,220px);height:clamp(160px,48vw,220px);margin:0 auto;
   border-radius:26px;background:#FFF3D6;display:flex;align-items:center;justify-content:center;
-  font-size:clamp(4rem,18vw,6.5rem);overflow:hidden;box-shadow:inset 0 0 0 4px #fff,0 6px 0 var(--shadow);
+  font-size:clamp(5rem,22vw,7rem);overflow:hidden;box-shadow:inset 0 0 0 4px #fff,0 6px 0 var(--shadow);
   animation:bob 2.4s ease-in-out infinite}
 .wordimg img{width:100%;height:100%;object-fit:contain}
 @keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
 .bigword{font-family:'Baloo 2';font-weight:800;font-size:clamp(1.9rem,8vw,3.2rem)}
-.speak{background:var(--sun);border:none;border-radius:50%;width:70px;height:70px;font-size:1.9rem;
+.speak{background:var(--sun);border:none;border-radius:50%;
+  width:clamp(60px,15vw,74px);height:clamp(60px,15vw,74px);
+  font-size:clamp(1.6rem,6vw,2rem);
   cursor:pointer;box-shadow:0 5px 0 #c98700;margin-top:8px;color:#fff}
 .speak:active{transform:translateY(4px);box-shadow:0 1px 0 #c98700}
 .hint{font-size:.92rem;color:var(--muted);margin-top:8px;font-weight:500}
 
 /* OPTIONS (adaptive grid) */
-.opts{display:grid;gap:12px;margin-top:8px}
+.opts{display:grid;gap:clamp(8px,2.5vw,16px);margin-top:8px}
 .opts.n2{grid-template-columns:1fr 1fr}
+.opts.n3{grid-template-columns:1fr 1fr 1fr}
 .opts.n4{grid-template-columns:1fr 1fr}
 .opts.n6{grid-template-columns:1fr 1fr 1fr}
-.opt{cursor:pointer;border:3px solid #e9e9ef;background:#fff;border-radius:20px;padding:14px;
-  font-family:'Baloo 2';font-weight:700;font-size:1.25rem;text-align:center;transition:transform .12s,border-color .12s;
-  display:flex;flex-direction:column;align-items:center;gap:4px;min-height:84px;justify-content:center}
-.opt .oimg{width:62px;height:62px;display:flex;align-items:center;justify-content:center;font-size:2.6rem;overflow:hidden}
+.opt{cursor:pointer;border:3px solid #e9e9ef;background:#fff;border-radius:20px;
+  padding:clamp(10px,3vw,16px);
+  font-family:'Baloo 2';font-weight:700;font-size:clamp(1rem,3.5vw,1.25rem);
+  text-align:center;transition:transform .12s,border-color .12s;
+  display:flex;flex-direction:column;align-items:center;gap:4px;
+  min-height:clamp(96px,22vw,110px);justify-content:center}
+.opt .oimg{width:clamp(72px,18vw,90px);height:clamp(72px,18vw,90px);
+  display:flex;align-items:center;justify-content:center;
+  font-size:clamp(3rem,12vw,4rem);overflow:hidden}
 .opt .oimg img{width:100%;height:100%;object-fit:contain}
 .opt:hover{border-color:var(--sky);transform:translateY(-2px)}
 .opt:active{transform:scale(.97)}
@@ -155,8 +166,8 @@ header h1{font-size:clamp(1.9rem,7vw,3.2rem);color:var(--coral);line-height:1;
 /* RPG battle screen */
 .battle{display:flex;flex-direction:column;align-items:center;gap:10px;margin-bottom:14px}
 .mon{display:flex;flex-direction:column;align-items:center;gap:6px;width:100%;max-width:300px}
-.mon-emoji{font-size:clamp(3.5rem,16vw,5.5rem);line-height:1;animation:monIdle 2s ease-in-out infinite}
-.bossmon .mon-emoji{font-size:clamp(4.5rem,20vw,7rem)}
+.mon-emoji{font-size:clamp(4rem,18vw,6rem);line-height:1;animation:monIdle 2s ease-in-out infinite}
+.bossmon .mon-emoji{font-size:clamp(5rem,22vw,7.5rem)}
 .mon-name{font-family:'Baloo 2';font-weight:800;font-size:1.2rem;color:var(--grape)}
 .hpbar{width:100%;height:16px;background:#eee;border-radius:20px;overflow:hidden;border:2px solid #fff;box-shadow:0 2px 0 var(--shadow)}
 .hpbar>div{height:100%;background:linear-gradient(90deg,#7BC950,#E84A5F);border-radius:20px;transition:width .4s}
@@ -221,15 +232,44 @@ footer{text-align:center;color:#a4a7ba;font-size:.82rem;margin:20px 0 6px;font-w
 @keyframes floatStar{0%{transform:translateY(0) scale(.6);opacity:1}100%{transform:translateY(-130px) scale(1.4);opacity:0}}
 .floatstar{position:fixed;font-size:2rem;pointer-events:none;z-index:9500;animation:floatStar 1s ease-out forwards}
 
+/* iPhone SE / small phones (≤390px) */
+@media(max-width:390px){
+  body{padding:10px}
+  .pill{font-size:.78rem;padding:6px 12px}
+  .opts.n6{grid-template-columns:1fr 1fr}  /* 6 choices → 2 cols แทน 3 บนจอเล็กสุด */
+  .opts.n6 .opt .oimg{width:68px;height:68px;font-size:2.8rem}
+}
+
+/* iPhone ทั่วไป + Android มือถือ (≤480px) */
 @media(max-width:480px){
-  .opt{font-size:1.1rem;min-height:88px}
+  body{padding:12px}
+  /* ตัวเลือก quiz */
+  .opt{min-height:96px}
   .opts.n6{gap:8px}
-  .opt .oimg{width:80px;height:80px;font-size:3.2rem}
-  .opt .oimg img{width:100%;height:100%}
-  .wordimg{width:clamp(160px,52vw,220px);height:clamp(160px,52vw,220px)}
+  /* K1: 2 ตัวเลือก ทำใหญ่พิเศษ */
+  .opts.n2 .opt{min-height:120px}
+  .opts.n2 .opt .oimg{width:100px;height:100px;font-size:4.5rem}
+  /* Memory match */
   .memback .oimg{font-size:3rem}
-  .opts.n2 .opt{min-height:110px}
-  .opts.n2 .opt .oimg{width:96px;height:96px;font-size:4rem}
+  .memback .oimg img{width:85%;height:85%}
+  /* Spelling tiles */
+  .spellabox{width:38px;height:44px;font-size:1.25rem}
+  .spelltile{width:40px;height:44px;font-size:1.15rem}
+  /* adventure map */
+  .advnode{padding:10px 14px}
+  .advmap{gap:6px}
+  /* หัว monster */
+  .battle{gap:6px;margin-bottom:8px}
+}
+
+/* iPad / tablet (768px+) เพิ่มขนาดให้ใหญ่ขึ้นกว่าค่าปกติ */
+@media(min-width:768px){
+  .opt .oimg{width:100px;height:100px;font-size:4.5rem}
+  .opts.n2 .opt .oimg{width:120px;height:120px;font-size:5rem}
+  .wordimg{width:240px;height:240px;font-size:7rem}
+  .card .ico{font-size:3.4rem}
+  .spellabox{width:52px;height:58px;font-size:1.6rem}
+  .spelltile{width:54px;height:58px;font-size:1.5rem}
 }
 @media(prefers-reduced-motion:reduce){*{animation-duration:.001ms!important;transition-duration:.05ms!important}}
 /* Learning journey path (dashboard) */
