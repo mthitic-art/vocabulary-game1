@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<title>CVN Word World · K1–P6 Vocabulary</title>
+<title>CVN VocaQuest · K1–P6 Vocabulary</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="css/style.css">
 </head>
@@ -11,109 +11,138 @@
 <canvas id="fx"></canvas>
 <div class="wrap">
 
-  <!-- HEADER -->
-  <header>
-    <div class="logo">
-      <div class="logo-badge">🌈</div>
-      <div>
-        <div class="logo-name">CVN Word World</div>
-        <div class="logo-sub">K1 – P6 Vocabulary</div>
+  <!-- ═══ HOME ═══ -->
+  <div id="home">
+
+    <!-- TOP BAR -->
+    <div class="topbar">
+      <div class="profile-row">
+        <div class="avatar-circle" id="avatarCircle">😊</div>
+        <div class="profile-info">
+          <div class="profile-name">Explorer</div>
+          <div class="profile-lv">★ <span id="profileLv">Lv.1</span></div>
+          <div class="xp-row">
+            <div class="xpbar"><div class="xpfill" id="xpFill" style="width:0%"></div></div>
+            <div class="xptxt" id="xpTxt">0 / 500 XP</div>
+          </div>
+        </div>
       </div>
-    </div>
-    <div class="header-right">
-      <div class="subline">
-        <span class="chip">🔥 <b id="streakChip">0</b></span>
-        <span class="chip">⭐ <b id="starChip">0</b></span>
-        <span class="chip">🏅 <b id="badgeChip">0</b></span>
-      </div>
-      <div class="topnav">
-        <button class="nav-btn" id="navHome" aria-label="Home">🏠</button>
+      <div class="hud-right">
+        <div class="hchip fire">🔥 <b id="streakChip">0</b><span>Streak</span></div>
+        <div class="hchip coin">● <b id="starChip">0</b><span>Stars</span></div>
         <button class="nav-btn" id="navDash" aria-label="My Progress">📊</button>
       </div>
     </div>
-  </header>
 
-  <!-- HOME -->
-  <div id="home">
+    <!-- HERO -->
+    <div class="hero-section">
+      <div class="hero-bg"></div>
+      <div class="hero-stars" id="heroStars"></div>
+      <div class="hero-castle">🏰</div>
+      <div class="hero-tree">🌲</div>
+      <div class="hero-ground"></div>
 
-    <!-- HERO BANNER -->
-    <div class="hero" id="heroBanner">
-      <div class="hero-text">
-        <div class="hero-greeting" id="heroGreeting">Good morning! 👋</div>
-        <div class="hero-title">Ready to learn<br>new words today?</div>
-        <div class="hero-stats">
-          <div class="hstat"><b id="heroWords">0</b>words learnt</div>
-          <div class="hstat"><b id="heroStreak">0</b>day streak</div>
-          <div class="hstat"><b id="heroAcc">–</b>accuracy</div>
+      <div class="hero-inner">
+        <div class="hero-left">
+          <div class="brand-cvn">CVN</div>
+          <div class="brand-title">VocaQuest</div>
+          <div class="brand-sub">Adventure Through Words!</div>
+          <button class="btn-play" id="navHome">
+            <i class="ti ti-player-play" aria-hidden="true"></i> Play Now
+          </button>
+          <button class="btn-map" id="btnMap">
+            <i class="ti ti-map-2" aria-hidden="true"></i> Adventure Map
+          </button>
+        </div>
+        <div class="hero-right">
+          <div class="speech-bubble" id="speechBubble">Let's explore! 🗺️</div>
+          <img class="questy-img" src="assets/questy.png" alt="Questy the Fox"
+            onerror="this.style.fontSize='5rem';this.outerHTML='<div class=questy-emoji>🦊</div>'">
         </div>
       </div>
-      <div class="hero-char">🦸</div>
     </div>
 
     <!-- LEVEL SELECT -->
-    <div class="section-label">
-      <i class="ti ti-school" style="font-size:16px" aria-hidden="true"></i>
-      Choose your level
-    </div>
-    <div class="levels" id="levels" role="tablist" aria-label="Choose level"></div>
-
-    <!-- SUBJECT FILTER (P1 only) -->
-    <div class="subjectbar" id="subjectBar" style="display:none">
-      <span class="subjectlabel">📚 Subject:</span>
-      <div class="subjectpills" id="subjectPills" role="tablist" aria-label="Filter by subject"></div>
-    </div>
-
-    <!-- GAME MODES -->
-    <div class="section-label">
-      <i class="ti ti-gamepad" style="font-size:16px" aria-hidden="true"></i>
-      Pick a game
-    </div>
-    <div class="menu" id="menu">
-      <button class="card c1" data-game="quiz">
-        <div class="ico-wrap"><span class="ico">⭐</span></div>
-        <h3>Word Quiz</h3><p>Listen &amp; pick the right picture</p>
-        <span class="play-arr"><i class="ti ti-player-play" aria-hidden="true"></i></span>
-      </button>
-      <button class="card c2" data-game="flashcard">
-        <div class="ico-wrap"><span class="ico">🃏</span></div>
-        <h3>Flashcards</h3><p>Flip, listen &amp; remember</p>
-        <span class="play-arr"><i class="ti ti-player-play" aria-hidden="true"></i></span>
-      </button>
-      <button class="card c3" data-game="adventure">
-        <div class="ico-wrap"><span class="ico">🗺️</span></div>
-        <h3>Adventure</h3><p>Beat monsters, clear stages</p>
-        <span class="play-arr"><i class="ti ti-player-play" aria-hidden="true"></i></span>
-      </button>
-      <button class="card c4" data-game="memory">
-        <div class="ico-wrap"><span class="ico">🧠</span></div>
-        <h3>Memory Match</h3><p>Find the matching pairs</p>
-        <span class="play-arr"><i class="ti ti-player-play" aria-hidden="true"></i></span>
-      </button>
-      <button class="card c5" data-game="review">
-        <div class="ico-wrap"><span class="ico">🔁</span></div>
-        <h3>Review Words</h3><p>Practise your missed words</p>
-        <span class="play-arr"><i class="ti ti-player-play" aria-hidden="true"></i></span>
-      </button>
-      <button class="card c6" data-game="spelling">
-        <span class="badge-new">NEW</span>
-        <div class="ico-wrap"><span class="ico">✏️</span></div>
-        <h3>Spelling Quest</h3><p>Spell to defeat monsters</p>
-        <span class="play-arr"><i class="ti ti-player-play" aria-hidden="true"></i></span>
-      </button>
-    </div>
-
-    <!-- STREAK BANNER -->
-    <div class="streak-bar" id="streakBanner">
-      <div class="streak-text">
-        <strong id="streakMsg">🔥 Start your streak!</strong>
-        <span>Play every day to keep it going</span>
+    <div class="home-body">
+      <div class="sec-lbl">
+        <i class="ti ti-school" style="font-size:14px" aria-hidden="true"></i>
+        Choose your level
       </div>
-      <div class="streak-days" id="streakDays"></div>
+      <div class="levels" id="levels" role="tablist" aria-label="Choose level"></div>
+
+      <!-- SUBJECT FILTER P1 -->
+      <div class="subjectbar" id="subjectBar" style="display:none">
+        <span class="subjectlabel">📚 Subject:</span>
+        <div class="subjectpills" id="subjectPills" role="tablist" aria-label="Filter by subject"></div>
+      </div>
+
+      <!-- GAME MODES -->
+      <div class="sec-lbl" style="margin-top:14px">
+        <i class="ti ti-gamepad" style="font-size:14px" aria-hidden="true"></i>
+        Pick a game mode
+      </div>
+      <div class="menu" id="menu">
+        <button class="card c1" data-game="quiz">
+          <div class="ico-wrap"><span class="ico">⭐</span></div>
+          <h3>Word Quiz</h3><p>Listen &amp; pick</p>
+          <span class="play-arr"><i class="ti ti-player-play" aria-hidden="true"></i></span>
+        </button>
+        <button class="card c2" data-game="flashcard">
+          <div class="ico-wrap"><span class="ico">🃏</span></div>
+          <h3>Flashcards</h3><p>Flip &amp; learn</p>
+          <span class="play-arr"><i class="ti ti-player-play" aria-hidden="true"></i></span>
+        </button>
+        <button class="card c3" data-game="adventure">
+          <div class="ico-wrap"><span class="ico">🗺️</span></div>
+          <h3>Adventure</h3><p>Beat monsters</p>
+          <span class="play-arr"><i class="ti ti-player-play" aria-hidden="true"></i></span>
+        </button>
+        <button class="card c4" data-game="memory">
+          <div class="ico-wrap"><span class="ico">🧠</span></div>
+          <h3>Memory</h3><p>Find the pairs</p>
+          <span class="play-arr"><i class="ti ti-player-play" aria-hidden="true"></i></span>
+        </button>
+        <button class="card c5" data-game="review">
+          <div class="ico-wrap"><span class="ico">🔁</span></div>
+          <h3>Review</h3><p>Fix your misses</p>
+          <span class="play-arr"><i class="ti ti-player-play" aria-hidden="true"></i></span>
+        </button>
+        <button class="card c6" data-game="spelling">
+          <span class="badge-new">NEW</span>
+          <div class="ico-wrap"><span class="ico">✏️</span></div>
+          <h3>Spelling Quest</h3><p>Spell it!</p>
+          <span class="play-arr"><i class="ti ti-player-play" aria-hidden="true"></i></span>
+        </button>
+      </div>
+
+      <!-- STREAK BAR -->
+      <div class="streak-bar" id="streakBanner">
+        <div class="streak-text">
+          <strong id="streakMsg">🔥 Start your streak today!</strong>
+          <span>Play every day to keep it going</span>
+        </div>
+        <div class="streak-days" id="streakDays"></div>
+      </div>
     </div>
 
+    <!-- BOTTOM NAV -->
+    <div class="bottomnav">
+      <button class="bnav active" id="navHome2" aria-label="Home">
+        <span class="bn-icon">🏠</span><span class="bn-lbl">Home</span>
+      </button>
+      <button class="bnav" id="navMapBtn" aria-label="Map">
+        <span class="bn-icon">🗺️</span><span class="bn-lbl">Map</span>
+      </button>
+      <button class="bnav" aria-label="Badges">
+        <span class="bn-icon">🏅</span><span class="bn-lbl">Badges</span>
+      </button>
+      <button class="bnav" id="navDash2" aria-label="Progress">
+        <span class="bn-icon">📊</span><span class="bn-lbl">Progress</span>
+      </button>
+    </div>
   </div>
 
-  <!-- GAME SCREEN -->
+  <!-- ═══ GAME SCREEN ═══ -->
   <div class="screen" id="screen">
     <div class="bar">
       <button class="back" id="back" aria-label="Back to menu">← Menu</button>
@@ -123,7 +152,7 @@
     <div id="play"></div>
   </div>
 
-  <!-- DASHBOARD -->
+  <!-- ═══ DASHBOARD ═══ -->
   <div class="dash" id="dash">
     <div class="bar"><button class="back" id="dashBack">← Home</button><div class="score">📊 Progress</div></div>
     <div class="dgrid" id="dashStats"></div>

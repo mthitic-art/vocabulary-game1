@@ -72,7 +72,18 @@ function toast(emoji, msg){
 function refreshChips(){
   document.getElementById('streakChip').textContent = DB.streak;
   document.getElementById('starChip').textContent  = DB.stars;
-  document.getElementById('badgeChip').textContent = Object.keys(DB.badges).length;
+  document.getElementById('badgeChip') && (document.getElementById('badgeChip').textContent = Object.keys(DB.badges).length);
+  /* XP + Level */
+  const xp = DB.stars * 10;
+  const lvThresholds = [0,50,120,220,350,520,730,990,1300,1660,2100];
+  let lv = 1;
+  for(let i=1;i<lvThresholds.length;i++){ if(xp>=lvThresholds[i]) lv=i+1; }
+  const curFloor = lvThresholds[Math.min(lv-1,lvThresholds.length-1)];
+  const nextCeil = lvThresholds[Math.min(lv,lvThresholds.length-1)] || curFloor+500;
+  const pct = Math.min(100, Math.round((xp-curFloor)/(nextCeil-curFloor)*100));
+  const plv = document.getElementById('profileLv'); if(plv) plv.textContent='Lv.'+lv;
+  const xpf = document.getElementById('xpFill'); if(xpf) xpf.style.width=pct+'%';
+  const xpt = document.getElementById('xpTxt'); if(xpt) xpt.textContent=xp+' / '+nextCeil+' XP';
   refreshHero(); refreshStreakBanner();
 }
 function refreshLocks(){
@@ -116,7 +127,8 @@ let LV = "K1", MODE = "", score = 0, qi = 0, queue = [], total = 0, reviewMode =
 function showScreen(){ $('#home').style.display='none'; $('#dash').classList.remove('show'); $('#screen').classList.add('show'); }
 function goHome(){ if (window.speechSynthesis) speechSynthesis.cancel();
   $('#screen').classList.remove('show'); $('#dash').classList.remove('show');
-  $('#home').style.display='block'; refreshChips(); refreshLocks(); updateSubjectBar(); }
+  $('#home').style.display=''; refreshChips(); refreshLocks(); updateSubjectBar();
+  rotateSpeech(); }
 function setScore(){ $('#score').textContent = '⭐ ' + score; }
 function setProg(p){ $('#progbar').style.width = p + '%'; }
 
@@ -837,27 +849,67 @@ function showK1Instructions(g){
 async function boot(){
   try { await loadVocabulary(); }
   catch(e){
-    document.getElementById('play') &&
-      (document.getElementById('home').innerHTML =
-        `<div class="done"><div class="trophy">⚠️</div><h2>Could not load words</h2>
-         <p class="res">${e.message}</p>
-         <p class="hint">Tip: this game must be served over http(s). Use GitHub Pages,
-         Netlify, or run a local server (e.g. <code>python -m http.server</code>) —
-         opening the file directly can block loading data/vocabulary.json.</p></div>`);
+    document.getElementById('home').innerHTML =
+      `<div style="padding:24px;text-align:center;color:#fff">
+       <div style="font-size:3rem">⚠️</div><h2 style="margin:8px 0">Could not load words</h2>
+       <p style="font-size:.9rem;opacity:.7">${e.message}</p>
+       <p style="font-size:.8rem;opacity:.55;margin-top:8px">Serve over http(s) — GitHub Pages or local server</p></div>`;
     return;
   }
   buildLevelPills();
-  updateSubjectBar();   // show/hide subject bar based on default level (K1)
+  updateSubjectBar();
   document.querySelectorAll('.card').forEach(c=> c.onclick = () => routeGame(c.dataset.game));
-  $('#back').onclick = goHome; $('#navHome').onclick = goHome;
-  $('#navDash').onclick = openDash; $('#dashBack').onclick = goHome;
+  $('#back').onclick = goHome;
+  const nh = document.getElementById('navHome'); if(nh) nh.onclick = goHome;
+  const nh2 = document.getElementById('navHome2'); if(nh2) nh2.onclick = goHome;
+  $('#navDash').onclick = openDash;
+  const nd2 = document.getElementById('navDash2'); if(nd2) nd2.onclick = openDash;
+  $('#dashBack').onclick = goHome;
+
+  /* Adventure Map button — go to adventure mode */
+  const bm = document.getElementById('btnMap');
+  if(bm) bm.onclick = () => routeGame('adventure');
+  const nm = document.getElementById('navMapBtn');
+  if(nm) nm.onclick = () => routeGame('adventure');
+
+  /* Bottom nav active state */
+  document.querySelectorAll('.bnav').forEach(b=>{
+    b.onclick = () => {
+      document.querySelectorAll('.bnav').forEach(x=>x.classList.remove('active'));
+      b.classList.add('active');
+    };
+  });
+
   $('#resetBtn').onclick = () => {
     if (confirm('Erase all stars, badges and progress?')){
       DB = Store.reset(); refreshChips(); refreshLocks(); renderDash(); toast("🗑️","Progress reset");
     }
   };
+
+  /* Hero stars */
+  const starsEl = document.getElementById('heroStars');
+  if(starsEl){ for(let i=0;i<20;i++){
+    const d=document.createElement('div');
+    d.style.cssText=`position:absolute;width:${Math.random()<.3?3:2}px;height:${Math.random()<.3?3:2}px;
+      background:#fff;border-radius:50%;left:${Math.random()*100}%;top:${Math.random()*85}%;
+      opacity:${.18+Math.random()*.45}`;
+    starsEl.appendChild(d);
+  }}
+
   Gamify.touchStreak();
   Gamify.checkAchievements(a=>{});
   refreshChips(); refreshLocks();
+  rotateSpeech();
 }
+
+/* Questy speech bubble — rotate messages */
+const SPEECHES = [
+  "Let's explore! 🗺️","Ready to learn? ⭐","You've got this! 💪",
+  "New words await! 📚","Adventure time! 🦊","Keep going! 🔥"
+];
+function rotateSpeech(){
+  const b = document.getElementById('speechBubble');
+  if(b) b.textContent = SPEECHES[Math.floor(Math.random()*SPEECHES.length)];
+}
+
 document.addEventListener('DOMContentLoaded', boot);
