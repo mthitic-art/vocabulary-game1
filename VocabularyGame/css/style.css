@@ -71,17 +71,18 @@ h1,h2,h3,h4,.display{font-family:'Baloo 2',cursive}
 .card.c3{border-color:var(--grass)} .card.c4{border-color:var(--grape)}
 .card.c5{border-color:var(--sun)} .card.c6{border-color:#E8527F}
 
-/* SCREEN */
-.screen{display:none;background:var(--paper);border-radius:26px;padding:20px;
-  box-shadow:0 10px 0 var(--shadow);min-height:440px;position:relative;overflow:hidden}
+/* SCREEN — เต็มจอเมื่อเล่นเกม ไม่มีกรอบขาว */
+.screen{display:none;background:transparent;border-radius:0;padding:8px 4px;
+  min-height:calc(100vh - 20px);position:relative;overflow:hidden}
 .screen.show{display:block;animation:pop .3s ease}
 @keyframes pop{from{opacity:0;transform:scale(.96)}to{opacity:1;transform:scale(1)}}
-.bar{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;gap:8px}
-.back{background:#eef0f4;border:none;border-radius:30px;padding:8px 16px;font-family:'Baloo 2';
-  font-weight:700;font-size:.95rem;cursor:pointer;color:var(--ink)}
+.bar{display:flex;align-items:center;justify-content:space-between;margin-bottom:8px;gap:8px}
+.back{background:rgba(255,255,255,.85);backdrop-filter:blur(8px);border:none;border-radius:30px;
+  padding:8px 16px;font-family:'Baloo 2';font-weight:700;font-size:.95rem;cursor:pointer;color:var(--ink);
+  box-shadow:0 2px 0 var(--shadow)}
 .back:active{transform:scale(.95)}
 .score{font-family:'Baloo 2';font-weight:800;font-size:1.2rem;color:var(--grass)}
-.prog{height:12px;background:#ececf0;border-radius:20px;overflow:hidden;margin-bottom:16px}
+.prog{height:10px;background:rgba(255,255,255,.5);border-radius:20px;overflow:hidden;margin-bottom:12px}
 .prog>div{height:100%;background:linear-gradient(90deg,var(--sun),var(--coral));width:0;
   transition:width .4s;border-radius:20px}
 
@@ -107,12 +108,14 @@ h1,h2,h3,h4,.display{font-family:'Baloo 2',cursive}
 .opts.n3{grid-template-columns:1fr 1fr 1fr}
 .opts.n4{grid-template-columns:1fr 1fr}
 .opts.n6{grid-template-columns:1fr 1fr 1fr}
-.opt{cursor:pointer;border:3px solid #e9e9ef;background:#fff;border-radius:20px;
-  padding:clamp(10px,3vw,16px);
+.opt{cursor:pointer;border:3px solid rgba(255,255,255,.8);background:rgba(255,255,255,.92);
+  border-radius:20px;
+  padding:clamp(8px,2.5vw,14px);
   font-family:'Baloo 2';font-weight:700;font-size:clamp(1rem,3.5vw,1.25rem);
   text-align:center;transition:transform .12s,border-color .12s;
   display:flex;flex-direction:column;align-items:center;gap:4px;
-  min-height:clamp(96px,22vw,110px);justify-content:center}
+  min-height:clamp(96px,22vw,110px);justify-content:center;
+  box-shadow:0 4px 0 var(--shadow)}
 .opt .oimg{width:clamp(72px,18vw,90px);height:clamp(72px,18vw,90px);
   display:flex;align-items:center;justify-content:center;
   font-size:clamp(3rem,12vw,4rem);overflow:hidden}

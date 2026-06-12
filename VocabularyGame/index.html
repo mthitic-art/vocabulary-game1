@@ -10,27 +10,28 @@
 <body>
 <canvas id="fx"></canvas>
 <div class="wrap">
-
-  <!-- HOME — เต็มจอ ไม่มี header -->
-  <div id="home">
-    <div class="home-top">
-      <div class="hud-chips">
-        <span class="chip">🔥 <b id="streakChip">0</b></span>
-        <span class="chip">⭐ <b id="starChip">0</b></span>
-        <span class="chip">🏅 <b id="badgeChip">0</b></span>
-      </div>
-      <button class="nav-btn" id="navDash" aria-label="My Progress">📊</button>
+  <header>
+    <h1>🌈 CVN Word World</h1>
+    <div class="subline">
+      <span class="chip">🔥 <b id="streakChip">0</b> day streak</span>
+      <span class="chip">⭐ <b id="starChip">0</b> stars</span>
+      <span class="chip">🏅 <b id="badgeChip">0</b> badges</span>
     </div>
+  </header>
 
-    <!-- Level pills -->
+  <div class="topnav">
+    <button class="nav-btn" id="navHome" aria-label="Home">🏠 Home</button>
+    <button class="nav-btn" id="navDash" aria-label="Progress dashboard">📊 My Progress</button>
+  </div>
+
+  <!-- HOME -->
+  <div id="home">
     <div class="levels" id="levels" role="tablist" aria-label="Choose level"></div>
-
-    <!-- Subject filter: shown only when P1 is selected -->
     <div class="subjectbar" id="subjectBar" style="display:none">
       <span class="subjectlabel">📚 Subject:</span>
       <div class="subjectpills" id="subjectPills" role="tablist" aria-label="Filter by subject"></div>
     </div>
-
+    <p class="hint" style="text-align:center" id="unlockHint"></p>
     <div class="menu" id="menu">
       <button class="card c1" data-game="quiz"><span class="ico">⭐</span><h3>Word Quiz</h3><p>Listen &amp; pick</p></button>
       <button class="card c2" data-game="flashcard"><span class="ico">🃏</span><h3>Flashcards</h3><p>Flip &amp; learn</p></button>
@@ -41,7 +42,7 @@
     </div>
   </div>
 
-  <!-- GAME SCREEN — เต็มจอ -->
+  <!-- GAME SCREEN — fullscreen -->
   <div class="screen" id="screen">
     <div class="bar">
       <button class="back" id="back" aria-label="Back to menu">← Menu</button>
@@ -68,11 +69,9 @@
       <button class="btn warn" id="resetBtn">🗑️ Reset All Progress</button>
     </div>
   </div>
-
 </div>
 
 <div class="toast" id="toast"><span class="te">🏅</span><span id="toastMsg"></span></div>
-
 <script src="js/vocabulary.js"></script>
 <script src="js/audio.js"></script>
 <script src="js/progress.js"></script>
