@@ -51,10 +51,11 @@ function pic(lv, w, cls){
   const e = entryOf(lv, w);
   const emo = e.emoji || "🔡";
   if (e.image){
-    return `<span class="${cls}"><img src="${e.image}" alt="${w}" loading="lazy"
-      onerror="this.parentNode.innerHTML='${emo}'"></span>`;
+    // cls="oimg" → wrap img inside oimg div
+    return `<div class="${cls}"><img src="${e.image}" alt="${w}" loading="lazy"
+      onerror="this.outerHTML='<span>${emo}</span>'"></div>`;
   }
-  return `<span class="${cls}" role="img" aria-label="${w}">${emo}</span>`;
+  return `<div class="${cls}" role="img" aria-label="${w}"><span>${emo}</span></div>`;
 }
 
 /* ---------- Toast (achievements / unlocks) ---------- */
@@ -72,9 +73,39 @@ function refreshChips(){
   document.getElementById('streakChip').textContent = DB.streak;
   document.getElementById('starChip').textContent  = DB.stars;
   document.getElementById('badgeChip').textContent = Object.keys(DB.badges).length;
+  refreshHero(); refreshStreakBanner();
 }
 function refreshLocks(){
   // Levels are never locked now — nothing to grey out.
+}
+
+/* Hero banner — แสดง stats สรุปแบบ real-time */
+function refreshHero(){
+  const h = document.getElementById('heroGreeting');
+  if(h){ const hr=new Date().getHours();
+    h.textContent = hr<12?'Good morning! 👋':hr<17?'Good afternoon! ☀️':'Good evening! 🌙'; }
+  const totSeen = Object.values(DB.mastery).reduce((a,m)=>a+m.seen,0);
+  const totCorrect = Object.values(DB.mastery).reduce((a,m)=>a+m.correct,0);
+  const mastered = Object.values(DB.mastery).filter(m=>m.seen>=3&&m.correct/m.seen>=.9).length;
+  const acc = totSeen ? Math.round(totCorrect/totSeen*100)+'%' : '–';
+  const ws=document.getElementById('heroWords'); if(ws) ws.textContent=mastered;
+  const hs=document.getElementById('heroStreak'); if(hs) hs.textContent=DB.streak;
+  const ha=document.getElementById('heroAcc'); if(ha) ha.textContent=acc;
+}
+
+/* Streak banner — แสดง 5 วันในสัปดาห์ */
+function refreshStreakBanner(){
+  const msg=document.getElementById('streakMsg');
+  if(msg) msg.textContent = DB.streak>=3?`🔥 ${DB.streak}-Day Streak!`:DB.streak===1?'🔥 1-Day Streak! Keep going!':'🔥 Start your streak today!';
+  const days=document.getElementById('streakDays');
+  if(!days) return;
+  const labels=['M','T','W','T','F','S','S'];
+  const today=new Date().getDay(); // 0=Sun
+  days.innerHTML=labels.map((l,i)=>{
+    const dayIdx=(i+1)%7; // Mon=1..Sun=0
+    const isDone=DB.days && DB.days.some(d=>{ const dd=new Date(d); return dd.getDay()===dayIdx; });
+    return `<div class="sday${isDone?' done':''}">${l}</div>`;
+  }).join('');
 }
 
 /* ---------- [ENGINE] shared state ---------- */
