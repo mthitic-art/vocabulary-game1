@@ -127,8 +127,7 @@ let LV = "K1", MODE = "", score = 0, qi = 0, queue = [], total = 0, reviewMode =
 function showScreen(){ $('#home').style.display='none'; $('#dash').classList.remove('show'); $('#screen').classList.add('show'); }
 function goHome(){ if (window.speechSynthesis) speechSynthesis.cancel();
   $('#screen').classList.remove('show'); $('#dash').classList.remove('show');
-  $('#home').style.display=''; refreshChips(); refreshLocks(); updateSubjectBar();
-  rotateSpeech(); }
+  $('#home').style.display=''; refreshChips(); refreshLocks(); updateSubjectBar(); }
 function setScore(){ $('#score').textContent = '⭐ ' + score; }
 function setProg(p){ $('#progbar').style.width = p + '%'; }
 
@@ -850,10 +849,11 @@ async function boot(){
   try { await loadVocabulary(); }
   catch(e){
     document.getElementById('home').innerHTML =
-      `<div style="padding:24px;text-align:center;color:#fff">
-       <div style="font-size:3rem">⚠️</div><h2 style="margin:8px 0">Could not load words</h2>
-       <p style="font-size:.9rem;opacity:.7">${e.message}</p>
-       <p style="font-size:.8rem;opacity:.55;margin-top:8px">Serve over http(s) — GitHub Pages or local server</p></div>`;
+      `<div style="padding:30px;text-align:center;color:#fff">
+       <div style="font-size:3rem">⚠️</div>
+       <h2 style="margin:8px 0;font-family:'Baloo 2'">Could not load words</h2>
+       <p style="font-size:.9rem;opacity:.65;margin-top:6px">${e.message}</p>
+       <p style="font-size:.8rem;opacity:.45;margin-top:8px">Serve over http(s) — GitHub Pages or local server</p></div>`;
     return;
   }
   buildLevelPills();
@@ -861,55 +861,15 @@ async function boot(){
   document.querySelectorAll('.card').forEach(c=> c.onclick = () => routeGame(c.dataset.game));
   $('#back').onclick = goHome;
   const nh = document.getElementById('navHome'); if(nh) nh.onclick = goHome;
-  const nh2 = document.getElementById('navHome2'); if(nh2) nh2.onclick = goHome;
   $('#navDash').onclick = openDash;
-  const nd2 = document.getElementById('navDash2'); if(nd2) nd2.onclick = openDash;
   $('#dashBack').onclick = goHome;
-
-  /* Adventure Map button — go to adventure mode */
-  const bm = document.getElementById('btnMap');
-  if(bm) bm.onclick = () => routeGame('adventure');
-  const nm = document.getElementById('navMapBtn');
-  if(nm) nm.onclick = () => routeGame('adventure');
-
-  /* Bottom nav active state */
-  document.querySelectorAll('.bnav').forEach(b=>{
-    b.onclick = () => {
-      document.querySelectorAll('.bnav').forEach(x=>x.classList.remove('active'));
-      b.classList.add('active');
-    };
-  });
-
   $('#resetBtn').onclick = () => {
     if (confirm('Erase all stars, badges and progress?')){
       DB = Store.reset(); refreshChips(); refreshLocks(); renderDash(); toast("🗑️","Progress reset");
     }
   };
-
-  /* Hero stars */
-  const starsEl = document.getElementById('heroStars');
-  if(starsEl){ for(let i=0;i<20;i++){
-    const d=document.createElement('div');
-    d.style.cssText=`position:absolute;width:${Math.random()<.3?3:2}px;height:${Math.random()<.3?3:2}px;
-      background:#fff;border-radius:50%;left:${Math.random()*100}%;top:${Math.random()*85}%;
-      opacity:${.18+Math.random()*.45}`;
-    starsEl.appendChild(d);
-  }}
-
   Gamify.touchStreak();
   Gamify.checkAchievements(a=>{});
   refreshChips(); refreshLocks();
-  rotateSpeech();
 }
-
-/* Questy speech bubble — rotate messages */
-const SPEECHES = [
-  "Let's explore! 🗺️","Ready to learn? ⭐","You've got this! 💪",
-  "New words await! 📚","Adventure time! 🦊","Keep going! 🔥"
-];
-function rotateSpeech(){
-  const b = document.getElementById('speechBubble');
-  if(b) b.textContent = SPEECHES[Math.floor(Math.random()*SPEECHES.length)];
-}
-
 document.addEventListener('DOMContentLoaded', boot);
