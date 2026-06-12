@@ -120,13 +120,24 @@ function nextQuiz(){
   const n = CHOICES[LV] || 4;
   const wrongs = shuffle(wordsFiltered(LV).filter(w=>w!==word)).slice(0, n-1);
   const choices = shuffle([word, ...wrongs]);
+  // K1-K2: ไม่แสดงคำ เน้นฟัง / K3-P6: แสดงคำ + เสียง
+  const showWord = !['K1','K2'].includes(LV);
+  const LABELS = ['A','B','C','D','E','F'];
+  const BORDER_COLORS = ['#F5A300','#1FA39A','#E84A5F','#7B3FC4','#4E9A2E','#185FA5'];
   $('#play').innerHTML = `
     <div class="prompt">
       <button class="speak" id="sp" aria-label="Play word sound">🔊</button>
-      <p class="hint">Listen, then tap the right picture${reviewMode?' · Review round':''}</p>
+      ${showWord
+        ? `<div class="wordbox-pill"><span class="word-display">${word}</span></div>`
+        : `<p class="hint">Listen, then tap the right picture${reviewMode?' · Review':''}` }
     </div>
     <div class="opts n${n}" id="opts" role="group" aria-label="Answer choices">
-      ${choices.map(c=>`<button class="opt" data-w="${c}" tabindex="0" aria-label="${c}">${pic(LV,c,'oimg')}</button>`).join('')}
+      ${choices.map((c,i)=>`
+        <button class="opt" data-w="${c}" tabindex="0" aria-label="${c}"
+          style="--card-border:${BORDER_COLORS[i%BORDER_COLORS.length]}">
+          <span class="opt-label">${LABELS[i]}</span>
+          ${pic(LV,c,'oimg')}
+        </button>`).join('')}
     </div>
     <div class="fb" id="fb" aria-live="assertive"></div>`;
   $('#sp').onclick = () => Audio2.speak(word);
@@ -807,7 +818,7 @@ async function boot(){
   buildLevelPills();
   updateSubjectBar();   // show/hide subject bar based on default level (K1)
   document.querySelectorAll('.card').forEach(c=> c.onclick = () => routeGame(c.dataset.game));
-  $('#back').onclick = goHome;
+  $('#back').onclick = goHome; $('#navHome').onclick = goHome;
   $('#navDash').onclick = openDash; $('#dashBack').onclick = goHome;
   $('#resetBtn').onclick = () => {
     if (confirm('Erase all stars, badges and progress?')){

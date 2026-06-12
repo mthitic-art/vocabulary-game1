@@ -1,10 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Fredoka:wght@400;500;600;700&display=swap');
 
 :root{
-  /* High-contrast, kid-friendly palette (WCAG AA text on white) */
   --bg:#FFF8E7; --paper:#FFFFFF; --ink:#1E2030; --muted:#5B5F77;
   --sun:#F5A300; --sky:#1FA39A; --coral:#E84A5F; --grape:#7B3FC4; --grass:#4E9A2E;
-  --shadow:rgba(30,32,48,.18);
+  --shadow:rgba(30,32,48,.15);
   --focus:#0050C8;
 }
 *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
@@ -12,74 +11,113 @@ html,body{overscroll-behavior:none;height:100%}
 body{
   font-family:'Fredoka',system-ui,sans-serif;
   background:
-    radial-gradient(circle at 12% 16%, #FFE39B66 0 20%, transparent 21%),
-    radial-gradient(circle at 88% 10%, #7B3FC433 0 16%, transparent 17%),
-    radial-gradient(circle at 82% 88%, #1FA39A2e 0 22%, transparent 23%),
-    var(--bg);
-  color:var(--ink); min-height:100vh; padding:10px;
+    radial-gradient(circle at 8% 12%, #FFE39B88 0 22%, transparent 23%),
+    radial-gradient(circle at 92% 8%, #7B3FC444 0 18%, transparent 19%),
+    radial-gradient(circle at 80% 90%, #1FA39A33 0 24%, transparent 25%),
+    radial-gradient(circle at 40% 60%, #E84A5F11 0 30%, transparent 31%),
+    #FFF8E7;
+  color:var(--ink); min-height:100vh; padding:14px 12px;
 }
 h1,h2,h3,h4,.display{font-family:'Baloo 2',cursive}
-.wrap{width:100%;margin:0 auto}
-
-/* Focus ring */
+.wrap{width:100%;max-width:1100px;margin:0 auto}
 :focus-visible{outline:4px solid var(--focus);outline-offset:3px;border-radius:14px}
 
-/* HOME TOP — HUD compact แทน header ใหญ่ */
-.home-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:8px;gap:6px}
-.hud-chips{display:flex;gap:6px;flex-wrap:wrap}
-.chip{background:#fff;border-radius:30px;padding:4px 10px;font-weight:600;font-size:.88rem;
-  box-shadow:0 2px 0 var(--shadow);display:flex;align-items:center;gap:4px}
-.chip b{font-family:'Baloo 2'}
+/* ═══════════════════════════════
+   HOME — Premium redesign
+   ═══════════════════════════════ */
 
-/* nav-btn compact สำหรับ 📊 */
-.nav-btn{border:none;cursor:pointer;font-family:'Baloo 2';font-weight:700;font-size:1.1rem;
-  padding:8px 12px;border-radius:30px;background:#fff;box-shadow:0 2px 0 var(--shadow);color:var(--ink)}
-.nav-btn:active{transform:translateY(2px);box-shadow:0 0 0 var(--shadow)}
+/* Top bar: logo left, HUD + nav right */
+header{
+  display:flex;align-items:center;justify-content:space-between;
+  margin-bottom:16px;gap:10px;flex-wrap:nowrap}
+.logo{font-family:'Baloo 2';font-weight:800;font-size:clamp(1.3rem,4vw,1.8rem);
+  color:var(--coral);display:flex;align-items:center;gap:6px;white-space:nowrap}
+.logo-sub{font-size:.72rem;font-weight:500;color:var(--muted);display:block;line-height:1;margin-top:-2px}
+.header-right{display:flex;align-items:center;gap:8px;flex-shrink:0}
 
-/* LEVEL PILLS */
-.levels{display:flex;gap:8px;justify-content:center;margin:14px 0 4px;flex-wrap:wrap}
+/* HUD chips — compact row */
+.subline{display:flex;gap:6px;align-items:center}
+.chip{background:rgba(255,255,255,.9);backdrop-filter:blur(6px);border-radius:30px;
+  padding:5px 12px;font-weight:600;font-size:.85rem;
+  box-shadow:0 2px 8px var(--shadow);display:flex;align-items:center;gap:5px;white-space:nowrap}
+.chip b{font-family:'Baloo 2';font-size:.95rem}
+
+/* nav buttons */
+.topnav{display:flex;gap:6px}
+.nav-btn{border:none;cursor:pointer;font-family:'Baloo 2';font-weight:700;font-size:.88rem;
+  padding:7px 14px;border-radius:30px;
+  background:rgba(255,255,255,.9);backdrop-filter:blur(6px);
+  box-shadow:0 2px 8px var(--shadow);color:var(--ink);
+  display:flex;align-items:center;gap:5px;white-space:nowrap}
+.nav-btn:active{transform:translateY(2px)}
+
+/* Level pills — scrollable row, no wrap on mobile */
+.levels{
+  display:flex;gap:8px;justify-content:flex-start;
+  margin:0 0 14px;padding-bottom:4px;
+  overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+.levels::-webkit-scrollbar{display:none}
 .pill{border:none;cursor:pointer;font-family:'Baloo 2';font-weight:700;
-  font-size:clamp(.85rem,3.2vw,1.1rem);
-  padding:clamp(7px,2vw,10px) clamp(14px,3.5vw,24px);
-  border-radius:40px;background:#fff;color:var(--ink);
-  box-shadow:0 4px 0 var(--shadow);transition:transform .12s;border:3px solid transparent;position:relative}
-.pill:active{transform:translateY(3px);box-shadow:0 1px 0 var(--shadow)}
-.pill.on[data-lv="K1"]{background:var(--coral);border-color:#c43a4d;color:#fff}
-.pill.on[data-lv="K2"]{background:var(--sky);border-color:#157a73;color:#fff}
-.pill.on[data-lv="K3"]{background:var(--grape);border-color:#642fa3;color:#fff}
-.pill.on[data-lv="P1"]{background:#E8527F;border-color:#c43a4d;color:#fff}
-.pill.on[data-lv="P2"]{background:#E84A5F;border-color:#b33a4d;color:#fff}
-.pill.on[data-lv="P3"]{background:#D85A30;border-color:#a84520;color:#fff}
-.pill.on[data-lv="P4"]{background:#BA7517;border-color:#8a5510;color:#fff}
-.pill.on[data-lv="P5"]{background:#4E9A2E;border-color:#3a7322;color:#fff}
-.pill.on[data-lv="P6"]{background:#085041;border-color:#04342C;color:#fff}
-.pill.locked{opacity:.5;cursor:not-allowed}
-.pill .lock{position:absolute;top:-8px;right:-6px;font-size:1.1rem}
+  font-size:.9rem;padding:8px 18px;border-radius:40px;
+  background:rgba(255,255,255,.85);color:var(--ink);
+  box-shadow:0 3px 8px var(--shadow);
+  transition:transform .12s,box-shadow .12s;
+  border:2.5px solid transparent;position:relative;flex-shrink:0}
+.pill:active{transform:translateY(2px);box-shadow:0 1px 4px var(--shadow)}
+.pill.on[data-lv="K1"]{background:var(--coral);border-color:#c43a4d;color:#fff;box-shadow:0 4px 12px #E84A5F55}
+.pill.on[data-lv="K2"]{background:var(--sky);border-color:#157a73;color:#fff;box-shadow:0 4px 12px #1FA39A55}
+.pill.on[data-lv="K3"]{background:var(--grape);border-color:#642fa3;color:#fff;box-shadow:0 4px 12px #7B3FC455}
+.pill.on[data-lv="P1"]{background:#E8527F;border-color:#c43a4d;color:#fff;box-shadow:0 4px 12px #E8527F55}
+.pill.on[data-lv="P2"]{background:#E84A5F;border-color:#b33a4d;color:#fff;box-shadow:0 4px 12px #E84A5F55}
+.pill.on[data-lv="P3"]{background:#D85A30;border-color:#a84520;color:#fff;box-shadow:0 4px 12px #D85A3055}
+.pill.on[data-lv="P4"]{background:#BA7517;border-color:#8a5510;color:#fff;box-shadow:0 4px 12px #BA751755}
+.pill.on[data-lv="P5"]{background:#4E9A2E;border-color:#3a7322;color:#fff;box-shadow:0 4px 12px #4E9A2E55}
+.pill.on[data-lv="P6"]{background:#085041;border-color:#04342C;color:#fff;box-shadow:0 4px 12px #08504155}
+.pill.locked{opacity:.45;cursor:not-allowed}
+.pill .lock{position:absolute;top:-7px;right:-5px;font-size:1rem}
 
-/* MENU GRID */
-.menu{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:12px;margin:16px 0}
-.card{cursor:pointer;border:none;background:var(--paper);border-radius:22px;
-  padding:clamp(16px,4vw,22px) 14px;
-  text-align:center;box-shadow:0 8px 0 var(--shadow);border:3px solid #fff;
-  transition:transform .18s cubic-bezier(.34,1.56,.64,1)}
-.card:hover{transform:translateY(-5px) rotate(-1deg)}
-.card:active{transform:translateY(3px)}
-.card .ico{font-size:clamp(2.6rem,7vw,3rem);display:block;margin-bottom:6px;transition:transform .2s}
-.card:hover .ico{transform:scale(1.15) rotate(8deg)}
-.card h3{font-size:clamp(1rem,3.5vw,1.2rem)} .card p{font-size:.82rem;color:var(--muted);font-weight:500}
-.card.c1{border-color:var(--coral)} .card.c2{border-color:var(--sky)}
-.card.c3{border-color:var(--grass)} .card.c4{border-color:var(--grape)}
-.card.c5{border-color:var(--sun)} .card.c6{border-color:#E8527F}
+/* Game mode cards — premium 2×3 grid */
+.menu{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:clamp(10px,2.5vw,16px);
+  margin:0}
+.card{
+  cursor:pointer;border:none;border-radius:24px;
+  padding:clamp(18px,4vw,26px) clamp(10px,2vw,16px);
+  text-align:center;position:relative;overflow:hidden;
+  transition:transform .2s cubic-bezier(.34,1.56,.64,1),box-shadow .2s;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px}
+/* gradient backgrounds per card — signature premium element */
+.card.c1{background:linear-gradient(145deg,#FFF0F2,#FFD6DC);box-shadow:0 6px 20px #E84A5F22}
+.card.c2{background:linear-gradient(145deg,#E8FAF8,#C4EFEB);box-shadow:0 6px 20px #1FA39A22}
+.card.c3{background:linear-gradient(145deg,#F0FAE8,#D4F0BE);box-shadow:0 6px 20px #4E9A2E22}
+.card.c4{background:linear-gradient(145deg,#F4EEFF,#E2D0FF);box-shadow:0 6px 20px #7B3FC422}
+.card.c5{background:linear-gradient(145deg,#FFFAE8,#FFE9A0);box-shadow:0 6px 20px #F5A30022}
+.card.c6{background:linear-gradient(145deg,#FFF0F6,#FFD0E6);box-shadow:0 6px 20px #E8527F22}
+/* subtle shimmer overlay */
+.card::before{content:'';position:absolute;inset:0;
+  background:linear-gradient(135deg,rgba(255,255,255,.6) 0%,transparent 60%);
+  border-radius:24px;pointer-events:none}
+.card:hover{transform:translateY(-6px) scale(1.02);box-shadow:0 14px 30px rgba(0,0,0,.14)}
+.card:active{transform:translateY(2px) scale(.98)}
+.card .ico{font-size:clamp(2.8rem,7vw,3.6rem);display:block;
+  transition:transform .25s cubic-bezier(.34,1.56,.64,1);line-height:1;filter:drop-shadow(0 4px 6px rgba(0,0,0,.15))}
+.card:hover .ico{transform:scale(1.2) rotate(6deg)}
+.card h3{font-size:clamp(.95rem,3vw,1.15rem);font-weight:700;color:var(--ink)}
+.card p{font-size:.78rem;color:var(--muted);font-weight:500}
 
-/* SCREEN — เต็มจอเมื่อเล่นเกม ไม่มีกรอบขาว */
-.screen{display:none;background:transparent;border-radius:0;padding:8px 4px;
-  min-height:calc(100vh - 20px);position:relative;overflow:hidden}
+/* ═══════════════════════════════
+   GAME SCREEN — fullscreen, big cards
+   ═══════════════════════════════ */
+.screen{display:none;background:transparent;padding:6px 2px;
+  min-height:calc(100vh - 28px);position:relative;overflow:hidden}
 .screen.show{display:block;animation:pop .3s ease}
 @keyframes pop{from{opacity:0;transform:scale(.96)}to{opacity:1;transform:scale(1)}}
 .bar{display:flex;align-items:center;justify-content:space-between;margin-bottom:8px;gap:8px}
-.back{background:rgba(255,255,255,.85);backdrop-filter:blur(8px);border:none;border-radius:30px;
-  padding:8px 16px;font-family:'Baloo 2';font-weight:700;font-size:.95rem;cursor:pointer;color:var(--ink);
-  box-shadow:0 2px 0 var(--shadow)}
+.back{background:rgba(255,255,255,.88);backdrop-filter:blur(8px);border:none;border-radius:30px;
+  padding:8px 16px;font-family:'Baloo 2';font-weight:700;font-size:.92rem;
+  cursor:pointer;color:var(--ink);box-shadow:0 2px 8px var(--shadow)}
 .back:active{transform:scale(.95)}
 .score{font-family:'Baloo 2';font-weight:800;font-size:1.2rem;color:var(--grass)}
 .prog{height:10px;background:rgba(255,255,255,.5);border-radius:20px;overflow:hidden;margin-bottom:12px}
@@ -87,7 +125,19 @@ h1,h2,h3,h4,.display{font-family:'Baloo 2',cursive}
   transition:width .4s;border-radius:20px}
 
 /* PROMPT + WORD IMAGE */
-.prompt{text-align:center;margin:4px 0 16px}
+.prompt{text-align:center;margin:4px 0 12px;display:flex;flex-direction:column;align-items:center;gap:10px}
+
+/* กล่องคำศัพท์ (K3-P6) — pill style เหมือนในรูปตัวอย่าง */
+.wordbox-pill{
+  background:rgba(255,255,255,.9);
+  border:2.5px solid rgba(123,63,196,.3);
+  border-radius:50px;
+  padding:10px 32px;
+  display:inline-block}
+.word-display{
+  font-family:'Baloo 2';font-weight:800;
+  font-size:clamp(1.8rem,7vw,3rem);
+  color:var(--ink);letter-spacing:-0.5px}
 .wordimg{width:clamp(160px,48vw,220px);height:clamp(160px,48vw,220px);margin:0 auto;
   border-radius:26px;background:#FFF3D6;display:flex;align-items:center;justify-content:center;
   font-size:clamp(5rem,22vw,7rem);overflow:hidden;box-shadow:inset 0 0 0 4px #fff,0 6px 0 var(--shadow);
@@ -108,23 +158,45 @@ h1,h2,h3,h4,.display{font-family:'Baloo 2',cursive}
 .opts.n3{grid-template-columns:1fr 1fr 1fr}
 .opts.n4{grid-template-columns:1fr 1fr}
 .opts.n6{grid-template-columns:1fr 1fr 1fr}
-.opt{cursor:pointer;border:3px solid rgba(255,255,255,.8);background:rgba(255,255,255,.92);
-  border-radius:20px;
-  padding:clamp(8px,2.5vw,14px);
-  font-family:'Baloo 2';font-weight:700;font-size:clamp(1rem,3.5vw,1.25rem);
-  text-align:center;transition:transform .12s,border-color .12s;
-  display:flex;flex-direction:column;align-items:center;gap:4px;
-  min-height:clamp(96px,22vw,110px);justify-content:center;
-  box-shadow:0 4px 0 var(--shadow)}
-.opt .oimg{width:clamp(72px,18vw,90px);height:clamp(72px,18vw,90px);
+/* OPTIONS — big premium cards */
+.opts{display:grid;gap:clamp(10px,2.5vw,16px);margin-top:6px}
+.opts.n2{grid-template-columns:1fr 1fr}
+.opts.n3{grid-template-columns:1fr 1fr 1fr}
+.opts.n4{grid-template-columns:1fr 1fr}
+.opts.n6{grid-template-columns:1fr 1fr 1fr}
+.opt{
+  cursor:pointer;
+  border:3px solid var(--card-border, rgba(255,255,255,.7));
+  background:rgba(255,255,255,.88);
+  backdrop-filter:blur(8px);
+  border-radius:22px;
+  padding:clamp(12px,3vw,20px) clamp(8px,2vw,14px);
+  font-family:'Baloo 2';font-weight:700;
+  font-size:clamp(1rem,3.5vw,1.25rem);
+  text-align:center;position:relative;
+  transition:transform .15s cubic-bezier(.34,1.56,.64,1),box-shadow .15s;
+  display:flex;flex-direction:column;align-items:center;gap:8px;
+  min-height:clamp(110px,26vw,160px);justify-content:center;
+  box-shadow:0 4px 16px rgba(0,0,0,.1)}
+/* label A B C D */
+.opt-label{
+  position:absolute;top:8px;left:11px;
+  font-family:'Baloo 2';font-weight:800;
+  font-size:clamp(.9rem,3vw,1.1rem);
+  color:var(--card-border, var(--muted));
+  line-height:1}
+.opt .oimg{
+  width:clamp(80px,20vw,120px);
+  height:clamp(80px,20vw,120px);
   display:flex;align-items:center;justify-content:center;
-  font-size:clamp(3rem,12vw,4rem);overflow:hidden}
+  font-size:clamp(3.5rem,14vw,5rem);overflow:hidden;
+  filter:drop-shadow(0 3px 6px rgba(0,0,0,.15))}
 .opt .oimg img{width:100%;height:100%;object-fit:contain}
-.opt:hover{border-color:var(--sky);transform:translateY(-2px)}
+.opt:hover{transform:translateY(-4px) scale(1.03);box-shadow:0 8px 24px rgba(0,0,0,.16)}
 .opt:active{transform:scale(.97)}
-.opt.right{background:#dff5d8;border-color:var(--grass);animation:rightP .4s}
-.opt.wrong{background:#ffe0e0;border-color:var(--coral);animation:shake .4s}
-@keyframes rightP{50%{transform:scale(1.09)}}
+.opt.right{background:rgba(223,245,216,.95);border-color:var(--grass)!important;animation:rightP .4s}
+.opt.wrong{background:rgba(255,224,224,.95);border-color:var(--coral)!important;animation:shake .4s}
+@keyframes rightP{50%{transform:scale(1.08)}}
 @keyframes shake{25%{transform:translateX(-7px)}75%{transform:translateX(7px)}}
 
 .fb{text-align:center;font-family:'Baloo 2';font-weight:800;font-size:1.45rem;height:32px;margin-top:12px}
@@ -234,40 +306,40 @@ footer{text-align:center;color:#a4a7ba;font-size:.82rem;margin:20px 0 6px;font-w
 
 /* iPhone SE / small phones (≤390px) */
 @media(max-width:390px){
-  body{padding:10px}
-  .pill{font-size:.78rem;padding:6px 12px}
-  .opts.n6{grid-template-columns:1fr 1fr}  /* 6 choices → 2 cols แทน 3 บนจอเล็กสุด */
-  .opts.n6 .opt .oimg{width:68px;height:68px;font-size:2.8rem}
+  body{padding:8px}
+  .pill{font-size:.75rem;padding:6px 11px}
+  .menu{grid-template-columns:repeat(2,1fr);gap:8px}
+  .opts.n6{grid-template-columns:1fr 1fr}
+  .header-right{gap:5px}
+  .chip{padding:4px 8px;font-size:.78rem}
 }
 
 /* iPhone ทั่วไป + Android มือถือ (≤480px) */
 @media(max-width:480px){
-  body{padding:12px}
-  /* ตัวเลือก quiz */
-  .opt{min-height:96px}
-  .opts.n6{gap:8px}
-  /* K1: 2 ตัวเลือก ทำใหญ่พิเศษ */
-  .opts.n2 .opt{min-height:120px}
-  .opts.n2 .opt .oimg{width:100px;height:100px;font-size:4.5rem}
-  /* Memory match */
+  body{padding:10px 8px}
+  .menu{grid-template-columns:repeat(2,1fr);gap:10px}
+  .opts.n2 .opt{min-height:130px}
+  .opts.n2 .opt .oimg{width:110px;height:110px;font-size:5rem}
+  .opts.n3 .opt .oimg{width:80px;height:80px;font-size:3.5rem}
   .memback .oimg{font-size:3rem}
   .memback .oimg img{width:85%;height:85%}
-  /* Spelling tiles */
   .spellabox{width:38px;height:44px;font-size:1.25rem}
   .spelltile{width:40px;height:44px;font-size:1.15rem}
-  /* adventure map */
   .advnode{padding:10px 14px}
-  .advmap{gap:6px}
-  /* หัว monster */
   .battle{gap:6px;margin-bottom:8px}
+  /* header compact */
+  .logo{font-size:1.1rem}
+  .logo-sub{display:none}
+  .chip{padding:4px 9px;font-size:.8rem}
 }
 
-/* iPad / tablet (768px+) เพิ่มขนาดให้ใหญ่ขึ้นกว่าค่าปกติ */
+/* iPad / tablet (768px+) */
 @media(min-width:768px){
-  .opt .oimg{width:100px;height:100px;font-size:4.5rem}
-  .opts.n2 .opt .oimg{width:120px;height:120px;font-size:5rem}
-  .wordimg{width:240px;height:240px;font-size:7rem}
-  .card .ico{font-size:3.4rem}
+  .opt .oimg{width:110px;height:110px;font-size:5rem}
+  .opts.n2 .opt .oimg{width:130px;height:130px;font-size:6rem}
+  .opts.n2 .opt{min-height:180px}
+  .wordimg{width:260px;height:260px;font-size:7.5rem}
+  .menu{grid-template-columns:repeat(3,1fr)}
   .spellabox{width:52px;height:58px;font-size:1.6rem}
   .spelltile{width:54px;height:58px;font-size:1.5rem}
 }
