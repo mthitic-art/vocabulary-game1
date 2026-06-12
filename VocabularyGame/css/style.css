@@ -8,7 +8,7 @@
   --focus:#0050C8;
 }
 *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
-html,body{overscroll-behavior:none}
+html,body{overscroll-behavior:none;height:100%}
 body{
   font-family:'Fredoka',system-ui,sans-serif;
   background:
@@ -16,28 +16,25 @@ body{
     radial-gradient(circle at 88% 10%, #7B3FC433 0 16%, transparent 17%),
     radial-gradient(circle at 82% 88%, #1FA39A2e 0 22%, transparent 23%),
     var(--bg);
-  color:var(--ink); min-height:100vh; padding:16px;
+  color:var(--ink); min-height:100vh; padding:10px;
 }
 h1,h2,h3,h4,.display{font-family:'Baloo 2',cursive}
-.wrap{max-width:100%;margin:0 auto;padding:0 8px}
+.wrap{width:100%;margin:0 auto}
 
-/* Focus ring for keyboard users (A11Y) */
+/* Focus ring */
 :focus-visible{outline:4px solid var(--focus);outline-offset:3px;border-radius:14px}
 
-/* HEADER */
-header{text-align:center;margin:4px 0 14px}
-header h1{font-size:clamp(1.9rem,7vw,3.2rem);color:var(--coral);line-height:1;
-  text-shadow:3px 3px 0 #fff,5px 5px 0 var(--shadow)}
-.subline{display:flex;gap:14px;justify-content:center;align-items:center;margin-top:8px;flex-wrap:wrap}
-.chip{background:#fff;border-radius:30px;padding:5px 14px;font-weight:600;font-size:.95rem;
-  box-shadow:0 3px 0 var(--shadow);display:flex;align-items:center;gap:6px}
+/* HOME TOP — HUD compact แทน header ใหญ่ */
+.home-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:8px;gap:6px}
+.hud-chips{display:flex;gap:6px;flex-wrap:wrap}
+.chip{background:#fff;border-radius:30px;padding:4px 10px;font-weight:600;font-size:.88rem;
+  box-shadow:0 2px 0 var(--shadow);display:flex;align-items:center;gap:4px}
 .chip b{font-family:'Baloo 2'}
 
-/* TOP NAV */
-.topnav{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin:10px 0}
-.nav-btn{border:none;cursor:pointer;font-family:'Baloo 2';font-weight:700;font-size:1rem;
-  padding:9px 18px;border-radius:30px;background:#fff;box-shadow:0 3px 0 var(--shadow);color:var(--ink)}
-.nav-btn:active{transform:translateY(3px);box-shadow:0 0 0 var(--shadow)}
+/* nav-btn compact สำหรับ 📊 */
+.nav-btn{border:none;cursor:pointer;font-family:'Baloo 2';font-weight:700;font-size:1.1rem;
+  padding:8px 12px;border-radius:30px;background:#fff;box-shadow:0 2px 0 var(--shadow);color:var(--ink)}
+.nav-btn:active{transform:translateY(2px);box-shadow:0 0 0 var(--shadow)}
 
 /* LEVEL PILLS */
 .levels{display:flex;gap:8px;justify-content:center;margin:14px 0 4px;flex-wrap:wrap}

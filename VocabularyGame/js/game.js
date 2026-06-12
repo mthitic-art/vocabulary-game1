@@ -807,7 +807,7 @@ async function boot(){
   buildLevelPills();
   updateSubjectBar();   // show/hide subject bar based on default level (K1)
   document.querySelectorAll('.card').forEach(c=> c.onclick = () => routeGame(c.dataset.game));
-  $('#back').onclick = goHome; $('#navHome').onclick = goHome;
+  $('#back').onclick = goHome;
   $('#navDash').onclick = openDash; $('#dashBack').onclick = goHome;
   $('#resetBtn').onclick = () => {
     if (confirm('Erase all stars, badges and progress?')){
