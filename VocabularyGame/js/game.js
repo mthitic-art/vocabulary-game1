@@ -68,55 +68,63 @@ function toast(emoji, msg){
   toastTimer = setTimeout(()=> t.classList.remove('show'), 2600);
 }
 
-/* ---------- HUD chips + level locks ---------- */
+/* ---------- HUD chips + hero + stats ---------- */
+const CEFR_MAP = { K1:"Pre A1", K2:"Pre A1", K3:"A1", P1:"A1", P2:"A1",
+                   P3:"A1+", P4:"A1+", P5:"A2", P6:"A2" };
+
 function refreshChips(){
   document.getElementById('streakChip').textContent = DB.streak;
   document.getElementById('starChip').textContent  = DB.stars;
-  document.getElementById('badgeChip') && (document.getElementById('badgeChip').textContent = Object.keys(DB.badges).length);
-  /* XP + Level */
+  /* Level badge (XP-based explorer level) */
   const xp = DB.stars * 10;
   const lvThresholds = [0,50,120,220,350,520,730,990,1300,1660,2100];
   let lv = 1;
   for(let i=1;i<lvThresholds.length;i++){ if(xp>=lvThresholds[i]) lv=i+1; }
-  const curFloor = lvThresholds[Math.min(lv-1,lvThresholds.length-1)];
-  const nextCeil = lvThresholds[Math.min(lv,lvThresholds.length-1)] || curFloor+500;
-  const pct = Math.min(100, Math.round((xp-curFloor)/(nextCeil-curFloor)*100));
-  const plv = document.getElementById('profileLv'); if(plv) plv.textContent='Lv.'+lv;
-  const xpf = document.getElementById('xpFill'); if(xpf) xpf.style.width=pct+'%';
-  const xpt = document.getElementById('xpTxt'); if(xpt) xpt.textContent=xp+' / '+nextCeil+' XP';
-  refreshHero(); refreshStreakBanner();
+  const lvB = document.getElementById('lvBadge');
+  if(lvB) lvB.textContent = 'Lv.'+lv+' Explorer';
+  refreshHero();
 }
-function refreshLocks(){
-  // Levels are never locked now — nothing to grey out.
-}
+function refreshLocks(){ /* levels never locked */ }
 
-/* Hero banner — แสดง stats สรุปแบบ real-time */
+/* Hero — Learning Coach + Words Mastered ของระดับปัจจุบัน */
 function refreshHero(){
-  const h = document.getElementById('heroGreeting');
-  if(h){ const hr=new Date().getHours();
-    h.textContent = hr<12?'Good morning! 👋':hr<17?'Good afternoon! ☀️':'Good evening! 🌙'; }
+  /* CEFR badge ตามระดับที่เลือก */
+  const cefrEl = document.getElementById('heroCefr');
+  if(cefrEl) cefrEl.textContent = 'CEFR ' + (CEFR_MAP[LV] || 'Pre A1');
+
+  /* Words mastered ของ LV ปัจจุบัน */
+  const words = wordsOf(LV);
+  const totalWords = words.length;
+  let masteredCount = 0;
+  words.forEach(w=>{
+    const m = DB.mastery[LV+'::'+w];
+    if(m && m.seen>=3 && m.correct/m.seen>=.9) masteredCount++;
+  });
+  const xpf = document.getElementById('xpFill');
+  if(xpf) xpf.style.width = totalWords? Math.round(masteredCount/totalWords*100)+'%' : '0%';
+  const mt = document.getElementById('masteryTxt');
+  if(mt) mt.textContent = masteredCount+' / '+totalWords+' words';
+
+  /* Coach bubble — Questy บอกภารกิจวันนี้ */
+  const cb = document.getElementById('coachBubble');
+  if(cb){
+    const remain = Math.max(0, totalWords - masteredCount);
+    const todayTarget = Math.min(remain || totalWords, 15);
+    if(masteredCount >= totalWords && totalWords > 0){
+      cb.innerHTML = `${LV} complete!<br><b>Amazing!</b> 🏆`;
+    } else {
+      cb.innerHTML = `Today we learn<br><b>${todayTarget} words!</b> 🚀`;
+    }
+  }
+
+  /* Quick stats — รวมทุกระดับ */
   const totSeen = Object.values(DB.mastery).reduce((a,m)=>a+m.seen,0);
   const totCorrect = Object.values(DB.mastery).reduce((a,m)=>a+m.correct,0);
-  const mastered = Object.values(DB.mastery).filter(m=>m.seen>=3&&m.correct/m.seen>=.9).length;
+  const allMastered = Object.values(DB.mastery).filter(m=>m.seen>=3&&m.correct/m.seen>=.9).length;
   const acc = totSeen ? Math.round(totCorrect/totSeen*100)+'%' : '–';
-  const ws=document.getElementById('heroWords'); if(ws) ws.textContent=mastered;
-  const hs=document.getElementById('heroStreak'); if(hs) hs.textContent=DB.streak;
-  const ha=document.getElementById('heroAcc'); if(ha) ha.textContent=acc;
-}
-
-/* Streak banner — แสดง 5 วันในสัปดาห์ */
-function refreshStreakBanner(){
-  const msg=document.getElementById('streakMsg');
-  if(msg) msg.textContent = DB.streak>=3?`🔥 ${DB.streak}-Day Streak!`:DB.streak===1?'🔥 1-Day Streak! Keep going!':'🔥 Start your streak today!';
-  const days=document.getElementById('streakDays');
-  if(!days) return;
-  const labels=['M','T','W','T','F','S','S'];
-  const today=new Date().getDay(); // 0=Sun
-  days.innerHTML=labels.map((l,i)=>{
-    const dayIdx=(i+1)%7; // Mon=1..Sun=0
-    const isDone=DB.days && DB.days.some(d=>{ const dd=new Date(d); return dd.getDay()===dayIdx; });
-    return `<div class="sday${isDone?' done':''}">${l}</div>`;
-  }).join('');
+  const qw=document.getElementById('qsWords'); if(qw) qw.textContent=allMastered;
+  const qa=document.getElementById('qsAcc'); if(qa) qa.textContent=acc;
+  const qs=document.getElementById('qsStreak'); if(qs) qs.textContent=DB.streak;
 }
 
 /* ---------- [ENGINE] shared state ---------- */
@@ -771,7 +779,8 @@ function buildLevelPills(){
   box.innerHTML = LEVELS.map((lv,i)=>{
     const on = i===0 ? 'on' : '';
     const sel = i===0 ? 'true' : 'false';
-    return `<button class="pill ${on}" data-lv="${lv}" role="tab" aria-selected="${sel}">${lv}</button>`;
+    return `<button class="pill ${on}" data-lv="${lv}" role="tab" aria-selected="${sel}">
+      ${lv}<span class="cefr-tag">${CEFR_MAP[lv]||''}</span></button>`;
   }).join('');
   box.querySelectorAll('.pill').forEach(b=> b.onclick = () => pickLevel(b));
 }
@@ -782,6 +791,7 @@ function pickLevel(b){
   // Reset subject filter when switching level, then show/hide bar.
   SUBJECT_FILTER = "All";
   updateSubjectBar();
+  refreshHero();   // อัปเดต CEFR badge + words mastered ทันที
 }
 
 /* Build and show subject filter bar for P1; hide for other levels. */
@@ -820,25 +830,31 @@ function routeGame(g){
 /* ---- Bilingual (EN/TH) instructions for the youngest learners (K1) ---- */
 const sessionInstShown = {};   // show once per game per session
 const K1_INSTRUCTIONS = {
-  quiz:      {en:"Listen to the word, then tap the matching picture.", th:"ฟังเสียงคำ แล้วแตะรูปที่ตรงกัน"},
-  flashcard: {en:"Tap the card to flip it and hear the word.",        th:"แตะการ์ดเพื่อพลิกดูคำและฟังเสียง"},
-  adventure: {en:"Beat monsters! Tap the right word to attack.",      th:"สู้มอนสเตอร์! แตะคำที่ถูกเพื่อโจมตี"},
-  memory:    {en:"Find the word and its picture pair.",               th:"จับคู่คำกับรูปภาพให้ตรงกัน"},
-  review:    {en:"Practise the words you missed before.",             th:"ฝึกคำที่เคยตอบผิด"},
-  spelling:  {en:"See the picture, then tap letters to spell the word.", th:"ดูภาพแล้วแตะตัวอักษรเรียงสะกดคำ"}
+  quiz:      {en:"Listen to the word, then tap the matching picture.", th:"ฟังเสียงคำ แล้วแตะรูปที่ตรงกัน",  ico:"🔊", color:"#E84A5F", name:"Word Quiz"},
+  flashcard: {en:"Tap the card to flip it and hear the word.",        th:"แตะการ์ดเพื่อพลิกดูคำและฟังเสียง", ico:"🃏", color:"#1FA39A", name:"Flashcards"},
+  adventure: {en:"Beat monsters! Tap the right word to attack.",      th:"สู้มอนสเตอร์! แตะคำที่ถูกเพื่อโจมตี", ico:"🗺️", color:"#F5A300", name:"Adventure"},
+  memory:    {en:"Find the word and its picture pair.",               th:"จับคู่คำกับรูปภาพให้ตรงกัน",        ico:"🧠", color:"#7B3FC4", name:"Memory"},
+  review:    {en:"Practise the words you missed before.",             th:"ฝึกคำที่เคยตอบผิด",                ico:"🔁", color:"#4E9A2E", name:"Review"},
+  spelling:  {en:"See the picture, then tap letters to spell the word.", th:"ดูภาพแล้วแตะตัวอักษรเรียงสะกดคำ", ico:"✏️", color:"#FF6840", name:"Spelling"}
 };
 function showK1Instructions(g){
   const ins = K1_INSTRUCTIONS[g] || K1_INSTRUCTIONS.quiz;
   showScreen();
   $('#score').textContent = '🎈 K1';
   setProg(0);
-  $('#play').innerHTML = `<div class="done">
-    <div class="trophy">🎮</div>
-    <h2>How to play</h2>
-    <p class="res" style="margin-bottom:4px">${ins.en}</p>
-    <p class="res" style="font-size:1.1rem;color:var(--sky);margin-bottom:18px">${ins.th}</p>
-    <button class="btn" id="startNow">▶️ Start / เริ่มเลย</button>
-    <button class="btn alt" onclick="goHome()">🏠 Home</button></div>`;
+  $('#play').innerHTML = `<div class="howto">
+    <div class="howto-card" style="--howto-color:${ins.color}">
+      <div class="howto-ico">${ins.ico}</div>
+      <div class="howto-title">${ins.name}</div>
+      <p class="howto-en">${ins.en}</p>
+      <p class="howto-th">${ins.th}</p>
+      <div class="howto-buttons">
+        <button class="btn" id="startNow">▶️ Start / เริ่มเลย</button>
+        <button class="btn alt" onclick="goHome()">🏠 Home</button>
+      </div>
+      <img class="howto-mascot" src="assets/questy.png" alt=""
+        onerror="this.remove()">
+    </div></div>`;
   document.getElementById('startNow').onclick = () => {
     ({ quiz:()=>startQuiz(false), review:()=>startQuiz(true), flashcard:startFlash,
        adventure:startAdventure, memory:startMemory, spelling:startSpelling }[g] || (()=>{}))();

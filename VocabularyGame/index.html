@@ -14,7 +14,7 @@
   <!-- HOME -->
   <div id="home">
 
-    <!-- COMPACT HEADER -->
+    <!-- TOPBAR -->
     <div class="topbar">
       <div class="logo-row">
         <div class="logo-badge">🌈</div>
@@ -30,33 +30,55 @@
       </div>
     </div>
 
-    <!-- HERO BANNER — compact กับ Questy -->
+    <!-- HERO — Questy Learning Coach -->
     <div class="hero-banner">
       <div class="hero-info">
-        <div class="lv-badge" id="lvBadge">Lv.1 Explorer</div>
-        <div class="hero-title" id="heroGreeting">Ready for today's<br>word adventure?</div>
-        <div class="xp-row">
+        <div class="badge-row">
+          <span class="lv-badge" id="lvBadge">Lv.1 Explorer</span>
+          <span class="cefr-badge" id="heroCefr">Pre A1</span>
+        </div>
+        <div class="hero-title">Today's Vocabulary<br>Mission! 🎯</div>
+        <div class="mastery-row">
+          <div class="mastery-label">Words Mastered</div>
           <div class="xpbar"><div class="xpfill" id="xpFill" style="width:0%"></div></div>
-          <div class="xptxt" id="xpTxt">0 / 500 XP</div>
+          <div class="xptxt" id="masteryTxt">0 / 50 words</div>
         </div>
       </div>
-      <img class="questy-hero" src="assets/questy.png" alt="Questy the Fox"
-        onerror="this.outerHTML='<div class=questy-fallback>🦊</div>'">
+      <div class="questy-col">
+        <div class="coach-bubble" id="coachBubble">Today we learn<br><b>new words!</b> 🚀</div>
+        <img class="questy-hero" src="assets/questy.png" alt="Questy the Fox, your learning coach"
+          onerror="this.outerHTML='<div class=questy-fallback>🦊</div>'">
+      </div>
+    </div>
+
+    <!-- QUICK STATS -->
+    <div class="quick-stats">
+      <div class="qstat">
+        <div class="qs-val" id="qsWords">0</div>
+        <div class="qs-lbl">Words Learned</div>
+      </div>
+      <div class="qstat">
+        <div class="qs-val" id="qsAcc">–</div>
+        <div class="qs-lbl">Quiz Accuracy</div>
+      </div>
+      <div class="qstat">
+        <div class="qs-val" id="qsStreak">0</div>
+        <div class="qs-lbl">Day Streak</div>
+      </div>
     </div>
 
     <!-- LEVEL SELECT -->
     <div class="home-body">
-      <div class="sec-lbl">Choose level</div>
+      <div class="sec-lbl">Choose Level</div>
       <div class="levels" id="levels" role="tablist" aria-label="Choose level"></div>
 
-      <!-- SUBJECT FILTER P1 -->
       <div class="subjectbar" id="subjectBar" style="display:none">
         <span class="subjectlabel">📚 Subject:</span>
         <div class="subjectpills" id="subjectPills" role="tablist"></div>
       </div>
 
-      <!-- GAME MODES -->
-      <div class="sec-lbl" style="margin-top:14px">Pick a game</div>
+      <!-- ACTIVITIES -->
+      <div class="sec-lbl" style="margin-top:16px">Choose an Activity</div>
       <div class="menu" id="menu">
         <button class="card c1" data-game="quiz">
           <div class="ico-wrap"><span class="ico">⭐</span></div>
