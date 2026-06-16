@@ -515,14 +515,14 @@ function nextBattleWord(){
   $('#score').textContent = '⚔️ Stage ' + (advStage+1) + '/' + ADV_STAGES;
 
   /* ── REVERSE QUIZ ──────────────────────────────────────────
-     แสดงภาพ + เสียง ตรงกลาง → เลือกคำ (text) ที่ถูกต้อง
-     ต่างจาก Word Quiz ที่: เห็นคำ (text) → เลือกภาพ
+     แสดงภาพตรงกลาง → เลือกคำ (text) ที่ถูกต้อง
+     ไม่เปิดเสียงอัตโนมัติ — ปุ่ม 🔊 เป็น hint ถ้าไม่แน่ใจ
   ─────────────────────────────────────────────────────────── */
   const BORDER_COLORS = ['#F5A300','#1FA39A','#E84A5F','#7B3FC4','#4E9A2E','#185FA5'];
   $('#play').innerHTML = battleBar() + `
     <div class="prompt">
       ${pic(LV, word, 'wordimg')}
-      <button class="speak" id="sp" aria-label="Play sound">🔊</button>
+      <button class="speak speak-hint" id="sp" aria-label="Hint: play sound">🔊 <span class="hint-label">Hint</span></button>
       <p class="hint">What is this? · นี่คืออะไร?</p>
     </div>
     <div class="opts n${n} word-opts" role="group">
@@ -534,7 +534,7 @@ function nextBattleWord(){
     </div>
     <div class="fb" id="fb" aria-live="assertive"></div>`;
   $('#sp').onclick = () => Audio2.speak(word);
-  setTimeout(()=>Audio2.speak(word), 300);
+  /* ไม่มี auto-play — เด็กต้องดูภาพก่อน กด hint ถ้าไม่แน่ใจ */
   wireImgFallback();
   const opts=[...document.querySelectorAll('.opt')];
   opts.forEach((o,idx)=>{

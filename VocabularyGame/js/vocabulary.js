@@ -12,7 +12,7 @@ let vocabMeta = { month: "", levels: [], counts: {} };
 
 // Adaptive difficulty: number of answer choices per level.
 // Kindergarten stays easy; primary grades get harder.
-const CHOICES = { K1:2, K2:3, K3:3, P1:4, P2:4, P3:4, P4:4, P5:4, P6:4 };
+const CHOICES = { K1:2, K2:3, K3:3, P1:4, P2:4, P3:4, P4:6, P5:6, P6:6 };
 
 // Full level order used across the app.
 const LEVELS = ["K1","K2","K3","P1","P2","P3","P4","P5","P6"];
