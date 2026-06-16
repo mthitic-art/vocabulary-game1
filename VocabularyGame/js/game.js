@@ -51,9 +51,19 @@ function pic(lv, w, cls){
   const e = entryOf(lv, w);
   const emo = e.emoji || "🔡";
   if (e.image){
-    // cls="oimg" → wrap img inside oimg div
-    return `<div class="${cls}"><img src="${e.image}" alt="${w}" loading="lazy"
-      onerror="this.outerHTML='<span>${emo}</span>'"></div>`;
+    // ลองนามสกุลอื่นถ้าไฟล์แรกไม่เจอ: .png → .jpeg → .jpg → .webp → emoji
+    // (ครูอาจ upload เป็น .jpeg แต่ converter เขียน .png — ทำให้รองรับอัตโนมัติ)
+    const base = e.image.replace(/\.(png|jpe?g|webp)$/i, '');
+    const exts = ['png','jpeg','jpg','webp'];
+    // เริ่มจากนามสกุลที่ระบุใน JSON ก่อน แล้วตามด้วยที่เหลือ
+    const given = (e.image.match(/\.(png|jpe?g|webp)$/i)||['','png'])[1].toLowerCase();
+    const order = [given, ...exts.filter(x=>x!==given)];
+    const onerr = `var n=this.dataset.i?+this.dataset.i:0;`
+      + `var ex=${JSON.stringify(order)};`
+      + `if(n+1<ex.length){this.dataset.i=n+1;this.src='${base}.'+ex[n+1];}`
+      + `else{this.outerHTML='<span>${emo}</span>';}`;
+    return `<div class="${cls}"><img src="${base}.${order[0]}" alt="${w}" loading="lazy"
+      data-i="0" onerror="${onerr}"></div>`;
   }
   return `<div class="${cls}" role="img" aria-label="${w}"><span>${emo}</span></div>`;
 }

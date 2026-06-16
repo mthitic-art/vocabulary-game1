@@ -88,7 +88,7 @@ def convert(xlsx_path, out_path, sheet=None):
             if not w or w.lower() in seen:
                 continue
             seen.add(w.lower())
-            entry = {"word": w, "image": f"assets/{lv}/{slug(w)}.png"}
+            entry = {"word": w, "image": f"assets/{lv}/{slug(w)}.jpeg"}
             if w in EMOJI:
                 entry["emoji"] = EMOJI[w]
             items.append(entry)
@@ -111,7 +111,7 @@ def convert(xlsx_path, out_path, sheet=None):
             if key in seen:
                 continue
             seen.add(key)
-            entry = {"word": w, "image": f"assets/P1/{slug(w)}.png", "subject": subject}
+            entry = {"word": w, "image": f"assets/P1/{slug(w)}.jpeg", "subject": subject}
             if w in EMOJI:
                 entry["emoji"] = EMOJI[w]
             p1.append(entry)
