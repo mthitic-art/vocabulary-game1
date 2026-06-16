@@ -51,21 +51,41 @@ function pic(lv, w, cls){
   const e = entryOf(lv, w);
   const emo = e.emoji || "🔡";
   if (e.image){
-    // ลองนามสกุลอื่นถ้าไฟล์แรกไม่เจอ: .png → .jpeg → .jpg → .webp → emoji
-    // (ครูอาจ upload เป็น .jpeg แต่ converter เขียน .png — ทำให้รองรับอัตโนมัติ)
+    // ลองนามสกุลอื่นถ้าไฟล์แรกไม่เจอ: เริ่มจากที่ระบุใน JSON แล้วไล่ที่เหลือ
     const base = e.image.replace(/\.(png|jpe?g|webp)$/i, '');
     const exts = ['png','jpeg','jpg','webp'];
-    // เริ่มจากนามสกุลที่ระบุใน JSON ก่อน แล้วตามด้วยที่เหลือ
     const given = (e.image.match(/\.(png|jpe?g|webp)$/i)||['','png'])[1].toLowerCase();
     const order = [given, ...exts.filter(x=>x!==given)];
-    const onerr = `var n=this.dataset.i?+this.dataset.i:0;`
-      + `var ex=${JSON.stringify(order)};`
-      + `if(n+1<ex.length){this.dataset.i=n+1;this.src='${base}.'+ex[n+1];}`
-      + `else{this.outerHTML='<span>${emo}</span>';}`;
+    // เก็บ data ไว้ใน attribute แล้วให้ wireImgFallback() ผูก event ทีหลัง (เลี่ยง quote ชนกัน)
     return `<div class="${cls}"><img src="${base}.${order[0]}" alt="${w}" loading="lazy"
-      data-i="0" onerror="${onerr}"></div>`;
+      class="autoimg" data-base="${base}" data-exts="${order.join(',')}" data-i="0"
+      data-emo="${emo}"></div>`;
   }
   return `<div class="${cls}" role="img" aria-label="${w}"><span>${emo}</span></div>`;
+}
+
+/* ผูก fallback ให้ <img class="autoimg"> ทุกตัวที่ยังไม่ได้ผูก
+   ลองนามสกุลถัดไปเรื่อยๆ ถ้าหมดแล้วยังไม่เจอ → แทนด้วย emoji
+   harden: เช็คภาพที่ error ไปแล้วก่อน JS ผูกทัน (complete && naturalWidth===0) */
+function wireImgFallback(root){
+  (root||document).querySelectorAll('img.autoimg:not([data-wired])').forEach(img=>{
+    img.setAttribute('data-wired','1');
+    const tryNext = () => {
+      const exts = (img.dataset.exts||'').split(',').filter(Boolean);
+      let n = +img.dataset.i || 0;
+      if (n+1 < exts.length){
+        img.dataset.i = n+1;
+        img.src = img.dataset.base + '.' + exts[n+1];
+      } else {
+        const span = document.createElement('span');
+        span.textContent = img.dataset.emo || '🔡';
+        if (img.parentNode) img.replaceWith(span);
+      }
+    };
+    img.onerror = tryNext;
+    // ถ้าภาพโหลดเสร็จแล้ว (cached) แต่ใช้ไม่ได้จริง → ลองตัวถัดไปทันที
+    if (img.complete && img.naturalWidth === 0) tryNext();
+  });
 }
 
 /* ---------- Toast (achievements / unlocks) ---------- */
@@ -207,6 +227,7 @@ function nextQuiz(){
 
 /* Shared option handler (mouse + keyboard). [A11Y] */
 function bindOptions(word, advance){
+  wireImgFallback();   // ผูก image fallback ให้ตัวเลือกทั้งหมด
   const opts = [...document.querySelectorAll('.opt')];
   opts.forEach((o,idx)=>{
     o.onclick = () => choose(o, word, advance);
@@ -259,6 +280,7 @@ function renderFlash(){
       <button class="btn" id="fnext">Next ➡️</button>
     </div>`;
   const fi = $('#fi');
+  wireImgFallback();
   fi.onclick = () => { fi.classList.toggle('flip'); if (fi.classList.contains('flip')) Audio2.speak(w); };
   fi.onkeydown = e => { if (e.key==='Enter'||e.key===' '){ e.preventDefault(); fi.click(); } };
   $('#fsp').onclick = e => { e.stopPropagation(); Audio2.speak(w); };
@@ -385,6 +407,7 @@ function nextBattleWord(){
       `<button class="opt" data-w="${c}" tabindex="0" aria-label="${c}">${pic(LV,c,'oimg')}</button>`).join('')}</div>
     <div class="fb" id="fb" aria-live="assertive"></div>`;
   $('#sp').onclick = () => Audio2.speak(word); setTimeout(()=>Audio2.speak(word),300);
+  wireImgFallback();
   // custom option handler for battle (damage / counterattack)
   const opts=[...document.querySelectorAll('.opt')];
   opts.forEach((o,idx)=>{
@@ -483,6 +506,7 @@ function startMemory(){
     el.onkeydown = e => { if (e.key==='Enter'||e.key===' '){ e.preventDefault(); memTap(el); } };
     g.appendChild(el);
   });
+  wireImgFallback();
 }
 function memTap(el){
   if (memLock || el.classList.contains('flip') || el.classList.contains('done')) return;
@@ -612,6 +636,7 @@ function nextSpellWord(){
     </div>
     <div class="fb" id="fb" aria-live="assertive"></div>`;
   $('#sp').onclick=()=>Audio2.speak(spellWord);
+  wireImgFallback();
   setTimeout(()=>Audio2.speak(spellWord),300);
   document.querySelectorAll('.spelltile').forEach(t=>t.onclick=()=>tapTile(t));
   $('#spellclear').onclick=()=>clearSpell();
