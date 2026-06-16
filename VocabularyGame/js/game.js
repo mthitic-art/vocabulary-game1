@@ -122,13 +122,16 @@ function refreshHero(){
   const cefrEl = document.getElementById('heroCefr');
   if(cefrEl) cefrEl.textContent = 'CEFR ' + (CEFR_MAP[LV] || 'Pre A1');
 
-  /* Words mastered ของ LV ปัจจุบัน */
+  /* Words mastered ของ LV ปัจจุบัน
+     - learned = เคยเจอคำ (seen>=1)
+     - mastered = ตอบถูกอย่างน้อย 1 ครั้ง (correct>=1)  */
   const words = wordsOf(LV);
   const totalWords = words.length;
-  let masteredCount = 0;
+  let masteredCount = 0, learnedCount = 0;
   words.forEach(w=>{
     const m = DB.mastery[LV+'::'+w];
-    if(m && m.seen>=3 && m.correct/m.seen>=.9) masteredCount++;
+    if(m && m.seen>=1) learnedCount++;
+    if(m && m.correct>=1) masteredCount++;
   });
   const xpf = document.getElementById('xpFill');
   if(xpf) xpf.style.width = totalWords? Math.round(masteredCount/totalWords*100)+'%' : '0%';
@@ -147,12 +150,14 @@ function refreshHero(){
     }
   }
 
-  /* Quick stats — รวมทุกระดับ */
-  const totSeen = Object.values(DB.mastery).reduce((a,m)=>a+m.seen,0);
-  const totCorrect = Object.values(DB.mastery).reduce((a,m)=>a+m.correct,0);
-  const allMastered = Object.values(DB.mastery).filter(m=>m.seen>=3&&m.correct/m.seen>=.9).length;
+  /* Quick stats — รวมทุกระดับ
+     Words Learned = คำที่เคยเจอทั้งหมด (seen>=1) */
+  const allEntries = Object.values(DB.mastery);
+  const totSeen = allEntries.reduce((a,m)=>a+m.seen,0);
+  const totCorrect = allEntries.reduce((a,m)=>a+m.correct,0);
+  const allLearned = allEntries.filter(m=>m.seen>=1).length;
   const acc = totSeen ? Math.round(totCorrect/totSeen*100)+'%' : '–';
-  const qw=document.getElementById('qsWords'); if(qw) qw.textContent=allMastered;
+  const qw=document.getElementById('qsWords'); if(qw) qw.textContent=allLearned;
   const qa=document.getElementById('qsAcc'); if(qa) qa.textContent=acc;
   const qs=document.getElementById('qsStreak'); if(qs) qs.textContent=DB.streak;
 }
@@ -178,11 +183,118 @@ function afterRound(){ // shared post-round bookkeeping
 /* ============================================================
    MODE 1 · QUIZ (adaptive choices + SRS) — also powers REVIEW
    ============================================================ */
+/* ============================================================
+   LESSON SYSTEM — แบ่งคำเป็นบท เพื่อให้เด็กเล่นครบทุกคำ
+   K1-K3: บทละ 5 คำ  ·  P1-P6: บทละ 10 คำ
+   บทถือว่า "ผ่าน" เมื่อทุกคำในบท correct>=1
+   ============================================================ */
+function lessonSize(lv){ return ['K1','K2','K3'].includes(lv) ? 5 : 10; }
+
+function lessonsFor(lv){
+  const words = wordsFiltered(lv);   // เคารพ subject filter (P1)
+  const size = lessonSize(lv);
+  const lessons = [];
+  for(let i=0;i<words.length;i+=size){
+    lessons.push(words.slice(i, i+size));
+  }
+  return lessons;
+}
+
+/* บทนี้ผ่านหรือยัง — ทุกคำ correct>=1 */
+function lessonPassed(lv, lessonWords){
+  return lessonWords.every(w=>{
+    const m = DB.mastery[lv+'::'+w];
+    return m && m.correct>=1;
+  });
+}
+/* นับคำที่ทำถูกในบท */
+function lessonProgress(lv, lessonWords){
+  return lessonWords.filter(w=>{
+    const m = DB.mastery[lv+'::'+w];
+    return m && m.correct>=1;
+  }).length;
+}
+
+/* หน้าเลือกบทเรียน */
+function showLessonSelect(){
+  MODE = "quiz";
+  showScreen();
+  const lessons = lessonsFor(LV);
+  $('#score').textContent = '📖 ' + LV;
+  setProg(0);
+
+  if(!lessons.length){
+    $('#play').innerHTML = `<div class="done"><div class="trophy">📭</div>
+      <h2>No words yet</h2><button class="btn alt" onclick="goHome()">🏠 Home</button></div>`;
+    return;
+  }
+
+  // หาบทแรกที่ยังไม่ผ่าน (current)
+  let curIdx = lessons.findIndex(ls=>!lessonPassed(LV, ls));
+  if(curIdx<0) curIdx = lessons.length; // ผ่านหมดแล้ว
+
+  const cards = lessons.map((ls,i)=>{
+    const passed = lessonPassed(LV, ls);
+    const prog = lessonProgress(LV, ls);
+    const isCur = i===curIdx;
+    const cls = passed ? 'done' : isCur ? 'cur' : (i<curIdx ? 'done' : 'lock');
+    const icon = passed ? '✅' : isCur ? '▶️' : (i<curIdx?'✅':'🔒');
+    const num = i+1;
+    return `<button class="lesson-card ${cls}" data-lesson="${i}">
+      <div class="lesson-icon">${icon}</div>
+      <div class="lesson-body">
+        <div class="lesson-title">Lesson ${num}</div>
+        <div class="lesson-sub">${prog} / ${ls.length} words · ${ls.length} คำ</div>
+      </div>
+      <div class="lesson-stars">${passed?'⭐':''}</div>
+    </button>`;
+  }).join('');
+
+  const allDone = curIdx>=lessons.length;
+  $('#play').innerHTML = `
+    <div class="lesson-head">
+      <div class="lesson-head-title">📚 Word Quiz · ${LV}</div>
+      <div class="lesson-head-sub">${allDone
+        ? '🎉 All lessons complete! เล่นซ้ำได้เลย'
+        : 'Choose a lesson · เลือกบทเรียน'}</div>
+    </div>
+    <div class="lesson-list">${cards}</div>
+    <div style="text-align:center;margin-top:12px">
+      <button class="btn alt" onclick="goHome()">🏠 Home</button>
+    </div>`;
+
+  document.querySelectorAll('.lesson-card').forEach(b=>{
+    b.onclick = () => {
+      const idx = +b.dataset.lesson;
+      // เล่นได้เฉพาะบทที่ปลดล็อค (ผ่านแล้ว หรือบทปัจจุบัน)
+      if(idx > curIdx){ toast("🔒","Finish earlier lessons first"); return; }
+      startQuizLesson(idx);
+    };
+  });
+}
+
+function startQuizLesson(lessonIdx){
+  const lessons = lessonsFor(LV);
+  const lessonWords = lessons[lessonIdx];
+  if(!lessonWords){ return showLessonSelect(); }
+  reviewMode = false; MODE = "quiz";
+  score = 0; qi = 0;
+  currentLesson = lessonIdx;
+  queue = shuffle(lessonWords.slice()); total = queue.length;
+  showScreen(); setScore(); nextQuiz();
+}
+let currentLesson = 0;
+
 function startQuiz(useReview){
   reviewMode = !!useReview; MODE = useReview ? "review" : "quiz";
   score = 0; qi = 0;
-  const pool = useReview ? SRS.wrongList(LV, wordsFiltered(LV)) : SRS.pickWeighted(LV, 10, wordsFiltered(LV));
-  if (useReview && pool.length === 0){
+  if (!useReview){
+    // โหมดปกติ → ไปหน้าเลือกบทเรียน
+    return showLessonSelect();
+  }
+  // Review mode → เล่นเฉพาะคำที่เคยตอบผิด
+  const pool = SRS.wrongList(LV, wordsFiltered(LV));
+  if (pool.length === 0){
     showScreen();
     $('#play').innerHTML =
       `<div class="done"><div class="trophy">🎉</div><h2>Nothing to review!</h2>
@@ -281,7 +393,8 @@ function renderFlash(){
     </div>`;
   const fi = $('#fi');
   wireImgFallback();
-  fi.onclick = () => { fi.classList.toggle('flip'); if (fi.classList.contains('flip')) Audio2.speak(w); };
+  fi.onclick = () => { fi.classList.toggle('flip');
+    if (fi.classList.contains('flip')){ Audio2.speak(w); SRS.record(LV, w, true); } };
   fi.onkeydown = e => { if (e.key==='Enter'||e.key===' '){ e.preventDefault(); fi.click(); } };
   $('#fsp').onclick = e => { e.stopPropagation(); Audio2.speak(w); };
   $('#fprev').onclick = () => { if (qi>0){ qi--; renderFlash(); } };
@@ -517,6 +630,7 @@ function memTap(el){
     memLock = true;
     const [a,b] = memFlipped;
     if (a.dataset.w === b.dataset.w && a.dataset.i !== b.dataset.i){
+      SRS.record(LV, a.dataset.w, true);   // จับคู่ถูก = learned + correct
       setTimeout(()=>{
         a.classList.add('done'); b.classList.add('done'); Audio2.good();
         const r = a.getBoundingClientRect(); FX.star(r.left+r.width/2, r.top);
@@ -741,13 +855,30 @@ function finishRound(silent){
   Audio2.win();
   const msg = pct>=.8 ? 'Amazing!' : pct>=.5 ? 'Good job!' : 'Keep practising!';
   const stars = '⭐'.repeat(starsEarned) + '☆'.repeat(3-starsEarned);
+  // ปุ่มท้ายเกม — quiz mode มีปุ่มบทต่อไป + เลือกบท
+  let extraBtns = '';
+  if (MODE === 'quiz'){
+    const lessons = lessonsFor(LV);
+    const hasNext = currentLesson+1 < lessons.length;
+    extraBtns = hasNext
+      ? `<button class="btn" id="nextLesson">➡️ Next Lesson</button>
+         <button class="btn alt" id="lessonMenu">📖 Lessons</button>`
+      : `<button class="btn alt" id="lessonMenu">📖 Lessons</button>`;
+  } else {
+    extraBtns = `<button class="btn" id="again">🔁 Play Again</button>`;
+  }
   $('#play').innerHTML = `<div class="done">
     <div class="trophy">🏆</div><h2>${msg}</h2>
     <div class="starline">${[...stars].map((s,i)=>`<span style="animation-delay:${i*.15}s">${s}</span>`).join('')}</div>
     <div class="res">Score: ${score} / ${max} · +${starsEarned+score} ⭐</div>
-    <button class="btn" id="again">🔁 Play Again</button>
+    ${extraBtns}
     <button class="btn alt" onclick="goHome()">🏠 Home</button></div>`;
-  $('#again').onclick = () => routeGame(MODE);
+  const againBtn = document.getElementById('again');
+  if (againBtn) againBtn.onclick = () => routeGame(MODE);
+  const nextBtn = document.getElementById('nextLesson');
+  if (nextBtn) nextBtn.onclick = () => startQuizLesson(currentLesson+1);
+  const menuBtn = document.getElementById('lessonMenu');
+  if (menuBtn) menuBtn.onclick = () => showLessonSelect();
 }
 
 /* ============================================================
