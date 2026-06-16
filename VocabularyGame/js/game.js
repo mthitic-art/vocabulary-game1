@@ -513,15 +513,29 @@ function nextBattleWord(){
   const wrongs = shuffle(wordsFiltered(LV).filter(w=>w!==word)).slice(0, n-1);
   const choices = shuffle([word, ...wrongs]);
   $('#score').textContent = '⚔️ Stage ' + (advStage+1) + '/' + ADV_STAGES;
+
+  /* ── REVERSE QUIZ ──────────────────────────────────────────
+     แสดงภาพ + เสียง ตรงกลาง → เลือกคำ (text) ที่ถูกต้อง
+     ต่างจาก Word Quiz ที่: เห็นคำ (text) → เลือกภาพ
+  ─────────────────────────────────────────────────────────── */
+  const BORDER_COLORS = ['#F5A300','#1FA39A','#E84A5F','#7B3FC4','#4E9A2E','#185FA5'];
   $('#play').innerHTML = battleBar() + `
-    <div class="prompt"><button class="speak" id="sp" aria-label="Play sound">🔊</button>
-      <p class="hint">Listen and hit the monster with the right word!</p></div>
-    <div class="opts n${n}" role="group">${choices.map(c=>
-      `<button class="opt" data-w="${c}" tabindex="0" aria-label="${c}">${pic(LV,c,'oimg')}</button>`).join('')}</div>
+    <div class="prompt">
+      ${pic(LV, word, 'wordimg')}
+      <button class="speak" id="sp" aria-label="Play sound">🔊</button>
+      <p class="hint">What is this? · นี่คืออะไร?</p>
+    </div>
+    <div class="opts n${n} word-opts" role="group">
+      ${choices.map((c,i)=>`
+        <button class="opt word-opt" data-w="${c}" tabindex="0" aria-label="${c}"
+          style="--card-border:${BORDER_COLORS[i%BORDER_COLORS.length]}">
+          <span class="word-opt-label">${c}</span>
+        </button>`).join('')}
+    </div>
     <div class="fb" id="fb" aria-live="assertive"></div>`;
-  $('#sp').onclick = () => Audio2.speak(word); setTimeout(()=>Audio2.speak(word),300);
+  $('#sp').onclick = () => Audio2.speak(word);
+  setTimeout(()=>Audio2.speak(word), 300);
   wireImgFallback();
-  // custom option handler for battle (damage / counterattack)
   const opts=[...document.querySelectorAll('.opt')];
   opts.forEach((o,idx)=>{
     o.onclick=()=>battleChoose(o,word);
