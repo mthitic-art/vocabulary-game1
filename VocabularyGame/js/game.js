@@ -47,6 +47,12 @@ const FX = (() => {
 /* ---------- Image rendering with fallback ----------
    Loads a real image if the entry has one; on error swaps to
    emoji. Emoji-only entries render emoji directly (no network). */
+/* คำแปลไทยของคำศัพท์ (มีเฉพาะ K1-K3) */
+function thaiOf(lv, w){
+  const e = entryOf(lv, w);
+  return e && e.th ? e.th : '';
+}
+
 function pic(lv, w, cls){
   const e = entryOf(lv, w);
   const emo = e.emoji || "🔡";
@@ -188,8 +194,38 @@ let LV = "K1", MODE = "", score = 0, qi = 0, queue = [], total = 0, reviewMode =
 
 function showScreen(){ $('#home').style.display='none'; $('#dash').classList.remove('show'); $('#screen').classList.add('show'); }
 function goHome(){ if (window.speechSynthesis) speechSynthesis.cancel();
+  inActiveGame = false;
   $('#screen').classList.remove('show'); $('#dash').classList.remove('show');
   $('#home').style.display=''; refreshChips(); refreshLocks(); updateSubjectBar(); }
+
+/* ยืนยันก่อนออกจากเกมที่กำลังเล่น (กันความคืบหน้าหาย) */
+let inActiveGame = false;
+function confirmExit(){
+  // ถ้าไม่ได้อยู่กลางเกม (เช่น หน้าเลือกบท/หน้าจบ) ออกได้เลย
+  if (!inActiveGame){ return goHome(); }
+  showExitDialog();
+}
+function showExitDialog(){
+  // ลบ dialog เก่าถ้ามี
+  const old = document.getElementById('exitDialog'); if(old) old.remove();
+  const dlg = document.createElement('div');
+  dlg.id = 'exitDialog';
+  dlg.className = 'exit-overlay';
+  dlg.innerHTML = `
+    <div class="exit-box">
+      <div class="exit-emoji">🦊</div>
+      <div class="exit-title">Leave the game?</div>
+      <div class="exit-sub">ออกจากเกมเลยไหม? · ความคืบหน้ารอบนี้จะหาย</div>
+      <div class="exit-btns">
+        <button class="btn warn" id="exitYes">Leave · ออก</button>
+        <button class="btn" id="exitNo">Stay · เล่นต่อ</button>
+      </div>
+    </div>`;
+  document.body.appendChild(dlg);
+  document.getElementById('exitYes').onclick = () => { dlg.remove(); goHome(); };
+  document.getElementById('exitNo').onclick = () => dlg.remove();
+  dlg.onclick = (e) => { if(e.target===dlg) dlg.remove(); };  // คลิกนอกกล่อง = ปิด (เล่นต่อ)
+}
 function setScore(){ $('#score').textContent = '⭐ ' + score; }
 function setProg(p){ $('#progbar').style.width = p + '%'; }
 
@@ -236,7 +272,7 @@ function lessonProgress(lv, lessonWords){
 
 /* หน้าเลือกบทเรียน */
 function showLessonSelect(){
-  MODE = "quiz";
+  MODE = "quiz"; inActiveGame = false;
   showScreen();
   const lessons = lessonsFor(LV);
   $('#score').textContent = '📖 ' + LV;
@@ -326,6 +362,7 @@ function startQuiz(useReview){
 }
 function nextQuiz(){
   if (qi >= total) return finishRound();
+  inActiveGame = true;
   setProg(qi/total*100);
   const word = queue[qi];
   const n = CHOICES[LV] || 4;
@@ -333,11 +370,19 @@ function nextQuiz(){
   const choices = shuffle([word, ...wrongs]);
   // K1-K2: ไม่แสดงคำ เน้นฟัง / K3-P6: แสดงคำ + เสียง
   const showWord = !['K1','K2'].includes(LV);
+  // K1-K3: มีปุ่มเสียงไทยกำกับช่วยให้เด็กเข้าใจความหมาย
+  const thaiWord = thaiOf(LV, word);
+  const hasThaiBtn = ['K1','K2','K3'].includes(LV) && thaiWord;
   const LABELS = ['A','B','C','D','E','F'];
   const BORDER_COLORS = ['#F5A300','#1FA39A','#E84A5F','#7B3FC4','#4E9A2E','#185FA5'];
   $('#play').innerHTML = `
     <div class="prompt">
-      <button class="speak" id="sp" aria-label="Play word sound">🔊</button>
+      <div class="sound-btns">
+        <button class="speak" id="sp" aria-label="Play word in English">🔊</button>
+        ${hasThaiBtn
+          ? `<button class="speak speak-th" id="spth" aria-label="ฟังคำแปลภาษาไทย">🇹🇭</button>`
+          : ''}
+      </div>
       ${showWord
         ? `<div class="wordbox-pill"><span class="word-display">${word}</span></div>`
         : `<p class="hint">Listen, then tap the right picture${reviewMode?' · Review':''}` }
@@ -352,6 +397,8 @@ function nextQuiz(){
     </div>
     <div class="fb" id="fb" aria-live="assertive"></div>`;
   $('#sp').onclick = () => Audio2.speak(word);
+  const spth = document.getElementById('spth');
+  if(spth) spth.onclick = () => Audio2.speakThai(thaiWord);
   setTimeout(()=>Audio2.speak(word),350);
   bindOptions(word, nextQuiz);
 }
@@ -396,6 +443,7 @@ function startFlash(){
   showScreen(); renderFlash();
 }
 function renderFlash(){
+  inActiveGame = true;
   setProg((qi+1)/queue.length*100);
   const w = queue[qi];
   $('#score').textContent = '🃏 ' + (qi+1) + '/' + queue.length;
@@ -523,6 +571,7 @@ function battleBar(){
 }
 
 function nextBattleWord(){
+  inActiveGame = true;
   // The battle runs through all 5 words (monster HP is visual only).
   // Out of hearts ends early. Pass/fail is judged on correct count at the end.
   if (advHearts<=0){ return battleEnd(); }
@@ -587,6 +636,7 @@ function battleChoose(el,word){
 }
 
 function battleEnd(){
+  inActiveGame = false;
   const isBoss = advStage===ADV_STAGES-1;
   const need = passMark(advStage);          // 3 (stages 1-5) or 4 (stages 6-10)
   const passed = score >= need;
@@ -630,7 +680,7 @@ function battleEnd(){
    ============================================================ */
 let memFlipped = [], memLock = false, memPairs = 0;
 function startMemory(){
-  MODE = "memory"; memFlipped = []; memLock = false;
+  MODE = "memory"; inActiveGame = true; memFlipped = []; memLock = false;
   const pool = shuffle(SRS.pickWeighted(LV, 6, wordsFiltered(LV))); memPairs = pool.length;
   let deck = [];
   pool.forEach(w => { deck.push({w,type:'word'}); deck.push({w,type:'pic'}); });
@@ -701,6 +751,7 @@ let spellWord='', spellChosen=[], spellTiles=[];
 function startSpelling(){ MODE="spelling"; spellStage=0; renderSpellMap(); }
 
 function renderSpellMap(){
+  inActiveGame = false;
   showScreen();
   const cleared = spellCleared();
   setProg(cleared/SPELL_STAGES*100);
@@ -746,6 +797,7 @@ function startSpellBattle(idx){
 }
 
 function nextSpellWord(){
+  inActiveGame = true;
   if(spellHearts<=0||spellQi>=SPELL_PER) return spellBattleEnd();
   setProg(spellStage/SPELL_STAGES*100+(spellQi/SPELL_PER)*(100/SPELL_STAGES));
   spellWord = spellQueue[spellQi];
@@ -835,6 +887,7 @@ function checkSpell(){
 }
 
 function spellBattleEnd(){
+  inActiveGame = false;
   const need=spellPass(spellStage), isBoss=spellStage===SPELL_STAGES-1;
   const passed=spellScore>=need;
   Gamify.recordRound("spelling",LV,spellScore,SPELL_PER); afterRound();
@@ -869,6 +922,7 @@ function spellBattleEnd(){
 
 
 function finishRound(silent){
+  inActiveGame = false;
   setProg(100);
   if (silent){ // flashcards: friendly end card, no scoring
     Gamify.recordRound(MODE, LV, 0, 0); afterRound();
@@ -1075,7 +1129,7 @@ async function boot(){
   buildLevelPills();
   updateSubjectBar();
   document.querySelectorAll('.card').forEach(c=> c.onclick = () => routeGame(c.dataset.game));
-  $('#back').onclick = goHome;
+  $('#back').onclick = confirmExit;
   const nh = document.getElementById('navHome'); if(nh) nh.onclick = goHome;
   $('#navDash').onclick = openDash;
   $('#dashBack').onclick = goHome;

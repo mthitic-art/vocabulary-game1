@@ -28,698 +28,847 @@
     {
       "word": "hello",
       "image": "assets/K1/hello.jpeg",
-      "emoji": "👋"
+      "emoji": "👋",
+      "th": "สวัสดี"
     },
     {
       "word": "teacher",
       "image": "assets/K1/teacher.jpeg",
-      "emoji": "👩‍🏫"
+      "emoji": "👩‍🏫",
+      "th": "คุณครู"
     },
     {
       "word": "boy",
       "image": "assets/K1/boy.jpeg",
-      "emoji": "👦"
+      "emoji": "👦",
+      "th": "เด็กผู้ชาย"
     },
     {
       "word": "girl",
       "image": "assets/K1/girl.jpeg",
-      "emoji": "👧"
+      "emoji": "👧",
+      "th": "เด็กผู้หญิง"
     },
     {
       "word": "welcome",
       "image": "assets/K1/welcome.jpeg",
-      "emoji": "🤗"
+      "emoji": "🤗",
+      "th": "ยินดีต้อนรับ"
     },
     {
       "word": "goodbye",
       "image": "assets/K1/goodbye.jpeg",
-      "emoji": "👋"
+      "emoji": "👋",
+      "th": "ลาก่อน"
     },
     {
       "word": "blue",
       "image": "assets/K1/blue.jpeg",
-      "emoji": "🔵"
+      "emoji": "🔵",
+      "th": "สีน้ำเงิน"
     },
     {
       "word": "yellow",
       "image": "assets/K1/yellow.jpeg",
-      "emoji": "🟡"
+      "emoji": "🟡",
+      "th": "สีเหลือง"
     },
     {
       "word": "red",
       "image": "assets/K1/red.jpeg",
-      "emoji": "🔴"
+      "emoji": "🔴",
+      "th": "สีแดง"
     },
     {
       "word": "color",
       "image": "assets/K1/color.jpeg",
-      "emoji": "🎨"
+      "emoji": "🎨",
+      "th": "สี"
     },
     {
       "word": "ball",
       "image": "assets/K1/ball.jpeg",
-      "emoji": "⚽"
+      "emoji": "⚽",
+      "th": "ลูกบอล"
     },
     {
       "word": "leaf",
       "image": "assets/K1/leaf.jpeg",
-      "emoji": "🍃"
+      "emoji": "🍃",
+      "th": "ใบไม้"
     },
     {
       "word": "stick",
-      "image": "assets/K1/stick.jpeg"
+      "image": "assets/K1/stick.jpeg",
+      "th": "ไม้"
     },
     {
       "word": "flower",
       "image": "assets/K1/flower.jpeg",
-      "emoji": "🌸"
+      "emoji": "🌸",
+      "th": "ดอกไม้"
     },
     {
       "word": "point",
       "image": "assets/K1/point.jpeg",
-      "emoji": "👉"
+      "emoji": "👉",
+      "th": "ชี้"
     },
     {
       "word": "find",
-      "image": "assets/K1/find.jpeg"
+      "image": "assets/K1/find.jpeg",
+      "th": "หา"
     },
     {
       "word": "alphabets",
-      "image": "assets/K1/alphabets.jpeg"
+      "image": "assets/K1/alphabets.jpeg",
+      "th": "ตัวอักษร"
     },
     {
       "word": "name",
-      "image": "assets/K1/name.jpeg"
+      "image": "assets/K1/name.jpeg",
+      "th": "ชื่อ"
     },
     {
       "word": "sounds",
-      "image": "assets/K1/sounds.jpeg"
+      "image": "assets/K1/sounds.jpeg",
+      "th": "เสียง"
     },
     {
       "word": "yes",
-      "image": "assets/K1/yes.jpeg"
+      "image": "assets/K1/yes.jpeg",
+      "th": "ใช่"
     },
     {
       "word": "no",
-      "image": "assets/K1/no.jpeg"
+      "image": "assets/K1/no.jpeg",
+      "th": "ไม่"
     },
     {
       "word": "greetings",
-      "image": "assets/K1/greetings.jpeg"
+      "image": "assets/K1/greetings.jpeg",
+      "th": "คำทักทาย"
     },
     {
       "word": "polite",
-      "image": "assets/K1/polite.jpeg"
+      "image": "assets/K1/polite.jpeg",
+      "th": "สุภาพ"
     },
     {
       "word": "fine",
-      "image": "assets/K1/fine.jpeg"
+      "image": "assets/K1/fine.jpeg",
+      "th": "สบายดี"
     },
     {
       "word": "thank you",
-      "image": "assets/K1/thank_you.jpeg"
+      "image": "assets/K1/thank_you.jpeg",
+      "th": "ขอบคุณ"
     },
     {
       "word": "picture",
-      "image": "assets/K1/picture.jpeg"
+      "image": "assets/K1/picture.jpeg",
+      "th": "รูปภาพ"
     },
     {
       "word": "bird",
       "image": "assets/K1/bird.jpeg",
-      "emoji": "🐦"
+      "emoji": "🐦",
+      "th": "นก"
     },
     {
       "word": "who",
-      "image": "assets/K1/who.jpeg"
+      "image": "assets/K1/who.jpeg",
+      "th": "ใคร"
     },
     {
       "word": "brother",
       "image": "assets/K1/brother.jpeg",
-      "emoji": "👦"
+      "emoji": "👦",
+      "th": "พี่ชายน้องชาย"
     },
     {
       "word": "sister",
       "image": "assets/K1/sister.jpeg",
-      "emoji": "👧"
+      "emoji": "👧",
+      "th": "พี่สาวน้องสาว"
     },
     {
       "word": "mom",
       "image": "assets/K1/mom.jpeg",
-      "emoji": "👩"
+      "emoji": "👩",
+      "th": "แม่"
     },
     {
       "word": "dad",
       "image": "assets/K1/dad.jpeg",
-      "emoji": "👨"
+      "emoji": "👨",
+      "th": "พ่อ"
     },
     {
       "word": "family",
       "image": "assets/K1/family.jpeg",
-      "emoji": "👨‍👩‍👧‍👦"
+      "emoji": "👨‍👩‍👧‍👦",
+      "th": "ครอบครัว"
     },
     {
       "word": "he",
-      "image": "assets/K1/he.jpeg"
+      "image": "assets/K1/he.jpeg",
+      "th": "เขาผู้ชาย"
     },
     {
       "word": "she",
-      "image": "assets/K1/she.jpeg"
+      "image": "assets/K1/she.jpeg",
+      "th": "เธอผู้หญิง"
     },
     {
       "word": "my",
-      "image": "assets/K1/my.jpeg"
+      "image": "assets/K1/my.jpeg",
+      "th": "ของฉัน"
     },
     {
       "word": "put on",
-      "image": "assets/K1/put_on.jpeg"
+      "image": "assets/K1/put_on.jpeg",
+      "th": "สวมใส่"
     },
     {
       "word": "hat",
       "image": "assets/K1/hat.jpeg",
-      "emoji": "🎩"
+      "emoji": "🎩",
+      "th": "หมวก"
     },
     {
       "word": "mittens",
       "image": "assets/K1/mittens.jpeg",
-      "emoji": "🧤"
+      "emoji": "🧤",
+      "th": "ถุงมือ"
     },
     {
       "word": "coat",
       "image": "assets/K1/coat.jpeg",
-      "emoji": "🧥"
+      "emoji": "🧥",
+      "th": "เสื้อโค้ท"
     },
     {
       "word": "friend",
       "image": "assets/K1/friend.jpeg",
-      "emoji": "👫"
+      "emoji": "👫",
+      "th": "เพื่อน"
     },
     {
       "word": "shoes",
       "image": "assets/K1/shoes.jpeg",
-      "emoji": "👟"
+      "emoji": "👟",
+      "th": "รองเท้า"
     },
     {
       "word": "baby",
       "image": "assets/K1/baby.jpeg",
-      "emoji": "👶"
+      "emoji": "👶",
+      "th": "ทารก"
     },
     {
       "word": "cat",
       "image": "assets/K1/cat.jpeg",
-      "emoji": "🐱"
+      "emoji": "🐱",
+      "th": "แมว"
     },
     {
       "word": "apple",
       "image": "assets/K1/apple.jpeg",
-      "emoji": "🍎"
+      "emoji": "🍎",
+      "th": "แอปเปิล"
     },
     {
       "word": "bus",
       "image": "assets/K1/bus.jpeg",
-      "emoji": "🚌"
+      "emoji": "🚌",
+      "th": "รถบัส"
     },
     {
       "word": "please",
-      "image": "assets/K1/please.jpeg"
+      "image": "assets/K1/please.jpeg",
+      "th": "กรุณา"
     },
     {
       "word": "help",
-      "image": "assets/K1/help.jpeg"
+      "image": "assets/K1/help.jpeg",
+      "th": "ช่วยเหลือ"
     },
     {
       "word": "draw",
       "image": "assets/K1/draw.jpeg",
-      "emoji": "✏️"
+      "emoji": "✏️",
+      "th": "วาดรูป"
     },
     {
       "word": "trace",
-      "image": "assets/K1/trace.jpeg"
+      "image": "assets/K1/trace.jpeg",
+      "th": "ลากเส้นตาม"
     }
   ],
   "K2": [
     {
       "word": "pen",
       "image": "assets/K2/pen.jpeg",
-      "emoji": "🖊️"
+      "emoji": "🖊️",
+      "th": "ปากกา"
     },
     {
       "word": "brush",
       "image": "assets/K2/brush.jpeg",
-      "emoji": "🖌️"
+      "emoji": "🖌️",
+      "th": "แปรง"
     },
     {
       "word": "eraser",
-      "image": "assets/K2/eraser.jpeg"
+      "image": "assets/K2/eraser.jpeg",
+      "th": "ยางลบ"
     },
     {
       "word": "paper",
       "image": "assets/K2/paper.jpeg",
-      "emoji": "📄"
+      "emoji": "📄",
+      "th": "กระดาษ"
     },
     {
       "word": "glitter",
-      "image": "assets/K2/glitter.jpeg"
+      "image": "assets/K2/glitter.jpeg",
+      "th": "กากเพชร"
     },
     {
       "word": "paint",
       "image": "assets/K2/paint.jpeg",
-      "emoji": "🎨"
+      "emoji": "🎨",
+      "th": "สี"
     },
     {
       "word": "crayons",
       "image": "assets/K2/crayons.jpeg",
-      "emoji": "🖍️"
+      "emoji": "🖍️",
+      "th": "สีเทียน"
     },
     {
       "word": "quilt",
-      "image": "assets/K2/quilt.jpeg"
+      "image": "assets/K2/quilt.jpeg",
+      "th": "ผ้านวม"
     },
     {
       "word": "pencil",
       "image": "assets/K2/pencil.jpeg",
-      "emoji": "✏️"
+      "emoji": "✏️",
+      "th": "ดินสอ"
     },
     {
       "word": "books",
       "image": "assets/K2/books.jpeg",
-      "emoji": "📚"
+      "emoji": "📚",
+      "th": "หนังสือ"
     },
     {
       "word": "bag",
       "image": "assets/K2/bag.jpeg",
-      "emoji": "🎒"
+      "emoji": "🎒",
+      "th": "กระเป๋า"
     },
     {
       "word": "black",
       "image": "assets/K2/black.jpeg",
-      "emoji": "⚫"
+      "emoji": "⚫",
+      "th": "สีดำ"
     },
     {
       "word": "white",
       "image": "assets/K2/white.jpeg",
-      "emoji": "⚪"
+      "emoji": "⚪",
+      "th": "สีขาว"
     },
     {
       "word": "gray",
-      "image": "assets/K2/gray.jpeg"
+      "image": "assets/K2/gray.jpeg",
+      "th": "สีเทา"
     },
     {
       "word": "brown",
       "image": "assets/K2/brown.jpeg",
-      "emoji": "🟤"
+      "emoji": "🟤",
+      "th": "สีน้ำตาล"
     },
     {
       "word": "red",
       "image": "assets/K2/red.jpeg",
-      "emoji": "🔴"
+      "emoji": "🔴",
+      "th": "สีแดง"
     },
     {
       "word": "purple",
       "image": "assets/K2/purple.jpeg",
-      "emoji": "🟣"
+      "emoji": "🟣",
+      "th": "สีม่วง"
     },
     {
       "word": "green",
       "image": "assets/K2/green.jpeg",
-      "emoji": "🟢"
+      "emoji": "🟢",
+      "th": "สีเขียว"
     },
     {
       "word": "yellow",
       "image": "assets/K2/yellow.jpeg",
-      "emoji": "🟡"
+      "emoji": "🟡",
+      "th": "สีเหลือง"
     },
     {
       "word": "orange",
       "image": "assets/K2/orange.jpeg",
-      "emoji": "🟠"
+      "emoji": "🟠",
+      "th": "สีส้ม"
     },
     {
       "word": "idea",
-      "image": "assets/K2/idea.jpeg"
+      "image": "assets/K2/idea.jpeg",
+      "th": "ความคิด"
     },
     {
       "word": "rock",
-      "image": "assets/K2/rock.jpeg"
+      "image": "assets/K2/rock.jpeg",
+      "th": "หิน"
     },
     {
       "word": "log",
-      "image": "assets/K2/log.jpeg"
+      "image": "assets/K2/log.jpeg",
+      "th": "ท่อนไม้"
     },
     {
       "word": "next",
-      "image": "assets/K2/next.jpeg"
+      "image": "assets/K2/next.jpeg",
+      "th": "ถัดไป"
     },
     {
       "word": "team",
-      "image": "assets/K2/team.jpeg"
+      "image": "assets/K2/team.jpeg",
+      "th": "ทีม"
     },
     {
       "word": "feathers",
-      "image": "assets/K2/feathers.jpeg"
+      "image": "assets/K2/feathers.jpeg",
+      "th": "ขนนก"
     },
     {
       "word": "banana",
       "image": "assets/K2/banana.jpeg",
-      "emoji": "🍌"
+      "emoji": "🍌",
+      "th": "กล้วย"
     },
     {
       "word": "bird",
       "image": "assets/K2/bird.jpeg",
-      "emoji": "🐦"
+      "emoji": "🐦",
+      "th": "นก"
     },
     {
       "word": "fish",
       "image": "assets/K2/fish.jpeg",
-      "emoji": "🐟"
+      "emoji": "🐟",
+      "th": "ปลา"
     },
     {
       "word": "dog",
       "image": "assets/K2/dog.jpeg",
-      "emoji": "🐶"
+      "emoji": "🐶",
+      "th": "สุนัข"
     },
     {
       "word": "spider",
       "image": "assets/K2/spider.jpeg",
-      "emoji": "🕷️"
+      "emoji": "🕷️",
+      "th": "แมงมุม"
     },
     {
       "word": "rabbit",
       "image": "assets/K2/rabbit.jpeg",
-      "emoji": "🐰"
+      "emoji": "🐰",
+      "th": "กระต่าย"
     },
     {
       "word": "cars",
-      "image": "assets/K2/cars.jpeg"
+      "image": "assets/K2/cars.jpeg",
+      "th": "รถยนต์"
     },
     {
       "word": "Teddy Bear",
-      "image": "assets/K2/teddy_bear.jpeg"
+      "image": "assets/K2/teddy_bear.jpeg",
+      "th": "ตุ๊กตาหมี"
     },
     {
       "word": "elephant",
       "image": "assets/K2/elephant.jpeg",
-      "emoji": "🐘"
+      "emoji": "🐘",
+      "th": "ช้าง"
     },
     {
       "word": "cat",
       "image": "assets/K2/cat.jpeg",
-      "emoji": "🐱"
+      "emoji": "🐱",
+      "th": "แมว"
     },
     {
       "word": "jump",
       "image": "assets/K2/jump.jpeg",
-      "emoji": "🦘"
+      "emoji": "🦘",
+      "th": "กระโดด"
     },
     {
       "word": "fly",
       "image": "assets/K2/fly.jpeg",
-      "emoji": "🦋"
+      "emoji": "🦋",
+      "th": "บิน"
     },
     {
       "word": "crawl",
-      "image": "assets/K2/crawl.jpeg"
+      "image": "assets/K2/crawl.jpeg",
+      "th": "คลาน"
     },
     {
       "word": "swim",
       "image": "assets/K2/swim.jpeg",
-      "emoji": "🏊"
+      "emoji": "🏊",
+      "th": "ว่ายน้ำ"
     },
     {
       "word": "circle",
       "image": "assets/K2/circle.jpeg",
-      "emoji": "⭕"
+      "emoji": "⭕",
+      "th": "วงกลม"
     },
     {
       "word": "square",
       "image": "assets/K2/square.jpeg",
-      "emoji": "🟦"
+      "emoji": "🟦",
+      "th": "สี่เหลี่ยมจัตุรัส"
     },
     {
       "word": "triangle",
       "image": "assets/K2/triangle.jpeg",
-      "emoji": "🔺"
+      "emoji": "🔺",
+      "th": "สามเหลี่ยม"
     },
     {
       "word": "star",
       "image": "assets/K2/star.jpeg",
-      "emoji": "⭐"
+      "emoji": "⭐",
+      "th": "ดาว"
     },
     {
       "word": "arms",
-      "image": "assets/K2/arms.jpeg"
+      "image": "assets/K2/arms.jpeg",
+      "th": "แขน"
     },
     {
       "word": "legs",
-      "image": "assets/K2/legs.jpeg"
+      "image": "assets/K2/legs.jpeg",
+      "th": "ขา"
     },
     {
       "word": "eyes",
       "image": "assets/K2/eyes.jpeg",
-      "emoji": "👀"
+      "emoji": "👀",
+      "th": "ตา"
     },
     {
       "word": "ears",
-      "image": "assets/K2/ears.jpeg"
+      "image": "assets/K2/ears.jpeg",
+      "th": "หู"
     },
     {
       "word": "mouth",
-      "image": "assets/K2/mouth.jpeg"
+      "image": "assets/K2/mouth.jpeg",
+      "th": "ปาก"
     },
     {
       "word": "nose",
       "image": "assets/K2/nose.jpeg",
-      "emoji": "👃"
+      "emoji": "👃",
+      "th": "จมูก"
     }
   ],
   "K3": [
     {
       "word": "mom",
       "image": "assets/K3/mom.jpeg",
-      "emoji": "👩"
+      "emoji": "👩",
+      "th": "แม่"
     },
     {
       "word": "dad",
       "image": "assets/K3/dad.jpeg",
-      "emoji": "👨"
+      "emoji": "👨",
+      "th": "พ่อ"
     },
     {
       "word": "grandma",
       "image": "assets/K3/grandma.jpeg",
-      "emoji": "👵"
+      "emoji": "👵",
+      "th": "ยายย่า"
     },
     {
       "word": "grandpa",
       "image": "assets/K3/grandpa.jpeg",
-      "emoji": "👴"
+      "emoji": "👴",
+      "th": "ตาปู่"
     },
     {
       "word": "kitten",
       "image": "assets/K3/kitten.jpeg",
-      "emoji": "🐱"
+      "emoji": "🐱",
+      "th": "ลูกแมว"
     },
     {
       "word": "boots",
       "image": "assets/K3/boots.jpeg",
-      "emoji": "👢"
+      "emoji": "👢",
+      "th": "รองเท้าบูท"
     },
     {
       "word": "frogs",
       "image": "assets/K3/frogs.jpeg",
-      "emoji": "🐸"
+      "emoji": "🐸",
+      "th": "กบ"
     },
     {
       "word": "erasers",
-      "image": "assets/K3/erasers.jpeg"
+      "image": "assets/K3/erasers.jpeg",
+      "th": "ยางลบ"
     },
     {
       "word": "socks",
       "image": "assets/K3/socks.jpeg",
-      "emoji": "🧦"
+      "emoji": "🧦",
+      "th": "ถุงเท้า"
     },
     {
       "word": "beans",
-      "image": "assets/K3/beans.jpeg"
+      "image": "assets/K3/beans.jpeg",
+      "th": "ถั่ว"
     },
     {
       "word": "stars",
       "image": "assets/K3/stars.jpeg",
-      "emoji": "✨"
+      "emoji": "✨",
+      "th": "ดวงดาว"
     },
     {
       "word": "eleven",
-      "image": "assets/K3/eleven.jpeg"
+      "image": "assets/K3/eleven.jpeg",
+      "th": "สิบเอ็ด"
     },
     {
       "word": "twelve",
-      "image": "assets/K3/twelve.jpeg"
+      "image": "assets/K3/twelve.jpeg",
+      "th": "สิบสอง"
     },
     {
       "word": "thirteen",
-      "image": "assets/K3/thirteen.jpeg"
+      "image": "assets/K3/thirteen.jpeg",
+      "th": "สิบสาม"
     },
     {
       "word": "fourteen",
-      "image": "assets/K3/fourteen.jpeg"
+      "image": "assets/K3/fourteen.jpeg",
+      "th": "สิบสี่"
     },
     {
       "word": "fifteen",
-      "image": "assets/K3/fifteen.jpeg"
+      "image": "assets/K3/fifteen.jpeg",
+      "th": "สิบห้า"
     },
     {
       "word": "sixteen",
-      "image": "assets/K3/sixteen.jpeg"
+      "image": "assets/K3/sixteen.jpeg",
+      "th": "สิบหก"
     },
     {
       "word": "seventeen",
-      "image": "assets/K3/seventeen.jpeg"
+      "image": "assets/K3/seventeen.jpeg",
+      "th": "สิบเจ็ด"
     },
     {
       "word": "eighteen",
-      "image": "assets/K3/eighteen.jpeg"
+      "image": "assets/K3/eighteen.jpeg",
+      "th": "สิบแปด"
     },
     {
       "word": "nineteen",
-      "image": "assets/K3/nineteen.jpeg"
+      "image": "assets/K3/nineteen.jpeg",
+      "th": "สิบเก้า"
     },
     {
       "word": "twenty",
-      "image": "assets/K3/twenty.jpeg"
+      "image": "assets/K3/twenty.jpeg",
+      "th": "ยี่สิบ"
     },
     {
       "word": "sad",
       "image": "assets/K3/sad.jpeg",
-      "emoji": "😢"
+      "emoji": "😢",
+      "th": "เศร้า"
     },
     {
       "word": "happy",
       "image": "assets/K3/happy.jpeg",
-      "emoji": "😄"
+      "emoji": "😄",
+      "th": "มีความสุข"
     },
     {
       "word": "cold",
       "image": "assets/K3/cold.jpeg",
-      "emoji": "🥶"
+      "emoji": "🥶",
+      "th": "หนาว"
     },
     {
       "word": "hot",
       "image": "assets/K3/hot.jpeg",
-      "emoji": "🥵"
+      "emoji": "🥵",
+      "th": "ร้อน"
     },
     {
       "word": "puddles",
-      "image": "assets/K3/puddles.jpeg"
+      "image": "assets/K3/puddles.jpeg",
+      "th": "แอ่งน้ำ"
     },
     {
       "word": "coat",
       "image": "assets/K3/coat.jpeg",
-      "emoji": "🧥"
+      "emoji": "🧥",
+      "th": "เสื้อโค้ท"
     },
     {
       "word": "bedroom",
       "image": "assets/K3/bedroom.jpeg",
-      "emoji": "🛏️"
+      "emoji": "🛏️",
+      "th": "ห้องนอน"
     },
     {
       "word": "hat",
       "image": "assets/K3/hat.jpeg",
-      "emoji": "🎩"
+      "emoji": "🎩",
+      "th": "หมวก"
     },
     {
       "word": "rainy",
       "image": "assets/K3/rainy.jpeg",
-      "emoji": "🌧️"
+      "emoji": "🌧️",
+      "th": "ฝนตก"
     },
     {
       "word": "sunny",
       "image": "assets/K3/sunny.jpeg",
-      "emoji": "☀️"
+      "emoji": "☀️",
+      "th": "แดดออก"
     },
     {
       "word": "rain",
-      "image": "assets/K3/rain.jpeg"
+      "image": "assets/K3/rain.jpeg",
+      "th": "ฝน"
     },
     {
       "word": "run",
       "image": "assets/K3/run.jpeg",
-      "emoji": "🏃"
+      "emoji": "🏃",
+      "th": "วิ่ง"
     },
     {
       "word": "jump",
       "image": "assets/K3/jump.jpeg",
-      "emoji": "🦘"
+      "emoji": "🦘",
+      "th": "กระโดด"
     },
     {
       "word": "sing",
       "image": "assets/K3/sing.jpeg",
-      "emoji": "🎤"
+      "emoji": "🎤",
+      "th": "ร้องเพลง"
     },
     {
       "word": "dance",
       "image": "assets/K3/dance.jpeg",
-      "emoji": "💃"
+      "emoji": "💃",
+      "th": "เต้นรำ"
     },
     {
       "word": "walk",
       "image": "assets/K3/walk.jpeg",
-      "emoji": "🚶"
+      "emoji": "🚶",
+      "th": "เดิน"
     },
     {
       "word": "talk",
-      "image": "assets/K3/talk.jpeg"
+      "image": "assets/K3/talk.jpeg",
+      "th": "พูดคุย"
     },
     {
       "word": "sit",
       "image": "assets/K3/sit.jpeg",
-      "emoji": "🪑"
+      "emoji": "🪑",
+      "th": "นั่ง"
     },
     {
       "word": "climb",
       "image": "assets/K3/climb.jpeg",
-      "emoji": "🧗"
+      "emoji": "🧗",
+      "th": "ปีน"
     },
     {
       "word": "swing",
-      "image": "assets/K3/swing.jpeg"
+      "image": "assets/K3/swing.jpeg",
+      "th": "ชิงช้า"
     },
     {
       "word": "play",
       "image": "assets/K3/play.jpeg",
-      "emoji": "🎮"
+      "emoji": "🎮",
+      "th": "เล่น"
     },
     {
       "word": "Monday",
       "image": "assets/K3/monday.jpeg",
-      "emoji": "📅"
+      "emoji": "📅",
+      "th": "วันจันทร์"
     },
     {
       "word": "Tuesday",
       "image": "assets/K3/tuesday.jpeg",
-      "emoji": "📅"
+      "emoji": "📅",
+      "th": "วันอังคาร"
     },
     {
       "word": "Wednesday",
       "image": "assets/K3/wednesday.jpeg",
-      "emoji": "📅"
+      "emoji": "📅",
+      "th": "วันพุธ"
     },
     {
       "word": "Thursday",
       "image": "assets/K3/thursday.jpeg",
-      "emoji": "📅"
+      "emoji": "📅",
+      "th": "วันพฤหัสบดี"
     },
     {
       "word": "Friday",
       "image": "assets/K3/friday.jpeg",
-      "emoji": "📅"
+      "emoji": "📅",
+      "th": "วันศุกร์"
     },
     {
       "word": "Saturday",
       "image": "assets/K3/saturday.jpeg",
-      "emoji": "📅"
+      "emoji": "📅",
+      "th": "วันเสาร์"
     },
     {
       "word": "Sunday",
       "image": "assets/K3/sunday.jpeg",
-      "emoji": "📅"
+      "emoji": "📅",
+      "th": "วันอาทิตย์"
     }
   ],
   "P1": [

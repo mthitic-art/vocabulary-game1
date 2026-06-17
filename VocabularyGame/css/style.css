@@ -23,11 +23,16 @@ h1,h2,h3,h4{font-family:'Baloo 2',cursive}
   padding:14px 18px 12px;gap:10px;flex-wrap:nowrap}
 .logo-row{display:flex;align-items:center;gap:11px;flex-shrink:1;min-width:0}
 .logo-badge{width:clamp(44px,9vw,54px);height:clamp(44px,9vw,54px);
-  border-radius:14px;flex-shrink:0;
-  background:linear-gradient(135deg,#7B3FC4,#E84A5F);
+  border-radius:12px;flex-shrink:0;object-fit:contain;
+  background:rgba(255,255,255,.1);padding:3px;
+  display:flex;align-items:center;justify-content:center;
+  font-size:clamp(1.4rem,4vw,1.8rem)}
+.logo-badge-fallback{width:clamp(44px,9vw,54px);height:clamp(44px,9vw,54px);
+  border-radius:12px;flex-shrink:0;
+  background:linear-gradient(135deg,#1B5E20,#2E7D32);
   display:flex;align-items:center;justify-content:center;
   font-size:clamp(1.4rem,4vw,1.8rem);
-  box-shadow:0 4px 14px rgba(123,63,196,.45)}
+  box-shadow:0 4px 14px rgba(27,94,32,.4)}
 .logo-name{font-family:'Baloo 2';font-weight:800;
   font-size:clamp(1.2rem,4.5vw,1.7rem);color:#fff;line-height:1.05;
   white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
@@ -619,3 +624,35 @@ footer{display:none}
   .word-opts.n4{grid-template-columns:1fr 1fr 1fr 1fr!important}
   .word-opts.n6{grid-template-columns:1fr 1fr 1fr!important}
 }
+
+/* ══════════════════════════════════
+   ปุ่มเสียงไทย/อังกฤษ (K1-K3)
+══════════════════════════════════ */
+.sound-btns{display:flex;gap:10px;align-items:center;justify-content:center}
+.speak-th{background:linear-gradient(145deg,#fff,#f0f0f0);
+  border:2.5px solid var(--sky);font-size:clamp(1.3rem,4vw,1.7rem);
+  box-shadow:0 4px 0 #157a73}
+.speak-th:active{transform:translateY(3px);box-shadow:0 1px 0 #157a73}
+
+/* ══════════════════════════════════
+   EXIT CONFIRM DIALOG
+══════════════════════════════════ */
+.exit-overlay{position:fixed;inset:0;z-index:10000;
+  background:rgba(10,15,60,.55);backdrop-filter:blur(3px);
+  display:flex;align-items:center;justify-content:center;padding:20px;
+  animation:fadeIn .2s ease}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+.exit-box{background:#fff;border-radius:26px;padding:26px 24px;
+  max-width:360px;width:100%;text-align:center;
+  box-shadow:0 16px 50px rgba(0,0,0,.35);
+  animation:exitPop .35s cubic-bezier(.34,1.56,.64,1)}
+@keyframes exitPop{from{transform:scale(.85);opacity:0}to{transform:scale(1);opacity:1}}
+.exit-emoji{font-size:3.5rem;margin-bottom:8px;
+  animation:exitWiggle 1.5s ease-in-out infinite}
+@keyframes exitWiggle{0%,100%{transform:rotate(-5deg)}50%{transform:rotate(5deg)}}
+.exit-title{font-family:'Baloo 2';font-weight:800;
+  font-size:clamp(1.3rem,5vw,1.6rem);color:var(--ink);margin-bottom:6px}
+.exit-sub{font-size:clamp(.85rem,2.8vw,.98rem);color:var(--muted);
+  font-weight:500;margin-bottom:20px;line-height:1.4}
+.exit-btns{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
+.exit-btns .btn{margin:0;flex:1;min-width:130px}

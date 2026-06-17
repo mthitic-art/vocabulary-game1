@@ -63,6 +63,37 @@ const Audio2 = (() => {
       u.pitch = 1.05;
       speechSynthesis.speak(u);
     },
+    /* เสียงภาษาไทย — สำหรับคำแปลกำกับ (K1-K3) */
+    speakThai(text) {
+      if (!('speechSynthesis' in window) || !text) return;
+      speechSynthesis.cancel();
+      const u = new SpeechSynthesisUtterance(text);
+      u.lang = 'th-TH';
+      const voices = speechSynthesis.getVoices();
+      const thV = voices.find(v => v.lang && v.lang.replace('_','-').startsWith('th'));
+      if (thV) u.voice = thV;
+      u.rate = 0.85;
+      u.pitch = 1.0;
+      speechSynthesis.speak(u);
+    },
+    /* พูดอังกฤษแล้วตามด้วยไทย */
+    speakBoth(en, th) {
+      if (!('speechSynthesis' in window)) return;
+      if (!voicesReady) pickVoice();
+      speechSynthesis.cancel();
+      const u1 = new SpeechSynthesisUtterance(en);
+      u1.lang='en-US'; if(usVoice) u1.voice=usVoice; u1.rate=0.75; u1.pitch=1.05;
+      speechSynthesis.speak(u1);
+      if(th){
+        const u2 = new SpeechSynthesisUtterance(th);
+        u2.lang='th-TH';
+        const voices = speechSynthesis.getVoices();
+        const thV = voices.find(v => v.lang && v.lang.replace('_','-').startsWith('th'));
+        if(thV) u2.voice=thV;
+        u2.rate=0.85;
+        speechSynthesis.speak(u2);   // ต่อคิวหลังอังกฤษ
+      }
+    },
     voiceName() { return usVoice ? usVoice.name : "(device default)"; },
     good() { tone(523,0,.15,"triangle"); tone(659,.12,.15,"triangle"); tone(784,.24,.25,"triangle"); },
     bad()  { tone(300,0,.2,"sine",.15); tone(220,.15,.25,"sine",.15); },
