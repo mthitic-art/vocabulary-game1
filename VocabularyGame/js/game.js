@@ -56,12 +56,31 @@ function pic(lv, w, cls){
     const exts = ['png','jpeg','jpg','webp'];
     const given = (e.image.match(/\.(png|jpe?g|webp)$/i)||['','png'])[1].toLowerCase();
     const order = [given, ...exts.filter(x=>x!==given)];
-    // เก็บ data ไว้ใน attribute แล้วให้ wireImgFallback() ผูก event ทีหลัง (เลี่ยง quote ชนกัน)
-    return `<div class="${cls}"><img src="${base}.${order[0]}" alt="${w}" loading="lazy"
+    // eager + async decode → แสดงทันที ไม่ delay (การ์ดอยู่ในจอแล้ว)
+    return `<div class="${cls}"><img src="${base}.${order[0]}" alt="${w}"
+      loading="eager" decoding="async" fetchpriority="high"
       class="autoimg" data-base="${base}" data-exts="${order.join(',')}" data-i="0"
       data-emo="${emo}"></div>`;
   }
   return `<div class="${cls}" role="img" aria-label="${w}"><span>${emo}</span></div>`;
+}
+
+/* Preload ภาพล่วงหน้า — เรียกตอนเริ่มเล่นแต่ละระดับ
+   ทำให้ภาพขึ้นทันทีไม่ต้องรอโหลดทีละข้อ */
+const _preloadedLevels = {};
+function preloadLevelImages(lv){
+  if(_preloadedLevels[lv]) return;
+  _preloadedLevels[lv] = true;
+  try{
+    const words = wordsOf(lv);
+    words.forEach(w=>{
+      const e = entryOf(lv, w);
+      if(e && e.image){
+        const img = new Image();
+        img.src = e.image;   // browser cache ไว้ล่วงหน้า
+      }
+    });
+  }catch(err){ /* เงียบไว้ ถ้า preload ไม่ได้ก็ไม่เป็นไร */ }
 }
 
 /* ผูก fallback ให้ <img class="autoimg"> ทุกตัวที่ยังไม่ได้ผูก
@@ -617,9 +636,9 @@ function startMemory(){
   pool.forEach(w => { deck.push({w,type:'word'}); deck.push({w,type:'pic'}); });
   deck = shuffle(deck);
   showScreen(); setProg(0); $('#score').textContent = '🧠 0/' + memPairs;
-  const cols = 4;
+  // คอลัมน์ปรับตามจำนวนใบ — CSS จัดการ responsive เอง
   $('#play').innerHTML = `<p class="hint" style="text-align:center;margin-bottom:8px">Match each word with its picture!</p>
-    <div class="memgrid" id="memgrid" style="grid-template-columns:repeat(${cols},1fr)"></div>`;
+    <div class="memgrid" id="memgrid"></div>`;
   const g = $('#memgrid');
   deck.forEach((card,i)=>{
     const face = card.type==='word'
@@ -972,6 +991,7 @@ function pickLevel(b){
   SUBJECT_FILTER = "All";
   updateSubjectBar();
   refreshHero();   // อัปเดต CEFR badge + words mastered ทันที
+  preloadLevelImages(lv);   // โหลดภาพล่วงหน้า กันภาพ delay ตอนเล่น
 }
 
 /* Build and show subject filter bar for P1; hide for other levels. */
@@ -1067,5 +1087,6 @@ async function boot(){
   Gamify.touchStreak();
   Gamify.checkAchievements(a=>{});
   refreshChips(); refreshLocks();
+  preloadLevelImages(LV);   // โหลดภาพระดับเริ่มต้น (K1) ล่วงหน้า
 }
 document.addEventListener('DOMContentLoaded', boot);
