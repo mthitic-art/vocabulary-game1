@@ -245,14 +245,16 @@ const shuffle = a => a.map(x=>[Math.random(),x]).sort((p,q)=>p[0]-q[0]).map(p=>p
 let LV = "K1", MODE = "", score = 0, qi = 0, queue = [], total = 0, reviewMode = false;
 
 function showScreen(){
-  stopQuestyIdle();   // เข้าเกม → หยุด wave
+  stopQuestyIdle();
+  MusicPlayer.fadeOut();   // เพลงค่อยๆ หายตอนเข้าเกม
   $('#home').style.display='none'; $('#dash').classList.remove('show'); $('#screen').classList.add('show');
 }
 function goHome(){ if (window.speechSynthesis) speechSynthesis.cancel();
   inActiveGame = false;
   $('#screen').classList.remove('show'); $('#dash').classList.remove('show');
   $('#home').style.display=''; refreshChips(); refreshLocks(); updateSubjectBar();
-  startQuestyIdle();   // กลับมาหน้า home → เริ่ม wave ใหม่
+  startQuestyIdle();
+  MusicPlayer.fadeIn();   // เพลงค่อยๆ กลับมาตอนถึงหน้า home
 }
 
 /* ยืนยันก่อนออกจากเกมที่กำลังเล่น (กันความคืบหน้าหาย) */
@@ -1206,5 +1208,92 @@ async function boot(){
       setTimeout(()=>q.classList.remove('questy-entrance'), 800); }
   }, 400);
   startQuestyIdle();
+  MusicPlayer.init();   // เริ่มระบบเพลง
 }
 document.addEventListener('DOMContentLoaded', boot);
+
+/* ============================================================
+   MUSIC PLAYER — Starlight Quest background music
+   - ไม่ auto-play (Browser policy) รอ interaction แรก
+   - fade in/out ตาม home ↔ เกม
+   - จำค่าเปิด/ปิดไว้ใน localStorage
+   ============================================================ */
+const MusicPlayer = (function(){
+  let audio = null;
+  let pref  = false;   // default ปิด รอให้เด็กกดเอง
+  let ready = false;   // audio object สร้างแล้วไหม
+  let fading = false;
+
+  function init(){
+    // อ่าน preference ที่บันทึกไว้
+    pref = localStorage.getItem('cvn_music') === 'on';
+    updateBtn();
+
+    // สร้าง audio object
+    audio = new Audio("assets/Fox_s_Adventure_Begins.mp3");
+    audio.loop   = true;
+    audio.volume = 0;
+    ready = true;
+
+    // ถ้าเคยเปิดไว้ → รอ interaction แรกแล้วเล่นเลย
+    const tryAutoPlay = () => {
+      if(pref){ fadeIn(); }
+      document.removeEventListener('click', tryAutoPlay);
+    };
+    document.addEventListener('click', tryAutoPlay, { once: true });
+
+    // ปุ่ม toggle
+    const btn = document.getElementById('musicBtn');
+    if(btn) btn.onclick = (e) => { e.stopPropagation(); toggle(); };
+  }
+
+  function toggle(){
+    if(!ready) return;
+    if(audio.paused){ pref=true; fadeIn(); }
+    else             { pref=false; fadeOut(); }
+    localStorage.setItem('cvn_music', pref ? 'on' : 'off');
+  }
+
+  function fadeIn(){
+    if(!ready || fading) return;
+    if(!audio.paused && audio.volume >= 0.35) return;
+    fading = true;
+    audio.volume = 0;
+    audio.play().catch(()=>{ fading=false; });
+    const step = setInterval(()=>{
+      if(audio.volume < 0.35){
+        audio.volume = Math.min(0.35, audio.volume + 0.025);
+      } else {
+        clearInterval(step); fading = false; updateBtn();
+      }
+    }, 40);
+  }
+
+  function fadeOut(cb){
+    if(!ready || audio.paused){ if(cb) cb(); updateBtn(); return; }
+    fading = true;
+    const step = setInterval(()=>{
+      if(audio.volume > 0.025){
+        audio.volume = Math.max(0, audio.volume - 0.025);
+      } else {
+        clearInterval(step);
+        audio.pause();
+        audio.volume = 0;
+        fading = false;
+        updateBtn();
+        if(cb) cb();
+      }
+    }, 40);
+  }
+
+  function updateBtn(){
+    const btn = document.getElementById('musicBtn');
+    if(!btn) return;
+    const on = ready && !audio.paused;
+    btn.textContent = on ? '🔊' : '🔇';
+    btn.classList.toggle('music-on', on);
+    btn.title = on ? 'Music ON — click to mute' : 'Music OFF — click to play';
+  }
+
+  return { init, fadeIn, fadeOut, toggle, updateBtn };
+})();

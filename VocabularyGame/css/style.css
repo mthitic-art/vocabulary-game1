@@ -690,3 +690,15 @@ footer{display:none}
   font-weight:500;margin-bottom:20px;line-height:1.4}
 .exit-btns{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
 .exit-btns .btn{margin:0;flex:1;min-width:130px}
+
+/* ══════════════════════════════════
+   MUSIC BUTTON
+══════════════════════════════════ */
+.music-btn{
+  font-size:clamp(1.05rem,3.2vw,1.3rem);
+  transition:transform .15s,background .2s}
+.music-btn:active{transform:scale(.88)}
+.music-btn.music-on{
+  background:linear-gradient(145deg,rgba(245,163,0,.3),rgba(245,163,0,.15));
+  border-color:rgba(245,163,0,.5);
+  box-shadow:0 0 12px rgba(245,163,0,.25)}
