@@ -113,10 +113,44 @@ h1,h2,h3,h4{font-family:'Baloo 2',cursive}
   object-fit:contain;display:block;
   filter:drop-shadow(-4px 6px 16px rgba(0,0,0,.45));
   margin-bottom:-2px;
-  animation:questyBob 3s ease-in-out infinite}
-@keyframes questyBob{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
+  transform-origin:bottom center;
+  animation:questyIdle 3.5s ease-in-out infinite}
+/* Idle — ลอยขึ้นลงพร้อม sway เล็กน้อย */
+@keyframes questyIdle{
+  0%  {transform:translateY(0)    rotate(0deg)   scale(1)}
+  25% {transform:translateY(-5px)  rotate(-1.5deg) scale(1.01)}
+  50% {transform:translateY(-8px)  rotate(0deg)   scale(1.02)}
+  75% {transform:translateY(-5px)  rotate(1.5deg)  scale(1.01)}
+  100%{transform:translateY(0)    rotate(0deg)   scale(1)}
+}
+/* Wave — โบกมือทักทาย trigger ผ่าน .questy-wave */
+.questy-wave{animation:questyWave 1.2s ease-in-out forwards !important}
+@keyframes questyWave{
+  0%  {transform:translateY(0)    rotate(0deg)  scale(1)}
+  15% {transform:translateY(-10px) rotate(-12deg) scale(1.06)}
+  30% {transform:translateY(-12px) rotate(10deg)  scale(1.08)}
+  45% {transform:translateY(-10px) rotate(-8deg)  scale(1.06)}
+  60% {transform:translateY(-8px)  rotate(6deg)   scale(1.04)}
+  75% {transform:translateY(-4px)  rotate(-2deg)  scale(1.02)}
+  100%{transform:translateY(0)    rotate(0deg)  scale(1)}
+}
+/* Entrance — ครั้งแรกที่เปิดหน้า home */
+.questy-entrance{
+  animation:questyEntrance .8s cubic-bezier(.34,1.56,.64,1) forwards,
+            questyIdle 3.5s ease-in-out .8s infinite !important}
+@keyframes questyEntrance{
+  0%  {transform:translateY(40px) scale(.6) rotate(-10deg);opacity:0}
+  60% {transform:translateY(-10px) scale(1.08) rotate(4deg);opacity:1}
+  100%{transform:translateY(0) scale(1) rotate(0deg);opacity:1}
+}
 .questy-fallback{font-size:clamp(4.5rem,16vw,8rem);line-height:1;
-  padding-bottom:4px;filter:drop-shadow(-3px 4px 8px rgba(0,0,0,.3))}
+  padding-bottom:4px;filter:drop-shadow(-3px 4px 8px rgba(0,0,0,.3));
+  transform-origin:bottom center;
+  animation:questyIdle 3.5s ease-in-out infinite}
+@media(prefers-reduced-motion:reduce){
+  .questy-hero,.questy-fallback{animation:none!important}
+  .questy-wave{animation:none!important}
+}
 
 /* ══════════════════════════════════
    QUICK STATS

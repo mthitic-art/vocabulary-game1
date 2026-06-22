@@ -163,16 +163,40 @@ function refreshHero(){
   const mt = document.getElementById('masteryTxt');
   if(mt) mt.textContent = masteredCount+' / '+totalWords+' words';
 
-  /* Coach bubble — Questy บอกภารกิจวันนี้ */
+  /* Coach bubble — แสดงความก้าวหน้าที่แม่นยำ ไม่ใช่แค่ตัวเลขสุ่ม */
   const cb = document.getElementById('coachBubble');
   if(cb){
-    const remain = Math.max(0, totalWords - masteredCount);
-    const todayTarget = Math.min(remain || totalWords, 15);
-    if(masteredCount >= totalWords && totalWords > 0){
-      cb.innerHTML = `${LV} complete!<br><b>Amazing!</b> 🏆`;
+    let msg = '';
+    if(totalWords === 0){
+      msg = `Let's start<br><b>learning! 🚀</b>`;
+    } else if(masteredCount === 0){
+      // ยังไม่เคยเล่นเลย — บอก lesson แรก
+      const size = lessonSize(LV);
+      msg = `Start with<br><b>Lesson 1 · ${size} words 📖</b>`;
+    } else if(masteredCount >= totalWords){
+      // เรียนครบทั้งระดับแล้ว
+      msg = `${LV} complete!<br><b>Amazing! 🏆</b>`;
     } else {
-      cb.innerHTML = `Today we learn<br><b>${todayTarget} words!</b> 🚀`;
+      // กำลังเรียนอยู่ — บอกความก้าวหน้าจริง
+      const lessons = lessonsFor(LV);
+      const curIdx = lessons.findIndex(ls => !lessonPassed(LV, ls));
+      const remain = totalWords - masteredCount;
+      if(curIdx >= 0){
+        const prog = lessonProgress(LV, lessons[curIdx]);
+        const size = lessons[curIdx].length;
+        const inLesson = prog > 0;
+        if(inLesson){
+          msg = `Lesson ${curIdx+1}: <b>${prog}/${size} done! 💪</b>`;
+        } else {
+          msg = `Next: Lesson ${curIdx+1}<br><b>${size} words ready 📖</b>`;
+        }
+      } else {
+        msg = `<b>${masteredCount}/${totalWords}</b> words mastered! ⭐`;
+      }
     }
+    cb.innerHTML = msg;
+    // trigger wave animation ตอนข้อความเปลี่ยน
+    triggerQuestyWave();
   }
 
   /* Quick stats — รวมทุกระดับ
@@ -187,16 +211,49 @@ function refreshHero(){
   const qs=document.getElementById('qsStreak'); if(qs) qs.textContent=DB.streak;
 }
 
-/* ---------- [ENGINE] shared state ---------- */
+/* ============================================================
+   QUESTY ANIMATION — idle bob + wave trigger
+   ============================================================ */
+let questyWaveTimer = null;
+
+function triggerQuestyWave(){
+  const q = document.querySelector('.questy-hero, .questy-fallback');
+  if(!q) return;
+  // หยุด idle ชั่วคราว เปลี่ยนเป็น wave
+  q.classList.remove('questy-wave');
+  void q.offsetWidth;  // reflow เพื่อ restart animation
+  q.classList.add('questy-wave');
+  // กลับ idle หลัง wave จบ (1.2s)
+  clearTimeout(questyWaveTimer);
+  questyWaveTimer = setTimeout(() => q.classList.remove('questy-wave'), 1200);
+}
+
+/* Auto-wave ทุก 5 วินาที ตอนอยู่หน้า home */
+let questyAutoWave = null;
+function startQuestyIdle(){
+  stopQuestyIdle();
+  questyAutoWave = setInterval(() => {
+    // wave เฉพาะตอนอยู่หน้า home ที่มองเห็น
+    if(document.getElementById('home').style.display !== 'none'){
+      triggerQuestyWave();
+    }
+  }, 5000);
+}
+function stopQuestyIdle(){ clearInterval(questyAutoWave); }
 const $ = s => document.querySelector(s);
 const shuffle = a => a.map(x=>[Math.random(),x]).sort((p,q)=>p[0]-q[0]).map(p=>p[1]);
 let LV = "K1", MODE = "", score = 0, qi = 0, queue = [], total = 0, reviewMode = false;
 
-function showScreen(){ $('#home').style.display='none'; $('#dash').classList.remove('show'); $('#screen').classList.add('show'); }
+function showScreen(){
+  stopQuestyIdle();   // เข้าเกม → หยุด wave
+  $('#home').style.display='none'; $('#dash').classList.remove('show'); $('#screen').classList.add('show');
+}
 function goHome(){ if (window.speechSynthesis) speechSynthesis.cancel();
   inActiveGame = false;
   $('#screen').classList.remove('show'); $('#dash').classList.remove('show');
-  $('#home').style.display=''; refreshChips(); refreshLocks(); updateSubjectBar(); }
+  $('#home').style.display=''; refreshChips(); refreshLocks(); updateSubjectBar();
+  startQuestyIdle();   // กลับมาหน้า home → เริ่ม wave ใหม่
+}
 
 /* ยืนยันก่อนออกจากเกมที่กำลังเล่น (กันความคืบหน้าหาย) */
 let inActiveGame = false;
@@ -1141,6 +1198,13 @@ async function boot(){
   Gamify.touchStreak();
   Gamify.checkAchievements(a=>{});
   refreshChips(); refreshLocks();
-  preloadLevelImages(LV);   // โหลดภาพระดับเริ่มต้น (K1) ล่วงหน้า
+  preloadLevelImages(LV);
+  // Questy entrance animation ตอนโหลดครั้งแรก
+  setTimeout(()=>{
+    const q = document.querySelector('.questy-hero, .questy-fallback');
+    if(q){ q.classList.add('questy-entrance');
+      setTimeout(()=>q.classList.remove('questy-entrance'), 800); }
+  }, 400);
+  startQuestyIdle();
 }
 document.addEventListener('DOMContentLoaded', boot);
