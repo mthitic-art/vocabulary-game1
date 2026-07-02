@@ -1300,11 +1300,23 @@ const MusicPlayer = (function(){
     if(btn) btn.onclick = (e) => { e.stopPropagation(); toggle(); };
   }
 
+  let fadeTimer = null;
+
   function toggle(){
     if(!ready) return;
+    // cancel any ongoing fade first
+    if(fadeTimer){ clearInterval(fadeTimer); fadeTimer=null; fading=false; }
     if(audio.paused){ pref=true; fadeIn(); }
-    else             { pref=false; fadeOut(); }
+    else             { pref=false; forceStop(); }
     localStorage.setItem('cvn_music', pref ? 'on' : 'off');
+  }
+
+  function forceStop(){
+    if(fadeTimer){ clearInterval(fadeTimer); fadeTimer=null; }
+    fading=false;
+    audio.pause();
+    audio.volume=0;
+    updateBtn();
   }
 
   function fadeIn(){
@@ -1313,23 +1325,24 @@ const MusicPlayer = (function(){
     fading = true;
     audio.volume = 0;
     audio.play().catch(()=>{ fading=false; });
-    const step = setInterval(()=>{
+    fadeTimer = setInterval(()=>{
       if(audio.volume < 0.35){
         audio.volume = Math.min(0.35, audio.volume + 0.025);
       } else {
-        clearInterval(step); fading = false; updateBtn();
+        clearInterval(fadeTimer); fadeTimer=null; fading = false; updateBtn();
       }
     }, 40);
   }
 
   function fadeOut(cb){
     if(!ready || audio.paused){ if(cb) cb(); updateBtn(); return; }
+    if(fadeTimer){ clearInterval(fadeTimer); fadeTimer=null; }
     fading = true;
-    const step = setInterval(()=>{
+    fadeTimer = setInterval(()=>{
       if(audio.volume > 0.025){
         audio.volume = Math.max(0, audio.volume - 0.025);
       } else {
-        clearInterval(step);
+        clearInterval(fadeTimer); fadeTimer=null;
         audio.pause();
         audio.volume = 0;
         fading = false;
