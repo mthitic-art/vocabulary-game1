@@ -313,7 +313,9 @@ h1,h2,h3,h4{font-family:'Baloo 2',cursive}
 .opts.n2{grid-template-columns:1fr 1fr}
 .opts.n3{grid-template-columns:1fr 1fr 1fr}
 .opts.n4{grid-template-columns:1fr 1fr}
-.opts.n6{grid-template-columns:1fr 1fr 1fr}
+.opts.n6{grid-template-columns:1fr 1fr}
+.opts.n6 .oimg span{font-size:min(20vw,100px)}
+.opts.n6 .oimg img{width:90%;height:90%}
 .opt{cursor:pointer;border:4px solid var(--card-border,rgba(255,255,255,.7));
   background:rgba(255,255,255,.92);border-radius:22px;padding:0;
   font-family:'Baloo 2';font-weight:700;text-align:center;position:relative;overflow:hidden;
@@ -327,10 +329,22 @@ h1,h2,h3,h4{font-family:'Baloo 2',cursive}
 .oimg{width:100%;aspect-ratio:1/1;display:flex;align-items:center;justify-content:center;padding:10px}
 .oimg span{display:block;width:100%;text-align:center;line-height:1;
   font-size:min(17vw,85px);filter:drop-shadow(0 3px 6px rgba(0,0,0,.12))}
-.oimg img{width:82%;height:82%;object-fit:contain;filter:drop-shadow(0 3px 6px rgba(0,0,0,.12))}
+.oimg img{width:90%;height:90%;object-fit:contain;filter:drop-shadow(0 3px 6px rgba(0,0,0,.12))}
 .opts.n2 .oimg span{font-size:min(28vw,140px)}
-.opts.n3 .oimg span{font-size:min(17vw,95px)}
-.opts.n4 .oimg span{font-size:min(17vw,95px)}
+.opts.n3 .oimg span{font-size:min(20vw,100px)}
+.opts.n4 .oimg span{font-size:min(20vw,100px)}
+/* tablet: n6 กลับเป็น 3 คอลัมน์ จอพอ */
+@media(min-width:600px){
+  .opts.n6{grid-template-columns:1fr 1fr 1fr}
+  .opts.n6 .oimg span{font-size:min(14vw,80px)}
+  .opts.n6 .oimg img{width:85%;height:85%}
+}
+/* desktop: ทุก opts ใหญ่ขึ้น */
+@media(min-width:1024px){
+  .opts.n4{grid-template-columns:1fr 1fr 1fr 1fr}
+  .opts.n6{grid-template-columns:1fr 1fr 1fr}
+  .opts.n6 .oimg img{width:88%;height:88%}
+}
 .opt:hover{transform:translateY(-6px) scale(1.03);box-shadow:0 12px 28px rgba(0,0,0,.16)}
 .opt:active{transform:scale(.96)}
 .opt.right{background:rgba(223,245,216,.95);border-color:#4E9A2E!important;animation:rightP .4s}
@@ -653,7 +667,6 @@ footer{display:none}
   font-size:clamp(.72rem,2.2vw,.88rem);color:var(--sun)}
 
 @media(max-width:375px){
-  .word-opts.n6{grid-template-columns:1fr 1fr!important}
   .word-opts.n3{grid-template-columns:1fr 1fr!important}
 }
 @media(min-width:768px){
