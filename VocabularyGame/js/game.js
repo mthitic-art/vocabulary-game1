@@ -75,8 +75,9 @@ function pic(lv, w, cls){
    ทำให้ภาพขึ้นทันทีไม่ต้องรอโหลดทีละข้อ */
 const _preloadedLevels = {};
 function preloadLevelImages(lv){
-  if(_preloadedLevels[lv]) return;
-  _preloadedLevels[lv] = true;
+  const ck = (typeof MONTH!=='undefined'?MONTH:'') + '::' + lv;
+  if(_preloadedLevels[ck]) return;
+  _preloadedLevels[ck] = true;
   try{
     const words = wordsOf(lv);
     words.forEach(w=>{
@@ -154,7 +155,7 @@ function refreshHero(){
   const totalWords = words.length;
   let masteredCount = 0, learnedCount = 0;
   words.forEach(w=>{
-    const m = DB.mastery[LV+'::'+w];
+    const m = DB.mastery[SRS.key(LV, w)];
     if(m && m.seen>=1) learnedCount++;
     if(m && m.correct>=1) masteredCount++;
   });
@@ -317,14 +318,14 @@ function lessonsFor(lv){
 /* บทนี้ผ่านหรือยัง — ทุกคำ correct>=1 */
 function lessonPassed(lv, lessonWords){
   return lessonWords.every(w=>{
-    const m = DB.mastery[lv+'::'+w];
+    const m = DB.mastery[SRS.key(lv, w)];
     return m && m.correct>=1;
   });
 }
 /* นับคำที่ทำถูกในบท */
 function lessonProgress(lv, lessonWords){
   return lessonWords.filter(w=>{
-    const m = DB.mastery[lv+'::'+w];
+    const m = DB.mastery[SRS.key(lv, w)];
     return m && m.correct>=1;
   }).length;
 }
@@ -1018,6 +1019,7 @@ function finishRound(silent){
     <div class="starline">${[...stars].map((s,i)=>`<span style="animation-delay:${i*.15}s">${s}</span>`).join('')}</div>
     <div class="res">Score: ${score} / ${max} · +${starsEarned+score} ⭐</div>
     ${extraBtns}
+    <button class="btn alt" id="viewBoard">🏆 Top 10</button>
     <button class="btn alt" onclick="goHome()">🏠 Home</button></div>`;
   const againBtn = document.getElementById('again');
   if (againBtn) againBtn.onclick = () => routeGame(MODE);
@@ -1025,6 +1027,10 @@ function finishRound(silent){
   if (nextBtn) nextBtn.onclick = () => startQuizLesson(currentLesson+1);
   const menuBtn = document.getElementById('lessonMenu');
   if (menuBtn) menuBtn.onclick = () => showLessonSelect();
+  const vb = document.getElementById('viewBoard');
+  if (vb) vb.onclick = () => showLeaderboard();
+  // ถ้าคะแนนติด Top 10 → เด้งกรอกชื่อ
+  maybeShowNameEntry(starsEarned + score, null);
 }
 
 /* ============================================================
@@ -1086,6 +1092,33 @@ function renderJourney(mastered){
 /* ============================================================
    [BOOT] level pills, routing, wiring, async init
    ============================================================ */
+/* ---------- Month pills — เลือกเดือน (ล็อคเดือนที่ยังไม่มีคำ) ---------- */
+function buildMonthPills(){
+  const box = document.getElementById('months');
+  if(!box) return;
+  box.innerHTML = ALL_MONTHS.map(m=>{
+    const has = monthHasData(m.key);
+    const on = m.key === MONTH ? 'on' : '';
+    const lock = has ? '' : 'locked';
+    return `<button class="mpill ${on} ${lock}" data-m="${m.key}"
+      role="tab" aria-selected="${m.key===MONTH}" ${has?'':'aria-disabled="true"'}>
+      ${m.label}${has?'':' 🔒'}</button>`;
+  }).join('');
+  box.querySelectorAll('.mpill').forEach(b=>{
+    b.onclick = () => {
+      const mk = b.dataset.m;
+      if(!monthHasData(mk)){ toast("🔒","Coming soon! · เร็วๆ นี้"); return; }
+      setMonth(mk);
+      box.querySelectorAll('.mpill').forEach(x=>{ x.classList.remove('on'); x.setAttribute('aria-selected','false'); });
+      b.classList.add('on'); b.setAttribute('aria-selected','true');
+      SUBJECT_FILTER = "All";
+      updateSubjectBar();
+      refreshHero();               // อัปเดต progress ของเดือนใหม่
+      preloadLevelImages(LV);      // โหลดภาพเดือน/ระดับใหม่
+    };
+  });
+}
+
 function buildLevelPills(){
   const box = $('#levels');
   box.innerHTML = LEVELS.map((lv,i)=>{
@@ -1185,6 +1218,7 @@ async function boot(){
        <p style="font-size:.8rem;opacity:.45;margin-top:8px">Serve over http(s) — GitHub Pages or local server</p></div>`;
     return;
   }
+  buildMonthPills();
   buildLevelPills();
   updateSubjectBar();
   document.querySelectorAll('.card').forEach(c=> c.onclick = () => routeGame(c.dataset.game));
@@ -1297,3 +1331,105 @@ const MusicPlayer = (function(){
 
   return { init, fadeIn, fadeOut, toggle, updateBtn };
 })();
+
+/* ============================================================
+   ARCADE LEADERBOARD — Top 10 ต่อเครื่อง (localStorage)
+   - ไม่เก็บข้อมูลส่วนตัว แค่ชื่อเล่นสั้นๆ ในเครื่องนั้น
+   - แยกตามเดือน+ระดับ เช่น Top 10 ของ July K1
+   ============================================================ */
+const Leaderboard = (function(){
+  const KEY = "cvnLeaderboard.v1";
+
+  function load(){
+    try { return JSON.parse(localStorage.getItem(KEY)) || {}; }
+    catch(e){ return {}; }
+  }
+  function save(d){
+    try { localStorage.setItem(KEY, JSON.stringify(d)); } catch(e){}
+  }
+  function boardKey(){ return MONTH + "::" + LV; }
+
+  /* คะแนนติด Top 10 ไหม */
+  function qualifies(score){
+    if (score <= 0) return false;
+    const board = load()[boardKey()] || [];
+    if (board.length < 10) return true;
+    return score > board[board.length-1].score;
+  }
+
+  /* เพิ่มคะแนน คืนอันดับ (1-based) */
+  function add(name, score){
+    const d = load();
+    const k = boardKey();
+    if (!d[k]) d[k] = [];
+    d[k].push({ name: name.slice(0,10), score, date: new Date().toISOString().slice(0,10) });
+    d[k].sort((a,b)=> b.score - a.score);
+    d[k] = d[k].slice(0,10);
+    save(d);
+    return d[k].findIndex(e => e.name===name.slice(0,10) && e.score===score) + 1;
+  }
+
+  function top(){ return load()[boardKey()] || []; }
+  function clearAll(){ save({}); }
+
+  return { qualifies, add, top, clearAll };
+})();
+
+/* หน้าจอกรอกชื่อเมื่อคะแนนติด Top 10 — เรียกจาก finishRound */
+function maybeShowNameEntry(score, thenShow){
+  if (!Leaderboard.qualifies(score)){ if(thenShow) thenShow(); return; }
+  const old = document.getElementById('nameDialog'); if(old) old.remove();
+  const dlg = document.createElement('div');
+  dlg.id = 'nameDialog';
+  dlg.className = 'exit-overlay';
+  dlg.innerHTML = `
+    <div class="exit-box">
+      <div class="exit-emoji">🏆</div>
+      <div class="exit-title">Top 10! Enter your name</div>
+      <div class="exit-sub">ติดอันดับ! ใส่ชื่อเล่น (ไม่เกิน 10 ตัว)</div>
+      <input class="name-input" id="lbName" maxlength="10"
+        placeholder="Your name · ชื่อเล่น" autocomplete="off">
+      <div class="exit-btns">
+        <button class="btn" id="lbSave">✓ Save</button>
+        <button class="btn alt" id="lbSkip">Skip</button>
+      </div>
+    </div>`;
+  document.body.appendChild(dlg);
+  const input = document.getElementById('lbName');
+  input.focus();
+  const done = () => { dlg.remove(); showLeaderboard(); };
+  document.getElementById('lbSave').onclick = () => {
+    const name = (input.value || 'Player').trim() || 'Player';
+    Leaderboard.add(name, score);
+    done();
+  };
+  document.getElementById('lbSkip').onclick = () => { dlg.remove(); if(thenShow) thenShow(); };
+  input.onkeydown = e => { if(e.key==='Enter') document.getElementById('lbSave').click(); };
+}
+
+/* หน้าแสดง Top 10 */
+function showLeaderboard(){
+  const board = Leaderboard.top();
+  showScreen();
+  $('#score').textContent = '🏆 ' + monthLabel(MONTH) + ' ' + LV;
+  setProg(100);
+  const medals = ['🥇','🥈','🥉'];
+  const rows = board.length
+    ? board.map((e,i)=>`
+        <div class="lb-row ${i<3?'lb-top':''}">
+          <div class="lb-rank">${medals[i]||(i+1)}</div>
+          <div class="lb-name">${e.name}</div>
+          <div class="lb-score">⭐ ${e.score}</div>
+        </div>`).join('')
+    : `<p class="hint" style="text-align:center;padding:20px">
+        No scores yet — be the first! 🚀<br>ยังไม่มีคะแนน มาเป็นคนแรกกัน!</p>`;
+  $('#play').innerHTML = `
+    <div class="lesson-head">
+      <div class="lesson-head-title">🏆 Leaderboard</div>
+      <div class="lesson-head-sub">Top 10 · ${monthLabel(MONTH)} ${LV} · this device</div>
+    </div>
+    <div class="lb-list">${rows}</div>
+    <div style="text-align:center;margin-top:14px">
+      <button class="btn alt" onclick="goHome()">🏠 Home</button>
+    </div>`;
+}

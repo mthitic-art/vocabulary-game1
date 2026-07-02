@@ -40,6 +40,22 @@ const Store = (() => {
     const allOpen = {};
     ["K1","K2","K3","P1","P2","P3","P4","P5","P6"].forEach(l => allOpen[l] = true);
     merged.unlocked = allOpen;
+    // MIGRATION: old mastery keys "LV::word" → "june::LV::word"
+    // (progress ก่อนมีระบบเดือน ถือเป็นของเดือน June ทั้งหมด)
+    const newMastery = {};
+    for (const k in merged.mastery){
+      const parts = k.split("::");
+      if (parts.length === 2){ newMastery["june::" + k] = merged.mastery[k]; }
+      else { newMastery[k] = merged.mastery[k]; }
+    }
+    merged.mastery = newMastery;
+    // wrong lists: "LV" → "june::LV"
+    const newWrong = {};
+    for (const k in merged.wrong){
+      if (!k.includes("::")){ newWrong["june::" + k] = merged.wrong[k]; }
+      else { newWrong[k] = merged.wrong[k]; }
+    }
+    merged.wrong = newWrong;
     return merged;
   }
   function save(s) {
@@ -51,20 +67,23 @@ const Store = (() => {
 let DB = Store.load();
 
 /* ---------- [SRS] spaced repetition + mastery ---------- */
+/* Keys are month-scoped: "june::K1::word". MONTH comes from
+   vocabulary.js (currently selected month). Wrong lists use
+   "month::LV" so review is per-month too. */
 const SRS = {
-  key:(lv,w)=> lv + "::" + w,
+  key:(lv,w)=> (typeof MONTH!=="undefined"?MONTH:"june") + "::" + lv + "::" + w,
+  wkey:(lv)=> (typeof MONTH!=="undefined"?MONTH:"june") + "::" + lv,
   record(lv,w,ok){
     const k = this.key(lv,w);
     const m = DB.mastery[k] || (DB.mastery[k] = {seen:0,correct:0});
     m.seen++; if (ok) m.correct++;
-    if (!DB.wrong[lv]) DB.wrong[lv] = [];
-    if (!ok){ if (!DB.wrong[lv].includes(w)) DB.wrong[lv].push(w); }
-    else { const i = DB.wrong[lv].indexOf(w); if (i>-1) DB.wrong[lv].splice(i,1); }
+    const wk = this.wkey(lv);
+    if (!DB.wrong[wk]) DB.wrong[wk] = [];
+    if (!ok){ if (!DB.wrong[wk].includes(w)) DB.wrong[wk].push(w); }
+    else { const i = DB.wrong[wk].indexOf(w); if (i>-1) DB.wrong[wk].splice(i,1); }
     Store.save(DB);
   },
   pct(lv,w){ const m = DB.mastery[this.key(lv,w)]; return (m && m.seen) ? m.correct/m.seen : 0; },
-  // Pick N words weighted toward weak/unseen ones.
-  // wordList is optional — pass wordsFiltered(lv) to respect subject filter.
   pickWeighted(lv, n, wordList){
     const ws = wordList || wordsOf(lv);
     const scored = ws.map(w => ({ w, weight: 1.2 - this.pct(lv,w) + (DB.mastery[this.key(lv,w)] ? 0 : 0.5) }));
@@ -72,9 +91,8 @@ const SRS = {
     scored.sort((a,b)=> b.r - a.r);
     return scored.slice(0, Math.min(n, ws.length)).map(o => o.w);
   },
-  // Return only wrong words that are in the current filtered list.
   wrongList(lv, wordList){
-    const all = [...new Set(DB.wrong[lv] || [])];
+    const all = [...new Set(DB.wrong[this.wkey(lv)] || [])];
     if (!wordList) return all;
     return all.filter(w => wordList.includes(w));
   }

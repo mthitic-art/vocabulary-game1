@@ -1,141 +1,133 @@
 #!/usr/bin/env python3
 """
-============================================================
- excel_to_json.py  ·  June Word World vocabulary converter
-============================================================
- Converts the monthly vocabulary spreadsheet (e.g.
- "June Vocabulary.xlsx") into data/vocabulary.json that the
- game loads at runtime.
+excel_to_json.py — CVN Word World vocabulary converter (multi-month)
 
- USAGE:
-   python tools/excel_to_json.py "June Vocabulary.xlsx" data/vocabulary.json
+Reads EVERY sheet in the Excel file. Each sheet name = a month
+(JUNE, JULY, AUG ...). Layout per sheet (same as before):
 
- The spreadsheet layout this script expects (sheet = month name):
-   Row 1: level headers  -> K1 K2 K3 P1 (P1 spans 3 cols) P2 P3 P4 P5 P6
-   Row 2: P1 sub-subjects -> Go Get Maths | Science | English
-   Row 3+: column A = item number, then one word per level column.
+  Row 1: (blank) K1 K2 K3 P1 _ _ P2 P3 P4 P5 P6
+  Row 2: (blank) .. .. .. Go Get Maths | Science | English ..
+  Row 3+: numbered word rows
 
- OUTPUT JSON shape (image path is auto-suggested; emoji optional):
-   {
-     "_meta": { "month": "JUNE", "levels": [...] },
-     "K1": [ { "word":"apple", "image":"assets/K1/apple.png", "emoji":"🍎" }, ... ],
-     "P1": [ { "word":"numbers", "image":"assets/P1/numbers.png",
-               "subject":"Go Get Maths" }, ... ],
-     ...
-   }
+Usage:
+  python tools/excel_to_json.py "Summary_Vocabulary.xlsx" data/vocabulary.json
 
- NOTES:
- - P1 merges its three subjects into one list, tagging each word
-   with "subject" so the game can filter/label if desired.
- - "image" is a *suggested* path. If the PNG does not exist the game
-   falls back to emoji (if present) or the word's first letter.
- - An optional emoji map (EMOJI dict below) gives kindergarten words
-   a picture even before real art is added. Extend it freely.
-============================================================
+Output shape:
+  { "_meta": {...},
+    "months": {
+       "june": { "K1":[{word,image,emoji?,th?}], ... },
+       "july": { ... } } }
+
+- Image path is shared across months: assets/<LV>/<slug>.jpeg
+- Thai translations (th) from the previous JSON are preserved
+  and re-attached by word so nothing is lost on re-run.
 """
-import sys, json, re
-from openpyxl import load_workbook
+import sys, json, re, datetime
+from pathlib import Path
 
-# Optional emoji fallbacks (mostly useful for K1-K3 picture games).
-EMOJI = {
- "hello":"👋","teacher":"👩‍🏫","boy":"👦","girl":"👧","welcome":"🤗","goodbye":"👋",
- "blue":"🔵","yellow":"🟡","red":"🔴","color":"🎨","ball":"⚽","leaf":"🍃","flower":"🌸",
- "bird":"🐦","family":"👨‍👩‍👧‍👦","hat":"🎩","mittens":"🧤","coat":"🧥","shoes":"👟","baby":"👶",
- "cat":"🐱","apple":"🍎","bus":"🚌","mom":"👩","dad":"👨","brother":"👦","sister":"👧",
- "friend":"👫","draw":"✏️","point":"👉","pen":"🖊️","brush":"🖌️","paper":"📄","paint":"🎨",
- "crayons":"🖍️","pencil":"✏️","books":"📚","bag":"🎒","black":"⚫","white":"⚪","brown":"🟤",
- "purple":"🟣","green":"🟢","orange":"🟠","banana":"🍌","fish":"🐟","dog":"🐶","spider":"🕷️",
- "rabbit":"🐰","elephant":"🐘","jump":"🦘","fly":"🦋","swim":"🏊","circle":"⭕","square":"🟦",
- "triangle":"🔺","star":"⭐","eyes":"👀","nose":"👃","grandma":"👵","grandpa":"👴","kitten":"🐱",
- "boots":"👢","frogs":"🐸","socks":"🧦","stars":"✨","happy":"😄","sad":"😢","cold":"🥶","hot":"🥵",
- "rainy":"🌧️","sunny":"☀️","run":"🏃","sing":"🎤","dance":"💃","walk":"🚶","sit":"🪑","climb":"🧗",
- "play":"🎮","bedroom":"🛏️","Monday":"📅","Tuesday":"📅","Wednesday":"📅","Thursday":"📅",
- "Friday":"📅","Saturday":"📅","Sunday":"📅","tree":"🌳","plant":"🌱","flag":"🚩","clock":"🕐",
- "house":"🏠","door":"🚪","car":"🚗","fish ":"🐟","cake":"🎂","train":"🚆","snake":"🐍","snail":"🐌",
+try:
+    import openpyxl
+except ImportError:
+    sys.exit("pip install openpyxl --break-system-packages")
+
+# ── canonical month order for the school year ──
+MONTH_ORDER = ["may","june","july","august","september",
+               "november","december","january","february"]
+# map many spellings → canonical key
+MONTH_ALIAS = {
+    "may":"may",
+    "jun":"june","june":"june",
+    "jul":"july","july":"july",
+    "aug":"august","august":"august",
+    "sep":"september","sept":"september","september":"september",
+    "nov":"november","november":"november",
+    "dec":"december","december":"december",
+    "jan":"january","january":"january",
+    "feb":"february","february":"february",
 }
 
 def slug(word):
-    """Filename-safe asset name: 'air stewards' -> 'air_stewards'."""
     s = word.strip().lower()
     s = re.sub(r"[^a-z0-9]+", "_", s)
     return s.strip("_") or "word"
 
-# Column map. P1 occupies columns 5,6,7 with three subjects.
-SINGLE = {"K1":2, "K2":3, "K3":4, "P2":8, "P3":9, "P4":10, "P5":11, "P6":12}
-P1_COLS = {"Go Get Maths":5, "Science":6, "English":7}
+# column layout (1-based): 2=K1 3=K2 4=K3 5,6,7=P1 8=P2 ... 12=P6
+COLMAP = [(2,"K1",None),(3,"K2",None),(4,"K3",None),
+          (5,"P1","Go Get Maths"),(6,"P1","Science"),(7,"P1","English"),
+          (8,"P2",None),(9,"P3",None),(10,"P4",None),(11,"P5",None),(12,"P6",None)]
 
-def convert(xlsx_path, out_path, sheet=None):
-    wb = load_workbook(xlsx_path, data_only=True)
-    ws = wb[sheet] if sheet else wb[wb.sheetnames[0]]
-    month = ws.title
-
-    def is_data_row(r):
-        a = ws.cell(r, 1).value
-        return isinstance(a, int) or (isinstance(a, str) and a.strip().isdigit())
-
-    data = {}
-    # Single-column levels
-    for lv, col in SINGLE.items():
-        items = []
-        seen = set()
-        for r in range(1, ws.max_row + 1):
-            if not is_data_row(r):
-                continue
-            v = ws.cell(r, col).value
-            if v is None:
-                continue
+def read_sheet(ws):
+    levels = {}
+    for col, lv, subject in COLMAP:
+        for row in range(3, ws.max_row + 1):
+            v = ws.cell(row=row, column=col).value
+            if v is None: continue
             w = str(v).strip()
-            if not w or w.lower() in seen:
-                continue
-            seen.add(w.lower())
+            if not w: continue
             entry = {"word": w, "image": f"assets/{lv}/{slug(w)}.jpeg"}
-            if w in EMOJI:
-                entry["emoji"] = EMOJI[w]
-            items.append(entry)
-        data[lv] = items
+            if subject: entry["subject"] = subject
+            levels.setdefault(lv, []).append(entry)
+    return levels
 
-    # P1: merge three subjects, tag each
-    p1 = []
-    seen = set()
-    for subject, col in P1_COLS.items():
-        for r in range(1, ws.max_row + 1):
-            if not is_data_row(r):
-                continue
-            v = ws.cell(r, col).value
-            if v is None:
-                continue
-            w = str(v).strip()
-            if not w:
-                continue
-            key = w.lower()
-            if key in seen:
-                continue
-            seen.add(key)
-            entry = {"word": w, "image": f"assets/P1/{slug(w)}.jpeg", "subject": subject}
-            if w in EMOJI:
-                entry["emoji"] = EMOJI[w]
-            p1.append(entry)
-    data["P1"] = p1
+def main():
+    if len(sys.argv) < 3:
+        sys.exit('Usage: python tools/excel_to_json.py "Summary_Vocabulary.xlsx" data/vocabulary.json')
+    xlsx, out = sys.argv[1], sys.argv[2]
 
-    # Ordered output with metadata first
-    levels = ["K1","K2","K3","P1","P2","P3","P4","P5","P6"]
-    out = {"_meta": {"month": month, "levels": levels,
-                     "counts": {lv: len(data.get(lv, [])) for lv in levels}}}
-    for lv in levels:
-        out[lv] = data.get(lv, [])
+    # keep Thai translations from a previous run (by month::level::word, with
+    # a fallback that matches by level::word across any month)
+    old_th = {}
+    old_path = Path(out)
+    if old_path.exists():
+        try:
+            old = json.loads(old_path.read_text(encoding="utf-8"))
+            months_obj = old.get("months") or {}
+            # also support the old flat shape { K1:[...], ... }
+            if not months_obj and any(k in old for k in ("K1","P1")):
+                months_obj = {"june": {k:v for k,v in old.items() if not k.startswith("_")}}
+            for mn, lvls in months_obj.items():
+                for lv, entries in lvls.items():
+                    for e in entries:
+                        if isinstance(e, dict) and e.get("th"):
+                            old_th[f"{mn}::{lv}::{e['word']}"] = e["th"]
+                            old_th.setdefault(f"*::{lv}::{e['word']}", e["th"])
+        except Exception:
+            pass
 
-    with open(out_path, "w", encoding="utf-8") as f:
-        json.dump(out, f, ensure_ascii=False, indent=2)
+    wb = openpyxl.load_workbook(xlsx, data_only=True)
+    months = {}
+    skipped = []
+    for name in wb.sheetnames:
+        key = MONTH_ALIAS.get(name.strip().lower())
+        if not key:
+            skipped.append(name); continue
+        months[key] = read_sheet(wb[name])
 
-    print(f"✓ Wrote {out_path}")
-    print(f"  Month: {month}")
-    for lv in levels:
-        print(f"  {lv}: {len(data.get(lv, []))} words")
-    return out
+    # re-attach Thai translations
+    for mn, lvls in months.items():
+        for lv, entries in lvls.items():
+            for e in entries:
+                th = old_th.get(f"{mn}::{lv}::{e['word']}") or old_th.get(f"*::{lv}::{e['word']}")
+                if th: e["th"] = th
+
+    # order months canonically
+    ordered = {m: months[m] for m in MONTH_ORDER if m in months}
+
+    meta = {
+        "generated": datetime.date.today().isoformat(),
+        "months": list(ordered.keys()),
+        "counts": {m: {lv: len(v) for lv, v in lvls.items()} for m, lvls in ordered.items()},
+    }
+    data = {"_meta": meta, "months": ordered}
+    Path(out).parent.mkdir(parents=True, exist_ok=True)
+    Path(out).write_text(json.dumps(data, ensure_ascii=False, indent=2), encoding="utf-8")
+
+    print(f"✓ wrote {out}")
+    for m, lvls in ordered.items():
+        total = sum(len(v) for v in lvls.values())
+        print(f"  {m}: {total} words")
+    if skipped:
+        print(f"  (skipped sheets: {skipped})")
 
 if __name__ == "__main__":
-    if len(sys.argv) < 3:
-        print("Usage: python excel_to_json.py <input.xlsx> <output.json> [sheet]")
-        sys.exit(1)
-    sheet = sys.argv[3] if len(sys.argv) > 3 else None
-    convert(sys.argv[1], sys.argv[2], sheet)
+    main()

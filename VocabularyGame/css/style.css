@@ -702,3 +702,45 @@ footer{display:none}
   background:linear-gradient(145deg,rgba(245,163,0,.3),rgba(245,163,0,.15));
   border-color:rgba(245,163,0,.5);
   box-shadow:0 0 12px rgba(245,163,0,.25)}
+
+/* ══════════════════════════════════
+   MONTH PILLS
+══════════════════════════════════ */
+.months{display:flex;gap:6px;overflow-x:auto;-webkit-overflow-scrolling:touch;
+  scrollbar-width:none;padding-bottom:4px}
+.months::-webkit-scrollbar{display:none}
+.mpill{border:none;cursor:pointer;font-family:'Baloo 2';font-weight:800;
+  font-size:clamp(.82rem,2.6vw,.95rem);
+  padding:8px 16px;border-radius:20px;white-space:nowrap;flex-shrink:0;
+  background:rgba(255,255,255,.1);color:rgba(255,255,255,.55);
+  border:2px solid rgba(255,255,255,.1);transition:all .15s}
+.mpill:active{transform:scale(.94)}
+.mpill.on{background:var(--gold);border-color:var(--gold);color:#6B3400;
+  box-shadow:0 3px 12px rgba(245,163,0,.4)}
+.mpill.locked{opacity:.35;cursor:not-allowed}
+
+/* ══════════════════════════════════
+   LEADERBOARD
+══════════════════════════════════ */
+.lb-list{display:flex;flex-direction:column;gap:8px;max-width:440px;margin:0 auto}
+.lb-row{display:flex;align-items:center;gap:12px;
+  background:rgba(255,255,255,.9);border-radius:14px;
+  padding:11px 16px;box-shadow:0 3px 10px rgba(0,0,0,.08)}
+.lb-row.lb-top{background:linear-gradient(120deg,#FFF7E0,#FFEFC2);
+  border:2px solid rgba(245,163,0,.35)}
+.lb-rank{font-family:'Baloo 2';font-weight:800;font-size:1.3rem;
+  width:44px;text-align:center;flex-shrink:0;color:var(--muted)}
+.lb-name{flex:1;font-family:'Baloo 2';font-weight:700;
+  font-size:clamp(1rem,3.2vw,1.15rem);color:var(--ink);
+  overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.lb-score{font-family:'Baloo 2';font-weight:800;
+  font-size:clamp(1rem,3.2vw,1.15rem);color:#B8860B;flex-shrink:0}
+
+/* Name input dialog */
+.name-input{width:100%;max-width:260px;margin:4px auto 16px;display:block;
+  padding:12px 16px;border-radius:14px;
+  border:3px solid var(--sky);background:#fff;
+  font-family:'Baloo 2';font-weight:700;font-size:1.15rem;
+  text-align:center;color:var(--ink);outline:none}
+.name-input:focus{border-color:var(--gold);
+  box-shadow:0 0 0 4px rgba(245,163,0,.15)}
