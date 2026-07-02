@@ -29,7 +29,9 @@ const LEVELS = ["K1","K2","K3","P1","P2","P3","P4","P5","P6"];
 const UNLOCK_ORDER = LEVELS;
 
 async function loadVocabulary(path = "data/vocabulary.json") {
-  const res = await fetch(path);
+  // cache-bust รายวัน: JSON อัปเดตทุกเดือน ไม่ให้ browser จำตัวเก่าค้าง
+  const bust = path + (path.includes("?") ? "&" : "?") + "d=" + new Date().toISOString().slice(0,10);
+  const res = await fetch(bust);
   if (!res.ok) throw new Error("Cannot load " + path + " (" + res.status + ")");
   const json = await res.json();
   vocabMeta = json._meta || vocabMeta;
