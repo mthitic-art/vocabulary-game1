@@ -1169,6 +1169,7 @@ function routeGame(g){
   // K1 (youngest) sees a quick bilingual how-to-play card the first time
   // they open a game in a session.
   if (LV==="K1" && !sessionInstShown[g]){ sessionInstShown[g]=true; return showK1Instructions(g); }
+  if (g === 'detective'){ loadClues().then(()=>showDetectiveSelect()); return; }
   ({ quiz:()=>startQuiz(false), review:()=>startQuiz(true), flashcard:startFlash,
      adventure:startAdventure, memory:startMemory, spelling:startSpelling }[g] || (()=>{}))();
 }
@@ -1222,6 +1223,8 @@ async function boot(){
   buildLevelPills();
   updateSubjectBar();
   document.querySelectorAll('.card').forEach(c=> c.onclick = () => routeGame(c.dataset.game));
+  const detBtn = document.getElementById('detBannerBtn');
+  if(detBtn) detBtn.onclick = () => routeGame('detective');
   $('#back').onclick = confirmExit;
   const nh = document.getElementById('navHome'); if(nh) nh.onclick = goHome;
   $('#navDash').onclick = openDash;
@@ -1432,4 +1435,207 @@ function showLeaderboard(){
     <div style="text-align:center;margin-top:14px">
       <button class="btn alt" onclick="goHome()">🏠 Home</button>
     </div>`;
+}
+
+/* ============================================================
+   WORD DETECTIVE — ทายคำจากเบาะแส 5 ระดับ
+   ทุกคนเริ่ม Level 1 (Beginner) ผ่านแล้วปลดล็อค Level ถัดไป
+   ============================================================ */
+let detectiveData = null;
+let detLevel = 1;
+let detQueue = [];
+let detQi = 0;
+let detScore = 0;
+let detClueIdx = 0;
+const DET_ROUND = 10;  // 10 คำต่อรอบ
+
+async function loadClues(){
+  if(detectiveData) return;
+  const bust = "data/clues.json?d=" + new Date().toISOString().slice(0,10);
+  const res = await fetch(bust);
+  detectiveData = await res.json();
+}
+
+function detLevelMeta(lv){
+  return detectiveData._meta.levels[String(lv)] || detectiveData._meta.levels["1"];
+}
+function detWords(lv){
+  return detectiveData.levels[String(lv)] || [];
+}
+function detUnlocked(lv){
+  // Level 1 เปิดเสมอ, Level N เปิดเมื่อ Level N-1 ผ่านอย่างน้อย 1 ครั้ง
+  if(lv <= 1) return true;
+  const key = 'detCleared_' + (lv-1);
+  return DB[key] || localStorage.getItem(key) === 'true';
+}
+function detClearLevel(lv){
+  const key = 'detCleared_' + lv;
+  DB[key] = true;
+  try{ localStorage.setItem(key, 'true'); }catch(e){}
+}
+
+/* แสดงหน้าเลือก Level */
+function showDetectiveSelect(){
+  MODE = 'detective';
+  showScreen();
+  $('#score').textContent = '🔍 Word Detective';
+  setProg(0);
+  const metas = detectiveData._meta.levels;
+  let cards = '';
+  for(let lv=1; lv<=5; lv++){
+    const m = metas[String(lv)];
+    const unlocked = detUnlocked(lv);
+    const stars = '⭐'.repeat(m.stars);
+    cards += `<button class="det-card ${unlocked?'':'det-locked'}" data-lv="${lv}" ${unlocked?'':'disabled'}>
+      <div class="det-stars">${stars}</div>
+      <div class="det-name">${m.name}</div>
+      <div class="det-info">${unlocked? m.choices+' choices · '+detWords(lv).length+' words' : '🔒 Clear Level '+(lv-1)+' first'}</div>
+    </button>`;
+  }
+  $('#play').innerHTML = `
+    <div class="det-header">
+      <div class="det-icon">🔍</div>
+      <div class="det-title">Word Detective</div>
+      <div class="det-sub">Read the clues, guess the word!<br>อ่านเบาะแส ทายคำศัพท์!</div>
+    </div>
+    <div class="det-grid">${cards}</div>
+    <div style="text-align:center;margin-top:14px">
+      <button class="btn alt" onclick="goHome()">🏠 Home</button>
+    </div>`;
+  document.querySelectorAll('.det-card').forEach(c=>{
+    c.onclick = ()=>{
+      const lv = parseInt(c.dataset.lv);
+      if(!detUnlocked(lv)){ toast('🔒','Clear Level '+(lv-1)+' first!'); return; }
+      startDetective(lv);
+    };
+  });
+}
+
+/* เริ่มเล่น */
+function startDetective(lv){
+  detLevel = lv;
+  inActiveGame = true;
+  const pool = detWords(lv);
+  detQueue = shuffle([...pool]).slice(0, Math.min(DET_ROUND, pool.length));
+  detQi = 0; detScore = 0;
+  nextDetective();
+}
+
+/* แสดงคำถาม */
+function nextDetective(){
+  if(detQi >= detQueue.length){ return detFinish(); }
+  const meta = detLevelMeta(detLevel);
+  const entry = detQueue[detQi];
+  const answer = entry.word;
+  detClueIdx = 0;
+
+  // สร้างตัวเลือกผิด
+  const pool = detWords(detLevel).filter(e=>e.word.toLowerCase()!==answer.toLowerCase());
+  const wrongs = shuffle(pool).slice(0, meta.choices - 1).map(e=>e.word);
+  const choices = shuffle([answer, ...wrongs]);
+
+  setProg((detQi / detQueue.length) * 100);
+  $('#score').textContent = '🔍 ' + detLevelMeta(detLevel).name + ' · ' + (detQi+1) + '/' + detQueue.length;
+
+  const BORDER_COLORS = ['#F5A300','#1FA39A','#E84A5F','#7B3FC4','#4E9A2E','#185FA5'];
+
+  $('#play').innerHTML = `
+    <div class="det-q-box">
+      <div class="det-q-num">Question ${detQi+1} of ${detQueue.length}</div>
+      <div class="det-clues" id="detClues"></div>
+      <button class="btn det-next-clue" id="detNextClue">Next clue · เบาะแสถัดไป</button>
+    </div>
+    <div class="det-choices" id="detChoices">
+      ${choices.map((c,i)=>`
+        <button class="det-choice" data-w="${c}"
+          style="--card-border:${BORDER_COLORS[i%BORDER_COLORS.length]}">
+          ${c}
+        </button>`).join('')}
+    </div>
+    <div class="fb" id="fb" aria-live="assertive"></div>`;
+
+  // แสดง clue แรก
+  showNextClue(entry, meta);
+
+  // ปุ่ม next clue
+  document.getElementById('detNextClue').onclick = () => showNextClue(entry, meta);
+
+  // ตัวเลือก
+  document.querySelectorAll('.det-choice').forEach(btn=>{
+    btn.onclick = () => detAnswer(btn, answer, entry);
+  });
+}
+
+function showNextClue(entry, meta){
+  const box = document.getElementById('detClues');
+  const btn = document.getElementById('detNextClue');
+  if(detClueIdx >= meta.clueCount || detClueIdx >= entry.clues.length){
+    if(btn) btn.style.display = 'none';
+    return;
+  }
+  const clue = entry.clues[detClueIdx];
+  const num = detClueIdx + 1;
+  const icon = num === 1 ? '💡' : num === 2 ? '🔎' : '🎯';
+  box.innerHTML += `<div class="det-clue det-clue-${num}" style="animation:detFadeIn .4s ease">
+    <span class="det-clue-icon">${icon}</span>
+    <span class="det-clue-text">Clue ${num}: ${clue}</span>
+  </div>`;
+  detClueIdx++;
+  if(detClueIdx >= meta.clueCount || detClueIdx >= entry.clues.length){
+    if(btn) btn.style.display = 'none';
+  }
+}
+
+function detAnswer(btn, answer, entry){
+  const all = document.querySelectorAll('.det-choice');
+  const correct = btn.dataset.w.toLowerCase() === answer.toLowerCase();
+  all.forEach(b=>{ b.disabled = true; });
+  btn.classList.add(correct ? 'det-right' : 'det-wrong');
+  // highlight correct
+  all.forEach(b=>{ if(b.dataset.w.toLowerCase()===answer.toLowerCase()) b.classList.add('det-right'); });
+
+  const fb = document.getElementById('fb');
+  if(correct){
+    detScore++;
+    Audio2.good();
+    fb.innerHTML = `<span class="fbg">✅ Correct! · ถูกต้อง!</span>`;
+    if(entry.th) fb.innerHTML += `<br><span style="font-size:.9em;color:var(--muted)">${answer} = ${entry.th}</span>`;
+  } else {
+    Audio2.bad();
+    fb.innerHTML = `<span class="fbr">❌ ${answer}${entry.th ? ' = '+entry.th : ''}</span>`;
+  }
+
+  detQi++;
+  setTimeout(()=> nextDetective(), correct ? 1500 : 2500);
+}
+
+function detFinish(){
+  inActiveGame = false;
+  setProg(100);
+  const pct = detQueue.length ? detScore/detQueue.length : 0;
+  const passed = pct >= 0.7;
+  if(passed) detClearLevel(detLevel);
+  Audio2.win();
+  if(passed && pct >= 0.5) FX.confetti(120);
+
+  const meta = detLevelMeta(detLevel);
+  const starsEarned = pct >= 0.9 ? 3 : pct >= 0.7 ? 2 : 1;
+  Gamify.addStars(starsEarned + detScore);
+  Gamify.recordRound('detective', 'Det'+detLevel, detScore, detQueue.length);
+  afterRound();
+
+  const nextUnlocked = detLevel < 5 && detUnlocked(detLevel + 1);
+
+  $('#play').innerHTML = `<div class="done">
+    <div class="trophy">${passed ? '🏆' : '🔍'}</div>
+    <h2>${passed ? 'Level cleared!' : 'Keep trying!'}</h2>
+    <div class="starline">${'⭐'.repeat(starsEarned) + '☆'.repeat(3-starsEarned)}</div>
+    <div class="res">Score: ${detScore} / ${detQueue.length} · ${Math.round(pct*100)}%</div>
+    <div class="res" style="font-size:.85em;color:var(--muted)">${passed ? 'Level '+(detLevel+1 <= 5 ? (detLevel+1)+' unlocked!' : 'MAX — Word Master!') : 'Need 70% to pass'}</div>
+    <button class="btn" onclick="startDetective(${detLevel})">🔁 Try Again</button>
+    ${nextUnlocked && detLevel<5 ? `<button class="btn" onclick="startDetective(${detLevel+1})">➡️ Level ${detLevel+1}</button>` : ''}
+    <button class="btn alt" onclick="showDetectiveSelect()">📋 Levels</button>
+    <button class="btn alt" onclick="goHome()">🏠 Home</button>
+  </div>`;
+  maybeShowNameEntry(starsEarned + detScore, null);
 }

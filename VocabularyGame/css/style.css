@@ -246,6 +246,8 @@ h1,h2,h3,h4{font-family:'Baloo 2',cursive}
 .card.c4:hover{box-shadow:0 16px 34px rgba(124,77,255,.5)}
 .card.c5:hover{box-shadow:0 16px 34px rgba(46,192,90,.5)}
 .card.c6:hover{box-shadow:0 16px 34px rgba(255,104,64,.5)}
+.card.c7{background:linear-gradient(145deg,#7B3FC4,#4E2A8E);box-shadow:0 6px 18px rgba(123,63,196,.4)}
+.card.c7:hover{box-shadow:0 16px 34px rgba(123,63,196,.5)}
 .card:active{transform:scale(.97)}
 .ico-wrap{width:clamp(48px,11vw,64px);height:clamp(48px,11vw,64px);
   border-radius:16px;background:rgba(255,255,255,.22);
@@ -744,3 +746,77 @@ footer{display:none}
   text-align:center;color:var(--ink);outline:none}
 .name-input:focus{border-color:var(--gold);
   box-shadow:0 0 0 4px rgba(245,163,0,.15)}
+
+/* ══════════════════════════════════
+   WORD DETECTIVE GAME
+══════════════════════════════════ */
+.det-header{text-align:center;margin-bottom:18px}
+.det-icon{font-size:3rem;margin-bottom:4px}
+.det-title{font-family:'Baloo 2';font-weight:800;font-size:clamp(1.4rem,5vw,1.8rem);color:var(--ink)}
+.det-sub{font-size:clamp(.8rem,2.5vw,.95rem);color:var(--muted);line-height:1.4}
+
+/* Level select grid */
+.det-grid{display:flex;flex-direction:column;gap:10px;max-width:420px;margin:0 auto}
+.det-card{background:rgba(255,255,255,.92);border:2.5px solid rgba(31,163,154,.3);
+  border-radius:16px;padding:14px 18px;text-align:left;cursor:pointer;
+  transition:all .15s;display:flex;flex-wrap:wrap;align-items:center;gap:8px}
+.det-card:hover:not(:disabled){border-color:var(--sun);transform:translateY(-2px);
+  box-shadow:0 6px 20px rgba(245,163,0,.15)}
+.det-card:active:not(:disabled){transform:scale(.97)}
+.det-locked{opacity:.45;cursor:not-allowed;border-color:rgba(0,0,0,.08)}
+.det-stars{font-size:1.1rem;margin-right:4px}
+.det-name{font-family:'Baloo 2';font-weight:800;font-size:clamp(1rem,3.5vw,1.2rem);
+  color:var(--ink);flex:1}
+.det-info{width:100%;font-size:clamp(.72rem,2.3vw,.82rem);color:var(--muted)}
+
+/* Question */
+.det-q-box{background:rgba(255,255,255,.92);border-radius:18px;
+  padding:18px 20px;margin-bottom:14px;text-align:center;
+  border:2px solid rgba(31,163,154,.15)}
+.det-q-num{font-size:.75rem;color:var(--muted);margin-bottom:10px}
+.det-clues{display:flex;flex-direction:column;gap:8px;text-align:left;margin-bottom:12px}
+.det-clue{display:flex;align-items:flex-start;gap:8px;padding:10px 14px;
+  border-radius:12px;background:rgba(31,163,154,.06);
+  border:1.5px solid rgba(31,163,154,.12)}
+.det-clue-1{border-color:rgba(245,163,0,.25);background:rgba(245,163,0,.06)}
+.det-clue-2{border-color:rgba(31,163,154,.25);background:rgba(31,163,154,.06)}
+.det-clue-3{border-color:rgba(123,63,196,.2);background:rgba(123,63,196,.05)}
+.det-clue-icon{font-size:1.1rem;flex-shrink:0;margin-top:1px}
+.det-clue-text{font-size:clamp(.85rem,2.8vw,1rem);color:var(--ink);line-height:1.4;font-weight:500}
+@keyframes detFadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+.det-next-clue{margin:0 auto;display:block;font-size:clamp(.78rem,2.5vw,.88rem);
+  padding:8px 20px;border-radius:20px;
+  background:rgba(245,163,0,.1);border:2px dashed rgba(245,163,0,.3);
+  color:var(--sun);font-weight:700;cursor:pointer;transition:all .15s}
+.det-next-clue:hover{background:rgba(245,163,0,.2);border-color:var(--sun)}
+
+/* Choices */
+.det-choices{display:grid;grid-template-columns:1fr 1fr;gap:8px;max-width:480px;margin:0 auto 12px}
+.det-choice{background:rgba(255,255,255,.9);border:2.5px solid var(--card-border,rgba(0,0,0,.1));
+  border-radius:14px;padding:clamp(10px,3vw,16px) 12px;
+  font-family:'Baloo 2';font-weight:800;font-size:clamp(1rem,3.5vw,1.3rem);
+  color:var(--ink);cursor:pointer;transition:all .15s;text-align:center;
+  word-break:break-word;line-height:1.2}
+.det-choice:hover:not(:disabled){transform:translateY(-2px);
+  box-shadow:0 4px 14px rgba(0,0,0,.1)}
+.det-choice:active:not(:disabled){transform:scale(.95)}
+.det-choice:disabled{cursor:default;opacity:.6}
+.det-right{background:rgba(46,125,50,.15)!important;border-color:#4CAF50!important;color:#2D6A0E!important;opacity:1!important}
+.det-wrong{background:rgba(229,57,53,.12)!important;border-color:#E53935!important;color:#8B1A2E!important}
+
+@media(max-width:380px){.det-choices{grid-template-columns:1fr}}
+
+/* ══════════════════════════════════
+   WORD DETECTIVE — Banner Button
+══════════════════════════════════ */
+.det-banner{display:block;width:100%;max-width:480px;margin:18px auto 10px;
+  padding:0;border:none;background:none;cursor:pointer;
+  border-radius:18px;overflow:hidden;position:relative;
+  transition:transform .2s,box-shadow .2s;
+  box-shadow:0 6px 24px rgba(123,63,196,.3)}
+.det-banner:hover{transform:translateY(-4px) scale(1.01);
+  box-shadow:0 12px 36px rgba(123,63,196,.45)}
+.det-banner:active{transform:scale(.97);
+  box-shadow:0 4px 14px rgba(123,63,196,.3)}
+.det-banner-img{width:100%;height:auto;display:block;
+  border-radius:18px}
