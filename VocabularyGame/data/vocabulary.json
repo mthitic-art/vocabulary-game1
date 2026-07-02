@@ -2,10 +2,18 @@
   "_meta": {
     "generated": "2026-07-02",
     "months": [
+      "may",
       "june",
-      "july"
+      "july",
+      "august",
+      "september",
+      "november",
+      "december",
+      "january",
+      "february"
     ],
     "counts": {
+      "may": {},
       "june": {
         "K1": 50,
         "K2": 50,
@@ -27,10 +35,17 @@
         "P4": 50,
         "P5": 50,
         "P6": 50
-      }
+      },
+      "august": {},
+      "september": {},
+      "november": {},
+      "december": {},
+      "january": {},
+      "february": {}
     }
   },
   "months": {
+    "may": {},
     "june": {
       "K1": [
         {
@@ -5070,6 +5085,12 @@
           "image": "assets/P6/evidence.jpeg"
         }
       ]
-    }
+    },
+    "august": {},
+    "september": {},
+    "november": {},
+    "december": {},
+    "january": {},
+    "february": {}
   }
 }
