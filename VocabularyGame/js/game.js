@@ -1157,8 +1157,27 @@ function updateSubjectBar(){
   });
 }
 function routeGame(g){
-  // No level locking: every grade can play its own level right away.
-  // Check using filtered words so subject filter is respected.
+  // Word Detective ใช้ข้อมูลแยก (clues.json) ไม่ต้องเช็ค vocabulary เดือน/ระดับ
+  if (g === 'detective'){
+    showScreen();
+    // แสดง loading ทันทีระหว่างรอโหลดข้อมูล
+    $('#score').textContent = '🔍 Word Detective';
+    $('#play').innerHTML = `<div style="text-align:center;padding:60px 20px">
+      <div style="font-size:3rem;margin-bottom:12px;animation:questyIdle 2s ease-in-out infinite">🔍</div>
+      <div style="font-family:'Baloo 2';font-weight:700;font-size:1.3rem;color:var(--ink)">Loading Word Detective...</div>
+      <div style="font-size:1rem;color:var(--muted);margin-top:6px">กำลังโหลดเบาะแส...</div>
+    </div>`;
+    loadClues().then(()=>{
+      showDetectiveSelect();
+    }).catch(()=>{
+      $('#play').innerHTML = `<div style="text-align:center;padding:40px">
+        <p style="font-size:1.2rem;color:var(--ink)">❌ Cannot load clues</p>
+        <button class="btn alt" onclick="goHome()">🏠 Home</button>
+      </div>`;
+    });
+    return;
+  }
+  // เกมอื่น — เช็คว่ามีคำในเดือน/ระดับที่เลือก
   const filtered = wordsFiltered(LV);
   if (!filtered.length){
     toast("📭", LV==="P1"
@@ -1166,10 +1185,7 @@ function routeGame(g){
       : `No words for ${LV} this month.`);
     return;
   }
-  // K1 (youngest) sees a quick bilingual how-to-play card the first time
-  // they open a game in a session.
   if (LV==="K1" && !sessionInstShown[g]){ sessionInstShown[g]=true; return showK1Instructions(g); }
-  if (g === 'detective'){ loadClues().then(()=>showDetectiveSelect()); return; }
   ({ quiz:()=>startQuiz(false), review:()=>startQuiz(true), flashcard:startFlash,
      adventure:startAdventure, memory:startMemory, spelling:startSpelling }[g] || (()=>{}))();
 }
@@ -1437,17 +1453,20 @@ function showLeaderboard(){
     </div>`;
 }
 
+
 /* ============================================================
-   WORD DETECTIVE — ทายคำจากเบาะแส 5 ระดับ
-   ทุกคนเริ่ม Level 1 (Beginner) ผ่านแล้วปลดล็อค Level ถัดไป
+   WORD DETECTIVE v2 — ระบบด่านย่อย (Stage)
+   แต่ละ Level มีหลายด่าน ด่านละ 10 คำ
+   ต้องผ่านทุกด่านถึงปลดล็อค Level ถัดไป
    ============================================================ */
 let detectiveData = null;
 let detLevel = 1;
+let detStage = 0;
 let detQueue = [];
 let detQi = 0;
 let detScore = 0;
 let detClueIdx = 0;
-const DET_ROUND = 10;  // 10 คำต่อรอบ
+const DET_PER_STAGE = 10;
 
 async function loadClues(){
   if(detectiveData) return;
@@ -1462,21 +1481,38 @@ function detLevelMeta(lv){
 function detWords(lv){
   return detectiveData.levels[String(lv)] || [];
 }
-function detUnlocked(lv){
-  // Level 1 เปิดเสมอ, Level N เปิดเมื่อ Level N-1 ผ่านอย่างน้อย 1 ครั้ง
-  if(lv <= 1) return true;
-  const key = 'detCleared_' + (lv-1);
-  return DB[key] || localStorage.getItem(key) === 'true';
+function detStages(lv){
+  const words = detWords(lv);
+  const stages = [];
+  for(let i=0; i<words.length; i+=DET_PER_STAGE){
+    stages.push(words.slice(i, i+DET_PER_STAGE));
+  }
+  return stages;
 }
-function detClearLevel(lv){
-  const key = 'detCleared_' + lv;
-  DB[key] = true;
-  try{ localStorage.setItem(key, 'true'); }catch(e){}
+function detStageKey(lv, stage){ return 'det_'+lv+'_'+stage; }
+function detStagePassed(lv, stage){
+  const k = detStageKey(lv, stage);
+  return DB[k] || false;
+}
+function detMarkStage(lv, stage){
+  DB[detStageKey(lv, stage)] = true;
+  Store.save(DB);
+}
+function detLevelCleared(lv){
+  const total = detStages(lv).length;
+  for(let i=0; i<total; i++){
+    if(!detStagePassed(lv, i)) return false;
+  }
+  return total > 0;
+}
+function detUnlocked(lv){
+  if(lv <= 1) return true;
+  return detLevelCleared(lv - 1);
 }
 
-/* แสดงหน้าเลือก Level */
+/* ──────── หน้าเลือก Level ──────── */
 function showDetectiveSelect(){
-  MODE = 'detective';
+  MODE = 'detective'; inActiveGame = false;
   showScreen();
   $('#score').textContent = '🔍 Word Detective';
   setProg(0);
@@ -1485,11 +1521,17 @@ function showDetectiveSelect(){
   for(let lv=1; lv<=5; lv++){
     const m = metas[String(lv)];
     const unlocked = detUnlocked(lv);
+    const stages = detStages(lv);
+    const cleared = stages.filter((_,i)=>detStagePassed(lv,i)).length;
     const stars = '⭐'.repeat(m.stars);
+    const pct = stages.length ? Math.round(cleared/stages.length*100) : 0;
     cards += `<button class="det-card ${unlocked?'':'det-locked'}" data-lv="${lv}" ${unlocked?'':'disabled'}>
       <div class="det-stars">${stars}</div>
       <div class="det-name">${m.name}</div>
-      <div class="det-info">${unlocked? m.choices+' choices · '+detWords(lv).length+' words' : '🔒 Clear Level '+(lv-1)+' first'}</div>
+      <div class="det-info">${unlocked
+        ? `${cleared}/${stages.length} stages · ${detWords(lv).length} words`
+        : '🔒 Clear Level '+(lv-1)+' first'}</div>
+      ${unlocked && stages.length ? `<div class="det-prog-bar"><div class="det-prog-fill" style="width:${pct}%"></div></div>` : ''}
     </button>`;
   }
   $('#play').innerHTML = `
@@ -1506,22 +1548,68 @@ function showDetectiveSelect(){
     c.onclick = ()=>{
       const lv = parseInt(c.dataset.lv);
       if(!detUnlocked(lv)){ toast('🔒','Clear Level '+(lv-1)+' first!'); return; }
-      startDetective(lv);
+      showDetStageMap(lv);
     };
   });
 }
 
-/* เริ่มเล่น */
-function startDetective(lv){
+/* ──────── หน้าเลือกด่าน (Stage Map) ──────── */
+function showDetStageMap(lv){
   detLevel = lv;
+  MODE = 'detective'; inActiveGame = false;
+  showScreen();
+  const meta = detLevelMeta(lv);
+  const stages = detStages(lv);
+  const cleared = stages.filter((_,i)=>detStagePassed(lv,i)).length;
+  $('#score').textContent = '🔍 ' + meta.name;
+  setProg(stages.length ? cleared/stages.length*100 : 0);
+
+  let grid = '';
+  for(let i=0; i<stages.length; i++){
+    const passed = detStagePassed(lv, i);
+    // ด่านแรกที่ยังไม่ผ่าน = current (เปิดเล่นได้) ด่านที่ผ่านแล้ว = done ด่านหลัง current = lock
+    const firstOpen = stages.findIndex((_,j)=>!detStagePassed(lv,j));
+    const isCur = i === firstOpen;
+    const isLocked = i > firstOpen && firstOpen >= 0;
+    const cls = passed ? 'det-stage-done' : isCur ? 'det-stage-cur' : isLocked ? 'det-stage-lock' : 'det-stage-cur';
+    const num = i + 1;
+    grid += `<button class="det-stage ${cls}" data-s="${i}" ${isLocked?'disabled':''}>
+      <div class="det-stage-num">${passed ? '✅' : isLocked ? '🔒' : num}</div>
+      <div class="det-stage-words">${stages[i].length} words</div>
+    </button>`;
+  }
+
+  $('#play').innerHTML = `
+    <div class="det-header" style="margin-bottom:10px">
+      <div class="det-title">${'⭐'.repeat(meta.stars)} ${meta.name}</div>
+      <div class="det-sub">${cleared}/${stages.length} stages cleared
+        ${cleared===stages.length && stages.length>0 ? ' · 🏆 Level Complete!' : ''}</div>
+    </div>
+    <div class="det-stage-grid">${grid}</div>
+    <div style="text-align:center;margin-top:14px">
+      <button class="btn alt" onclick="showDetectiveSelect()">⬅ Levels</button>
+      <button class="btn alt" onclick="goHome()">🏠 Home</button>
+    </div>`;
+  document.querySelectorAll('.det-stage').forEach(b=>{
+    b.onclick = ()=>{
+      const s = parseInt(b.dataset.s);
+      startDetStage(lv, s);
+    };
+  });
+}
+
+/* ──────── เริ่มเล่นด่าน ──────── */
+function startDetStage(lv, stage){
+  detLevel = lv;
+  detStage = stage;
   inActiveGame = true;
-  const pool = detWords(lv);
-  detQueue = shuffle([...pool]).slice(0, Math.min(DET_ROUND, pool.length));
+  const stages = detStages(lv);
+  detQueue = shuffle([...stages[stage]]);
   detQi = 0; detScore = 0;
   nextDetective();
 }
 
-/* แสดงคำถาม */
+/* ──────── แสดงคำถาม ──────── */
 function nextDetective(){
   if(detQi >= detQueue.length){ return detFinish(); }
   const meta = detLevelMeta(detLevel);
@@ -1529,19 +1617,20 @@ function nextDetective(){
   const answer = entry.word;
   detClueIdx = 0;
 
-  // สร้างตัวเลือกผิด
   const pool = detWords(detLevel).filter(e=>e.word.toLowerCase()!==answer.toLowerCase());
   const wrongs = shuffle(pool).slice(0, meta.choices - 1).map(e=>e.word);
   const choices = shuffle([answer, ...wrongs]);
 
-  setProg((detQi / detQueue.length) * 100);
-  $('#score').textContent = '🔍 ' + detLevelMeta(detLevel).name + ' · ' + (detQi+1) + '/' + detQueue.length;
+  const stageTotal = detQueue.length;
+  setProg((detQi / stageTotal) * 100);
+  const stages = detStages(detLevel);
+  $('#score').textContent = '🔍 Stage ' + (detStage+1) + '/' + stages.length + ' · ' + (detQi+1) + '/' + stageTotal;
 
   const BORDER_COLORS = ['#F5A300','#1FA39A','#E84A5F','#7B3FC4','#4E9A2E','#185FA5'];
 
   $('#play').innerHTML = `
     <div class="det-q-box">
-      <div class="det-q-num">Question ${detQi+1} of ${detQueue.length}</div>
+      <div class="det-q-num">Stage ${detStage+1} · Question ${detQi+1} of ${stageTotal}</div>
       <div class="det-clues" id="detClues"></div>
       <button class="btn det-next-clue" id="detNextClue">Next clue · เบาะแสถัดไป</button>
     </div>
@@ -1554,13 +1643,8 @@ function nextDetective(){
     </div>
     <div class="fb" id="fb" aria-live="assertive"></div>`;
 
-  // แสดง clue แรก
   showNextClue(entry, meta);
-
-  // ปุ่ม next clue
   document.getElementById('detNextClue').onclick = () => showNextClue(entry, meta);
-
-  // ตัวเลือก
   document.querySelectorAll('.det-choice').forEach(btn=>{
     btn.onclick = () => detAnswer(btn, answer, entry);
   });
@@ -1591,7 +1675,6 @@ function detAnswer(btn, answer, entry){
   const correct = btn.dataset.w.toLowerCase() === answer.toLowerCase();
   all.forEach(b=>{ b.disabled = true; });
   btn.classList.add(correct ? 'det-right' : 'det-wrong');
-  // highlight correct
   all.forEach(b=>{ if(b.dataset.w.toLowerCase()===answer.toLowerCase()) b.classList.add('det-right'); });
 
   const fb = document.getElementById('fb');
@@ -1604,17 +1687,17 @@ function detAnswer(btn, answer, entry){
     Audio2.bad();
     fb.innerHTML = `<span class="fbr">❌ ${answer}${entry.th ? ' = '+entry.th : ''}</span>`;
   }
-
   detQi++;
   setTimeout(()=> nextDetective(), correct ? 1500 : 2500);
 }
 
+/* ──────── จบด่าน ──────── */
 function detFinish(){
   inActiveGame = false;
   setProg(100);
   const pct = detQueue.length ? detScore/detQueue.length : 0;
   const passed = pct >= 0.7;
-  if(passed) detClearLevel(detLevel);
+  if(passed) detMarkStage(detLevel, detStage);
   Audio2.win();
   if(passed && pct >= 0.5) FX.confetti(120);
 
@@ -1624,18 +1707,37 @@ function detFinish(){
   Gamify.recordRound('detective', 'Det'+detLevel, detScore, detQueue.length);
   afterRound();
 
-  const nextUnlocked = detLevel < 5 && detUnlocked(detLevel + 1);
+  const stages = detStages(detLevel);
+  const nextStage = detStage + 1;
+  const hasNextStage = nextStage < stages.length;
+  const levelDone = detLevelCleared(detLevel);
+
+  let btns = '';
+  if(passed && hasNextStage){
+    btns += `<button class="btn" onclick="startDetStage(${detLevel},${nextStage})">➡️ Stage ${nextStage+1}</button>`;
+  }
+  if(passed && levelDone && detLevel < 5){
+    btns += `<button class="btn" onclick="showDetStageMap(${detLevel+1})">🌟 Level ${detLevel+1}</button>`;
+  }
+  if(!passed){
+    btns += `<button class="btn" onclick="startDetStage(${detLevel},${detStage})">🔁 Try Again</button>`;
+  }
+  btns += `<button class="btn alt" id="viewBoard">🏆 Top 10</button>`;
+  btns += `<button class="btn alt" onclick="showDetStageMap(${detLevel})">🗺️ Stage Map</button>`;
+  btns += `<button class="btn alt" onclick="goHome()">🏠 Home</button>`;
 
   $('#play').innerHTML = `<div class="done">
     <div class="trophy">${passed ? '🏆' : '🔍'}</div>
-    <h2>${passed ? 'Level cleared!' : 'Keep trying!'}</h2>
+    <h2>${passed ? (levelDone ? meta.name+' Complete!' : 'Stage cleared!') : 'Keep trying!'}</h2>
     <div class="starline">${'⭐'.repeat(starsEarned) + '☆'.repeat(3-starsEarned)}</div>
     <div class="res">Score: ${detScore} / ${detQueue.length} · ${Math.round(pct*100)}%</div>
-    <div class="res" style="font-size:.85em;color:var(--muted)">${passed ? 'Level '+(detLevel+1 <= 5 ? (detLevel+1)+' unlocked!' : 'MAX — Word Master!') : 'Need 70% to pass'}</div>
-    <button class="btn" onclick="startDetective(${detLevel})">🔁 Try Again</button>
-    ${nextUnlocked && detLevel<5 ? `<button class="btn" onclick="startDetective(${detLevel+1})">➡️ Level ${detLevel+1}</button>` : ''}
-    <button class="btn alt" onclick="showDetectiveSelect()">📋 Levels</button>
-    <button class="btn alt" onclick="goHome()">🏠 Home</button>
+    <div class="res" style="font-size:.85em;color:var(--muted)">${
+      passed ? (levelDone ? '🎉 All '+stages.length+' stages cleared!'
+                          : 'Stage '+(detStage+1)+'/'+stages.length+' done · '+Math.round(stages.filter((_,i)=>detStagePassed(detLevel,i)).length/stages.length*100)+'%')
+             : 'Need 70% to pass'}</div>
+    ${btns}
   </div>`;
+  const vb = document.getElementById('viewBoard');
+  if(vb) vb.onclick = () => showLeaderboard();
   maybeShowNameEntry(starsEarned + detScore, null);
 }
