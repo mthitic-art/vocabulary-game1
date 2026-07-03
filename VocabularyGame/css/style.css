@@ -347,7 +347,7 @@ h1,h2,h3,h4{font-family:'Baloo 2',cursive}
 @keyframes rightP{50%{transform:scale(1.08)}}
 @keyframes shake{25%{transform:translateX(-7px)}75%{transform:translateX(7px)}}
 .fb{text-align:center;font-family:'Baloo 2';font-weight:800;
-  font-size:clamp(1.4rem,4.5vw,1.7rem);height:34px;margin-top:12px}
+  font-size:clamp(1.6rem,5.5vw,2rem);height:34px;margin-top:12px}
 
 /* FLASHCARD */
 .flash{perspective:1200px;max-width:360px;margin:10px auto}
@@ -739,7 +739,7 @@ footer{display:none}
 .lb-rank{font-family:'Baloo 2';font-weight:800;font-size:1.3rem;
   width:44px;text-align:center;flex-shrink:0;color:var(--muted)}
 .lb-name{flex:1;font-family:'Baloo 2';font-weight:700;
-  font-size:clamp(1.1rem,3.8vw,1.3rem);color:var(--ink);
+  font-size:clamp(1.2rem,4.2vw,1.4rem);color:var(--ink);
   overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .lb-score{font-family:'Baloo 2';font-weight:800;
   font-size:clamp(1rem,3.2vw,1.15rem);color:#B8860B;flex-shrink:0}
@@ -779,16 +779,16 @@ footer{display:none}
 .det-q-box{background:rgba(255,255,255,.92);border-radius:18px;
   padding:18px 20px;margin-bottom:14px;text-align:center;
   border:2px solid rgba(31,163,154,.15)}
-.det-q-num{font-size:clamp(.95rem,3vw,1.1rem);color:var(--muted);margin-bottom:10px}
+.det-q-num{font-size:clamp(1.1rem,3.8vw,1.3rem);color:var(--muted);margin-bottom:10px}
 .det-clues{display:flex;flex-direction:column;gap:8px;text-align:left;margin-bottom:12px}
-.det-clue{display:flex;align-items:flex-start;gap:10px;padding:14px 16px;
+.det-clue{display:flex;align-items:flex-start;gap:12px;padding:16px 18px;
   border-radius:12px;background:rgba(31,163,154,.06);
   border:1.5px solid rgba(31,163,154,.12)}
 .det-clue-1{border-color:rgba(245,163,0,.25);background:rgba(245,163,0,.06)}
 .det-clue-2{border-color:rgba(31,163,154,.25);background:rgba(31,163,154,.06)}
 .det-clue-3{border-color:rgba(123,63,196,.2);background:rgba(123,63,196,.05)}
 .det-clue-icon{font-size:clamp(1.2rem,4vw,1.5rem);flex-shrink:0;margin-top:1px}
-.det-clue-text{font-size:clamp(1.2rem,4.5vw,1.5rem);color:var(--ink);line-height:1.55;font-weight:600}
+.det-clue-text{font-size:clamp(1.4rem,5.5vw,1.8rem);color:var(--ink);line-height:1.5;font-weight:600}
 @keyframes detFadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
 .det-next-clue{margin:0 auto;display:block;font-size:clamp(1rem,3.2vw,1.15rem);
   padding:12px 24px;border-radius:22px;
@@ -852,13 +852,13 @@ footer{display:none}
 /* Detective — tablet/desktop ขยายเพิ่ม */
 @media(min-width:600px){
   .det-clue{padding:14px 18px}
-  .det-clue-text{font-size:1.35rem}
+  .det-clue-text{font-size:1.6rem}
   .det-choice{padding:20px 18px;font-size:1.6rem;border-radius:20px}
   .det-q-box{padding:22px 24px}
   .det-stage-grid{grid-template-columns:repeat(auto-fill,minmax(95px,1fr));gap:10px}
 }
 @media(min-width:1024px){
-  .det-clue-text{font-size:1.45rem}
+  .det-clue-text{font-size:1.75rem}
   .det-choice{padding:24px 22px;font-size:1.8rem}
   .det-choices{max-width:600px;gap:12px}
   .det-stage-grid{max-width:600px;grid-template-columns:repeat(auto-fill,minmax(100px,1fr))}
