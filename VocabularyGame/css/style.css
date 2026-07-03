@@ -325,7 +325,7 @@ h1,h2,h3,h4{font-family:'Baloo 2',cursive}
 .oimg{width:100%;aspect-ratio:1/1;display:flex;align-items:center;justify-content:center;padding:6px}
 .oimg span{display:block;width:100%;text-align:center;line-height:1;
   font-size:min(22vw,110px);filter:drop-shadow(0 3px 6px rgba(0,0,0,.12))}
-.oimg img{width:94%;height:94%;object-fit:contain;filter:drop-shadow(0 3px 6px rgba(0,0,0,.12))}
+.oimg img{width:94%;height:94%;object-fit:cover;border-radius:12px;filter:drop-shadow(0 3px 6px rgba(0,0,0,.12))}
 .opts.n2 .oimg span{font-size:min(30vw,150px)}
 .opts.n2 .oimg img{width:95%;height:95%}
 .opts.n4 .oimg span{font-size:min(22vw,110px)}
