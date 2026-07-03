@@ -370,13 +370,13 @@ h1,h2,h3,h4{font-family:'Baloo 2',cursive}
 .memcard.flip,.memcard.done{transform:rotateY(180deg)}
 .memface{position:absolute;inset:0;backface-visibility:hidden;border-radius:15px;
   display:flex;align-items:center;justify-content:center;font-weight:700;font-family:'Baloo 2'}
-.memfront{background:linear-gradient(135deg,var(--grape),#9B5DE5);color:#fff;font-size:clamp(1.5rem,6vw,2.2rem)}
+.memfront{background:linear-gradient(135deg,var(--grape),#9B5DE5);color:#fff;font-size:clamp(1.8rem,7vw,2.5rem)}
 .memback{background:#fff;border:3px solid var(--sky);transform:rotateY(180deg);
-  font-size:clamp(1rem,3.4vw,1.3rem);padding:4px;text-align:center;color:var(--ink)}
+  font-size:clamp(1.1rem,4vw,1.5rem);padding:4px;text-align:center;color:var(--ink)}
 .memback>span{color:var(--ink);font-family:'Baloo 2';font-weight:800;
-  font-size:clamp(1rem,4vw,1.5rem);padding:4px;line-height:1.1;word-break:break-word}
-.memback .oimg{width:100%;aspect-ratio:1/1;padding:6px}
-.memback .oimg span{font-size:min(12vw,56px);color:inherit}
+  font-size:clamp(1.2rem,5vw,1.8rem);padding:4px;line-height:1.1;word-break:break-word}
+.memback .oimg{width:100%;aspect-ratio:1/1;padding:4px}
+.memback .oimg span{font-size:min(14vw,64px);color:inherit}
 .memcard.done .memback{border-color:var(--grass);background:#dff5d8}
 /* tablet: 4 คอลัมน์ × 3 แถว */
 @media(min-width:600px){
@@ -385,8 +385,8 @@ h1,h2,h3,h4{font-family:'Baloo 2',cursive}
 /* desktop: 4 คอลัมน์ ขนาดใหญ่ขึ้น */
 @media(min-width:1024px){
   .memgrid{max-width:680px;gap:16px}
-  .memback .oimg span{font-size:70px}
-  .memback>span{font-size:1.7rem}
+  .memback .oimg span{font-size:76px}
+  .memback>span{font-size:2rem}
 }
 
 /* ADVENTURE */

@@ -988,7 +988,7 @@ function finishRound(silent){
     Gamify.recordRound(MODE, LV, 0, 0); afterRound();
     $('#play').innerHTML = `<div class="done"><div class="trophy">🃏</div>
       <h2>All done!</h2><p class="res">You reviewed every card.</p>
-      <button class="btn" onclick="startFlash()">🔁 Again</button>
+      <button class="btn" onclick="startFlash()">🔄 New Round · เล่นรอบใหม่</button>
       <button class="btn alt" onclick="goHome()">🏠 Home</button></div>`;
     return;
   }
@@ -1008,11 +1008,17 @@ function finishRound(silent){
     const lessons = lessonsFor(LV);
     const hasNext = currentLesson+1 < lessons.length;
     extraBtns = hasNext
-      ? `<button class="btn" id="nextLesson">➡️ Next Lesson</button>
+      ? `<button class="btn" id="nextLesson">➡️ Next Lesson · บทถัดไป</button>
+         <button class="btn" id="again">🔄 Play Again · เล่นอีกครั้ง</button>
          <button class="btn alt" id="lessonMenu">📖 Lessons</button>`
-      : `<button class="btn alt" id="lessonMenu">📖 Lessons</button>`;
+      : `<button class="btn" id="again">🔄 Play Again · เล่นอีกครั้ง</button>
+         <button class="btn alt" id="lessonMenu">📖 Lessons</button>`;
   } else {
-    extraBtns = `<button class="btn" id="again">🔁 Play Again</button>`;
+    // Memory, Adventure, Spelling — ปุ่มเล่นต่อชัดเจน
+    const modeLabel = MODE==='memory' ? '🧠 New Round · รอบใหม่'
+                    : MODE==='adventure' ? '⚔️ Play Again · เล่นอีกครั้ง'
+                    : '🔄 New Round · รอบใหม่';
+    extraBtns = `<button class="btn" id="again">${modeLabel}</button>`;
   }
   $('#play').innerHTML = `<div class="done">
     <div class="trophy">🏆</div><h2>${msg}</h2>
