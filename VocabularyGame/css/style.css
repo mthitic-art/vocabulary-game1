@@ -863,3 +863,111 @@ footer{display:none}
   .det-choices{max-width:600px;gap:12px}
   .det-stage-grid{max-width:600px;grid-template-columns:repeat(auto-fill,minmax(100px,1fr))}
 }
+
+/* ══════════════════════════════════════════════════════════════
+   PREMIUM GAME FEEL — background, animations, effects
+══════════════════════════════════════════════════════════════ */
+
+/* ── 1. GAME BACKGROUND — animated subtle stars ── */
+#screen{position:relative;overflow:hidden}
+#screen::before{content:'';position:fixed;inset:0;z-index:-1;pointer-events:none;
+  background:
+    radial-gradient(1.5px 1.5px at 10% 20%, rgba(245,163,0,.35) 50%, transparent 50%),
+    radial-gradient(1.5px 1.5px at 85% 15%, rgba(31,163,154,.3) 50%, transparent 50%),
+    radial-gradient(2px 2px at 45% 80%, rgba(123,63,196,.25) 50%, transparent 50%),
+    radial-gradient(1px 1px at 70% 50%, rgba(245,163,0,.3) 50%, transparent 50%),
+    radial-gradient(1.5px 1.5px at 25% 65%, rgba(31,163,154,.25) 50%, transparent 50%),
+    radial-gradient(1px 1px at 90% 75%, rgba(123,63,196,.2) 50%, transparent 50%),
+    radial-gradient(2px 2px at 55% 30%, rgba(245,163,0,.2) 50%, transparent 50%),
+    radial-gradient(1px 1px at 15% 90%, rgba(31,163,154,.3) 50%, transparent 50%);
+  background-size:200px 200px;
+  animation:starDrift 25s linear infinite}
+@keyframes starDrift{from{background-position:0 0}to{background-position:200px 200px}}
+
+/* subtle gradient overlay */
+#screen::after{content:'';position:fixed;inset:0;z-index:-1;pointer-events:none;
+  background:radial-gradient(ellipse at 50% 0%,rgba(245,163,0,.06) 0%,transparent 60%)}
+
+/* ── 2. REDUCE EMPTY SPACE — center content vertically ── */
+#play{min-height:calc(100vh - 120px);display:flex;flex-direction:column;justify-content:center;
+  padding-bottom:20px}
+/* done screen ไม่ต้อง stretch */
+#play .done{min-height:auto}
+
+/* ── 3. QUESTY REACTIONS — small mascot during gameplay ── */
+.questy-react{position:fixed;bottom:16px;right:16px;z-index:99;
+  font-size:2.8rem;transition:all .3s;opacity:0;
+  filter:drop-shadow(0 4px 10px rgba(0,0,0,.2));
+  pointer-events:none;transform:scale(0)}
+.questy-react.show{opacity:1;transform:scale(1)}
+.questy-react.happy{animation:questyHappy .6s ease}
+.questy-react.sad{animation:questySad .5s ease}
+.questy-react.thinking{animation:questyThink 2s ease-in-out infinite}
+@keyframes questyHappy{
+  0%{transform:scale(1)}
+  30%{transform:scale(1.3) rotate(10deg)}
+  60%{transform:scale(1.1) rotate(-5deg)}
+  100%{transform:scale(1) rotate(0)}}
+@keyframes questySad{
+  0%{transform:scale(1)}
+  25%{transform:translateX(-8px)}
+  50%{transform:translateX(8px)}
+  75%{transform:translateX(-4px)}
+  100%{transform:scale(.9) translateX(0)}}
+@keyframes questyThink{
+  0%,100%{transform:scale(1) rotate(0)}
+  50%{transform:scale(1.05) rotate(-3deg)}}
+
+/* ── 4. ANSWER EFFECTS — correct/wrong animations ── */
+/* correct glow */
+.opt.right,.det-right{animation:correctPulse .5s ease!important}
+@keyframes correctPulse{
+  0%{box-shadow:0 0 0 0 rgba(76,175,80,.5)}
+  50%{box-shadow:0 0 20px 8px rgba(76,175,80,.3)}
+  100%{box-shadow:0 0 0 0 rgba(76,175,80,0)}}
+/* wrong shake */
+.opt.wrong,.det-wrong{animation:wrongShake .4s ease!important}
+@keyframes wrongShake{
+  0%{transform:translateX(0)}
+  20%{transform:translateX(-10px)}
+  40%{transform:translateX(10px)}
+  60%{transform:translateX(-6px)}
+  80%{transform:translateX(6px)}
+  100%{transform:translateX(0)}}
+
+/* question slide in */
+.det-q-box,.prompt{animation:slideIn .4s ease}
+@keyframes slideIn{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+
+/* clue reveal — better animation */
+.det-clue{animation:clueReveal .5s cubic-bezier(.34,1.56,.64,1)!important}
+@keyframes clueReveal{
+  from{opacity:0;transform:translateX(-20px) scale(.9)}
+  to{opacity:1;transform:translateX(0) scale(1)}}
+
+/* confetti burst (CSS-only) */
+.confetti-burst{position:fixed;top:50%;left:50%;z-index:100;pointer-events:none}
+.confetti-piece{position:absolute;width:10px;height:10px;border-radius:2px;
+  animation:confettiFall 1.2s ease forwards}
+@keyframes confettiFall{
+  0%{transform:translate(0,0) rotate(0);opacity:1}
+  100%{transform:translate(var(--cx),var(--cy)) rotate(720deg);opacity:0}}
+
+/* ── FEEDBACK text — larger and more visible ── */
+.fb{min-height:50px;display:flex;align-items:center;justify-content:center;
+  padding:8px;text-align:center}
+.fbg{font-family:'Baloo 2';font-weight:800;font-size:clamp(1.2rem,4.5vw,1.6rem);
+  color:#2D6A0E;animation:fbPop .4s ease}
+.fbr{font-family:'Baloo 2';font-weight:800;font-size:clamp(1.1rem,4vw,1.4rem);
+  color:#8B1A2E;animation:fbPop .4s ease}
+@keyframes fbPop{from{transform:scale(.5);opacity:0}to{transform:scale(1);opacity:1}}
+
+/* ── Score display — more game-like ── */
+#score{font-family:'Baloo 2'!important;font-weight:800!important;
+  font-size:clamp(1rem,3.5vw,1.2rem)!important;
+  text-shadow:0 2px 4px rgba(0,0,0,.15)}
+
+/* ── Progress bar — gradient animated ── */
+#progbar{background:linear-gradient(90deg,#F5A300,#E84A5F,#7B3FC4)!important;
+  background-size:200% 100%;animation:progShine 3s ease infinite}
+@keyframes progShine{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}

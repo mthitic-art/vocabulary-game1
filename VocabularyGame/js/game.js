@@ -251,6 +251,7 @@ function showScreen(){
   $('#home').style.display='none'; $('#dash').classList.remove('show'); $('#screen').classList.add('show');
 }
 function goHome(){ if (window.speechSynthesis) speechSynthesis.cancel();
+  QuestyReact.hide();
   inActiveGame = false;
   $('#screen').classList.remove('show'); $('#dash').classList.remove('show');
   $('#home').style.display=''; refreshChips(); refreshLocks(); updateSubjectBar();
@@ -1461,6 +1462,13 @@ function showLeaderboard(){
         </div>`).join('')
     : `<p class="hint" style="text-align:center;padding:20px">
         No scores yet — be the first! 🚀<br>ยังไม่มีคะแนน มาเป็นคนแรกกัน!</p>`;
+  // ปุ่มเล่นต่อตาม mode ที่เพิ่งเล่น
+  const playLabel = MODE==='quiz' ? '📖 Play Again · เล่นอีกครั้ง'
+    : MODE==='memory' ? '🧠 New Round · รอบใหม่'
+    : MODE==='adventure' ? '⚔️ Play Again · เล่นอีกครั้ง'
+    : MODE==='spelling' ? '✏️ Play Again · เล่นอีกครั้ง'
+    : MODE==='detective' ? '🔍 Continue · เล่นต่อ'
+    : '🔄 Play Again · เล่นอีกครั้ง';
   $('#play').innerHTML = `
     <div class="lesson-head">
       <div class="lesson-head-title">🏆 Leaderboard</div>
@@ -1468,8 +1476,13 @@ function showLeaderboard(){
     </div>
     <div class="lb-list">${rows}</div>
     <div style="text-align:center;margin-top:14px">
+      <button class="btn" id="lbPlayAgain">${playLabel}</button>
       <button class="btn alt" onclick="goHome()">🏠 Home</button>
     </div>`;
+  document.getElementById('lbPlayAgain').onclick = () => {
+    if(MODE==='detective' && detectiveData){ showDetStageMap(detLevel); }
+    else { routeGame(MODE); }
+  };
 }
 
 
@@ -1662,7 +1675,7 @@ function nextDetective(){
     </div>
     <div class="fb" id="fb" aria-live="assertive"></div>`;
 
-  showNextClue(entry, meta);
+  showNextClue(entry, meta); QuestyReact.thinking();
   document.getElementById('detNextClue').onclick = () => showNextClue(entry, meta);
   document.querySelectorAll('.det-choice').forEach(btn=>{
     btn.onclick = () => detAnswer(btn, answer, entry);
@@ -1699,11 +1712,11 @@ function detAnswer(btn, answer, entry){
   const fb = document.getElementById('fb');
   if(correct){
     detScore++;
-    Audio2.good();
+    Audio2.good(); QuestyReact.happy(); cssConfetti();
     fb.innerHTML = `<span class="fbg">✅ Correct! · ถูกต้อง!</span>`;
     if(entry.th) fb.innerHTML += `<br><span style="font-size:.9em;color:var(--muted)">${answer} = ${entry.th}</span>`;
   } else {
-    Audio2.bad();
+    Audio2.bad(); QuestyReact.sad();
     fb.innerHTML = `<span class="fbr">❌ ${answer}${entry.th ? ' = '+entry.th : ''}</span>`;
   }
   detQi++;
@@ -1759,4 +1772,50 @@ function detFinish(){
   const vb = document.getElementById('viewBoard');
   if(vb) vb.onclick = () => showLeaderboard();
   maybeShowNameEntry(starsEarned + detScore, null);
+}
+
+/* ============================================================
+   QUESTY REACTIONS — mascot ตอบสนองระหว่างเล่นเกม
+   ============================================================ */
+const QuestyReact = {
+  el: null,
+  init(){ this.el = document.getElementById('questyReact'); },
+  show(emoji, cls, duration){
+    if(!this.el) this.init();
+    if(!this.el) return;
+    this.el.textContent = emoji;
+    this.el.className = 'questy-react show ' + cls;
+    clearTimeout(this._t);
+    this._t = setTimeout(()=>{
+      this.el.classList.remove('show','happy','sad','thinking');
+    }, duration || 1500);
+  },
+  happy(){ this.show('🦊', 'happy', 1200); },
+  sad(){ this.show('😢', 'sad', 1500); },
+  thinking(){ this.show('🤔', 'thinking', 3000); },
+  celebrate(){ this.show('🎉', 'happy', 2000); },
+  hide(){
+    if(!this.el) this.init();
+    if(this.el) this.el.className = 'questy-react';
+  }
+};
+
+/* CSS confetti burst — เรียกตอนตอบถูก */
+function cssConfetti(){
+  const colors = ['#F5A300','#1FA39A','#E84A5F','#7B3FC4','#4E9A2E','#FF6840'];
+  const container = document.createElement('div');
+  container.className = 'confetti-burst';
+  for(let i=0; i<24; i++){
+    const p = document.createElement('div');
+    p.className = 'confetti-piece';
+    p.style.background = colors[i % colors.length];
+    p.style.setProperty('--cx', (Math.random()*300-150)+'px');
+    p.style.setProperty('--cy', (Math.random()*300-150)+'px');
+    p.style.animationDelay = (Math.random()*0.3)+'s';
+    p.style.width = (6+Math.random()*8)+'px';
+    p.style.height = (6+Math.random()*8)+'px';
+    container.appendChild(p);
+  }
+  document.body.appendChild(container);
+  setTimeout(()=> container.remove(), 1800);
 }
