@@ -91,7 +91,7 @@ function preloadLevelImages(lv){
 }
 
 /* ผูก fallback ให้ <img class="autoimg"> ทุกตัวที่ยังไม่ได้ผูก
-   ลองนามสกุลถัดไปเรื่อยๆ ถ้าหมดแล้วยังไม่เจอ → แทนด้วย emoji
+   ลองนามสกุลถัดไปเรื่อยๆ ถ้าหมดแล้วยังไม่เจอ → แทนด้วย styled placeholder
    harden: เช็คภาพที่ error ไปแล้วก่อน JS ผูกทัน (complete && naturalWidth===0) */
 function wireImgFallback(root){
   (root||document).querySelectorAll('img.autoimg:not([data-wired])').forEach(img=>{
@@ -103,13 +103,16 @@ function wireImgFallback(root){
         img.dataset.i = n+1;
         img.src = img.dataset.base + '.' + exts[n+1];
       } else {
-        const span = document.createElement('span');
-        span.textContent = img.dataset.emo || '🔡';
-        if (img.parentNode) img.replaceWith(span);
+        // Fallback: แสดง "?" ในวงกลมสี แทน emoji abcd ที่ไม่มีประโยชน์
+        const el = document.createElement('div');
+        el.className = 'img-fallback';
+        const emo = img.dataset.emo || '🔡';
+        // ถ้า emoji เป็น default 🔡 → แสดง ? แทน
+        el.textContent = (emo === '🔡') ? '?' : emo;
+        if (img.parentNode) img.replaceWith(el);
       }
     };
     img.onerror = tryNext;
-    // ถ้าภาพโหลดเสร็จแล้ว (cached) แต่ใช้ไม่ได้จริง → ลองตัวถัดไปทันที
     if (img.complete && img.naturalWidth === 0) tryNext();
   });
 }

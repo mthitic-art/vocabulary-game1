@@ -971,3 +971,13 @@ footer{display:none}
 #progbar{background:linear-gradient(90deg,#F5A300,#E84A5F,#7B3FC4)!important;
   background-size:200% 100%;animation:progShine 3s ease infinite}
 @keyframes progShine{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
+
+/* ══════════════════════════════════
+   IMAGE FALLBACK — เมื่อภาพยังไม่มี
+══════════════════════════════════ */
+.img-fallback{width:100%;height:100%;display:flex;align-items:center;justify-content:center;
+  font-size:min(18vw,80px);font-weight:800;font-family:'Baloo 2';
+  color:rgba(123,63,196,.4);
+  background:linear-gradient(145deg,rgba(245,163,0,.08),rgba(123,63,196,.08));
+  border-radius:16px;
+  text-shadow:0 2px 8px rgba(123,63,196,.1)}
