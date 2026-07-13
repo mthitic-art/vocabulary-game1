@@ -113,7 +113,11 @@ function wireImgFallback(root){
       }
     };
     img.onerror = tryNext;
-    if (img.complete && img.naturalWidth === 0) tryNext();
+    // delay check: images inside backface-visibility:hidden (memory cards)
+    // report naturalWidth=0 even when loaded — wait before deciding
+    if (img.complete && img.naturalWidth === 0) {
+      setTimeout(() => { if (img.naturalWidth === 0 && img.parentNode) tryNext(); }, 200);
+    }
   });
 }
 

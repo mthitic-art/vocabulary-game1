@@ -981,3 +981,6 @@ footer{display:none}
   background:linear-gradient(145deg,rgba(245,163,0,.08),rgba(123,63,196,.08));
   border-radius:16px;
   text-shadow:0 2px 8px rgba(123,63,196,.1)}
+
+/* Fix: memory card image sizing inside backface */
+.memback .oimg img{width:90%;height:90%;object-fit:cover;border-radius:10px;display:block;margin:auto}
