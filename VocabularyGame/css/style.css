@@ -889,8 +889,7 @@ footer{display:none}
   background:radial-gradient(ellipse at 50% 0%,rgba(245,163,0,.06) 0%,transparent 60%)}
 
 /* ── 2. REDUCE EMPTY SPACE — center content vertically ── */
-#play{min-height:calc(100vh - 120px);display:flex;flex-direction:column;justify-content:center;
-  padding-bottom:20px}
+#play{min-height:calc(100vh - 120px);padding-bottom:20px}
 /* done screen ไม่ต้อง stretch */
 #play .done{min-height:auto}
 
