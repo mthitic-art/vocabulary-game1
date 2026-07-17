@@ -113,11 +113,7 @@ function wireImgFallback(root){
       }
     };
     img.onerror = tryNext;
-    // delay check: images inside backface-visibility:hidden (memory cards)
-    // report naturalWidth=0 even when loaded — wait before deciding
-    if (img.complete && img.naturalWidth === 0) {
-      setTimeout(() => { if (img.naturalWidth === 0 && img.parentNode) tryNext(); }, 200);
-    }
+    if (img.complete && img.naturalWidth === 0) tryNext();
   });
 }
 
@@ -132,8 +128,8 @@ function toast(emoji, msg){
 }
 
 /* ---------- HUD chips + hero + stats ---------- */
-const CEFR_MAP = { K1:"Pre A1", K2:"Pre A1", K3:"A1", P1:"A1", P2:"A1",
-                   P3:"A1+", P4:"A1+", P5:"A2", P6:"A2" };
+const CEFR_MAP = { K1:"Pre A1", K2:"Pre A1", K3:"A1",
+                   P1:"A1", P2:"A1+", P3:"A1-A2", P4:"A2", P5:"A2+", P6:"A2-B1" };
 
 function refreshChips(){
   document.getElementById('streakChip').textContent = DB.streak;
