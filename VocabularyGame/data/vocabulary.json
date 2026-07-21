@@ -25,17 +25,6 @@
     "version": "2025-07"
   },
   "months": {
-    "may": {
-      "K1": [],
-      "K2": [],
-      "K3": [],
-      "P1": [],
-      "P2": [],
-      "P3": [],
-      "P4": [],
-      "P5": [],
-      "P6": []
-    },
     "june": {
       "K1": [
         {
@@ -1469,8 +1458,8 @@
           "emoji": "🔡"
         },
         {
-          "word": "rice growers",
-          "image": "assets/P4/rice_growers.jpeg",
+          "word": "rice grower",
+          "image": "assets/P4/rice_grower.jpeg",
           "emoji": "🔡"
         },
         {
@@ -1484,8 +1473,8 @@
           "emoji": "🔡"
         },
         {
-          "word": "rowing boats",
-          "image": "assets/P4/rowing_boats.jpeg",
+          "word": "rowing boat",
+          "image": "assets/P4/rowing_boat.jpeg",
           "emoji": "🔡"
         },
         {
@@ -1766,8 +1755,8 @@
           "emoji": "🔡"
         },
         {
-          "word": "records",
-          "image": "assets/P5/records.jpeg",
+          "word": "record",
+          "image": "assets/P5/record.jpeg",
           "emoji": "🔡"
         },
         {
@@ -4294,13 +4283,13 @@
           "emoji": "🔡"
         },
         {
-          "word": "toppings",
-          "image": "assets/P4/toppings.jpeg",
+          "word": "topping",
+          "image": "assets/P4/topping.jpeg",
           "emoji": "🔡"
         },
         {
-          "word": "fillings",
-          "image": "assets/P4/fillings.jpeg",
+          "word": "filling",
+          "image": "assets/P4/filling.jpeg",
           "emoji": "🔡"
         },
         {
@@ -4349,8 +4338,8 @@
           "emoji": "🔡"
         },
         {
-          "word": "guests",
-          "image": "assets/P4/guests.jpeg",
+          "word": "guest",
+          "image": "assets/P4/guest.jpeg",
           "emoji": "🔡"
         },
         {
@@ -4429,8 +4418,8 @@
           "emoji": "🔡"
         },
         {
-          "word": "feasts",
-          "image": "assets/P4/feasts.jpeg",
+          "word": "feast",
+          "image": "assets/P4/feast.jpeg",
           "emoji": "🔡"
         },
         {
@@ -4449,8 +4438,8 @@
           "emoji": "🔡"
         },
         {
-          "word": "scoops",
-          "image": "assets/P4/scoops.jpeg",
+          "word": "scoop",
+          "image": "assets/P4/scoop.jpeg",
           "emoji": "🔡"
         },
         {
@@ -5875,72 +5864,6 @@
           "emoji": "🔡"
         }
       ]
-    },
-    "august": {
-      "K1": [],
-      "K2": [],
-      "K3": [],
-      "P1": [],
-      "P2": [],
-      "P3": [],
-      "P4": [],
-      "P5": [],
-      "P6": []
-    },
-    "september": {
-      "K1": [],
-      "K2": [],
-      "K3": [],
-      "P1": [],
-      "P2": [],
-      "P3": [],
-      "P4": [],
-      "P5": [],
-      "P6": []
-    },
-    "november": {
-      "K1": [],
-      "K2": [],
-      "K3": [],
-      "P1": [],
-      "P2": [],
-      "P3": [],
-      "P4": [],
-      "P5": [],
-      "P6": []
-    },
-    "december": {
-      "K1": [],
-      "K2": [],
-      "K3": [],
-      "P1": [],
-      "P2": [],
-      "P3": [],
-      "P4": [],
-      "P5": [],
-      "P6": []
-    },
-    "january": {
-      "K1": [],
-      "K2": [],
-      "K3": [],
-      "P1": [],
-      "P2": [],
-      "P3": [],
-      "P4": [],
-      "P5": [],
-      "P6": []
-    },
-    "february": {
-      "K1": [],
-      "K2": [],
-      "K3": [],
-      "P1": [],
-      "P2": [],
-      "P3": [],
-      "P4": [],
-      "P5": [],
-      "P6": []
     }
   }
 }
