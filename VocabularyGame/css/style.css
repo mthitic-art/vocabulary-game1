@@ -623,31 +623,23 @@ footer{display:none}
 ══════════════════════════════════ */
 /* grid layout ตามจำนวนตัวเลือก */
 .word-opts.n2{grid-template-columns:1fr 1fr!important}
-.word-opts.n3{grid-template-columns:1fr 1fr 1fr!important}
 .word-opts.n4{grid-template-columns:1fr 1fr!important}
-.word-opts.n6{grid-template-columns:1fr 1fr 1fr!important}
 .word-opt{
   aspect-ratio:unset!important;
-  min-height:clamp(56px,14vw,80px);
+  min-height:clamp(60px,15vw,85px);
   display:flex!important;align-items:center;justify-content:center;
-  padding:clamp(10px,3vw,16px) clamp(8px,2.5vw,14px)!important;
-  border-radius:16px!important}
+  padding:clamp(12px,3.5vw,20px) clamp(14px,4vw,22px)!important;
+  border-radius:18px!important}
 .word-opt-label{
   font-family:'Baloo 2';font-weight:800;
-  font-size:clamp(1.1rem,4.2vw,1.7rem);
-  color:var(--ink);line-height:1.2;text-align:center;
+  font-size:clamp(1.3rem,5vw,2rem);
+  color:var(--ink);line-height:1.15;text-align:center;
   position:relative;z-index:1;
   text-shadow:0 1px 0 rgba(255,255,255,.5);
-  word-break:break-word}
-/* K1-K2 ตัวเลือกน้อย — ปุ่มใหญ่ขึ้น */
-.word-opts.n2 .word-opt{min-height:clamp(72px,18vw,100px)}
-.word-opts.n2 .word-opt-label{font-size:clamp(1.5rem,6vw,2.2rem)}
-/* K3 สามปุ่ม */
-.word-opts.n3 .word-opt-label{font-size:clamp(1.2rem,4.5vw,1.7rem)}
-/* P4-P6 หกปุ่ม — ขนาดกะทัดรัด */
-.word-opts.n6 .word-opt{min-height:clamp(50px,12vw,70px);
-  padding:clamp(8px,2vw,12px) clamp(6px,2vw,10px)!important}
-.word-opts.n6 .word-opt-label{font-size:clamp(.95rem,3.5vw,1.35rem)}
+  overflow-wrap:break-word;word-break:keep-all}
+/* K1-K2 ตัวเลือกน้อย — ปุ่มใหญ่ */
+.word-opts.n2 .word-opt{min-height:clamp(76px,20vw,110px)}
+.word-opts.n2 .word-opt-label{font-size:clamp(1.6rem,6.5vw,2.4rem)}
 /* highlight สีขอบเมื่อเลือก */
 .word-opt.right .word-opt-label{color:#2D6A0E}
 .word-opt.wrong .word-opt-label{color:#8B1A2E}
@@ -659,12 +651,14 @@ footer{display:none}
 .speak-hint .hint-label{font-family:'Baloo 2';font-weight:700;
   font-size:clamp(.72rem,2.2vw,.88rem);color:var(--sun)}
 
-@media(max-width:375px){
-  .word-opts.n3{grid-template-columns:1fr 1fr!important}
-}
 @media(min-width:768px){
+  .word-opts.n4{grid-template-columns:1fr 1fr!important}
+  .word-opt-label{font-size:1.6rem}
+}
+@media(min-width:1024px){
   .word-opts.n4{grid-template-columns:1fr 1fr 1fr 1fr!important}
-  .word-opts.n6{grid-template-columns:1fr 1fr 1fr!important}
+  .word-opt{padding:16px 20px!important}
+  .word-opt-label{font-size:1.8rem}
 }
 
 /* ══════════════════════════════════
