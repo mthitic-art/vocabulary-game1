@@ -653,12 +653,13 @@ footer{display:none}
 
 @media(min-width:768px){
   .word-opts.n4{grid-template-columns:1fr 1fr!important}
-  .word-opt-label{font-size:1.6rem}
+  .word-opt{min-height:80px;padding:14px 22px!important}
+  .word-opt-label{font-size:clamp(1.4rem,3vw,1.8rem)}
 }
-@media(min-width:1024px){
+@media(min-width:1280px){
   .word-opts.n4{grid-template-columns:1fr 1fr 1fr 1fr!important}
-  .word-opt{padding:16px 20px!important}
-  .word-opt-label{font-size:1.8rem}
+  .word-opt{padding:18px 24px!important}
+  .word-opt-label{font-size:1.6rem}
 }
 
 /* ══════════════════════════════════
