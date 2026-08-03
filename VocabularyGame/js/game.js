@@ -1533,12 +1533,20 @@ function detMarkStage(lv, stage){
   DB[detStageKey(lv, stage)] = true;
   Store.save(DB);
 }
-function detLevelCleared(lv){
+const DET_UNLOCK_NEED = 5; // ผ่านกี่ด่านถึงปลดล็อค Level ถัดไป
+function detClearedCount(lv){
   const total = detStages(lv).length;
-  for(let i=0; i<total; i++){
-    if(!detStagePassed(lv, i)) return false;
-  }
-  return total > 0;
+  let count = 0;
+  for(let i=0; i<total; i++){ if(detStagePassed(lv, i)) count++; }
+  return count;
+}
+function detLevelCleared(lv){
+  return detClearedCount(lv) >= Math.min(DET_UNLOCK_NEED, detStages(lv).length);
+}
+function detLevelComplete(lv){
+  // ผ่านครบทุกด่าน (สำหรับแสดง 🏆)
+  const total = detStages(lv).length;
+  return total > 0 && detClearedCount(lv) >= total;
 }
 function detUnlocked(lv){
   if(lv <= 1) return true;
@@ -1565,7 +1573,9 @@ function showDetectiveSelect(){
       <div class="det-name">${m.name}</div>
       <div class="det-info">${unlocked
         ? `${cleared}/${stages.length} stages · ${detWords(lv).length} words`
-        : '🔒 Clear Level '+(lv-1)+' first'}</div>
+      + (cleared < stages.length && cleared < DET_UNLOCK_NEED && lv < 5
+        ? `<br>🔓 ${DET_UNLOCK_NEED - cleared} more to unlock Level ${lv+1}` : '')
+        : '🔒 Pass '+DET_UNLOCK_NEED+' stages in Level '+(lv-1)+' first'}</div>
       ${unlocked && stages.length ? `<div class="det-prog-bar"><div class="det-prog-fill" style="width:${pct}%"></div></div>` : ''}
     </button>`;
   }
@@ -1582,7 +1592,7 @@ function showDetectiveSelect(){
   document.querySelectorAll('.det-card').forEach(c=>{
     c.onclick = ()=>{
       const lv = parseInt(c.dataset.lv);
-      if(!detUnlocked(lv)){ toast('🔒','Clear Level '+(lv-1)+' first!'); return; }
+      if(!detUnlocked(lv)){ toast('🔒','Pass '+DET_UNLOCK_NEED+' stages in Level '+(lv-1)+'!'); return; }
       showDetStageMap(lv);
     };
   });
@@ -1745,13 +1755,14 @@ function detFinish(){
   const stages = detStages(detLevel);
   const nextStage = detStage + 1;
   const hasNextStage = nextStage < stages.length;
-  const levelDone = detLevelCleared(detLevel);
+  const levelDone = detLevelComplete(detLevel);
+  const levelUnlocked = detLevelCleared(detLevel); // ปลดล็อค Level ถัดไปได้
 
   let btns = '';
   if(passed && hasNextStage){
     btns += `<button class="btn" onclick="startDetStage(${detLevel},${nextStage})">➡️ Stage ${nextStage+1}</button>`;
   }
-  if(passed && levelDone && detLevel < 5){
+  if(passed && levelUnlocked && detLevel < 5){
     btns += `<button class="btn" onclick="showDetStageMap(${detLevel+1})">🌟 Level ${detLevel+1}</button>`;
   }
   if(!passed){
@@ -1767,8 +1778,10 @@ function detFinish(){
     <div class="starline">${'⭐'.repeat(starsEarned) + '☆'.repeat(3-starsEarned)}</div>
     <div class="res">Score: ${detScore} / ${detQueue.length} · ${Math.round(pct*100)}%</div>
     <div class="res" style="font-size:.85em;color:var(--muted)">${
-      passed ? (levelDone ? '🎉 All '+stages.length+' stages cleared!'
-                          : 'Stage '+(detStage+1)+'/'+stages.length+' done · '+Math.round(stages.filter((_,i)=>detStagePassed(detLevel,i)).length/stages.length*100)+'%')
+      passed ? (levelDone ? '🎉 All '+stages.length+' stages cleared! 🏆'
+                          : 'Stage '+(detStage+1)+'/'+stages.length+' done'
+        + (levelUnlocked && !levelDone ? ' · 🔓 Level '+(detLevel+1)+' unlocked!' : '')
+        + (!levelUnlocked ? ' · '+DET_UNLOCK_NEED+' stages to unlock next' : ''))
              : 'Need 70% to pass'}</div>
     ${btns}
   </div>`;
