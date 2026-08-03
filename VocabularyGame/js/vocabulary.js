@@ -44,9 +44,11 @@ async function loadVocabulary(path = "data/vocabulary.json") {
     LEVELS.forEach(lv => { vocabMonths.june[lv] = Array.isArray(json[lv]) ? json[lv] : []; });
   }
 
-  // default month = latest month that has data
+  // default month = June (เปิดมาเจอ June เสมอ) แล้วเด็กค่อยกดเลือกเดือนอื่นเอง
+  // ถ้าด้วยเหตุใด June ไม่มีข้อมูล ให้ fallback ไปเดือนแรกที่มีข้อมูล
   const avail = ALL_MONTHS.filter(m => monthHasData(m.key));
-  MONTH = avail.length ? avail[avail.length-1].key : "june";
+  MONTH = monthHasData("june") ? "june"
+        : (avail.length ? avail[0].key : "june");
   return true;
 }
 
