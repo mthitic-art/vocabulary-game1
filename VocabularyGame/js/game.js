@@ -71,23 +71,40 @@ function pic(lv, w, cls){
   return `<div class="${cls}" role="img" aria-label="${w}"><span>${emo}</span></div>`;
 }
 
+/* การ์ด "คำ" — ใช้แทนรูปเมื่อคำนั้นยังไม่มีภาพและไม่มี emoji
+   (เดิมจะขึ้นเป็นวงกลม "?" เหมือนกันหมดจนตอบไม่ได้) */
+function wordTile(w, cls){
+  return `<div class="${cls} wordtile"><span>${w}</span></div>`;
+}
+
 /* Preload ภาพล่วงหน้า — เรียกตอนเริ่มเล่นแต่ละระดับ
    ทำให้ภาพขึ้นทันทีไม่ต้องรอโหลดทีละข้อ */
 const _preloadedLevels = {};
+const _preloadedImgs = new Set();
+
+/* โหลดภาพชุดที่กำลังจะใช้จริง (คิวของรอบนั้น) — ไม่กี่ภาพ ไม่กินเน็ต */
+function preloadWords(lv, words, cap){
+  try{
+    (words||[]).slice(0, cap || 12).forEach(w=>{
+      const e = entryOf(lv, w);
+      if (e && e.image && !_preloadedImgs.has(e.image)){
+        _preloadedImgs.add(e.image);
+        const img = new Image(); img.src = e.image;
+      }
+    });
+  }catch(err){ /* preload ล้มเหลวไม่กระทบการเล่น */ }
+}
+
+/* โหลดล่วงหน้าตอนกดเลือกระดับ — จำกัดจำนวนไว้
+   สำคัญ: ภาพจริงไฟล์ละ 200-800KB ถ้าโหลดทั้งระดับ (P1 = 147 ภาพ)
+   จะกินเน็ตเกิน 50 MB ต่อการกดหนึ่งครั้ง เด็กที่ใช้เน็ตมือถือจะเดือดร้อน
+   จึงโหลดแค่ชุดแรกพอให้การ์ดใบต้น ๆ ขึ้นทันที ที่เหลือโหลดตอนใช้จริง */
+const PRELOAD_CAP = 12;
 function preloadLevelImages(lv){
   const ck = (typeof MONTH!=='undefined'?MONTH:'') + '::' + lv;
   if(_preloadedLevels[ck]) return;
   _preloadedLevels[ck] = true;
-  try{
-    const words = wordsOf(lv);
-    words.forEach(w=>{
-      const e = entryOf(lv, w);
-      if(e && e.image){
-        const img = new Image();
-        img.src = e.image;   // browser cache ไว้ล่วงหน้า
-      }
-    });
-  }catch(err){ /* เงียบไว้ ถ้า preload ไม่ได้ก็ไม่เป็นไร */ }
+  preloadWords(lv, wordsOf(lv), PRELOAD_CAP);
 }
 
 /* ผูก fallback ให้ <img class="autoimg"> ทุกตัวที่ยังไม่ได้ผูก
@@ -400,6 +417,7 @@ function startQuizLesson(lessonIdx){
   score = 0; qi = 0;
   currentLesson = lessonIdx;
   queue = shuffle(lessonWords.slice()); total = queue.length;
+  preloadWords(LV, queue);
   showScreen(); setScore(); nextQuiz();
 }
 let currentLesson = 0;
@@ -422,6 +440,7 @@ function startQuiz(useReview){
     setProg(100); return;
   }
   queue = shuffle(pool).slice(0,10); total = queue.length;
+  preloadWords(LV, queue);
   showScreen(); setScore(); nextQuiz();
 }
 function nextQuiz(){
@@ -430,10 +449,18 @@ function nextQuiz(){
   setProg(qi/total*100);
   const word = queue[qi];
   const n = CHOICES[LV] || 4;
-  const wrongs = shuffle(wordsFiltered(LV).filter(w=>w!==word)).slice(0, n-1);
+  // เลือกตัวลวงที่ "มีภาพ/emoji" ก่อนเสมอ ถ้าคำถามนี้เล่นแบบภาพได้
+  const pool = wordsFiltered(LV).filter(w=>w!==word);
+  const visPool = pool.filter(w=>hasVisual(LV,w));
+  const usePics = hasVisual(LV, word) && visPool.length >= n-1;
+  const wrongs = shuffle(usePics ? visPool : pool).slice(0, n-1);
   const choices = shuffle([word, ...wrongs]);
+  /* ถ้ายังไม่มีรูปครบ → สลับเป็น "โหมดฟังแล้วเลือกคำ" อัตโนมัติ
+     (คำนามธรรมของ P4-P6 ไม่มี emoji ที่สื่อได้อยู่แล้ว โหมดนี้เหมาะกว่า) */
+  const textMode = !usePics;
   // K1-K2: ไม่แสดงคำ เน้นฟัง / K3-P6: แสดงคำ + เสียง
-  const showWord = !['K1','K2'].includes(LV);
+  // โหมดการ์ดคำต้องไม่โชว์คำถาม ไม่งั้นเฉลยเอง
+  const showWord = !['K1','K2'].includes(LV) && !textMode;
   // K1-K3: มีปุ่มเสียงไทยกำกับช่วยให้เด็กเข้าใจความหมาย
   const thaiWord = thaiOf(LV, word);
   const hasThaiBtn = ['K1','K2','K3'].includes(LV) && thaiWord;
@@ -449,14 +476,14 @@ function nextQuiz(){
       </div>
       ${showWord
         ? `<div class="wordbox-pill"><span class="word-display">${word}</span></div>`
-        : `<p class="hint">Listen, then tap the right picture${reviewMode?' · Review':''}` }
+        : `<p class="hint">Listen, then tap the right ${textMode?'word':'picture'}${reviewMode?' · Review':''}` }
     </div>
     <div class="opts n${n}" id="opts" role="group" aria-label="Answer choices">
       ${choices.map((c,i)=>`
-        <button class="opt" data-w="${c}" tabindex="0" aria-label="${c}"
+        <button class="opt" data-w="${c}" tabindex="0" aria-label="Choice ${LABELS[i]}"
           style="--card-border:${BORDER_COLORS[i%BORDER_COLORS.length]}">
           <span class="opt-label">${LABELS[i]}</span>
-          ${pic(LV,c,'oimg')}
+          ${textMode ? wordTile(c,'oimg') : pic(LV,c,'oimg')}
         </button>`).join('')}
     </div>
     <div class="fb" id="fb" aria-live="assertive"></div>`;
@@ -504,6 +531,7 @@ function choose(el, word, advance){
    ============================================================ */
 function startFlash(){
   MODE = "flashcard"; queue = shuffle(SRS.pickWeighted(LV, wordsFiltered(LV).length, wordsFiltered(LV))); qi = 0;
+  preloadWords(LV, queue);
   showScreen(); renderFlash();
 }
 function renderFlash(){
@@ -524,8 +552,11 @@ function renderFlash(){
     </div>`;
   const fi = $('#fi');
   wireImgFallback();
+  /* Flashcards = โหมด "ดูเพื่อเรียน" ไม่ใช่การวัดผล
+     เดิมพลิกการ์ดแล้วบันทึกว่า "ตอบถูก" ทำให้คำหลุดจากรายการคำผิด
+     และ Review Words ว่างเปล่า → ตอนนี้ไม่บันทึกคะแนนจากการพลิกการ์ดแล้ว */
   fi.onclick = () => { fi.classList.toggle('flip');
-    if (fi.classList.contains('flip')){ Audio2.speak(w); SRS.record(LV, w, true); } };
+    if (fi.classList.contains('flip')){ Audio2.speak(w); } };
   fi.onkeydown = e => { if (e.key==='Enter'||e.key===' '){ e.preventDefault(); fi.click(); } };
   $('#fsp').onclick = e => { e.stopPropagation(); Audio2.speak(w); };
   $('#fprev').onclick = () => { if (qi>0){ qi--; renderFlash(); } };
@@ -615,6 +646,7 @@ function startBattle(stageIdx){
   // stage (3 correct on stages 1-5, 4 correct on stages 6-10).
   monMax = passMark(stageIdx); monHP = monMax;
   queue = shuffle(SRS.pickWeighted(LV, ADV_WORDS_PER, wordsFiltered(LV)));
+  preloadWords(LV, queue);
   nextBattleWord();
 }
 
@@ -644,6 +676,8 @@ function nextBattleWord(){
   const word = queue[qi]; const n = CHOICES[LV] || 4;
   const wrongs = shuffle(wordsFiltered(LV).filter(w=>w!==word)).slice(0, n-1);
   const choices = shuffle([word, ...wrongs]);
+  // คำที่ยังไม่มีภาพ → เปลี่ยนโจทย์เป็น "ฟังเสียงแล้วเลือกคำ" แทนการ์ด "?"
+  const vis = hasVisual(LV, word);
   $('#score').textContent = '⚔️ Stage ' + (advStage+1) + '/' + ADV_STAGES;
 
   /* ── REVERSE QUIZ ──────────────────────────────────────────
@@ -653,9 +687,9 @@ function nextBattleWord(){
   const BORDER_COLORS = ['#F5A300','#1FA39A','#E84A5F','#7B3FC4','#4E9A2E','#185FA5'];
   $('#play').innerHTML = battleBar() + `
     <div class="prompt">
-      ${pic(LV, word, 'wordimg')}
-      <button class="speak speak-hint" id="sp" aria-label="Hint: play sound">🔊 <span class="hint-label">Hint</span></button>
-      <p class="hint">What is this? · นี่คืออะไร?</p>
+      ${vis ? pic(LV, word, 'wordimg') : `<div class="wordimg listen-card"><span>🔊</span></div>`}
+      <button class="speak speak-hint" id="sp" aria-label="Hint: play sound">🔊 <span class="hint-label">${vis?'Hint':'Play'}</span></button>
+      <p class="hint">${vis ? 'What is this? · นี่คืออะไร?' : 'Listen, then pick the word · ฟังแล้วเลือกคำ'}</p>
     </div>
     <div class="opts n${n} word-opts" role="group">
       ${choices.map((c,i)=>`
@@ -666,7 +700,8 @@ function nextBattleWord(){
     </div>
     <div class="fb" id="fb" aria-live="assertive"></div>`;
   $('#sp').onclick = () => Audio2.speak(word);
-  /* ไม่มี auto-play — เด็กต้องดูภาพก่อน กด hint ถ้าไม่แน่ใจ */
+  /* มีภาพ → ไม่ auto-play (ให้ดูภาพก่อน) / ไม่มีภาพ → ต้องเล่นเสียงให้ ไม่งั้นตอบไม่ได้ */
+  if (!vis) setTimeout(()=>{ if (MODE==='adventure' && inActiveGame) Audio2.speak(word); }, 350);
   wireImgFallback();
   const opts=[...document.querySelectorAll('.opt')];
   opts.forEach((o,idx)=>{
@@ -708,6 +743,9 @@ function battleEnd(){
   Gamify.recordRound("adventure", LV, score, total); afterRound();
 
   if (passed){
+    // ให้ดาวจริงตามที่การ์ดผลลัพธ์แจ้งไว้ (+score ⭐)
+    Gamify.addStars(score);
+    refreshChips();
     // Unlock the next stage for THIS grade.
     setClearedStages(advStage+1);
     FX.confetti(isBoss?200:90); Audio2.win();
@@ -742,10 +780,23 @@ function battleEnd(){
 /* ============================================================
    MODE 4 · MEMORY MATCH — pair word card with picture card
    ============================================================ */
-let memFlipped = [], memLock = false, memPairs = 0;
+let memFlipped = [], memLock = false, memPairs = 0, memMiss = 0, memMissed = null;
 function startMemory(){
   MODE = "memory"; inActiveGame = true; memFlipped = []; memLock = false;
-  const pool = shuffle(SRS.pickWeighted(LV, 6, wordsFiltered(LV))); memPairs = pool.length;
+  memMiss = 0; memMissed = new Set();   // คำที่เคยจับผิดในรอบนี้
+  // Memory ต้องใช้ "รูป" จับคู่ → ใช้เฉพาะคำที่มีภาพหรือ emoji
+  const source = visualWords(LV);
+  if (source.length < 3){
+    showScreen();
+    $('#play').innerHTML = `<div class="done"><div class="trophy">🖼️</div>
+      <h2>ยังเล่นไม่ได้</h2>
+      <p class="res">ชุดคำนี้ยังไม่มีรูปภาพพอสำหรับเกมจับคู่<br>ลองเลือกเดือนหรือระดับอื่นดูนะ</p>
+      <button class="btn alt" onclick="goHome()">🏠 Home</button></div>`;
+    inActiveGame = false;
+    return;
+  }
+  const pool = shuffle(SRS.pickWeighted(LV, 6, source)); memPairs = pool.length;
+  preloadWords(LV, pool);
   let deck = [];
   pool.forEach(w => { deck.push({w,type:'word'}); deck.push({w,type:'pic'}); });
   deck = shuffle(deck);
@@ -777,16 +828,27 @@ function memTap(el){
     memLock = true;
     const [a,b] = memFlipped;
     if (a.dataset.w === b.dataset.w && a.dataset.i !== b.dataset.i){
-      SRS.record(LV, a.dataset.w, true);   // จับคู่ถูก = learned + correct
+      // จับคู่ถูก "ตั้งแต่ครั้งแรก" = ตอบถูกจริง
+      // ถ้าเคยจับผิดคำนี้มาก่อนในรอบนี้ ไม่ถือว่าถูก (คำจะยังอยู่ในรายการทวน)
+      if (!memMissed.has(a.dataset.w)) SRS.record(LV, a.dataset.w, true);
       setTimeout(()=>{
         a.classList.add('done'); b.classList.add('done'); Audio2.good();
         const r = a.getBoundingClientRect(); FX.star(r.left+r.width/2, r.top);
         memFlipped = []; memLock = false;
         const done = document.querySelectorAll('.memcard.done').length/2;
         $('#score').textContent = '🧠 ' + done + '/' + memPairs; setProg(done/memPairs*100);
-        if (done >= memPairs){ score = memPairs; total = memPairs; setTimeout(()=>finishRound(),500); }
+        // คะแนนจริง = จำนวนคู่ ลบด้วยจำนวนครั้งที่จับผิด (ไม่ต่ำกว่า 0)
+        if (done >= memPairs){
+          score = Math.max(0, memPairs - memMiss); total = memPairs;
+          setTimeout(()=>finishRound(),500);
+        }
       },420);
     } else {
+      // จับคู่ผิด = ตอบผิดจริง → บันทึกเข้า SRS เพื่อให้โหมด Review ใช้งานได้
+      memMiss++;
+      memMissed.add(a.dataset.w); memMissed.add(b.dataset.w);
+      SRS.record(LV, a.dataset.w, false);
+      if (b.dataset.w !== a.dataset.w) SRS.record(LV, b.dataset.w, false);
       Audio2.bad();
       setTimeout(()=>{ a.classList.remove('flip'); b.classList.remove('flip'); memFlipped=[]; memLock=false; },800);
     }
@@ -857,6 +919,7 @@ function spellWordsForStage(stageIdx){
 function startSpellBattle(idx){
   spellStage=idx; spellScore=0; spellQi=0; spellHearts=3;
   spellQueue = spellWordsForStage(idx);
+  preloadWords(LV, spellQueue);
   nextSpellWord();
 }
 
@@ -956,6 +1019,9 @@ function spellBattleEnd(){
   const passed=spellScore>=need;
   Gamify.recordRound("spelling",LV,spellScore,SPELL_PER); afterRound();
   if(passed){
+    // ให้ดาวจริงตามที่การ์ดผลลัพธ์แจ้งไว้ (+spellScore ⭐)
+    Gamify.addStars(spellScore);
+    refreshChips();
     setSpellCleared(spellStage+1);
     FX.confetti(isBoss?200:90); Audio2.win();
     const wasLast=spellStage>=SPELL_STAGES-1;

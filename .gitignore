@@ -1,0 +1,12 @@
+# ── ไฟล์ระบบ Windows ──
+desktop.ini
+Thumbs.db
+.DS_Store
+
+# ── ไฟล์ชั่วคราวของ Python ──
+__pycache__/
+*.pyc
+
+# ── ไฟล์สำรอง / ไฟล์รอลบ ──
+*.bak
+_to_delete/

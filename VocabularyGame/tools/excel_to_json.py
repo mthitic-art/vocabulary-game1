@@ -22,11 +22,15 @@ Usage
     python tools/excel_to_json.py Summary_Vocabulary.xlsx data/vocabulary.json --split
 """
 
+import os
 import sys
 import json
 import argparse
 import datetime
 from openpyxl import load_workbook
+
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from emoji_map import emoji_for   # noqa: E402  คลัง emoji สำรอง (tools/emoji_map.py)
 
 LEVELS = ["K1", "K2", "K3", "P1", "P2", "P3", "P4", "P5", "P6"]
 
@@ -178,6 +182,50 @@ def slug(word: str) -> str:
     )
 
 
+# ── ค้นหาไฟล์ภาพ "ของจริง" แทนการเดานามสกุล ──────────────────────────
+# เดิมโค้ดเขียน .png ตายตัว แต่ไฟล์จริงเป็น .jpeg เกือบทั้งหมด
+# ทำให้เบราว์เซอร์ต้องยิง 404 ทิ้งก่อนทุกภาพ และ preload ใช้ไม่ได้เลย
+IMG_EXTS_PREFERRED = (".webp", ".jpeg", ".jpg", ".png", ".avif", ".gif")
+_ASSET_INDEX = None
+
+
+def _assets_root(out_path: str) -> str:
+    """assets/ อยู่ระดับเดียวกับ data/vocabulary.json"""
+    return os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(out_path))), "assets")
+
+
+def build_asset_index(assets_dir: str) -> dict:
+    """{'K1': {'apple': 'assets/K1/apple.jpeg', ...}, ...}"""
+    index = {}
+    if not os.path.isdir(assets_dir):
+        print(f"  !  ไม่พบโฟลเดอร์ {assets_dir} — จะไม่ใส่ image ให้คำใดเลย")
+        return index
+    for level in sorted(os.listdir(assets_dir)):
+        ldir = os.path.join(assets_dir, level)
+        if not os.path.isdir(ldir):
+            continue
+        found = {}
+        for fname in os.listdir(ldir):
+            base, ext = os.path.splitext(fname)
+            ext = ext.lower()
+            if ext not in IMG_EXTS_PREFERRED:
+                continue
+            key = base.lower()
+            prev = found.get(key)
+            if prev is None or IMG_EXTS_PREFERRED.index(ext) < IMG_EXTS_PREFERRED.index(
+                    os.path.splitext(prev)[1].lower()):
+                found[key] = f"assets/{level}/{fname}"
+        index[level] = found
+    return index
+
+
+def image_for(level: str, word: str):
+    """คืน path ของไฟล์ภาพจริง หรือ None ถ้ายังไม่มีไฟล์"""
+    if _ASSET_INDEX is None:
+        return None
+    return _ASSET_INDEX.get(level, {}).get(slug(word).lower())
+
+
 def looks_like_note(word: str) -> bool:
     """Teacher notes sometimes sit in the word columns. Filter them out.
 
@@ -237,6 +285,12 @@ def read_sheet(ws):
 
 
 def convert(xlsx_path, out_path, months=None, split=False):
+    global _ASSET_INDEX
+    assets_dir = _assets_root(out_path)
+    _ASSET_INDEX = build_asset_index(assets_dir)
+    print("  ภาพที่พบจริงในโฟลเดอร์ assets:",
+          {k: len(v) for k, v in sorted(_ASSET_INDEX.items())})
+
     wb = load_workbook(xlsx_path, read_only=True, data_only=True)
 
     sheets = months or wb.sheetnames
@@ -284,14 +338,17 @@ def convert(xlsx_path, out_path, months=None, split=False):
                         "word": w,
                         "month": mname,
                         "months": [mname],
-                        "image": f"assets/{lv}/{slug(w)}.png",
                     }
+                    # ใส่ image เฉพาะเมื่อมีไฟล์จริงเท่านั้น
+                    real_img = image_for(lv, w)
+                    if real_img:
+                        item["image"] = real_img
                     if entry["subject"]:
                         item["subject"] = entry["subject"]      # first seen (legacy field)
                         item["subjects"] = [entry["subject"]]
                     else:
                         item["subjects"] = []
-                    em = EMOJI.get(key)
+                    em = EMOJI.get(key) or emoji_for(w)
                     if em:
                         item["emoji"] = em
                     seen[key] = item

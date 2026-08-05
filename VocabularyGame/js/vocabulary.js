@@ -14,6 +14,7 @@ const ALL_MONTHS = [
   { key:"july",      label:"Jul" },
   { key:"august",    label:"Aug" },
   { key:"september", label:"Sep" },
+  { key:"october",   label:"Oct" },
   { key:"november",  label:"Nov" },
   { key:"december",  label:"Dec" },
   { key:"january",   label:"Jan" },
@@ -74,6 +75,18 @@ function wordsOf(lv)   { return levelData(lv).map(e => e.word); }
 function entryOf(lv, w){ return levelData(lv).find(e => e.word === w) || { word:w }; }
 function emojiOf(lv, w){ const e = entryOf(lv, w); return e.emoji || "🔡"; }
 function hasLevelWords(lv){ return levelData(lv).length > 0; }
+
+/* คำนี้มี "ภาพหรือ emoji" ให้เด็กดูหรือไม่
+   ตั้งแต่รอบซ่อมข้อมูล (tools/fix_vocabulary.py) ฟิลด์ image จะมีก็ต่อเมื่อ
+   ไฟล์ภาพมีอยู่จริงเท่านั้น → เช็คแค่นี้ก็เชื่อถือได้ ไม่ต้องรอ onerror */
+function hasVisual(lv, w){
+  const e = entryOf(lv, w);
+  return !!(e && (e.image || e.emoji));
+}
+/* คำที่มีภาพ/emoji เท่านั้น — ใช้กับโหมดที่ "ต้องมีรูป" เช่น Memory */
+function visualWords(lv, list){
+  return (list || wordsFiltered(lv)).filter(w => hasVisual(lv, w));
+}
 
 /* Subject filter — only P1 has subjects. */
 let SUBJECT_FILTER = "All";
