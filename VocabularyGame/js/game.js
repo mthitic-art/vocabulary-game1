@@ -145,9 +145,6 @@ function toast(emoji, msg){
 }
 
 /* ---------- HUD chips + hero + stats ---------- */
-const CEFR_MAP = { K1:"Pre A1", K2:"Pre A1", K3:"A1",
-                   P1:"A1", P2:"A1+", P3:"A1-A2", P4:"A2", P5:"A2+", P6:"A2-B1" };
-
 function refreshChips(){
   document.getElementById('streakChip').textContent = DB.streak;
   document.getElementById('starChip').textContent  = DB.stars;
@@ -166,7 +163,7 @@ function refreshLocks(){ /* levels never locked */ }
 function refreshHero(){
   /* CEFR badge ตามระดับที่เลือก */
   const cefrEl = document.getElementById('heroCefr');
-  if(cefrEl) cefrEl.textContent = 'CEFR ' + (CEFR_MAP[LV] || 'Pre A1');
+  if(cefrEl) cefrEl.textContent = 'CEFR ' + levelCefrLabel(LV);
 
   /* Words mastered ของ LV ปัจจุบัน
      - learned = เคยเจอคำ (seen>=1)
@@ -1189,7 +1186,11 @@ function buildMonthPills(){
       b.classList.add('on'); b.setAttribute('aria-selected','true');
       SUBJECT_FILTER = "All";
       updateSubjectBar();
-      refreshHero();               // อัปเดต progress ของเดือนใหม่
+      document.querySelectorAll('#levels .pill').forEach(p=>{
+        const tag = p.querySelector('.cefr-tag');
+        if(tag) tag.textContent = levelCefrLabel(p.dataset.lv);
+      });
+      refreshHero();               // อัปเดต progress + CEFR ของเดือนใหม่
       preloadLevelImages(LV);      // โหลดภาพเดือน/ระดับใหม่
     };
   });
@@ -1201,7 +1202,7 @@ function buildLevelPills(){
     const on = i===0 ? 'on' : '';
     const sel = i===0 ? 'true' : 'false';
     return `<button class="pill ${on}" data-lv="${lv}" role="tab" aria-selected="${sel}">
-      ${lv}<span class="cefr-tag">${CEFR_MAP[lv]||''}</span></button>`;
+      ${lv}<span class="cefr-tag">${levelCefrLabel(lv)}</span></button>`;
   }).join('');
   box.querySelectorAll('.pill').forEach(b=> b.onclick = () => pickLevel(b));
 }

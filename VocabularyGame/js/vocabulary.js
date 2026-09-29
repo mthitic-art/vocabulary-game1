@@ -9,7 +9,6 @@
 // All months in the school year, in display order.
 // Months not present in the JSON are shown locked ("Coming soon").
 const ALL_MONTHS = [
-  { key:"may",       label:"May" },
   { key:"june",      label:"Jun" },
   { key:"july",      label:"Jul" },
   { key:"august",    label:"Aug" },
@@ -19,6 +18,9 @@ const ALL_MONTHS = [
   { key:"december",  label:"Dec" },
   { key:"january",   label:"Jan" },
   { key:"february",  label:"Feb" },
+  { key:"march",     label:"Mar" },
+  { key:"april",     label:"Apr" },
+  { key:"may",       label:"May" },
 ];
 
 let vocabMonths = {};                 // { june: {K1:[...]}, ... }
@@ -28,6 +30,24 @@ let MONTH = "";                       // currently selected month key
 const CHOICES = { K1:2, K2:4, K3:4, P1:4, P2:4, P3:4, P4:4, P5:4, P6:4 };
 const LEVELS = ["K1","K2","K3","P1","P2","P3","P4","P5","P6"];
 const UNLOCK_ORDER = LEVELS;
+
+// Standard CEFR bands supported by the data model.
+// Current grade defaults are intentionally conservative and can be overridden
+// per word by adding `cefr` in vocabulary.json / the source spreadsheet pipeline.
+const CEFR_BANDS = ["Pre-A1","A1","A2","B1","B2"];
+const LEVEL_CEFR_DEFAULT = {
+  K1:"Pre-A1", K2:"Pre-A1", K3:"A1",
+  P1:"A1", P2:"A1", P3:"A2", P4:"A2", P5:"B1", P6:"B1"
+};
+function cefrOf(lv, w){
+  const e = entryOf(lv, w);
+  return (e && e.cefr) || LEVEL_CEFR_DEFAULT[lv] || "Pre-A1";
+}
+function levelCefrLabel(lv){
+  const vals = [...new Set(levelData(lv).map(e=>e.cefr).filter(Boolean))];
+  if(vals.length === 1) return vals[0];
+  return LEVEL_CEFR_DEFAULT[lv] || "Pre-A1";
+}
 
 async function loadVocabulary(path = "data/vocabulary.json") {
   // cache-bust รายวัน: JSON อัปเดตทุกเดือน ไม่ให้ browser จำตัวเก่าค้าง

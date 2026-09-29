@@ -33,6 +33,32 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from emoji_map import emoji_for   # noqa: E402  คลัง emoji สำรอง (tools/emoji_map.py)
 
 LEVELS = ["K1", "K2", "K3", "P1", "P2", "P3", "P4", "P5", "P6"]
+SCHOOL_YEAR_MONTHS = [
+    "june", "july", "august", "september", "october", "november",
+    "december", "january", "february", "march", "april", "may",
+]
+CEFR_BANDS = ["Pre-A1", "A1", "A2", "B1", "B2"]
+LEVEL_CEFR_DEFAULT = {
+    "K1": "Pre-A1", "K2": "Pre-A1", "K3": "A1",
+    "P1": "A1", "P2": "A1", "P3": "A2", "P4": "A2", "P5": "B1", "P6": "B1",
+}
+MONTH_ALIASES = {
+    "jun": "june", "june": "june",
+    "jul": "july", "july": "july",
+    "aug": "august", "august": "august",
+    "sep": "september", "sept": "september", "september": "september",
+    "oct": "october", "october": "october",
+    "nov": "november", "november": "november",
+    "dec": "december", "december": "december",
+    "jan": "january", "january": "january",
+    "feb": "february", "february": "february",
+    "mar": "march", "march": "march",
+    "apr": "april", "april": "april",
+    "may": "may",
+}
+
+def normalize_month(name: str):
+    return MONTH_ALIASES.get(str(name).strip().lower())
 
 # ─────────────────────────────────────────────────────────────
 #  Emoji fallback — used when assets/<LEVEL>/<word>.png is absent.
@@ -285,6 +311,12 @@ def read_sheet(ws):
 
 
 def convert(xlsx_path, out_path, months=None, split=False):
+    """Build the app's canonical multi-month JSON shape.
+
+    Source-of-truth rule: only spreadsheet sheets that actually contain words
+    become available months. The remaining school-year months are emitted as
+    empty level collections so the UI/schema is complete without inventing data.
+    """
     global _ASSET_INDEX
     assets_dir = _assets_root(out_path)
     _ASSET_INDEX = build_asset_index(assets_dir)
@@ -292,104 +324,127 @@ def convert(xlsx_path, out_path, months=None, split=False):
           {k: len(v) for k, v in sorted(_ASSET_INDEX.items())})
 
     wb = load_workbook(xlsx_path, read_only=True, data_only=True)
-
-    sheets = months or wb.sheetnames
+    requested = months or wb.sheetnames
     per_month = {}
-    for name in sheets:
-        if name not in wb.sheetnames:
-            print(f"  !  sheet '{name}' not found — skipped")
+
+    for sheet_name in requested:
+        if sheet_name not in wb.sheetnames:
+            print(f"  !  sheet '{sheet_name}' not found — skipped")
             continue
-        data, notes = read_sheet(wb[name])
+        month_key = normalize_month(sheet_name)
+        if not month_key:
+            print(f"  ·  {sheet_name}: not a school-year month — skipped")
+            continue
+        data, notes = read_sheet(wb[sheet_name])
         total = sum(len(v) for v in data.values())
         if total == 0:
-            print(f"  ·  {name}: no vocabulary — skipped"
-                  + (f"  (notes only: {notes[0]})" if notes else ""))
+            print(f"  ·  {sheet_name}: no vocabulary — skipped")
             continue
-        per_month[name] = data
-        print(f"  ✓  {name}: {total} words"
+        per_month[month_key] = data
+        print(f"  ✓  {sheet_name} → {month_key}: {total} words"
               + (f"   [{len(notes)} note cell(s) ignored]" if notes else ""))
 
     if not per_month:
-        sys.exit("No sheets with data found.")
+        sys.exit("No month sheets with vocabulary data found.")
 
-    def build(month_slice, month_label):
-        result = {}
-        counts = {}
-        dupes = []
+    months_out = {}
+    counts = {lv: 0 for lv in LEVELS}
+    total_words = 0
+    no_visual = 0
+    duplicates = []
+
+    for month_key in SCHOOL_YEAR_MONTHS:
+        src = per_month.get(month_key, {lv: [] for lv in LEVELS})
+        month_obj = {}
         for lv in LEVELS:
             seen = {}
             items = []
-            for mname, data in month_slice.items():
-                for entry in data.get(lv, []):
-                    w = entry["word"]
-                    key = w.lower()
-                    if key in seen:
-                        # Same word again. Keep one entry (so a quiz never
-                        # shows the word twice) but remember every subject and
-                        # month it belongs to, so filters stay accurate.
-                        prev = seen[key]
-                        if entry["subject"] and entry["subject"] not in prev["subjects"]:
-                            prev["subjects"].append(entry["subject"])
-                        if mname not in prev["months"]:
-                            prev["months"].append(mname)
-                        dupes.append(f"{lv}/{w}")
-                        continue
-                    item = {
-                        "word": w,
-                        "month": mname,
-                        "months": [mname],
-                    }
-                    # ใส่ image เฉพาะเมื่อมีไฟล์จริงเท่านั้น
-                    real_img = image_for(lv, w)
-                    if real_img:
-                        item["image"] = real_img
-                    if entry["subject"]:
-                        item["subject"] = entry["subject"]      # first seen (legacy field)
-                        item["subjects"] = [entry["subject"]]
-                    else:
-                        item["subjects"] = []
-                    em = EMOJI.get(key) or emoji_for(w)
-                    if em:
-                        item["emoji"] = em
-                    seen[key] = item
-                    items.append(item)
-            result[lv] = items
-            counts[lv] = len(items)
+            for entry in src.get(lv, []):
+                w = entry["word"]
+                key = w.lower()
+                if key in seen:
+                    prev = seen[key]
+                    if entry["subject"] and entry["subject"] not in prev["subjects"]:
+                        prev["subjects"].append(entry["subject"])
+                    duplicates.append(f"{month_key}/{lv}/{w}")
+                    continue
 
-        result["_meta"] = {
-            "month": month_label,
-            "months": list(month_slice.keys()),
+                item = {
+                    "word": w,
+                    "subjects": [entry["subject"]] if entry["subject"] else [],
+                    "cefr": LEVEL_CEFR_DEFAULT[lv],
+                }
+                if entry["subject"]:
+                    item["subject"] = entry["subject"]
+
+                real_img = image_for(lv, w)
+                if real_img:
+                    item["image"] = real_img
+                em = EMOJI.get(key) or emoji_for(w)
+                if em:
+                    item["emoji"] = em
+                if not real_img and not em:
+                    no_visual += 1
+
+                seen[key] = item
+                items.append(item)
+
+            month_obj[lv] = items
+            counts[lv] += len(items)
+            total_words += len(items)
+        months_out[month_key] = month_obj
+
+    available = [
+        m for m in SCHOOL_YEAR_MONTHS
+        if any(months_out[m][lv] for lv in LEVELS)
+    ]
+
+    result = {
+        "_meta": {
+            "schema_version": 3,
+            "months": available,
+            "months_available": available,
+            "school_year_months": SCHOOL_YEAR_MONTHS,
             "levels": LEVELS,
             "counts": counts,
-            "total": sum(counts.values()),
-            "source": xlsx_path.split("/")[-1],
+            "total": total_words,
+            "source": os.path.basename(xlsx_path),
             "generated": datetime.date.today().isoformat(),
-        }
-        return result, dupes
+            "structure": "multi-month",
+            "assets_verified": True,
+            "no_visual_count": no_visual,
+            "cefr_bands": CEFR_BANDS,
+            "cefr_default_by_level": LEVEL_CEFR_DEFAULT,
+            "full_year_ready": True,
+            "full_year_content_complete": len(available) == len(SCHOOL_YEAR_MONTHS),
+        },
+        "months": months_out,
+    }
+
+    with open(out_path, "w", encoding="utf-8") as f:
+        json.dump(result, f, ensure_ascii=False, indent=1)
+        f.write("\n")
 
     if split:
         base = out_path.rsplit(".", 1)[0]
-        for mname, data in per_month.items():
-            res, _ = build({mname: data}, mname)
-            p = f"{base}_{mname.lower()}.json"
+        for m in available:
+            one = {
+                "_meta": dict(result["_meta"], months=[m], months_available=[m]),
+                "months": {m: months_out[m]},
+            }
+            p = f"{base}_{m}.json"
             with open(p, "w", encoding="utf-8") as f:
-                json.dump(res, f, ensure_ascii=False, indent=1)
-            print(f"  →  {p}  ({res['_meta']['total']} words)")
-
-    label = " + ".join(per_month.keys())
-    result, dupes = build(per_month, label)
-    with open(out_path, "w", encoding="utf-8") as f:
-        json.dump(result, f, ensure_ascii=False, indent=1)
+                json.dump(one, f, ensure_ascii=False, indent=1)
+                f.write("\n")
+            print(f"  →  {p}")
 
     print(f"\n  →  {out_path}")
-    print(f"     {result['_meta']['total']} words  ·  " +
-          "  ".join(f"{k}:{v}" for k, v in result["_meta"]["counts"].items()))
-    missing = sum(1 for lv in ("K1", "K2", "K3")
-                  for it in result[lv] if "emoji" not in it)
-    print(f"     kindergarten words without emoji fallback: {missing}")
-    if dupes:
-        print(f"     duplicates removed ({len(dupes)}): " + ", ".join(dupes[:12]) +
-              (" ..." if len(dupes) > 12 else ""))
+    print(f"     available months: {', '.join(available)}")
+    print(f"     total words: {total_words}")
+    print(f"     missing visuals: {no_visual}")
+    if duplicates:
+        print(f"     duplicates removed ({len(duplicates)}): "
+              + ", ".join(duplicates[:12]) + (" ..." if len(duplicates) > 12 else ""))
 
 
 if __name__ == "__main__":
