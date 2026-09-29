@@ -1176,7 +1176,6 @@
     },
     {
      "word": "tree",
-     "image": "assets/P1/tree.jpeg",
      "subject": "Science",
      "subjects": [
       "Science"
@@ -1627,7 +1626,6 @@
     },
     {
      "word": "butterfly",
-     "image": "assets/P1/butterfly.jpeg",
      "subject": "Science",
      "subjects": [
       "Science"
@@ -6716,7 +6714,6 @@
     },
     {
      "word": "tree",
-     "image": "assets/P1/tree.jpeg",
      "subject": "Go Get Maths",
      "subjects": [
       "Go Get Maths"
@@ -7274,7 +7271,6 @@
     },
     {
      "word": "foot ball",
-     "image": "assets/P3/foot_ball.jpeg",
      "subjects": [],
      "emoji": "⚽",
      "cefr": "A2"
@@ -8050,7 +8046,6 @@
     },
     {
      "word": "remind",
-     "image": "assets/P5/remind.jpeg",
      "subjects": [],
      "emoji": "⏰",
      "cefr": "B1"
