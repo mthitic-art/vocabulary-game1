@@ -1186,7 +1186,11 @@ function buildMonthPills(){
       b.classList.add('on'); b.setAttribute('aria-selected','true');
       SUBJECT_FILTER = "All";
       updateSubjectBar();
-      refreshHero();               // อัปเดต progress ของเดือนใหม่
+      document.querySelectorAll('#levels .pill').forEach(p=>{
+        const tag = p.querySelector('.cefr-tag');
+        if(tag) tag.textContent = levelCefrLabel(p.dataset.lv);
+      });
+      refreshHero();               // อัปเดต progress + CEFR ของเดือนใหม่
       preloadLevelImages(LV);      // โหลดภาพเดือน/ระดับใหม่
     };
   });
