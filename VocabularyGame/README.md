@@ -1,4 +1,4 @@
-# CVN Word World — Vocabulary Game (K1–P6)
+# CVN Word World — Vocabulary Game (K1–P6, CEFR-ready to B2)
 
 A kindergarten-to-primary vocabulary game. Words load from a JSON file
 that is generated automatically from your monthly Excel sheet.
@@ -34,18 +34,31 @@ Pick one:
 - **Test locally**: from inside the folder run
   `python -m http.server 8000` then open `http://localhost:8000`.
 
-## Updating words every month
+## Updating words across the school year
 
-1. Get the new month's spreadsheet (same layout as `June Vocabulary.xlsx`:
-   row 1 = level headers, P1 spans Go Get Maths / Science / English).
-2. Run the converter:
+The canonical school-year order is **June → May**. The app always knows all 12
+months; a month stays locked until its sheet contains authoritative vocabulary.
+
+1. Update `Summary_Vocabulary.xlsx` using one sheet per month. Supported sheet
+   names include JUNE/JUN, JULY/JUL, AUGUST/AUG, SEPTEMBER/SEP, OCTOBER/OCT,
+   NOVEMBER/NOV, DECEMBER/DEC, JANUARY/JAN, FEBRUARY/FEB, MARCH/MAR,
+   APRIL/APR and MAY.
+2. Regenerate the canonical multi-month JSON:
 
    ```bash
-   python tools/excel_to_json.py "July Vocabulary.xlsx" data/vocabulary.json
+   python tools/excel_to_json.py Summary_Vocabulary.xlsx data/vocabulary.json
    ```
 
-3. Re-upload `data/vocabulary.json` (and any new images). That's it —
-   no code changes needed.
+3. Audit before publishing:
+
+   ```bash
+   python tools/validate_vocabulary.py
+   # release gate once all 12 months have source data:
+   python tools/validate_vocabulary.py --require-full-year
+   ```
+
+Do not create missing months from asset filenames or memory. The spreadsheet/repo
+data is the source of truth.
 
 ## Adding NEW words (beyond the monthly sheet)
 
@@ -68,13 +81,16 @@ letter tile). Commit and it's live in 1–2 minutes. The number of answer choice
 per level adjusts automatically; no code change needed.
 
 
-## Adding real pictures (optional)
+## Vocabulary images
 
-The converter suggests an image path per word, e.g. `assets/K1/apple.png`.
-Drop a matching PNG there and it appears automatically. If the file is
-missing, the game falls back to an emoji (for known words) or a letter
-tile. Filenames are lowercased with spaces as underscores
-(`air stewards` → `air_stewards.png`).
+Images live at `assets/<LEVEL>/<slug>.<ext>`. The converter scans real files
+and writes an `image` field only when a matching file exists; supported image
+types include WebP, JPEG, JPG, PNG, AVIF and GIF. The game falls back to emoji
+or a word tile if needed. Filenames are lowercased with spaces as underscores
+(`air stewards` → `air_stewards.webp`).
+
+For K1–K3, keep an emoji fallback even when a real image exists. Run
+`tools/validate_vocabulary.py` to detect broken image references.
 
 ## How progress is saved
 
@@ -94,3 +110,14 @@ K1 = 2, K2 = 4, K3 = 6, primary grades 4–6 choices.
 Word Quiz (listen & pick), Flashcards (flip & hear), Adventure (staged
 quiz), Memory Match (word↔picture pairs), and Review Words (only the words
 you've missed, via spaced repetition).
+
+
+## CEFR data model
+
+Each vocabulary entry may carry a standard `cefr` value: `Pre-A1`, `A1`,
+`A2`, `B1`, or `B2`. Existing grade defaults are K1–K2 → Pre-A1,
+K3/P1/P2 → A1, P3/P4 → A2, and P5/P6 → B1. A per-word CEFR value overrides
+the grade default, and B2 is supported for future extension content.
+
+See `AUDIT_2026-09-29.md` for the source-of-truth audit and remaining
+October–May content gap.
