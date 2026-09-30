@@ -57,8 +57,11 @@ months; a month stays locked until its sheet contains authoritative vocabulary.
    python tools/validate_vocabulary.py --require-full-year
    ```
 
-Do not create missing months from asset filenames or memory. The spreadsheet/repo
-data is the source of truth.
+The full-year release now contains authoritative vocabulary for all 12 months.
+`data/full_year_content_manifest.csv` is the text snapshot used to audit the
+generated JSON, while `Summary_Vocabulary_12_Months_CEFR.xlsx` is the maintained
+workbook used for curriculum editing. Do not create vocabulary from asset filenames
+or memory; source vocabulary and CEFR data must come from the maintained curriculum files.
 
 ## Adding NEW words (beyond the monthly sheet)
 
@@ -115,9 +118,20 @@ you've missed, via spaced repetition).
 ## CEFR data model
 
 Each vocabulary entry may carry a standard `cefr` value: `Pre-A1`, `A1`,
-`A2`, `B1`, or `B2`. Existing grade defaults are K1–K2 → Pre-A1,
-K3/P1/P2 → A1, P3/P4 → A2, and P5/P6 → B1. A per-word CEFR value overrides
-the grade default, and B2 is supported for future extension content.
+`A2`, `B1`, or `B2`. The converter now reads the workbook's optional
+`CEFR_MAP` sheet and preserves per-word `Game CEFR` values; grade defaults are
+used only when no mapped value exists. The current full-year progression reaches B2
+in the upper-primary extension content.
 
 See `AUDIT_2026-09-29.md` for the source-of-truth audit and remaining
 October–May content gap.
+
+
+## Full-year release snapshot — 2026-09-30
+
+- 12/12 months populated (June → May).
+- 6,567 deduplicated game entries.
+- 1,710 entries currently match real image assets in the repository.
+- `data/missing_image_manifest.csv` lists vocabulary that still needs a dedicated
+  repository image; the runtime continues to use emoji/word-tile fallback.
+- Run `python tools/validate_vocabulary.py --require-full-year` before release.
