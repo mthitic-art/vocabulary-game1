@@ -66,7 +66,7 @@
    "P6": 600
   },
   "total": 6567,
-  "source": "Summary_Vocabulary_12_Months_CEFR.xlsx",
+  "source": "data/full_year_content_manifest.csv",
   "generated": "2026-09-30",
   "structure": "multi-month",
   "assets_verified": true,
@@ -93,7 +93,8 @@
   },
   "full_year_ready": true,
   "full_year_content_complete": true,
-  "cefr_source": "Oxford 3000 A1-B2 + project Pre-A1 teaching band; progression documented in workbook CEFR_GUIDE"
+  "cefr_source": "Oxford 3000 A1-B2 + project Pre-A1 teaching band; progression documented in workbook CEFR_GUIDE",
+  "source_workbook": "Summary_Vocabulary_12_Months_CEFR.xlsx"
  },
  "months": {
   "june": {
