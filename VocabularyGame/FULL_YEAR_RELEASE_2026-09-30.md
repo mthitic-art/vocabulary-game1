@@ -27,3 +27,14 @@ Release gate:
 ```bash
 python tools/validate_vocabulary.py --require-full-year
 ```
+
+## Difficulty progression (2026-09-30)
+
+The four curriculum months added in this release are now deliberately graded around the unchanged **June** source baseline:
+
+- **May**: easiest warm-up/reinforcement vocabulary.
+- **April**: easy reinforcement, still below the June baseline.
+- **October**: intermediate/high challenge.
+- **March**: highest challenge among the added months for every level/subject.
+
+May and April intentionally reuse familiar vocabulary from the existing curriculum pool when that gives a clearer age-appropriate progression. March selects the highest-scoring challenge vocabulary available for that level/subject. The audit is stored in `data/difficulty_progression_audit.csv`.
