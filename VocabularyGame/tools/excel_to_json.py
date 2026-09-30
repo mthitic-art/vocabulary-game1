@@ -60,6 +60,57 @@ MONTH_ALIASES = {
 def normalize_month(name: str):
     return MONTH_ALIASES.get(str(name).strip().lower())
 
+
+def build_cefr_lookup(wb):
+    """Read optional CEFR_MAP sheet into a per-word lookup.
+
+    Expected columns: Month, Level, Subject, Word, Game CEFR.
+    Month aliases (OCT/MAR/etc.) are normalized to canonical month keys.
+    """
+    if "CEFR_MAP" not in wb.sheetnames:
+        return {}
+    ws = wb["CEFR_MAP"]
+    rows = list(ws.iter_rows(values_only=True))
+    if not rows:
+        return {}
+    header = [str(v).strip() if v is not None else "" for v in rows[0]]
+    idx = {name: i for i, name in enumerate(header)}
+    required = ("Month", "Level", "Word", "Game CEFR")
+    if any(name not in idx for name in required):
+        print("  !  CEFR_MAP missing required columns — using level defaults")
+        return {}
+
+    out = {}
+    for row in rows[1:]:
+        month_raw = row[idx["Month"]] if idx["Month"] < len(row) else None
+        level_raw = row[idx["Level"]] if idx["Level"] < len(row) else None
+        word_raw = row[idx["Word"]] if idx["Word"] < len(row) else None
+        cefr_raw = row[idx["Game CEFR"]] if idx["Game CEFR"] < len(row) else None
+        subject_raw = row[idx["Subject"]] if "Subject" in idx and idx["Subject"] < len(row) else None
+        if not month_raw or not level_raw or not word_raw or not cefr_raw:
+            continue
+        month = normalize_month(month_raw)
+        level = str(level_raw).strip()
+        word = " ".join(str(word_raw).split()).casefold()
+        subject = " ".join(str(subject_raw).split()).casefold() if subject_raw else ""
+        cefr = str(cefr_raw).strip()
+        if month and level in LEVELS and cefr in CEFR_BANDS:
+            out[(month, level, subject, word)] = cefr
+    return out
+
+
+def cefr_for(lookup, month, level, subject, word):
+    subject_key = (subject or "").casefold()
+    word_key = word.casefold()
+    exact = lookup.get((month, level, subject_key, word_key))
+    if exact:
+        return exact
+    # If subject labels changed slightly, fall back to month/level/word.
+    for (m, lv, _sub, w), cefr in lookup.items():
+        if m == month and lv == level and w == word_key:
+            return cefr
+    return LEVEL_CEFR_DEFAULT[level]
+
 # ─────────────────────────────────────────────────────────────
 #  Emoji fallback — used when assets/<LEVEL>/<word>.png is absent.
 #  Mainly matters for K1–K3 where children cannot read yet.
@@ -324,6 +375,9 @@ def convert(xlsx_path, out_path, months=None, split=False):
           {k: len(v) for k, v in sorted(_ASSET_INDEX.items())})
 
     wb = load_workbook(xlsx_path, read_only=True, data_only=True)
+    cefr_lookup = build_cefr_lookup(wb)
+    if cefr_lookup:
+        print(f"  CEFR_MAP entries loaded: {len(cefr_lookup)}")
     requested = months or wb.sheetnames
     per_month = {}
 
@@ -372,7 +426,7 @@ def convert(xlsx_path, out_path, months=None, split=False):
                 item = {
                     "word": w,
                     "subjects": [entry["subject"]] if entry["subject"] else [],
-                    "cefr": LEVEL_CEFR_DEFAULT[lv],
+                    "cefr": cefr_for(cefr_lookup, month_key, lv, entry["subject"], w),
                 }
                 if entry["subject"]:
                     item["subject"] = entry["subject"]
