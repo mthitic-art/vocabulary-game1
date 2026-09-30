@@ -192,7 +192,7 @@ june,P1,Go Get Maths,ten,A1,assets/P1/ten.jpeg,🔟
 june,P1,Science,fish,A1,assets/P1/fish.jpeg,🐟
 june,P1,English,house,A1,assets/P1/house.jpeg,🏠
 june,P1,Go Get Maths,block,A1,assets/P1/block.jpeg,🧱
-june,P1,Science,frog,A1,assets/P1/frog.jpeg,🐸
+june,P1,Science|English,frog,A1,assets/P1/frog.jpeg,🐸
 june,P1,English,mother,A1,assets/P1/mother.jpeg,👩
 june,P1,Go Get Maths,count on,A1,assets/P1/count_on.jpeg,🔢
 june,P1,Science,insect,A1,assets/P1/insect.jpeg,🐛
@@ -229,7 +229,7 @@ june,P1,Science,beak,A1,assets/P1/beak.jpeg,🐦
 june,P1,English,story,A1,assets/P1/story.jpeg,📖
 june,P1,Go Get Maths,greater than,A1,assets/P1/greater_than.jpeg,
 june,P1,Science,shell,A1,assets/P1/shell.jpeg,🐚
-june,P1,English,write,A1,assets/P1/write.jpeg,✍️
+june,P1,English|Science,write,A1,assets/P1/write.jpeg,✍️
 june,P1,Go Get Maths,fewer,A1,assets/P1/fewer.jpeg,
 june,P1,Science,paw,A1,assets/P1/paw.jpeg,🐾
 june,P1,English,colours,A1,,
@@ -279,7 +279,7 @@ june,P1,Science,air,A1,assets/P1/air.jpeg,💨
 june,P1,English,Friday,A1,assets/P1/friday.jpeg,📅
 june,P1,Go Get Maths,left,A1,assets/P1/left.jpeg,
 june,P1,Science,grow,A1,assets/P1/grow.jpeg,🌱
-june,P1,English,green,A1,assets/P1/green.jpeg,🟢
+june,P1,English|Science,green,A1,assets/P1/green.jpeg,🟢
 june,P1,Go Get Maths,right,A1,assets/P1/right.jpeg,
 june,P1,Science,sprout,A1,assets/P1/sprout.jpeg,🌱
 june,P1,English,plate,A1,assets/P1/plate.jpeg,🍽️
@@ -705,7 +705,7 @@ july,P1,English,snake,A1,assets/P1/snake.jpeg,🐍
 july,P1,Go Get Maths,altogether,A1,assets/P1/altogether.jpeg,
 july,P1,Science,giraffe,A1,assets/P1/giraffe.jpeg,🦒
 july,P1,English,smoke,A1,assets/P1/smoke.jpeg,💨
-july,P1,Go Get Maths,apple,A1,assets/P1/apple.jpeg,🍎
+july,P1,Go Get Maths|English,apple,A1,assets/P1/apple.jpeg,🍎
 july,P1,Science,crocodile,A1,assets/P1/crocodile.jpeg,🐊
 july,P1,English,snow,A1,assets/P1/snow.jpeg,❄️
 july,P1,Go Get Maths,arrange,A1,assets/P1/arrange.jpeg,🗂️
@@ -722,10 +722,10 @@ july,P1,Science,seal,A1,assets/P1/seal.jpeg,🦭
 july,P1,English,notebook,A1,assets/P1/notebook.jpeg,📓
 july,P1,Go Get Maths,butterfly,A1,,🦋
 july,P1,Science,flamingo,A1,assets/P1/flamingo.jpeg,🦩
-july,P1,English,tree,A1,,🌳
+july,P1,English|Go Get Maths,tree,A1,,🌳
 july,P1,Go Get Maths,button,A1,assets/P1/button.jpeg,🔘
 july,P1,Science,camel,A1,assets/P1/camel.jpg,🐫
-july,P1,English,baby,A1,assets/P1/baby.jpeg,👶
+july,P1,English|Science,baby,A1,assets/P1/baby.jpeg,👶
 july,P1,Go Get Maths,cake,A1,assets/P1/cake.jpeg,🍰
 july,P1,Science,cold weather,A1,assets/P1/cold_weather.jpeg,🥶
 july,P1,English,home,A1,assets/P1/home.jpeg,🏠
@@ -752,7 +752,7 @@ july,P1,English,puppet,A1,assets/P1/puppet.jpeg,🎭
 july,P1,Go Get Maths,doll,A1,,🪆
 july,P1,Science,cave,A1,assets/P1/cave.jpeg,🕳️
 july,P1,English,brick,A1,assets/P1/brick.jpeg,🧱
-july,P1,Go Get Maths,egg,A1,assets/P1/egg.jpeg,🥚
+july,P1,Go Get Maths|Science,egg,A1,assets/P1/egg.jpeg,🥚
 july,P1,Science,jungle,A1,assets/P1/jungle.jpeg,🌴
 july,P1,English,clean,A1,assets/P1/clean.jpeg,✨
 july,P1,Go Get Maths,equation,A1,assets/P1/equation.jpeg,
@@ -1243,22 +1243,22 @@ august,K3,,celebrate,A1,assets/K3/celebrate.jpeg,🎉
 august,K3,,care,A1,,💗
 august,K3,,gift,A1,assets/K3/gift.jpeg,🎁
 august,P1,Go Get Maths,shape,A1,assets/P1/shape.jpeg,🔷
-august,P1,Science,head,A1,assets/P1/head.jpeg,🧑
-august,P1,English,spoon,A1,assets/P1/spoon.jpeg,🥄
+august,P1,Science|English,head,A1,assets/P1/head.jpeg,🧑
+august,P1,English|Go Get Maths,spoon,A1,assets/P1/spoon.jpeg,🥄
 august,P1,Go Get Maths,pattern,A1,assets/P1/pattern.jpeg,🔶
-august,P1,Science,face,A1,assets/P1/face.jpeg,😀
+august,P1,Science|English,face,A1,assets/P1/face.jpeg,😀
 august,P1,English,spot,A1,assets/P1/spot.jpeg,
 august,P1,Go Get Maths,vertex,A1,assets/P1/vertex.jpeg,📐
-august,P1,Science,eye,A1,assets/P1/eye.jpeg,👁️
+august,P1,Science|English,eye,A1,assets/P1/eye.jpeg,👁️
 august,P1,English,swing,A1,assets/P1/swing.jpeg,🛝
 august,P1,Go Get Maths,quadrilateral,A1,assets/P1/quadrilateral.jpeg,🔷
 august,P1,Science,ear,A1,assets/P1/ear.jpeg,👂
 august,P1,English,swim,A1,assets/P1/swim.jpeg,🏊
 august,P1,Go Get Maths,triangle,A1,assets/P1/triangle.jpeg,🔺
-august,P1,Science,nose,A1,assets/P1/nose.jpeg,👃
+august,P1,Science|English,nose,A1,assets/P1/nose.jpeg,👃
 august,P1,English,stop,A1,assets/P1/stop.jpeg,🛑
 august,P1,Go Get Maths,circle,A1,assets/P1/circle.jpeg,⭕
-august,P1,Science,mouth,A1,assets/P1/mouth.jpeg,👄
+august,P1,Science|English,mouth,A1,assets/P1/mouth.jpeg,👄
 august,P1,English,test,A1,assets/P1/test.jpeg,📝
 august,P1,Go Get Maths,oval,A1,assets/P1/oval.jpeg,🥚
 august,P1,Science,teeth,A1,assets/P1/teeth.jpeg,🦷
@@ -1273,13 +1273,13 @@ august,P1,Go Get Maths,wheel,A1,assets/P1/wheel.jpeg,🛞
 august,P1,Science,chin,A1,assets/P1/chin.jpeg,😀
 august,P1,English,tea,A1,assets/P1/tea.jpeg,🍵
 august,P1,Go Get Maths,ring,A1,assets/P1/ring.jpeg,💍
-august,P1,Science,body,A1,assets/P1/body.jpeg,🧍
+august,P1,Science|English,body,A1,assets/P1/body.jpeg,🧍
 august,P1,English,skates,A1,,
 august,P1,Go Get Maths,racket,A1,assets/P1/racket.jpeg,🎾
 august,P1,Science,arm,A1,assets/P1/arm.jpeg,💪
 august,P1,English,snail,A1,assets/P1/snail.jpeg,🐌
 august,P1,Go Get Maths,mobile phone,A1,assets/P1/mobile_phone.jpeg,📱
-august,P1,Science,hand,A1,assets/P1/hand.jpeg,✋
+august,P1,Science|Go Get Maths,hand,A1,assets/P1/hand.jpeg,✋
 august,P1,English,stone,A1,assets/P1/stone.jpeg,🪨
 august,P1,Go Get Maths,calculator,A1,assets/P1/calculator.jpeg,🧮
 august,P1,Science,finger,A1,assets/P1/finger.jpeg,☝️
@@ -1288,7 +1288,7 @@ august,P1,Go Get Maths,front,A1,assets/P1/front.jpeg,
 august,P1,Science,leg,A1,assets/P1/leg.jpeg,🦵
 august,P1,English,block,A1,assets/P1/block.jpeg,🧱
 august,P1,Go Get Maths,paper,A1,assets/P1/paper.jpeg,📄
-august,P1,Science,foot,A1,assets/P1/foot.jpeg,🦶
+august,P1,Science|English,foot,A1,assets/P1/foot.jpeg,🦶
 august,P1,English,dinosaur,A1,assets/P1/dinosaur.jpeg,🦕
 august,P1,Go Get Maths,flat,A1,assets/P1/flat.jpeg,
 august,P1,Science,toe,A1,assets/P1/toe.jpeg,🦶
@@ -1347,7 +1347,7 @@ august,P1,Go Get Maths,color,A1,assets/P1/color.jpeg,🎨
 august,P1,Science,sour,A1,assets/P1/sour.jpeg,🍋
 august,P1,Go Get Maths,size,A1,assets/P1/size.jpeg,
 august,P1,Science,salty,A1,assets/P1/salty.jpeg,🧂
-august,P1,English,short,A1,assets/P1/short.jpeg,📏
+august,P1,English|Science,short,A1,assets/P1/short.jpeg,📏
 august,P1,Go Get Maths,side,A1,assets/P1/side.jpeg,
 august,P1,Science,bitter,A1,assets/P1/bitter.jpeg,😖
 august,P1,English,long,A1,assets/P1/long.jpeg,
@@ -1357,7 +1357,7 @@ august,P1,English,van,A1,assets/P1/van.jpeg,🚐
 august,P1,Go Get Maths,person,A1,assets/P1/person.jpeg,🧍
 august,P1,Science,measure,A1,assets/P1/measure.jpeg,📏
 august,P1,English,hen,A1,assets/P1/hen.jpeg,🐔
-august,P1,Go Get Maths,duck,A1,assets/P1/duck.jpeg,🦆
+august,P1,Go Get Maths|English,duck,A1,assets/P1/duck.jpeg,🦆
 august,P1,Science,tall,A1,assets/P1/tall.jpeg,📏
 august,P1,English,fin,A1,assets/P1/fin.jpeg,🐟
 august,P1,English,bus,A1,assets/P1/bus.jpeg,🚌
@@ -1815,7 +1815,7 @@ september,P1,Go Get Maths,correct,A1,,✅
 september,P1,Science,wash,A1,,🧼
 september,P1,English,thin,A1,,📏
 september,P1,Go Get Maths,card,A1,,💌
-september,P1,Science,brush,A1,,🖌️
+september,P1,Science|English,brush,A1,,🖌️
 september,P1,English,pizza,A1,assets/P1/pizza.jpeg,🍕
 september,P1,Go Get Maths,switch,A1,,🔌
 september,P1,Science,bath,A1,,🛁
@@ -1897,7 +1897,7 @@ september,P1,English,wheel,A1,assets/P1/wheel.jpeg,🛞
 september,P1,Go Get Maths,donut,A1,,🍩
 september,P1,Science,good,A1,,👍
 september,P1,English,cherry,A1,,🍒
-september,P1,Go Get Maths,candy,A1,,🍬
+september,P1,Go Get Maths|English,candy,A1,,🍬
 september,P1,Science,bad,A1,,👎
 september,P1,English,shop,A1,,🏪
 september,P1,Go Get Maths,envelope,A1,,✉️
@@ -2179,555 +2179,556 @@ september,P6,,rhyme,B1,,🎵
 september,P6,,quantifier,B1,,🔢
 september,P6,,peace,B1,,☮️
 september,P6,,difficulty,B1,,🧗
-october,K1,,put,Pre-A1,,📥
-october,K1,,son,Pre-A1,,
-october,K1,,boot,Pre-A1,,🥾
-october,K1,,eye,Pre-A1,assets/K1/eye.jpeg,👁️
-october,K1,,bed,Pre-A1,,🛏️
-october,K1,,day,Pre-A1,,
-october,K1,,grow,Pre-A1,,🌱
-october,K1,,see,Pre-A1,,👀
-october,K1,,hour,Pre-A1,,🕐
-october,K1,,fill,Pre-A1,,
-october,K1,,say,Pre-A1,,
-october,K1,,call,Pre-A1,,
-october,K1,,mum,Pre-A1,,
-october,K1,,key,Pre-A1,,🔑
-october,K1,,game,Pre-A1,,🎮
-october,K1,,eat,Pre-A1,,🍽️
-october,K1,,go,Pre-A1,,
-october,K1,,ear,Pre-A1,assets/K1/ear.jpeg,👂
-october,K1,,come,Pre-A1,,
-october,K1,,try,Pre-A1,,
-october,K1,,use,Pre-A1,,
-october,K1,,get,Pre-A1,,
-october,K1,,sit,Pre-A1,,🪑
-october,K1,,ice,Pre-A1,,
-october,K1,,cool,Pre-A1,,
-october,K1,,hot,Pre-A1,,🔥
-october,K1,,easy,Pre-A1,,
-october,K1,,grey,Pre-A1,,
-october,K1,,buy,Pre-A1,,
-october,K1,,full,Pre-A1,,
-october,K1,,cook,Pre-A1,,👨‍🍳
-october,K1,,card,Pre-A1,,💌
-october,K1,,art,Pre-A1,,🎨
-october,K1,,food,Pre-A1,,🍽️
-october,K1,,bath,Pre-A1,,🛁
-october,K1,,keep,Pre-A1,,
-october,K1,,sad,Pre-A1,,😢
-october,K1,,dark,Pre-A1,,
-october,K1,,ask,Pre-A1,,
-october,K1,,air,Pre-A1,,💨
-october,K1,,aunt,Pre-A1,,
-october,K1,,cold,Pre-A1,,🥶
-october,K1,,home,Pre-A1,,🏠
-october,K1,,sea,Pre-A1,,
-october,K1,,good,Pre-A1,,👍
-october,K1,,map,Pre-A1,,🗺️
-october,K1,,high,Pre-A1,,
-october,K1,,free,Pre-A1,,
-october,K1,,win,Pre-A1,,🏆
-october,K1,,cake,Pre-A1,,🍰
-october,K2,,find,Pre-A1,,🔍
-october,K2,,face,Pre-A1,,😀
-october,K2,,cafe,Pre-A1,,
-october,K2,,bad,Pre-A1,,👎
-october,K2,,cup,Pre-A1,,☕
-october,K2,,fact,Pre-A1,,
-october,K2,,way,Pre-A1,,
-october,K2,,body,Pre-A1,,🧍
-october,K2,,best,Pre-A1,,
-october,K2,,own,Pre-A1,,
-october,K2,,busy,Pre-A1,,
-october,K2,,foot,Pre-A1,,🦶
-october,K2,,arm,Pre-A1,,💪
-october,K2,,end,Pre-A1,,
-october,K2,,fun,Pre-A1,,
-october,K2,,man,Pre-A1,,
-october,K2,,lie,Pre-A1,,
-october,K2,,tea,Pre-A1,,🍵
-october,K2,,new,Pre-A1,,✨
-october,K2,,film,Pre-A1,,🎬
-october,K2,,cost,Pre-A1,,
-october,K2,,pay,Pre-A1,,
-october,K2,,form,Pre-A1,,
-october,K2,,car,Pre-A1,assets/K2/car.jpeg,🚗
-october,K2,,dear,Pre-A1,,
-october,K2,,area,Pre-A1,,
-october,K2,,leg,Pre-A1,assets/K2/leg.jpeg,🦵
-october,K2,,desk,Pre-A1,,🪑
-october,K2,,east,Pre-A1,,
-october,K2,,old,Pre-A1,,👴
-october,K2,,age,Pre-A1,,
-october,K2,,blue,Pre-A1,,🔵
-october,K2,,date,Pre-A1,,
-october,K2,,blog,Pre-A1,,📝
-october,K2,,flat,Pre-A1,,
-october,K2,,dish,Pre-A1,,🍽️
-october,K2,,let,Pre-A1,,
-october,K2,,boat,Pre-A1,,⛵
-october,K2,,club,Pre-A1,,🎪
-october,K2,,bike,Pre-A1,,🚲
-october,K2,,gym,Pre-A1,,🏋️
-october,K2,,back,Pre-A1,,
-october,K2,,band,Pre-A1,,
-october,K2,,fine,Pre-A1,,👌
-october,K2,,add,Pre-A1,,➕
-october,K2,,born,Pre-A1,,
-october,K2,,box,Pre-A1,,📦
-october,K2,,hair,Pre-A1,,💇
-october,K2,,cut,Pre-A1,,
-october,K2,,fast,Pre-A1,,💨
-october,K3,,mouse,A1,,
-october,K3,,ball,A1,,⚽
-october,K3,,fall,A1,,
-october,K3,,baby,A1,,👶
-october,K3,,number,A1,,🔢
-october,K3,,pool,A1,,🏊
-october,K3,,sound,A1,,🔊
-october,K3,,red,A1,,🔴
-october,K3,,green,A1,,🟢
-october,K3,,idea,A1,,💡
-october,K3,,letter,A1,,
-october,K3,,onion,A1,,🧅
-october,K3,,market,A1,,🏪
-october,K3,,one,A1,,1️⃣
-october,K3,,sheep,A1,,
-october,K3,,object,A1,,
-october,K3,,feel,A1,,🤲
-october,K3,,future,A1,,
-october,K3,,wash,A1,,🧼
-october,K3,,lesson,A1,,
-october,K3,,big,A1,,🐘
-october,K3,,minute,A1,,
-october,K3,,hard,A1,,🪨
-october,K3,,paint,A1,assets/K3/paint.jpeg,🎨
-october,K3,,team,A1,,👥
-october,K3,,online,A1,,
-october,K3,,dirty,A1,,🧹
-october,K3,,girl,A1,,👧
-october,K3,,pink,A1,,🩷
-october,K3,,small,A1,,🐜
-october,K3,,next,A1,,➡️
-october,K3,,member,A1,,
-october,K3,,fish,A1,,🐟
-october,K3,,egg,A1,,🥚
-october,K3,,health,A1,,❤️‍🩹
-october,K3,,bag,A1,,🎒
-october,K3,,plant,A1,,🌱
-october,K3,,pig,A1,,
-october,K3,,cat,A1,,🐱
-october,K3,,paper,A1,,📄
-october,K3,,farmer,A1,,👨‍🌾
-october,K3,,museum,A1,,🏛️
-october,K3,,happen,A1,,
-october,K3,,boy,A1,,👦
-october,K3,,sun,A1,,☀️
-october,K3,,office,A1,,
-october,K3,,dog,A1,,🐶
-october,K3,,cow,A1,,🐄
-october,K3,,garden,A1,,🌷
-october,K3,,modern,A1,,
-october,P1,Go Get Maths,zero,A1,,
-october,P1,Science,non-living,A1,,
-october,P1,English,spelling,A1,,
-october,P1,Go Get Maths,equals,A1,,
-october,P1,Science,alive,A1,,
-october,P1,English,Tuesday,A1,,📅
-october,P1,Go Get Maths,total,A1,,
-october,P1,Science,dead,A1,,
-october,P1,English,possible,A1,,
-october,P1,Go Get Maths,greater,A1,,
-october,P1,Science,sight,A1,,
-october,P1,English,also,A1,,
-october,P1,Go Get Maths,smaller,A1,,
-october,P1,Science,hearing,A1,,
-october,P1,English,away,A1,,
-october,P1,Go Get Maths,largest,A1,,
-october,P1,Science,feel,A1,,🤲
-october,P1,English,Thursday,A1,,📅
-october,P1,Go Get Maths,before,A1,,
-october,P1,Science,health,A1,,❤️‍🩹
-october,P1,English,birthday,A1,,🎂
-october,P1,Go Get Maths,after,A1,,
-october,P1,Science,food,A1,,🍽️
-october,P1,English,farm,A1,,🚜
-october,P1,Go Get Maths,between,A1,assets/P1/between.jpeg,↔️
-october,P1,Science,dirty,A1,,🧹
-october,P1,English,October,A1,,🗓️
-october,P1,Go Get Maths,previous,A1,,
-october,P1,Science,grass,A1,,🌿
-october,P1,English,practice,A1,,📝
-october,P1,Go Get Maths,ones,A1,,
-october,P1,Science,garden,A1,assets/P1/garden.jpeg,🌷
-october,P1,English,swimming,A1,,
-october,P1,Go Get Maths,tens,A1,,
-october,P1,Science,growth,A1,,
-october,P1,English,personal,A1,,
-october,P1,Go Get Maths,hundreds,A1,,
-october,P1,Science,plant part,A1,,
-october,P1,English,out,A1,,
-october,P1,Go Get Maths,number line,A1,,
-october,P1,Science,life cycle,A1,,
-october,P1,English,shirt,A1,,👕
-october,P1,Go Get Maths,number sentence,A1,,
-october,P1,Science,young plant,A1,,
-october,P1,English,Saturday,A1,,📅
-october,P1,Go Get Maths,number bond,A1,,
-october,P1,Science,adult plant,A1,,
-october,P1,English,skirt,A1,,👗
-october,P1,Go Get Maths,count forward,A1,,
-october,P1,Science,animal group,A1,,
-october,P1,English,opposite,A1,,↔️
-october,P1,Go Get Maths,count backward,A1,,
-october,P1,Science,mammal,A1,,🐘
-october,P1,English,run,A1,,🏃
-october,P1,Go Get Maths,skip count,A1,,
-october,P1,Science,reptile,A1,,🦎
-october,P1,English,terrible,A1,,
-october,P1,Go Get Maths,estimate,A1,,
-october,P1,Science,amphibian,A1,,🐸
-october,P1,English,why,A1,,
-october,P1,Go Get Maths,answer,A1,,
-october,P1,Science,spider,A1,assets/P1/spider.jpeg,🕷️
-october,P1,English,now,A1,,
-october,P1,Go Get Maths,problem,A1,,❗
-october,P1,Science,pet,A1,,🐶
-october,P1,English,Sunday,A1,,📅
-october,P1,Go Get Maths,solve,A1,,
-october,P1,Science,farm animal,A1,,
-october,P1,English,trousers,A1,,
-october,P1,Go Get Maths,strategy,A1,,
-october,P1,Science,wild animal,A1,,
-october,P1,English,January,A1,,🗓️
-october,P1,Go Get Maths,mental maths,A1,,
-october,P1,Science,baby animal,A1,,
-october,P1,English,juice,A1,,🧃
-october,P1,Go Get Maths,calculate,A1,,
-october,P1,Science,scales,A1,,
-october,P1,English,November,A1,,🗓️
-october,P1,Go Get Maths,calculation,A1,,
-october,P1,Science,home,A1,assets/P1/home.jpeg,🏠
-october,P1,English,music,A1,,🎵
-october,P1,Go Get Maths,subtract,A1,,
-october,P1,Science,rainforest,A1,,🌴
-october,P1,English,point,A1,,👉
-october,P1,Go Get Maths,make ten,A1,,
-october,P1,Science,sea,A1,,
-october,P1,English,teenager,A1,,
-october,P1,Go Get Maths,double,A1,,
-october,P1,Science,lake,A1,,🏞️
-october,P1,English,shopping,A1,,
-october,P1,Go Get Maths,half,A1,,
-october,P1,English,climb,A1,,🧗
-october,P1,Go Get Maths,twice,A1,,
-october,P1,Science,grassland,A1,,
-october,P1,English,singer,A1,,
-october,P1,Go Get Maths,share equally,A1,,
-october,P1,Science,polar region,A1,,
-october,P1,English,horse,A1,,🐴
-october,P1,Go Get Maths,groups,A1,,
-october,P1,Science,wetland,A1,,
-october,P1,English,fire,A1,,🔥
-october,P1,Go Get Maths,pairs,A1,,
-october,P1,Science,material,A1,,
-october,P1,English,sweater,A1,,🧶
-october,P1,Go Get Maths,odd,A1,,
-october,P1,Science,wood,A1,,🪵
-october,P1,English,painting,A1,,
-october,P1,Go Get Maths,even,A1,,
-october,P1,Science,metal,A1,,
-october,P1,English,too,A1,,
-october,P1,Go Get Maths,repeat,A1,,
-october,P1,Science,plastic,A1,,
-october,P1,English,not,A1,,
-october,P1,Go Get Maths,rule,A1,,📏
-october,P1,Science,glass,A1,assets/P1/glass.jpeg,🥛
-october,P1,English,practise,A1,,
-october,P1,Go Get Maths,missing number,A1,,
-october,P1,Science,paper,A1,assets/P1/paper.jpeg,📄
-october,P1,English,dad,A1,,👨
-october,P1,Go Get Maths,square,A1,,🟦
-october,P1,Science,cloth,A1,,🧵
-october,P1,English,December,A1,,🗓️
-october,P1,Go Get Maths,rectangle,A1,,▭
-october,P1,Science,rubber,A1,,
-october,P1,English,February,A1,,🗓️
-october,P1,Go Get Maths,pentagon,A1,,
-october,P1,Science,stone,A1,assets/P1/stone.jpeg,🪨
-october,P1,English,mountain,A1,,⛰️
-october,P1,Go Get Maths,hexagon,A1,,
-october,P1,Science,fabric,A1,,
-october,P1,English,off,A1,,
-october,P1,Go Get Maths,octagon,A1,,
-october,P1,Science,cardboard,A1,,
-october,P1,English,Monday,A1,,📅
-october,P1,Go Get Maths,pyramid,A1,,🔺
-october,P1,Science,property,A1,,
-october,P1,English,walk,A1,,🚶
-october,P1,Go Get Maths,prism,A1,,
-october,P1,Science,hard,A1,,🪨
-october,P1,English,beginning,A1,,
-october,P1,Go Get Maths,corner,A1,,
-october,P1,Science,soft,A1,,🧸
-october,P1,English,T-shirt,A1,,
-october,P1,Go Get Maths,edge,A1,,
-october,P1,Science,rough,A1,,
-october,P1,English,present,A1,assets/P1/present.jpeg,🎁
-october,P1,Go Get Maths,face,A1,assets/P1/face.jpeg,😀
-october,P1,Science,smooth,A1,,
-october,P1,English,jacket,A1,,🧥
-october,P2,,cloud,A2,,☁️
-october,P2,,greet,A2,,
-october,P2,,dream,A2,,💭
-october,P2,,lemon,A2,,🍋
-october,P2,,diary,A2,,📔
-october,P2,,hit,A2,,
-october,P2,,neck,A2,,
-october,P2,,brush,A2,,🖌️
-october,P2,,daily,A2,,
-october,P2,,frog,A2,,🐸
-october,P2,,image,A2,,
-october,P2,,lamp,A2,,💡
-october,P2,,huge,A2,,
-october,P2,,wood,A2,,🪵
-october,P2,,toy,A2,,🧸
-october,P2,,guide,A2,,
-october,P2,,coach,A2,,🧑‍🏫
-october,P2,,exist,A2,,
-october,P2,,guest,A2,,🙋
-october,P2,,fresh,A2,,
-october,P2,,drama,A2,,🎭
-october,P2,,human,A2,,🧍
-october,P2,,coast,A2,,
-october,P2,,gate,A2,,🚪
-october,P2,,error,A2,,
-october,P2,,cross,A2,,❌
-october,P2,,curly,A2,,
-october,P2,,jump,A2,,🦘
-october,P2,,heart,A2,,❤️
-october,P2,,enter,A2,,
-october,P2,,knock,A2,,✊
-october,P2,,focus,A2,,
-october,P2,,grass,A2,,🌿
-october,P2,,cycle,A2,,🔁
-october,P2,,habit,A2,,
-october,P2,,crowd,A2,,
-october,P2,,cover,A2,,📕
-october,P2,,field,A2,,🌾
-october,P2,,ideal,A2,,
-october,P2,,crazy,A2,,
-october,P2,,count,A2,,🔢
-october,P2,,knife,A2,,
-october,P2,,empty,A2,,
-october,P2,,exact,A2,,
-october,P2,,thin,A2,,📏
-october,P2,,essay,A2,,
-october,P2,,sock,A2,,🧦
-october,P2,,heavy,A2,,
-october,P2,,wind,A2,,💨
-october,P2,,push,A2,,🫸
-october,P3,,web,A2,,
-october,P3,,care,A2,,💗
-october,P3,,fix,A2,,
-october,P3,,oil,A2,,
-october,P3,,pay,A2,,
-october,P3,,pop,A2,,
-october,P3,,gap,A2,,
-october,P3,,belt,A2,,
-october,P3,,act,A2,,
-october,P3,,nut,A2,,
-october,P3,,sir,A2,,
-october,P3,,burn,A2,,
-october,P3,,guy,A2,,
-october,P3,,bone,A2,,🦴
-october,P3,,dry,A2,,🏜️
-october,P3,,ill,A2,,🤒
-october,P3,,bit,A2,,
-october,P3,,bowl,A2,,
-october,P3,,pub,A2,,
-october,P3,,beat,A2,,
-october,P3,,kid,A2,,
-october,P3,,back,A2,,
-october,P3,,run,A2,,🏃
-october,P3,,boss,A2,,
-october,P3,,blow,A2,,
-october,P3,,gas,A2,,💨
-october,P3,,top,A2,,
-october,P3,,van,A2,,🚐
-october,P3,,ski,A2,,
-october,P3,,hit,A2,,
-october,P3,,fun,A2,,
-october,P3,,fan,A2,,🪭
-october,P3,,fit,A2,,
-october,P3,,jam,A2,,🍓
-october,P3,,tip,A2,,
-october,P3,,toy,A2,,🧸
-october,P3,,army,A2,,🎖️
-october,P3,,low,A2,,
-october,P3,,flu,A2,,
-october,P3,,tie,A2,,👔
-october,P3,,able,A2,,
-october,P3,,bar,A2,,📊
-october,P3,,use,A2,,
-october,P3,,own,A2,,
-october,P3,,boil,A2,,
-october,P3,,fly,A2,,🕊️
-october,P3,,beef,A2,,
-october,P3,,lab,A2,,
-october,P3,,bean,A2,,🫘
-october,P3,,law,A2,,⚖️
-october,P4,,comment,A2,,
-october,P4,,fortunately,A2,,
-october,P4,,per cent,A2,,
-october,P4,,everywhere,A2,,
-october,P4,,active,A2,,
-october,P4,,extremely,A2,,
-october,P4,,serious,A2,,
-october,P4,,creative,A2,,
-october,P4,,international,A2,,
-october,P4,,ability,A2,,
-october,P4,,illness,A2,,
-october,P4,,carefully,A2,,
-october,P4,,recently,A2,,
-october,P4,,certainly,A2,,
-october,P4,,typical,A2,,
-october,P4,,biology,A2,,
-october,P4,,ship,A2,,🚢
-october,P4,,mention,A2,,
-october,P4,,nervous,A2,,😰
-october,P4,,charity,A2,,💝
-october,P4,,actually,A2,,
-october,P4,,normally,A2,,
-october,P4,,evidence,A2,,🔍
-october,P4,,chance,A2,,
-october,P4,,differently,A2,,
-october,P4,,suddenly,A2,,
-october,P4,,quality,A2,,
-october,P4,,musical,A2,,
-october,P4,,all right,A2,,
-october,P4,,somewhere,A2,,
-october,P4,,alive,A2,,
-october,P4,,distance,A2,,
-october,P4,,completely,A2,,
-october,P4,,anywhere,A2,,
-october,P4,,option,A2,,
-october,P4,,drive,A2,,🚗
-october,P4,,medical,A2,,
-october,P4,,enormous,A2,,🐘
-october,P4,,correctly,A2,,
-october,P4,,straight,A2,,
-october,P4,,receive,A2,,
-october,P4,,document,A2,,
-october,P4,,decision,A2,,
-october,P4,,tourism,A2,,🧳
-october,P4,,secondly,A2,,
-october,P4,,especially,A2,,
-october,P4,,argument,A2,,💬
-october,P4,,understanding,A2,,
-october,P4,,definitely,A2,,
-october,P4,,fiction,A2,,
-october,P5,,ignore,B1,,
-october,P5,,normal,B1,,
-october,P5,,muscle,B1,,💪
-october,P5,,result,B1,,
-october,P5,,repair,B1,,
-october,P5,,liquid,B1,,
-october,P5,,medium,B1,,
-october,P5,,living,B1,,
-october,P5,,gentle,B1,,
-october,P5,,frozen,B1,,
-october,P5,,impact,B1,,
-october,P5,,export,B1,,
-october,P5,,expand,B1,,
-october,P5,,effort,B1,,
-october,P5,,editor,B1,,
-october,P5,,length,B1,,
-october,P5,,retire,B1,,
-october,P5,,reject,B1,,
-october,P5,,intend,B1,,
-october,P5,,priest,B1,,
-october,P5,,donate,B1,,
-october,P5,,repeat,B1,,
-october,P5,,latest,B1,,
-october,P5,,prayer,B1,,
-october,P5,,racing,B1,,
-october,P5,,punish,B1,,
-october,P5,,remain,B1,,
-october,P5,,market,B1,,🏪
-october,P5,,garage,B1,,
-october,P5,,global,B1,,
-october,P5,,luxury,B1,,
-october,P5,,poetry,B1,,
-october,P5,,import,B1,,
-october,P5,,needle,B1,,
-october,P5,,mental,B1,,
-october,P5,,profit,B1,,
-october,P5,,remote,B1,,📱
-october,P5,,indoor,B1,,🏠
-october,P5,,lonely,B1,,
-october,P5,,favour,B1,,
-october,P5,,prince,B1,,
-october,P5,,proper,B1,,
-october,P5,,powder,B1,,
-october,P5,,fasten,B1,,🔒
-october,P5,,honest,B1,,
-october,P5,,policy,B1,,
-october,P5,,guilty,B1,,
-october,P5,,growth,B1,,
-october,P5,,injure,B1,,
-october,P5,,gather,B1,,
-october,P6,,occasion,B1,,
-october,P6,,intention,B1,,
-october,P6,,effective,B1,,
-october,P6,,survive,B1,,💪
-october,P6,,explosion,B1,,
-october,P6,,effectively,B1,,
-october,P6,,operation,B1,,
-october,P6,,version,B1,,
-october,P6,,religious,B1,,
-october,P6,,specifically,B1,,
-october,P6,,necessarily,B1,,
-october,P6,,employment,B1,,
-october,P6,,approximately,B1,,
-october,P6,,ambition,B1,,
-october,P6,,reference,B1,,
-october,P6,,assignment,B1,,
-october,P6,,practical,B1,,
-october,P6,,security,B1,,
-october,P6,,influence,B1,,
-october,P6,,identity,B1,,
-october,P6,,narrative,B1,,
-october,P6,,previous,B1,,
-october,P6,,treatment,B1,,
-october,P6,,substance,B1,,
-october,P6,,function,B1,,
-october,P6,,collection,B1,,📦
-october,P6,,authority,B1,,
-october,P6,,relation,B1,,
-october,P6,,ambitious,B1,,
-october,P6,,entrance,B1,,🚪
-october,P6,,friendship,B1,,
-october,P6,,agreement,B1,,
-october,P6,,continuous,B1,,
-october,P6,,quotation,B1,,
-october,P6,,exhibition,B1,,
-october,P6,,successfully,B1,,
-october,P6,,connection,B1,,
-october,P6,,attraction,B1,,
-october,P6,,relative,B1,,
-october,P6,,reaction,B1,,
-october,P6,,definition,B1,,
-october,P6,,particularly,B1,,
-october,P6,,conclusion,B1,,
-october,P6,,addition,B1,,➕
-october,P6,,generation,B1,,
-october,P6,,location,B1,,📍
-october,P6,,reality,B1,,
-october,P6,,generous,B1,,
-october,P6,,excitement,B1,,
-october,P6,,various,B1,,
+october,K1,,mittens,Pre-A1,assets/K1/mittens.jpeg,🧤
+october,K1,,morning,Pre-A1,,
+october,K1,,numbers,Pre-A1,,🔢
+october,K1,,octopus,Pre-A1,,
+october,K1,,origami,Pre-A1,,
+october,K1,,ostrich,Pre-A1,,
+october,K1,,pattern,Pre-A1,,🔶
+october,K1,,peacock,Pre-A1,,
+october,K1,,perfect,Pre-A1,,
+october,K1,,picture,Pre-A1,assets/K1/picture.jpeg,🖼️
+october,K1,,project,Pre-A1,,📊
+october,K1,,sticker,Pre-A1,,🌟
+october,K1,,stretch,Pre-A1,,🧘
+october,K1,,teacher,Pre-A1,assets/K1/teacher.jpeg,👩‍🏫
+october,K1,,thicker,Pre-A1,,
+october,K1,,thinner,Pre-A1,,
+october,K1,,thirsty,Pre-A1,,
+october,K1,,vehicle,Pre-A1,,🚗
+october,K1,,weather,Pre-A1,,
+october,K1,,weekend,Pre-A1,,
+october,K1,,welcome,Pre-A1,assets/K1/welcome.jpeg,🤗
+october,K1,,whisper,Pre-A1,,
+october,K1,,whistle,Pre-A1,,
+october,K1,,bathroom,Pre-A1,,
+october,K1,,birthday,Pre-A1,,🎂
+october,K1,,computer,Pre-A1,assets/K1/computer.jpeg,💻
+october,K1,,elephant,Pre-A1,assets/K1/elephant.jpeg,🐘
+october,K1,,envelope,Pre-A1,assets/K1/envelope.jpeg,✉️
+october,K1,,friendly,Pre-A1,,
+october,K1,,kangaroo,Pre-A1,,
+october,K1,,mountain,Pre-A1,,⛰️
+october,K1,,question,Pre-A1,,❓
+october,K1,,remember,Pre-A1,,
+october,K1,,sandwich,Pre-A1,,
+october,K1,,scissors,Pre-A1,,✂️
+october,K1,,thickest,Pre-A1,,
+october,K1,,thinnest,Pre-A1,,
+october,K1,,tomorrow,Pre-A1,,
+october,K1,,triangle,Pre-A1,,🔺
+october,K1,,umbrella,Pre-A1,,
+october,K1,,afternoon,Pre-A1,,
+october,K1,,alphabets,Pre-A1,assets/K1/alphabets.jpeg,
+october,K1,,beautiful,Pre-A1,,
+october,K1,,breakfast,Pre-A1,,
+october,K1,,butterfly,Pre-A1,,🦋
+october,K1,,chocolate,Pre-A1,,
+october,K1,,classroom,Pre-A1,assets/K1/classroom.jpeg,🏫
+october,K1,,crocodile,Pre-A1,,🐊
+october,K1,,dragonfly,Pre-A1,,
+october,K1,,fantastic,Pre-A1,,
+october,K2,,clothes,Pre-A1,,
+october,K2,,coconut,Pre-A1,,🥥
+october,K2,,cookies,Pre-A1,,
+october,K2,,crunchy,Pre-A1,,
+october,K2,,dolphin,Pre-A1,assets/K2/dolphin.jpeg,🐬
+october,K2,,feather,Pre-A1,assets/K2/feather.jpeg,🪶
+october,K2,,glitter,Pre-A1,assets/K2/glitter.jpeg,✨
+october,K2,,grandma,Pre-A1,assets/K2/grandma.jpeg,👵
+october,K2,,grandpa,Pre-A1,assets/K2/grandpa.jpeg,👴
+october,K2,,lettuce,Pre-A1,,
+october,K2,,mittens,Pre-A1,,🧤
+october,K2,,pajamas,Pre-A1,,
+october,K2,,pasture,Pre-A1,,
+october,K2,,penguin,Pre-A1,assets/K2/penguin.jpeg,🐧
+october,K2,,perfume,Pre-A1,,
+october,K2,,picture,Pre-A1,assets/K2/picture.jpeg,🖼️
+october,K2,,popcorn,Pre-A1,,
+october,K2,,quickly,Pre-A1,assets/K2/quickly.jpeg,💨
+october,K2,,rainbow,Pre-A1,,🌈
+october,K2,,rooster,Pre-A1,,
+october,K2,,sandals,Pre-A1,,
+october,K2,,sandbox,Pre-A1,assets/K2/sandbox.jpeg,🏖️
+october,K2,,sixteen,Pre-A1,,1️⃣6️⃣
+october,K2,,sweater,Pre-A1,,🧶
+october,K2,,thirsty,Pre-A1,assets/K2/thirsty.jpeg,🥤
+october,K2,,tractor,Pre-A1,,
+october,K2,,Tuesday,Pre-A1,,📅
+october,K2,,tumbler,Pre-A1,,
+october,K2,,uniform,Pre-A1,,
+october,K2,,vanilla,Pre-A1,,
+october,K2,,whisper,Pre-A1,,
+october,K2,,birthday,Pre-A1,assets/K2/birthday.jpeg,🎂
+october,K2,,cinnamon,Pre-A1,,
+october,K2,,cucumber,Pre-A1,,🥒
+october,K2,,earmuffs,Pre-A1,,
+october,K2,,eighteen,Pre-A1,,1️⃣8️⃣
+october,K2,,elephant,Pre-A1,assets/K2/elephant.jpeg,🐘
+october,K2,,leggings,Pre-A1,,
+october,K2,,nineteen,Pre-A1,,1️⃣9️⃣
+october,K2,,potatoes,Pre-A1,,
+october,K2,,pumpkins,Pre-A1,,
+october,K2,,raincoat,Pre-A1,,🧥
+october,K2,,sandwich,Pre-A1,assets/K2/sandwich.jpeg,🥪
+october,K2,,Saturday,Pre-A1,,📅
+october,K2,,seedling,Pre-A1,,
+october,K2,,shoelace,Pre-A1,,👟
+october,K2,,slippers,Pre-A1,,
+october,K2,,slippery,Pre-A1,,
+october,K2,,sneakers,Pre-A1,,
+october,K2,,surprise,Pre-A1,assets/K2/surprise.jpeg,😲
+october,K3,,curly hair,A2,,
+october,K3,,fire truck,A2,,
+october,K3,,police cap,A2,,
+october,K3,,police car,A2,,
+october,K3,,teddy bear,A2,,🧸
+october,K3,,twenty one,A2,,2️⃣1️⃣
+october,K3,,twenty six,A2,,2️⃣6️⃣
+october,K3,,twenty two,A2,,2️⃣2️⃣
+october,K3,,ballet shoe,A2,,
+october,K3,,coffee shop,A2,,☕
+october,K3,,living room,A2,assets/K3/living_room.jpeg,🛋️
+october,K3,,soccer ball,A2,,
+october,K3,,street sign,A2,,🪧
+october,K3,,taxi driver,A2,,
+october,K3,,twenty five,A2,,2️⃣5️⃣
+october,K3,,twenty four,A2,,2️⃣4️⃣
+october,K3,,twenty nine,A2,,2️⃣9️⃣
+october,K3,,water slide,A2,,🛝
+october,K3,,white board,A2,,
+october,K3,,baseball bat,A2,,
+october,K3,,fire station,A2,,
+october,K3,,medical mask,A2,,
+october,K3,,roller skate,A2,,
+october,K3,,table tennis,A2,,
+october,K3,,twenty eight,A2,,2️⃣8️⃣
+october,K3,,twenty seven,A2,,2️⃣7️⃣
+october,K3,,twenty three,A2,,2️⃣3️⃣
+october,K3,,birthday cake,A2,assets/K3/birthday_cake.jpeg,🎂
+october,K3,,computer room,A2,assets/K3/computer_room.jpeg,💻
+october,K3,,shopping cart,A2,,
+october,K3,,swimming pool,A2,,🏊
+october,K3,,traffic light,A2,,🚦
+october,K3,,treasure hunt,A2,assets/K3/treasure_hunt.jpeg,🗺️
+october,K3,,measuring tape,A2,,
+october,K3,,police officer,A2,,👮
+october,K3,,police station,A2,,
+october,K3,,steering wheel,A2,,
+october,K3,,wrapping paper,A2,assets/K3/wrapping_paper.jpeg,🎁
+october,K3,,ten centimeters,A2,,
+october,K3,,fifty centimeters,A2,,
+october,K3,,forty centimeters,A2,,
+october,K3,,sixty centimeters,A2,,
+october,K3,,eighty centimeters,A2,,
+october,K3,,ninety centimeters,A2,,
+october,K3,,thirty centimeters,A2,,
+october,K3,,twenty centimeters,A2,,
+october,K3,,seventy centimeters,A2,,
+october,K3,,first aid kit,A2,,
+october,K3,,ice cream shop,A2,,🍦
+october,K3,,one hundred centimeters,A2,,
+october,P1,Go Get Maths,buy,A2,,
+october,P1,Go Get Maths,pay,A2,,
+october,P1,Go Get Maths,baht,A2,,
+october,P1,Go Get Maths,cost,A2,,
+october,P1,Go Get Maths,dice,A2,,🎲
+october,P1,Go Get Maths,flip,A2,,
+october,P1,Go Get Maths,most,A2,,
+october,P1,Go Get Maths,sell,A2,,
+october,P1,Go Get Maths,show,A2,,
+october,P1,Go Get Maths,true,A2,,
+october,P1,Go Get Maths,turn,A2,,
+october,P1,Go Get Maths,array,A2,,
+october,P1,Go Get Maths,cheap,A2,,
+october,P1,Go Get Maths,false,A2,,
+october,P1,Go Get Maths,guess,A2,assets/P1/guess.jpeg,🤔
+october,P1,Go Get Maths,later,A2,,
+october,P1,Go Get Maths,least,A2,,
+october,P1,Go Get Maths,money,A2,,
+october,P1,Go Get Maths,price,A2,,
+october,P1,Go Get Maths,share,A2,,🤝
+october,P1,Go Get Maths,slide,A2,assets/P1/slide.jpeg,🛝
+october,P1,Go Get Maths,timer,A2,,
+october,P1,Go Get Maths,worth,A2,,
+october,P1,Go Get Maths,chance,A2,,
+october,P1,Go Get Maths,divide,A2,,
+october,P1,Go Get Maths,domino,A2,,
+october,P1,Go Get Maths,likely,A2,,
+october,P1,Go Get Maths,o'clock,A2,,
+october,P1,Go Get Maths,reason,A2,,
+october,P1,Go Get Maths,certain,A2,,
+october,P1,Go Get Maths,counter,A2,,
+october,P1,Go Get Maths,earlier,A2,,
+october,P1,Go Get Maths,explain,A2,,
+october,P1,Go Get Maths,popular,A2,,
+october,P1,Go Get Maths,quarter,A2,,
+october,P1,Go Get Maths,banknote,A2,,
+october,P1,Go Get Maths,calendar,A2,,
+october,P1,Go Get Maths,category,A2,,
+october,P1,Go Get Maths,classify,A2,,
+october,P1,Go Get Maths,counters,A2,,
+october,P1,Go Get Maths,division,A2,,
+october,P1,Go Get Maths,duration,A2,,
+october,P1,Go Get Maths,fraction,A2,,
+october,P1,Go Get Maths,unlikely,A2,,
+october,P1,Go Get Maths,clockwise,A2,,
+october,P1,Go Get Maths,expensive,A2,,
+october,P1,Go Get Maths,incorrect,A2,,
+october,P1,Go Get Maths,remainder,A2,,
+october,P1,Go Get Maths,stopwatch,A2,,
+october,P1,Go Get Maths,thirty-one,A2,,
+october,P1,Science,gas,A2,,
+october,P1,Science,ice,A2,,
+october,P1,Science,map,A2,,
+october,P1,Science,mix,A2,,
+october,P1,Science,mud,A2,,
+october,P1,Science,axle,A2,,
+october,P1,Science,boil,A2,,
+october,P1,Science,bulb,A2,,
+october,P1,Science,east,A2,,
+october,P1,Science,melt,A2,,
+october,P1,Science,prey,A2,,
+october,P1,Science,ramp,A2,,
+october,P1,Science,west,A2,,
+october,P1,Science,wire,A2,,
+october,P1,Science,adult,A2,,
+october,P1,Science,joint,A2,,
+october,P1,Science,lever,A2,,
+october,P1,Science,lungs,A2,,
+october,P1,Science,north,A2,,
+october,P1,Science,orbit,A2,,
+october,P1,Science,plain,A2,,
+october,P1,Science,pulse,A2,,
+october,P1,Science,repel,A2,,
+october,P1,Science,rigid,A2,,
+october,P1,Science,slope,A2,,
+october,P1,Science,snowy,A2,,
+october,P1,Science,south,A2,,
+october,P1,Science,steam,A2,,
+october,P1,Science,virus,A2,,
+october,P1,Science,wheel,A2,assets/P1/wheel.jpeg,🛞
+october,P1,Science,young,A2,,
+october,P1,Science,device,A2,,
+october,P1,Science,freeze,A2,,
+october,P1,Science,liquid,A2,,
+october,P1,Science,opaque,A2,,
+october,P1,Science,parent,A2,,
+october,P1,Science,rotate,A2,,
+october,P1,Science,stormy,A2,,
+october,P1,Science,stream,A2,,
+october,P1,Science,switch,A2,,🔌
+october,P1,Science,battery,A2,assets/P1/battery.jpeg,🔋
+october,P1,Science,brittle,A2,,
+october,P1,Science,circuit,A2,,
+october,P1,Science,gravity,A2,,
+october,P1,Science,hygiene,A2,,
+october,P1,Science,machine,A2,,
+october,P1,Science,mixture,A2,,
+october,P1,Science,protein,A2,,
+october,P1,Science,texture,A2,,
+october,P1,Science,bacteria,A2,,
+october,P1,English,dry,A2,assets/P1/dry.jpeg,🏜️
+october,P1,English,beef,A2,,
+october,P1,English,bowl,A2,,
+october,P1,English,care,A2,,
+october,P1,English,chef,A2,,
+october,P1,English,dead,A2,,
+october,P1,English,deal,A2,,
+october,P1,English,fear,A2,,
+october,P1,English,feed,A2,,
+october,P1,English,gift,A2,,
+october,P1,English,goal,A2,,
+october,P1,English,gold,A2,,
+october,P1,English,golf,A2,,
+october,P1,English,hall,A2,,
+october,P1,English,heat,A2,,
+october,P1,English,hero,A2,,
+october,P1,English,hide,A2,assets/P1/hide.jpeg,🙈
+october,P1,English,hill,A2,,
+october,P1,English,hold,A2,,✊
+october,P1,English,hole,A2,,
+october,P1,English,hurt,A2,,
+october,P1,English,item,A2,,
+october,P1,English,jazz,A2,,
+october,P1,English,joke,A2,,
+october,P1,English,knee,A2,assets/P1/knee.jpeg,🦵
+october,P1,English,lady,A2,,
+october,P1,English,lake,A2,,
+october,P1,English,lazy,A2,,
+october,P1,English,lead,A2,,
+october,P1,English,lend,A2,,
+october,P1,English,link,A2,,
+october,P1,English,lock,A2,,
+october,P1,English,lost,A2,,
+october,P1,English,loud,A2,,
+october,P1,English,luck,A2,,
+october,P1,English,mail,A2,,
+october,P1,English,male,A2,,
+october,P1,English,mark,A2,,
+october,P1,English,mind,A2,,
+october,P1,English,moon,A2,,🌙
+october,P1,English,oven,A2,,
+october,P1,English,pack,A2,,
+october,P1,English,pain,A2,,
+october,P1,English,pass,A2,,
+october,P1,English,pick,A2,,
+october,P1,English,pull,A2,,
+october,P1,English,rate,A2,,
+october,P1,English,ring,A2,assets/P1/ring.jpeg,💍
+october,P1,English,rise,A2,,
+october,P1,English,role,A2,,
+october,P2,,measure,A2,assets/P2/measure.jpeg,📏
+october,P2,,October,A2,,🗓️
+october,P2,,organic,A2,,
+october,P2,,outside,A2,,🌳
+october,P2,,patient,A2,,
+october,P2,,peacock,A2,,
+october,P2,,picture,A2,,🖼️
+october,P2,,plastic,A2,,
+october,P2,,rainbow,A2,assets/P2/rainbow.jpeg,🌈
+october,P2,,recycle,A2,,
+october,P2,,routine,A2,assets/P2/routine.jpeg,🔁
+october,P2,,rubbish,A2,,🗑️
+october,P2,,science,A2,assets/P2/science.jpeg,🔬
+october,P2,,seventy,A2,assets/P2/seventy.jpeg,7️⃣0️⃣
+october,P2,,sixteen,A2,assets/P2/sixteen.jpeg,1️⃣6️⃣
+october,P2,,teacher,A2,,👩‍🏫
+october,P2,,thunder,A2,assets/P2/thunder.jpeg,⛈️
+october,P2,,weather,A2,assets/P2/weather.jpeg,🌦️
+october,P2,,whistle,A2,,
+october,P2,,baseball,A2,,
+october,P2,,birthday,A2,,🎂
+october,P2,,carousel,A2,,
+october,P2,,computer,A2,,💻
+october,P2,,December,A2,,🗓️
+october,P2,,dinosaur,A2,,🦕
+october,P2,,eighteen,A2,assets/P2/eighteen.jpeg,1️⃣8️⃣
+october,P2,,February,A2,,🗓️
+october,P2,,football,A2,,⚽
+october,P2,,fourteen,A2,assets/P2/fourteen.jpeg,1️⃣4️⃣
+october,P2,,headache,A2,,
+october,P2,,hospital,A2,,
+october,P2,,ladybird,A2,assets/P2/ladybird.jpeg,🐞
+october,P2,,medicine,A2,,💊
+october,P2,,mountain,A2,assets/P2/mountain.jpeg,⛰️
+october,P2,,nineteen,A2,assets/P2/nineteen.jpeg,1️⃣9️⃣
+october,P2,,November,A2,,🗓️
+october,P2,,password,A2,assets/P2/password.jpeg,🔑
+october,P2,,pavement,A2,,
+october,P2,,stretchy,A2,assets/P2/stretchy.jpeg,
+october,P2,,thirteen,A2,assets/P2/thirteen.jpeg,1️⃣3️⃣
+october,P2,,tomatoes,A2,,
+october,P2,,umbrella,A2,assets/P2/umbrella.jpeg,☂️
+october,P2,,breakfast,A2,assets/P2/breakfast.jpeg,🍳
+october,P2,,butterfly,A2,assets/P2/butterfly.jpeg,🦋
+october,P2,,centipede,A2,assets/P2/centipede.jpeg,🐛
+october,P2,,crocodile,A2,,🐊
+october,P2,,lifeguard,A2,assets/P2/lifeguard.jpeg,🛟
+october,P2,,lightning,A2,assets/P2/lightning.jpeg,⚡
+october,P2,,reception,A2,,
+october,P2,,rectangle,A2,,▭
+october,P3,,rice bun,B1,,🍙
+october,P3,,blog page,B1,,
+october,P3,,duck pond,B1,assets/P3/duck_pond.jpeg,🦆
+october,P3,,foot ball,B1,,⚽
+october,P3,,ice cream,B1,,🍦
+october,P3,,party hat,B1,,🎉
+october,P3,,turbo jet,B1,,
+october,P3,,board game,B1,,
+october,P3,,book cover,B1,,📕
+october,P3,,bubble gum,B1,,
+october,P3,,coral reef,B1,,
+october,P3,,green bean,B1,,🫛
+october,P3,,salt water,B1,assets/P3/salt_water.jpeg,🌊
+october,P3,,strip book,B1,,📓
+october,P3,,theme park,B1,assets/P3/theme_park.jpeg,🎢
+october,P3,,water park,B1,assets/P3/water_park.jpeg,🏊
+october,P3,,carrot soup,B1,,🥕
+october,P3,,fresh water,B1,assets/P3/fresh_water.jpeg,💧
+october,P3,,fruit salad,B1,,🥗
+october,P3,,fruit stick,B1,,
+october,P3,,paper plate,B1,,
+october,P3,,smart phone,B1,,
+october,P3,,spring roll,B1,,
+october,P3,,water slide,B1,assets/P3/water_slide.jpeg,🛝
+october,P3,,word puzzle,B1,assets/P3/word_puzzle.jpeg,🧩
+october,P3,,camera stand,B1,,
+october,P3,,market stall,B1,,🏪
+october,P3,,roast turkey,B1,,🦃
+october,P3,,skating rink,B1,assets/P3/skating_rink.jpeg,⛸️
+october,P3,,sports field,B1,,🏟️
+october,P3,,chilli pepper,B1,,🌶️
+october,P3,,climbing wall,B1,assets/P3/climbing_wall.jpeg,🧗
+october,P3,,computer game,B1,,
+october,P3,,jigsaw puzzle,B1,assets/P3/jigsaw_puzzle.jpeg,🧩
+october,P3,,market seller,B1,,🧑‍🌾
+october,P3,,number puzzle,B1,assets/P3/number_puzzle.jpeg,🧩
+october,P3,,question mark,B1,,
+october,P3,,swimming pool,B1,assets/P3/swimming_pool.jpeg,🏊
+october,P3,,ticket office,B1,assets/P3/ticket_office.jpeg,🎫
+october,P3,,traffic light,B1,assets/P3/traffic_light.jpeg,🚦
+october,P3,,picture puzzle,B1,assets/P3/picture_puzzle.jpeg,🧩
+october,P3,,space explorer,B1,,👨‍🚀
+october,P3,,aquarium tunnel,B1,assets/P3/aquarium_tunnel.jpeg,🐠
+october,P3,,climbing centre,B1,assets/P3/climbing_centre.jpeg,🧗
+october,P3,,floating market,B1,,🛶
+october,P3,,skateboard park,B1,assets/P3/skateboard_park.jpeg,🛹
+october,P3,,exclamation mark,B1,,
+october,P3,,fire extinguisher,B1,,
+october,P3,,swimming flippers,B1,,
+october,P3,,hot air balloon,B1,,
+october,P4,,pot,B1,,
+october,P4,,win,B1,,
+october,P4,,bake,B1,,
+october,P4,,bell,B1,,
+october,P4,,bend,B1,,
+october,P4,,bite,B1,,
+october,P4,,bury,B1,,
+october,P4,,calm,B1,,
+october,P4,,clue,B1,,
+october,P4,,coal,B1,,
+october,P4,,coin,B1,,
+october,P4,,cool,B1,,
+october,P4,,dirt,B1,,
+october,P4,,drop,B1,,
+october,P4,,drum,B1,,
+october,P4,,dust,B1,,
+october,P4,,duty,B1,,
+october,P4,,edge,B1,,
+october,P4,,face,B1,,
+october,P4,,file,B1,,
+october,P4,,fire,B1,,
+october,P4,,flag,B1,,
+october,P4,,flow,B1,,
+october,P4,,folk,B1,,
+october,P4,,fuel,B1,,
+october,P4,,glad,B1,,
+october,P4,,hang,B1,,
+october,P4,,head,B1,,
+october,P4,,hire,B1,,
+october,P4,,host,B1,,
+october,P4,,hunt,B1,,
+october,P4,,iron,B1,,
+october,P4,,keen,B1,,
+october,P4,,kick,B1,,
+october,P4,,kiss,B1,,
+october,P4,,lack,B1,,
+october,P4,,leaf,B1,,
+october,P4,,loss,B1,,
+october,P4,,mall,B1,,
+october,P4,,mess,B1,,
+october,P4,,mild,B1,,
+october,P4,,mood,B1,,
+october,P4,,move,B1,,
+october,P4,,nail,B1,,
+october,P4,,next,B1,,
+october,P4,,pale,B1,,
+october,P4,,path,B1,,
+october,P4,,pipe,B1,,
+october,P4,,plot,B1,,
+october,P4,,poem,B1,,
+october,P5,,paramedic,B1,,🚑
+october,P5,,passenger,B1,,
+october,P5,,pictogram,B1,assets/P5/pictogram.jpeg,📊
+october,P5,,plantains,B1,,
+october,P5,,pollution,B1,,
+october,P5,,rebellion,B1,,✊
+october,P5,,recommend,B1,,👍
+october,P5,,religious,B1,assets/P5/religious.jpeg,
+october,P5,,represent,B1,assets/P5/represent.jpeg,🪧
+october,P5,,statement,B1,assets/P5/statement.jpeg,
+october,P5,,technique,B1,,🛠️
+october,P5,,transport,B1,,🚌
+october,P5,,volunteer,B1,,🙋
+october,P5,,background,B1,,🖼️
+october,P5,,cartwheels,B1,,
+october,P5,,collection,B1,assets/P5/collection.jpeg,📦
+october,P5,,convenient,B1,,
+october,P5,,disappoint,B1,assets/P5/disappoint.jpeg,😞
+october,P5,,disconnect,B1,,
+october,P5,,electronic,B1,,
+october,P5,,experiment,B1,assets/P5/experiment.jpeg,🧪
+october,P5,,lighthouse,B1,assets/P5/lighthouse.jpeg,🗼
+october,P5,,locomotion,B1,assets/P5/locomotion.jpeg,
+october,P5,,microphone,B1,,
+october,P5,,nutritious,B1,,
+october,P5,,percentage,B1,assets/P5/percentage.jpeg,％
+october,P5,,skateboard,B1,assets/P5/skateboard.jpeg,🛹
+october,P5,,underwater,B1,assets/P5/underwater.jpeg,🌊
+october,P5,,vegetables,B1,,
+october,P5,,comfortable,B1,,😌
+october,P5,,differences,B1,assets/P5/differences.jpeg,
+october,P5,,environment,B1,,
+october,P5,,instruction,B1,assets/P5/instruction.jpeg,📋
+october,P5,,performance,B1,assets/P5/performance.jpeg,🎭
+october,P5,,temperature,B1,,🌡️
+october,P5,,thunderbolt,B1,,⚡
+october,P5,,organization,B1,assets/P5/organization.jpeg,🏢
+october,P5,,presentation,B1,assets/P5/presentation.jpeg,📊
+october,P5,,similarities,B1,,
+october,P5,,carbohydrates,B1,,
+october,P5,,international,B1,,
+october,P5,,pronunciation,B1,assets/P5/pronunciation.jpeg,
+october,P5,,out of,B1,assets/P5/out_of.jpeg,
+october,P5,,greek god,B1,,🏛️
+october,P5,,pie chart,B1,assets/P5/pie_chart.jpeg,🥧
+october,P5,,audio book,B1,,🎧
+october,P5,,large group,B1,assets/P5/large_group.jpeg,
+october,P5,,puppet show,B1,,🎭
+october,P5,,burial mound,B1,assets/P5/burial_mound.jpeg,⛰️
+october,P5,,straight line,B1,assets/P5/straight_line.jpeg,➖
+october,P6,,additional,B2,,
+october,P6,,afterwards,B2,,
+october,P6,,aggressive,B2,,
+october,P6,,apparently,B2,,
+october,P6,,artificial,B2,,
+october,P6,,assessment,B2,,
+october,P6,,associated,B2,,
+october,P6,,commission,B2,,
+october,P6,,commitment,B2,,
+october,P6,,consistent,B2,,
+october,P6,,constantly,B2,,
+october,P6,,contribute,B2,,
+october,P6,,decoration,B2,,
+october,P6,,deliberate,B2,,
+october,P6,,depressing,B2,,
+october,P6,,discipline,B2,,
+october,P6,,distribute,B2,,
+october,P6,,enthusiasm,B2,,
+october,P6,,historical,B2,,
+october,P6,,illustrate,B2,,
+october,P6,,importance,B2,,
+october,P6,,impression,B2,,
+october,P6,,impressive,B2,,
+october,P6,,industrial,B2,,
+october,P6,,initiative,B2,,
+october,P6,,investment,B2,,
+october,P6,,leadership,B2,,
+october,P6,,management,B2,,
+october,P6,,mysterious,B2,,
+october,P6,,obligation,B2,,
+october,P6,,opposition,B2,,
+october,P6,,phenomenon,B2,,
+october,P6,,philosophy,B2,,
+october,P6,,popularity,B2,,
+october,P6,,prediction,B2,,
+october,P6,,production,B2,,
+october,P6,,profession,B2,,
+october,P6,,protection,B2,,
+october,P6,,psychology,B2,,
+october,P6,,punishment,B2,,
+october,P6,,reasonable,B2,,
+october,P6,,regulation,B2,,
+october,P6,,relatively,B2,,
+october,P6,,reputation,B2,,
+october,P6,,revolution,B2,,
+october,P6,,similarity,B2,,
+october,P6,,specialist,B2,,
+october,P6,,transition,B2,,
+october,P6,,ultimately,B2,,
+october,P6,,unexpected,B2,,
 november,K1,,bush,Pre-A1,,
 november,K1,,watering can,Pre-A1,,
 november,K1,,button,Pre-A1,,🔘
@@ -2921,7 +2922,7 @@ november,P1,Go Get Maths,carton,A1,,
 november,P1,Science,tap,A1,,
 november,P1,English,surf board,A1,,
 november,P1,Go Get Maths,row,A1,,🚣
-november,P1,Science,blow,A1,,
+november,P1,Science|English,blow,A1,,
 november,P1,English,sand,A1,,
 november,P1,Go Get Maths,column,A1,,🏛️
 november,P1,Science,vibrate,A1,,
@@ -2961,7 +2962,7 @@ november,P1,Science,echo,A1,,
 november,P1,English,twenty,A1,,2️⃣0️⃣
 november,P1,Go Get Maths,shortest,A1,,
 november,P1,Science,wave,A1,,
-november,P1,English,string,A1,,
+november,P1,English|Science,string,A1,,
 november,P1,Go Get Maths,longest,A1,,
 november,P1,Science,telephone,A1,,☎️
 november,P1,English,food container,A1,,
@@ -2977,7 +2978,7 @@ november,P1,Go Get Maths,short,A1,assets/P1/short.jpeg,📏
 november,P1,Science,bark,A1,,
 november,P1,Go Get Maths,long,A1,assets/P1/long.jpeg,
 november,P1,Science,meow,A1,,
-november,P1,English,splash,A1,,💦
+november,P1,English|Science,splash,A1,,💦
 november,P1,Go Get Maths,wide,A1,,
 november,P1,Science,chirp,A1,,
 november,P1,English,float,A1,,🏊
@@ -3430,9 +3431,9 @@ december,P1,Science,sun,A1,,☀️
 december,P1,English,shopping mall,A1,,
 december,P1,Go Get Maths,distance,A1,,
 december,P1,Science,cloud,A1,,☁️
-december,P1,English,bridge,A1,,🌉
+december,P1,English|Go Get Maths,bridge,A1,,🌉
 december,P1,Go Get Maths,path,A1,,
-december,P1,Science,sky,A1,,🌤️
+december,P1,Science|English,sky,A1,,🌤️
 december,P1,English,market,A1,,🏪
 december,P1,Go Get Maths,ribbon,A1,,🎀
 december,P1,Science,rainbow,A1,,🌈
@@ -3449,7 +3450,7 @@ december,P1,English,near,A1,,
 december,P1,Science,sunset,A1,,
 december,P1,English,far,A1,,
 december,P1,Go Get Maths,road,A1,,🛣️
-december,P1,Science,wind,A1,,💨
+december,P1,Science|English,wind,A1,,💨
 december,P1,English,high,A1,,
 december,P1,Go Get Maths,train,A1,,🚂
 december,P1,Science,daytime,A1,,
@@ -3468,7 +3469,7 @@ december,P1,Science,night,A1,,
 december,P1,English,escalator,A1,,
 december,P1,Go Get Maths,trace,A1,,✍️
 december,P1,Science,dark,A1,,
-december,P1,English,lift,A1,,🏋️
+december,P1,English|Go Get Maths,lift,A1,,🏋️
 december,P1,Go Get Maths,stretch,A1,,🧘
 december,P1,Science,shine,A1,,✨
 december,P1,English,stairs,A1,,🪜
@@ -3478,7 +3479,7 @@ december,P1,English,bat,A1,,
 december,P1,Go Get Maths,cut,A1,,
 december,P1,Science,new moon,A1,,
 december,P1,English,sea,A1,,
-december,P1,Go Get Maths,tie,A1,,👔
+december,P1,Go Get Maths|English,tie,A1,,👔
 december,P1,Science,half moon,A1,,
 december,P1,Go Get Maths,mass,A1,,
 december,P1,Science,shooting star,A1,,
@@ -4013,7 +4014,7 @@ january,P1,Go Get Maths,fence,A1,,🚧
 january,P1,Science,clay,A1,,
 january,P1,English,night,A1,,
 january,P1,Go Get Maths,sheep,A1,,
-january,P1,Science,red,A1,,🔴
+january,P1,Science|English,red,A1,,🔴
 january,P1,English,storm,A1,,⛈️
 january,P1,Go Get Maths,flock,A1,,
 january,P1,Science,orange,A1,assets/P1/orange.jpeg,🟠
@@ -4042,7 +4043,7 @@ january,P1,English,spray,A1,,
 january,P1,Go Get Maths,rod,A1,,
 january,P1,Science,round,A1,,⭕
 january,P1,English,strong,A1,,💪
-january,P1,Go Get Maths,tray,A1,,🍽️
+january,P1,Go Get Maths|Science,tray,A1,,🍽️
 january,P1,Science,pointed,A1,,
 january,P1,English,splint,A1,,
 january,P1,Go Get Maths,increase,A1,,
@@ -4918,1651 +4919,1594 @@ february,P6,,population,B1,,
 february,P6,,connectivity,B1,,
 february,P6,,scarecrow,B1,,🎃
 february,P6,,debate,B1,,
-march,K1,,fruit,Pre-A1,,🍓
-march,K1,,wake,Pre-A1,,
-march,K1,,rich,Pre-A1,,
-march,K1,,check,Pre-A1,,✅
-march,K1,,work,Pre-A1,,💼
-march,K1,,make,Pre-A1,,🔨
-march,K1,,nice,Pre-A1,,
-march,K1,,drink,Pre-A1,,🥤
-march,K1,,week,Pre-A1,,
-march,K1,,wear,Pre-A1,,
-march,K1,,child,Pre-A1,,🧒
-march,K1,,taxi,Pre-A1,,🚕
-march,K1,,bored,Pre-A1,,😑
-march,K1,,wait,Pre-A1,,⏳
-march,K1,,warm,Pre-A1,,🌤️
-march,K1,,angry,Pre-A1,,😠
-march,K1,,happy,Pre-A1,,😊
-march,K1,,take,Pre-A1,,
-march,K1,,long,Pre-A1,,
-march,K1,,stay,Pre-A1,,🛑
-march,K1,,year,Pre-A1,,📅
-march,K1,,wall,Pre-A1,,🧱
-march,K1,,soup,Pre-A1,,
-march,K1,,snow,Pre-A1,,❄️
-march,K1,,road,Pre-A1,,🛣️
-march,K1,,tell,Pre-A1,,
-march,K1,,great,Pre-A1,,
-march,K1,,meet,Pre-A1,,
-march,K1,,enjoy,Pre-A1,,😄
-march,K1,,move,Pre-A1,,
-march,K1,,send,Pre-A1,,
-march,K1,,brown,Pre-A1,,🟤
-march,K1,,town,Pre-A1,,🏘️
-march,K1,,show,Pre-A1,,
-march,K1,,time,Pre-A1,,⏰
-march,K1,,beach,Pre-A1,,🏖️
-march,K1,,know,Pre-A1,,
-march,K1,,build,Pre-A1,,🔨
-march,K1,,stop,Pre-A1,,🛑
-march,K1,,black,Pre-A1,,⚫
-march,K1,,bring,Pre-A1,,
-march,K1,,clock,Pre-A1,,🕐
-march,K1,,cream,Pre-A1,,
-march,K1,,actor,Pre-A1,,
-march,K1,,funny,Pre-A1,,
-march,K1,,want,Pre-A1,,
-march,K1,,love,Pre-A1,,❤️
-march,K1,,shop,Pre-A1,,🏪
-march,K1,,glass,Pre-A1,,🥛
-march,K1,,sell,Pre-A1,,
-march,K2,,real,Pre-A1,,
-march,K2,,song,Pre-A1,,
-march,K2,,head,Pre-A1,,🧑
-march,K2,,hand,Pre-A1,,✋
-march,K2,,poor,Pre-A1,,
-march,K2,,page,Pre-A1,,
-march,K2,,only,Pre-A1,,
-march,K2,,same,Pre-A1,,
-march,K2,,sick,Pre-A1,,🤒
-march,K2,,salt,Pre-A1,,🧂
-march,K2,,part,Pre-A1,,🧩
-march,K2,,hope,Pre-A1,,🤞
-march,K2,,read,Pre-A1,,📖
-march,K2,,post,Pre-A1,,📮
-march,K2,,open,Pre-A1,,🚪
-march,K2,,line,Pre-A1,,
-march,K2,,main,Pre-A1,,
-march,K2,,ride,Pre-A1,,🚲
-march,K2,,late,Pre-A1,,
-march,K2,,hear,Pre-A1,,👂
-march,K2,,past,Pre-A1,,
-march,K2,,lose,Pre-A1,,
-march,K2,,plan,Pre-A1,,
-march,K2,,mile,Pre-A1,,
-march,K2,,milk,Pre-A1,,🥛
-march,K2,,note,Pre-A1,,
-march,K2,,meal,Pre-A1,,
-march,K2,,name,Pre-A1,,🏷️
-march,K2,,shoe,Pre-A1,,👟
-march,K2,,help,Pre-A1,,🤝
-march,K2,,June,Pre-A1,,🗓️
-march,K2,,life,Pre-A1,,
-march,K2,,room,Pre-A1,,🚪
-march,K2,,left,Pre-A1,,
-march,K2,,mean,Pre-A1,,
-march,K2,,join,Pre-A1,,
-march,K2,,news,Pre-A1,,
-march,K2,,miss,Pre-A1,,
-march,K2,,half,Pre-A1,,
-march,K2,,rule,Pre-A1,,📏
-march,K2,,list,Pre-A1,,📋
-march,K2,,meat,Pre-A1,,
-march,K2,,need,Pre-A1,,
-march,K2,,menu,Pre-A1,,📋
-march,K2,,slow,Pre-A1,,🐢
-march,K2,,pair,Pre-A1,,
-march,K2,,rice,Pre-A1,,🍚
-march,K2,,July,Pre-A1,,🗓️
-march,K2,,lion,Pre-A1,,
-march,K2,,land,Pre-A1,,🏞️
-march,K3,,thanks,A1,,
-march,K3,,correct,A1,,✅
-march,K3,,yellow,A1,,🟡
-march,K3,,dancing,A1,,
-march,K3,,imagine,A1,,
-march,K3,,pencil,A1,,✏️
-march,K3,,reason,A1,,
-march,K3,,return,A1,,
-march,K3,,believe,A1,,
-march,K3,,pretty,A1,,
-march,K3,,period,A1,,
-march,K3,,explain,A1,,
-march,K3,,machine,A1,,⚙️
-march,K3,,cooking,A1,,
-march,K3,,summer,A1,,☀️
-march,K3,,winter,A1,,
-march,K3,,pepper,A1,,
-march,K3,,example,A1,,
-march,K3,,useful,A1,,
-march,K3,,concert,A1,,
-march,K3,,clothes,A1,,
-march,K3,,prefer,A1,,
-march,K3,,toilet,A1,,
-march,K3,,police,A1,,
-march,K3,,spring,A1,,
-march,K3,,brother,A1,,👦
-march,K3,,worker,A1,,
-march,K3,,writer,A1,,
-march,K3,,result,A1,,
-march,K3,,ticket,A1,,
-march,K3,,report,A1,,📄
-march,K3,,include,A1,,
-march,K3,,waiter,A1,,
-march,K3,,improve,A1,,📈
-march,K3,,compare,A1,,⚖️
-march,K3,,chicken,A1,,🐔
-march,K3,,reader,A1,,
-march,K3,,journey,A1,,🧳
-march,K3,,shower,A1,,🚿
-march,K3,,purple,A1,,🟣
-march,K3,,people,A1,,👨‍👩‍👧‍👦
-march,K3,,capital,A1,,
-march,K3,,phrase,A1,,
-march,K3,,healthy,A1,,🥗
-march,K3,,person,A1,,🧍
-march,K3,,feeling,A1,,
-march,K3,,history,A1,,
-march,K3,,goodbye,A1,,👋
-march,K3,,player,A1,,
-march,K3,,sister,A1,,👧
-march,P1,Go Get Maths,vertices,A1,,
-march,P1,Science,weak,A1,,
-march,P1,English,introduce,A1,,
-march,P1,Go Get Maths,straight,A1,,
-march,P1,Science,stretch,A1,,🧘
-march,P1,English,ever,A1,,
-march,P1,Go Get Maths,curved,A1,,〰️
-march,P1,Science,waterproof,A1,,
-march,P1,English,when,A1,,
-march,P1,Go Get Maths,solid,A1,,
-march,P1,Science,absorb,A1,,
-march,P1,English,never,A1,,
-march,P1,Go Get Maths,2D shape,A1,,
-march,P1,Science,push,A1,,🫸
-march,P1,English,later,A1,,
-march,P1,Go Get Maths,3D shape,A1,,
-march,P1,Science,pull,A1,,
-march,P1,English,grandparent,A1,,
-march,P1,Go Get Maths,symmetry,A1,,
-march,P1,Science,force,A1,,
-march,P1,English,understand,A1,,
-march,P1,Go Get Maths,symmetrical,A1,,
-march,P1,Science,movement,A1,,
-march,P1,English,different,A1,assets/P1/different.jpeg,
-march,P1,Go Get Maths,above,A1,,
-march,P1,Science,fast,A1,assets/P1/fast.jpeg,💨
-march,P1,English,here,A1,,
-march,P1,Go Get Maths,below,A1,,
-march,P1,Science,slow,A1,,🐢
-march,P1,English,always,A1,,
-march,P1,Go Get Maths,inside,A1,assets/P1/inside.jpeg,
-march,P1,Science,speed,A1,,💨
-march,P1,English,paragraph,A1,,
-march,P1,Go Get Maths,outside,A1,,🌳
-march,P1,Science,roll,A1,,🎲
-march,P1,English,Wednesday,A1,,📅
-march,P1,Go Get Maths,near,A1,,
-march,P1,Science,slide,A1,assets/P1/slide.jpeg,🛝
-march,P1,English,where,A1,,
-march,P1,Go Get Maths,far,A1,,
-march,P1,Science,spin,A1,,🌀
-march,P1,English,difficult,A1,,
-march,P1,Go Get Maths,behind,A1,,
-march,P1,Science,fall,A1,,
-march,P1,English,September,A1,,🗓️
-march,P1,Go Get Maths,beside,A1,,
-march,P1,Science,float,A1,,🏊
-march,P1,English,then,A1,,
-march,P1,Go Get Maths,under,A1,assets/P1/under.jpeg,⬇️
-march,P1,Science,sink,A1,,🚰
-march,P1,English,really,A1,,
-march,P1,Go Get Maths,over,A1,,
-march,P1,Science,non-magnetic,A1,,
-march,P1,English,maybe,A1,,
-march,P1,Go Get Maths,around,A1,,
-march,P1,Science,shadow,A1,,
-march,P1,English,wonderful,A1,,
-march,P1,Go Get Maths,across,A1,,
-march,P1,Science,heat,A1,,
-march,P1,English,newspaper,A1,,📰
-march,P1,Go Get Maths,through,A1,,
-march,P1,Science,cold,A1,,🥶
-march,P1,English,telephone,A1,,☎️
-march,P1,Go Get Maths,direction,A1,,
-march,P1,Science,temperature,A1,,🌡️
-march,P1,English,else,A1,,
-march,P1,Go Get Maths,width,A1,,
-march,P1,Science,snow,A1,assets/P1/snow.jpeg,❄️
-march,P1,English,photograph,A1,,📷
-march,P1,Go Get Maths,heavier,A1,,
-march,P1,Science,fog,A1,,
-march,P1,English,once,A1,,
-march,P1,Go Get Maths,lighter,A1,,
-march,P1,Science,spring,A1,,
-march,P1,English,programme,A1,,
-march,P1,Go Get Maths,capacity,A1,,
-march,P1,Science,summer,A1,,☀️
-march,P1,English,quite,A1,,
-march,P1,Go Get Maths,volume,A1,,
-march,P1,Science,autumn,A1,,
-march,P1,English,policeman,A1,,
-march,P1,Go Get Maths,more than,A1,,
-march,P1,Science,winter,A1,,
-march,P1,English,restaurant,A1,,
-march,P1,Go Get Maths,less than,A1,,
-march,P1,Science,earth,A1,,
-march,P1,English,dictionary,A1,,
-march,P1,Go Get Maths,about,A1,,
-march,P1,Science,land,A1,,🏞️
-march,P1,English,often,A1,,
-march,P1,Go Get Maths,exact,A1,,
-march,P1,Science,environment,A1,,
-march,P1,English,important,A1,,
-march,P1,Go Get Maths,measurement,A1,,
-march,P1,Science,recycle,A1,,
-march,P1,English,again,A1,,
-march,P1,Go Get Maths,centimetre,A1,,
-march,P1,Science,reuse,A1,,
-march,P1,English,kilometre,A1,,
-march,P1,Go Get Maths,metre,A1,,
-march,P1,Science,reduce,A1,,
-march,P1,English,twice,A1,,
-march,P1,Go Get Maths,gram,A1,,
-march,P1,Science,rubbish,A1,,🗑️
-march,P1,English,there,A1,,
-march,P1,Go Get Maths,litre,A1,,
-march,P1,Science,waste,A1,,
-march,P1,English,just,A1,,
-march,P1,Go Get Maths,millilitre,A1,,
-march,P1,Science,pollution,A1,,
-march,P1,English,geography,A1,,
-march,P1,Go Get Maths,time,A1,,⏰
-march,P1,Science,clean air,A1,,
-march,P1,English,favourite,A1,,
-march,P1,Go Get Maths,hour,A1,,🕐
-march,P1,Science,clean water,A1,,
-march,P1,English,soon,A1,,
-march,P1,Go Get Maths,minute,A1,,
-march,P1,Science,save water,A1,,
-march,P1,English,still,A1,,
-march,P1,Go Get Maths,morning,A1,,
-march,P1,Science,protect,A1,,🛡️
-march,P1,English,down,A1,,
-march,P1,Go Get Maths,afternoon,A1,,
-march,P1,Science,care for,A1,,
-march,P1,English,interested,A1,,
-march,P1,Go Get Maths,evening,A1,,
-march,P1,Science,observation,A1,,
-march,P1,English,very,A1,,
-march,P1,Go Get Maths,today,A1,,
-march,P1,Science,prediction,A1,,
-march,P1,English,even,A1,,
-march,P1,Go Get Maths,tomorrow,A1,,
-march,P1,Science,test,A1,assets/P1/test.jpeg,📝
-march,P1,English,however,A1,,
-march,P1,Go Get Maths,yesterday,A1,,
-march,P1,Science,compare,A1,assets/P1/compare.jpeg,⚖️
-march,P1,English,well,A1,,
-march,P1,Go Get Maths,day,A1,,
-march,P1,Science,record,A1,,⏺️
-march,P1,English,scientist,A1,,🔬
-march,P1,Go Get Maths,week,A1,,
-march,P1,Science,pattern,A1,assets/P1/pattern.jpeg,🔶
-march,P1,Go Get Maths,month,A1,,
-march,P1,Science,evidence,A1,,🔍
-march,P1,English,interesting,A1,,
-march,P1,Go Get Maths,year,A1,,📅
-march,P1,English,neighbour,A1,,
-march,P2,,speed,A2,,💨
-march,P2,,stage,A2,,
-march,P2,,offer,A2,,
-march,P2,,stone,A2,,🪨
-march,P2,,raise,A2,,
-march,P2,,sweet,A2,,🍬
-march,P2,,major,A2,,
-march,P2,,print,A2,,🖨️
-march,P2,,stamp,A2,,📮
-march,P2,,sheet,A2,,
-march,P2,,shake,A2,,🤝
-march,P2,,lorry,A2,,🚚
-march,P2,,power,A2,,⚡
-march,P2,,owner,A2,,
-march,P2,,scene,A2,,
-march,P2,,marry,A2,,
-march,P2,,third,A2,,3️⃣
-march,P2,,thick,A2,,📚
-march,P2,,maths,A2,,
-march,P2,,thief,A2,,🥷
-march,P2,,taste,A2,,👅
-march,P2,,prize,A2,,
-march,P2,,reach,A2,,
-march,P2,,state,A2,,🗺️
-march,P2,,route,A2,,
-march,P2,,media,A2,,
-march,P2,,react,A2,,
-march,P2,,scary,A2,,
-march,P2,,lucky,A2,,🍀
-march,P2,,sense,A2,,
-march,P2,,penny,A2,,
-march,P2,,steal,A2,,
-march,P2,,touch,A2,,👆
-march,P2,,noisy,A2,,
-march,P2,,sauce,A2,,
-march,P2,,peace,A2,,☮️
-march,P2,,serve,A2,,
-march,P2,,smoke,A2,,💨
-march,P2,,shape,A2,,🔷
-march,P2,,pilot,A2,,🧑‍✈️
-march,P2,,refer,A2,,
-march,P2,,store,A2,,
-march,P2,,pants,A2,,👖
-march,P2,,smell,A2,,👃
-march,P2,,reply,A2,,
-march,P2,,spoon,A2,,🥄
-march,P2,,solve,A2,,
-march,P2,,shout,A2,,
-march,P2,,novel,A2,,
-march,P2,,level,A2,,
-march,P3,,fair,A2,,
-march,P3,,lamp,A2,,💡
-march,P3,,hope,A2,,🤞
-march,P3,,goal,A2,,
-march,P3,,data,A2,,📊
-march,P3,,lady,A2,,
-march,P3,,fear,A2,,
-march,P3,,earn,A2,,
-march,P3,,flat,A2,,
-march,P3,,gate,A2,,🚪
-march,P3,,joke,A2,,
-march,P3,,golf,A2,,
-march,P3,,fail,A2,,
-march,P3,,dark,A2,,
-march,P3,,hero,A2,,
-march,P3,,lead,A2,,
-march,P3,,lock,A2,,
-march,P3,,deal,A2,,
-march,P3,,jump,A2,,🦘
-march,P3,,jazz,A2,,
-march,P3,,deep,A2,,
-march,P3,,lend,A2,,
-march,P3,,cash,A2,,
-march,P3,,hole,A2,,🕳️
-march,P3,,huge,A2,,
-march,P3,,cook,A2,,👨‍🍳
-march,P3,,fish,A2,,🐟
-march,P3,,copy,A2,,
-march,P3,,knee,A2,,🦵
-march,P3,,hill,A2,,
-march,P3,,link,A2,,
-march,P3,,frog,A2,,🐸
-march,P3,,fork,A2,,🍴
-march,P3,,hold,A2,,✊
-march,P3,,item,A2,,
-march,P3,,case,A2,,
-march,P3,,land,A2,,🏞️
-march,P3,,fall,A2,,
-march,P3,,hide,A2,,🙈
-march,P3,,lost,A2,,
-march,P3,,chef,A2,,
-march,P3,,gold,A2,,
-march,P3,,dead,A2,,
-march,P3,,chip,A2,,
-march,P3,,hurt,A2,,
-march,P3,,chat,A2,,
-march,P3,,heat,A2,,
-march,P3,,lift,A2,,🏋️
-march,P3,,look,A2,,👀
-march,P3,,lake,A2,,🏞️
-march,P4,,quantity,A2,,
-march,P4,,department,A2,,
-march,P4,,electrical,A2,,
-march,P4,,electricity,A2,,⚡
-march,P4,,movement,A2,,
-march,P4,,population,A2,,
-march,P4,,environment,A2,,
-march,P4,,personality,A2,,
-march,P4,,solution,A2,,💡
-march,P4,,tradition,A2,,
-march,P4,,opportunity,A2,,🚪
-march,P4,,condition,A2,,
-march,P4,,suggestion,A2,,💡
-march,P4,,organization,A2,,🏢
-march,P4,,direction,A2,,
-march,P4,,technology,A2,,💻
-march,P4,,competition,A2,,
-march,P4,,possibility,A2,,
-march,P4,,relationship,A2,,
-march,P4,,invention,A2,,
-march,P4,,celebrity,A2,,
-march,P4,,conference,A2,,
-march,P4,,community,A2,,
-march,P4,,any more,A2,,
-march,P4,,appearance,A2,,
-march,P4,,attention,A2,,
-march,P4,,immediately,A2,,
-march,P4,,expression,A2,,
-march,P4,,possession,A2,,
-march,P4,,question,A2,,❓
-march,P4,,instruction,A2,,📋
-march,P4,,alternative,A2,,
-march,P4,,classical,A2,,
-march,P4,,advertisement,A2,,
-march,P4,,experience,A2,,🎓
-march,P4,,experiment,A2,,🧪
-march,P4,,attractive,A2,,
-march,P4,,government,A2,,🏛️
-march,P4,,permission,A2,,
-march,P4,,detective,A2,,
-march,P4,,pollution,A2,,
-march,P4,,discussion,A2,,
-march,P4,,reception,A2,,
-march,P4,,arrangement,A2,,
-march,P4,,unfortunately,A2,,
-march,P4,,explanation,A2,,
-march,P4,,education,A2,,🎓
-march,P4,,instrument,A2,,
-march,P4,,physical,A2,,
-march,P4,,position,A2,,
-march,P5,,curtain,B1,,
-march,P5,,central,B1,,
-march,P5,,consume,B1,,
-march,P5,,combine,B1,,
-march,P5,,channel,B1,,
-march,P5,,consist,B1,,
-march,P5,,supply,B1,,
-march,P5,,contact,B1,,
-march,P5,,revise,B1,,
-march,P5,,unfair,B1,,
-march,P5,,costume,B1,,
-march,P5,,wonder,B1,assets/P5/wonder.jpeg,🤔
-march,P5,,victim,B1,,
-march,P5,,annoyed,B1,,
-march,P5,,complex,B1,,
-march,P5,,update,B1,,
-march,P5,,spring,B1,,
-march,P5,,spirit,B1,,
-march,P5,,confuse,B1,,
-march,P5,,string,B1,,
-march,P5,,average,B1,,
-march,P5,,attract,B1,,
-march,P5,,talent,B1,,🌟
-march,P5,,sudden,B1,,
-march,P5,,tongue,B1,,👅
-march,P5,,unable,B1,,
-march,P5,,captain,B1,,
-march,P5,,ceiling,B1,,⬜
-march,P5,,viewer,B1,,
-march,P5,,safety,B1,,
-march,P5,,by,B1,,
-march,P5,,suffer,B1,,
-march,P5,,script,B1,,
-march,P5,,account,B1,,
-march,P5,,covered,B1,,
-march,P5,,current,B1,,
-march,P5,,confirm,B1,,
-march,P5,,analyse,B1,,
-march,P5,,cottage,B1,,🏡
-march,P5,,studio,B1,,
-march,P5,,spoken,B1,,
-march,P5,,theory,B1,,
-march,P5,,content,B1,,
-march,P5,,silent,B1,,
-march,P5,,arrival,B1,,
-march,P5,,chapter,B1,,
-march,P5,,benefit,B1,,
-march,P5,,sample,B1,,
-march,P5,,throat,B1,,
-march,P5,,switch,B1,,🔌
-march,P6,,additional,B2,,
-march,P6,,development,B2,,
-march,P6,,intelligence,B2,,
-march,P6,,destination,B2,,
-march,P6,,management,B2,,
-march,P6,,punishment,B2,,
-march,P6,,announcement,B2,,
-march,P6,,performance,B2,,🎭
-march,P6,,transform,B2,,
-march,P6,,reservation,B2,,
-march,P6,,enthusiasm,B2,,
-march,P6,,thus,B2,,
-march,P6,,competitive,B2,,
-march,P6,,artificial,B2,,
-march,P6,,translation,B2,,
-march,P6,,philosophy,B2,,
-march,P6,,appointment,B2,,
-march,P6,,communication,B2,,
-march,P6,,historical,B2,,
-march,P6,,structure,B2,,
-march,P6,,impression,B2,,
-march,P6,,acceptable,B2,,
-march,P6,,similarity,B2,,
-march,P6,,industrial,B2,,
-march,P6,,celebration,B2,,🎉
-march,P6,,accommodation,B2,,
+march,K1,,flashcard,Pre-A1,,🃏
+march,K1,,furniture,Pre-A1,,
+march,K1,,greetings,Pre-A1,,
+march,K1,,newspaper,Pre-A1,,📰
+march,K1,,pineapple,Pre-A1,,
+march,K1,,rectangle,Pre-A1,,▭
+march,K1,,scarecrow,Pre-A1,assets/K1/scarecrow.jpg,🎃
+march,K1,,slideshow,Pre-A1,,📽️
+march,K1,,telephone,Pre-A1,assets/K1/telephone.jpg,☎️
+march,K1,,vegetable,Pre-A1,,
+march,K1,,yesterday,Pre-A1,,
+march,K1,,experiment,Pre-A1,,🧪
+march,K1,,playground,Pre-A1,,🛝
+march,K1,,television,Pre-A1,,
+march,K1,,grandfather,Pre-A1,,
+march,K1,,grandmother,Pre-A1,,
+march,K1,,shuttlecock,Pre-A1,,
+march,K1,,supermarket,Pre-A1,,
+march,K1,,transportation,Pre-A1,,🚌
+march,K1,,put on,Pre-A1,assets/K1/put_on.jpeg,👕
+march,K1,,toy box,Pre-A1,,
+march,K1,,clean up,Pre-A1,,
+march,K1,,letter d,Pre-A1,assets/K1/letter_d.jpeg,🅳
+march,K1,,letter e,Pre-A1,assets/K1/letter_e.jpeg,🅴
+march,K1,,letter f,Pre-A1,assets/K1/letter_f.jpeg,🅵
+march,K1,,letter h,Pre-A1,assets/K1/letter_h.jpg,🅷
+march,K1,,letter i,Pre-A1,assets/K1/letter_i.jpg,🅸
+march,K1,,letter m,Pre-A1,,
+march,K1,,letter n,Pre-A1,,
+march,K1,,letter o,Pre-A1,,
+march,K1,,letter p,Pre-A1,,
+march,K1,,letter q,Pre-A1,,
+march,K1,,letter r,Pre-A1,,
+march,K1,,letter s,Pre-A1,,
+march,K1,,letter t,Pre-A1,,
+march,K1,,letter u,Pre-A1,,
+march,K1,,sit down,Pre-A1,,🪑
+march,K1,,ice cream,Pre-A1,,🍦
+march,K1,,party hat,Pre-A1,,🎉
+march,K1,,thank you,Pre-A1,assets/K1/thank_you.jpeg,🙏
+march,K1,,monkey bar,Pre-A1,,🐒
+march,K1,,paper bird,Pre-A1,,
+march,K1,,paper clip,Pre-A1,,📎
+march,K1,,paper kite,Pre-A1,,
+march,K1,,teddy bear,Pre-A1,assets/K1/teddy_bear.jpeg,🧸
+march,K1,,paper plane,Pre-A1,,
+march,K1,,pencil case,Pre-A1,,
+march,K1,,soccer ball,Pre-A1,,
+march,K1,,watering can,Pre-A1,,
+march,K1,,classroom object,Pre-A1,,
+march,K2,,swimsuit,Pre-A1,,
+march,K2,,Thursday,Pre-A1,,📅
+march,K2,,triangle,Pre-A1,assets/K2/triangle.jpeg,🔺
+march,K2,,umbrella,Pre-A1,,☂️
+march,K2,,beautiful,Pre-A1,,
+march,K2,,butterfly,Pre-A1,,🦋
+march,K2,,classroom,Pre-A1,assets/K2/classroom.jpg,🏫
+march,K2,,detergent,Pre-A1,,
+march,K2,,fireplace,Pre-A1,,🔥
+march,K2,,hopscotch,Pre-A1,,
+march,K2,,milkshake,Pre-A1,,🥤
+march,K2,,rectangle,Pre-A1,assets/K2/rectangle.jpeg,▭
+march,K2,,scarecrow,Pre-A1,,🎃
+march,K2,,seventeen,Pre-A1,,1️⃣7️⃣
+march,K2,,sleveless,Pre-A1,,
+march,K2,,stockings,Pre-A1,,
+march,K2,,sunflower,Pre-A1,,🌻
+march,K2,,vegetable,Pre-A1,,🥦
+march,K2,,Wednesday,Pre-A1,,📅
+march,K2,,clothespin,Pre-A1,,
+march,K2,,flashlight,Pre-A1,,
+march,K2,,headphones,Pre-A1,,
+march,K2,,playground,Pre-A1,assets/K2/playground.jpeg,🛝
+march,K2,,strawberry,Pre-A1,,🍓
+march,K2,,sunglasses,Pre-A1,,🕶️
+march,K2,,tambourine,Pre-A1,,
+march,K2,,trampoline,Pre-A1,assets/K2/trampoline.jpeg,🤸
+march,K2,,clothesline,Pre-A1,,
+march,K2,,temperature,Pre-A1,,🌡️
+march,K2,,wheelbarrow,Pre-A1,,
+march,K2,,line up,Pre-A1,assets/K2/line_up.jpeg,🚶
+march,K2,,great job,Pre-A1,assets/K2/great_job.jpeg,👏
+march,K2,,flower pot,Pre-A1,,
+march,K2,,monkey bar,Pre-A1,assets/K2/monkey_bar.jpeg,🐒
+march,K2,,smells bad,Pre-A1,,
+march,K2,,teddy bear,Pre-A1,assets/K2/teddy_bear.jpeg,🧸
+march,K2,,water lily,Pre-A1,,
+march,K2,,alarm clock,Pre-A1,,
+march,K2,,blow bubble,Pre-A1,assets/K2/blow_bubble.jpeg,🫧
+march,K2,,drink water,Pre-A1,,
+march,K2,,plastic tub,Pre-A1,,
+march,K2,,smells good,Pre-A1,,
+march,K2,,stuffed toy,Pre-A1,,
+march,K2,,watering can,Pre-A1,,
+march,K2,,chopping board,Pre-A1,,
+march,K2,,feeding bottle,Pre-A1,assets/K2/feeding_bottle.jpg,🍼
+march,K2,,laundry basket,Pre-A1,,
+march,K2,,washing machine,Pre-A1,,🧺
+march,K2,,weather forecast,Pre-A1,,📺
+march,K2,,kid (baby goat),Pre-A1,,
+march,K3,,act,A2,,
+march,K3,,app,A2,,
+march,K3,,bar,A2,,
+march,K3,,bin,A2,,
+march,K3,,bit,A2,,
+march,K3,,cry,A2,,
+march,K3,,fan,A2,,
+march,K3,,fit,A2,,
+march,K3,,fix,A2,,
+march,K3,,flu,A2,,
+march,K3,,gap,A2,,
+march,K3,,gas,A2,,
+march,K3,,guy,A2,,
+march,K3,,ill,A2,,
+march,K3,,jam,A2,,
+march,K3,,kid,A2,,
+march,K3,,lab,A2,,
+march,K3,,low,A2,,
+march,K3,,nut,A2,,
+march,K3,,oil,A2,,
+march,K3,,pet,A2,,
+march,K3,,pop,A2,,
+march,K3,,sir,A2,,
+march,K3,,ski,A2,,
+march,K3,,tie,A2,,
+march,K3,,tip,A2,,
+march,K3,,top,A2,,
+march,K3,,van,A2,,
+march,K3,,web,A2,,
+march,K3,,wet,A2,,
+march,K3,,able,A2,,
+march,K3,,bean,A2,,
+march,K3,,beat,A2,,
+march,K3,,belt,A2,,
+march,K3,,blow,A2,,
+march,K3,,boil,A2,,
+march,K3,,bone,A2,,
+march,K3,,burn,A2,,
+march,K3,,camp,A2,,
+march,K3,,case,A2,,
+march,K3,,chat,A2,,
+march,K3,,chip,A2,,
+march,K3,,code,A2,,
+march,K3,,copy,A2,,
+march,K3,,data,A2,,
+march,K3,,deep,A2,,
+march,K3,,drop,A2,,
+march,K3,,earn,A2,,
+march,K3,,fail,A2,,
+march,K3,,fair,A2,,
+march,P1,Go Get Maths,thirty-six,A2,,
+march,P1,Go Get Maths,thirty-two,A2,,
+march,P1,Go Get Maths,twenty-one,A2,,
+march,P1,Go Get Maths,twenty-six,A2,,
+march,P1,Go Get Maths,twenty-two,A2,,
+march,P1,Go Get Maths,impossible,A2,,
+march,P1,Go Get Maths,reflection,A2,,
+march,P1,Go Get Maths,thirty-five,A2,,
+march,P1,Go Get Maths,thirty-four,A2,,
+march,P1,Go Get Maths,twenty-five,A2,,
+march,P1,Go Get Maths,twenty-four,A2,,
+march,P1,Go Get Maths,twenty-nine,A2,,
+march,P1,Go Get Maths,probability,A2,,
+march,P1,Go Get Maths,thirty-eight,A2,,
+march,P1,Go Get Maths,thirty-seven,A2,,
+march,P1,Go Get Maths,thirty-three,A2,,
+march,P1,Go Get Maths,twenty-eight,A2,,
+march,P1,Go Get Maths,twenty-seven,A2,,
+march,P1,Go Get Maths,twenty-three,A2,,
+march,P1,Go Get Maths,anticlockwise,A2,,
+march,P1,Go Get Maths,one half,A2,,
+march,P1,Go Get Maths,bar chart,A2,,
+march,P1,Go Get Maths,full turn,A2,,
+march,P1,Go Get Maths,half past,A2,,
+march,P1,Go Get Maths,half turn,A2,,
+march,P1,Go Get Maths,one third,A2,,
+march,P1,Go Get Maths,plus sign,A2,,
+march,P1,Go Get Maths,ten frame,A2,,
+march,P1,Go Get Maths,equal sign,A2,,
+march,P1,Go Get Maths,fair share,A2,,
+march,P1,Go Get Maths,five frame,A2,,
+march,P1,Go Get Maths,minus sign,A2,,
+march,P1,Go Get Maths,quarter to,A2,,
+march,P1,Go Get Maths,two halves,A2,,
+march,P1,Go Get Maths,dot pattern,A2,,
+march,P1,Go Get Maths,equal parts,A2,,
+march,P1,Go Get Maths,math symbol,A2,,
+march,P1,Go Get Maths,mirror line,A2,,
+march,P1,Go Get Maths,number card,A2,,
+march,P1,Go Get Maths,number grid,A2,,
+march,P1,Go Get Maths,one quarter,A2,,
+march,P1,Go Get Maths,repeat unit,A2,,
+march,P1,Go Get Maths,equal groups,A2,,
+march,P1,Go Get Maths,quarter past,A2,,
+march,P1,Go Get Maths,quarter turn,A2,,
+march,P1,Go Get Maths,four quarters,A2,,
+march,P1,Go Get Maths,hundred chart,A2,,
+march,P1,Go Get Maths,measuring tape,A2,,
+march,P1,Go Get Maths,growing pattern,A2,,
+march,P1,Go Get Maths,shrinking pattern,A2,,
+march,P1,Science,condense,A2,,
+march,P1,Science,consumer,A2,,
+march,P1,Science,daylight,A2,,
+march,P1,Science,electric,A2,,
+march,P1,Science,flexible,A2,,
+march,P1,Science,forecast,A2,,
+march,P1,Science,friction,A2,,
+march,P1,Science,hospital,A2,,
+march,P1,Science,landform,A2,,
+march,P1,Science,predator,A2,,
+march,P1,Science,producer,A2,,
+march,P1,Science,rainfall,A2,,
+march,P1,Science,rotation,A2,,
+march,P1,Science,separate,A2,,
+march,P1,Science,absorbent,A2,,
+march,P1,Science,breathing,A2,,
+march,P1,Science,evaporate,A2,,
+march,P1,Science,heartbeat,A2,,
+march,P1,Science,migration,A2,,
+march,P1,Science,offspring,A2,,
+march,P1,Science,renewable,A2,,
+march,P1,Science,satellite,A2,,
+march,P1,Science,adaptation,A2,,
+march,P1,Science,spacecraft,A2,,
+march,P1,Science,toothbrush,A2,,
+march,P1,Science,toothpaste,A2,,
+march,P1,Science,electricity,A2,,
+march,P1,Science,hibernation,A2,,
+march,P1,Science,thermometer,A2,,
+march,P1,Science,transparent,A2,,
+march,P1,Science,carbohydrate,A2,,
+march,P1,Science,non-absorbent,A2,,
+march,P1,Science,food web,A2,,
+march,P1,Science,soil type,A2,,
+march,P1,Science,wind vane,A2,,
+march,P1,Science,cloud type,A2,,
+march,P1,Science,food chain,A2,,
+march,P1,Science,life stage,A2,,
+march,P1,Science,north pole,A2,,
+march,P1,Science,rain gauge,A2,,
+march,P1,Science,south pole,A2,,
+march,P1,Science,magnet pole,A2,,
+march,P1,Science,water cycle,A2,,
+march,P1,Science,wind energy,A2,,
+march,P1,Science,solar energy,A2,,
+march,P1,Science,solar system,A2,,
+march,P1,Science,balanced diet,A2,,
+march,P1,Science,energy source,A2,,
+march,P1,Science,weather chart,A2,,
+march,P1,Science,temperature scale,A2,,
+march,P1,English,roof,A2,,
+march,P1,English,rude,A2,,
+march,P1,English,safe,A2,,🦺
+march,P1,English,sail,A2,,
+march,P1,English,sale,A2,,
+march,P1,English,save,A2,,
+march,P1,English,seat,A2,,
+march,P1,English,seem,A2,,
+march,P1,English,shut,A2,,
+march,P1,English,side,A2,assets/P1/side.jpeg,
+march,P1,English,sign,A2,,
+march,P1,English,site,A2,,
+march,P1,English,size,A2,assets/P1/size.jpeg,
+march,P1,English,skin,A2,assets/P1/skin.jpeg,🧴
+march,P1,English,soap,A2,,🧼
+march,P1,English,soft,A2,,
+march,P1,English,sort,A2,assets/P1/sort.jpeg,🗂️
+march,P1,English,step,A2,,
+march,P1,English,suit,A2,,
+march,P1,English,task,A2,,
+march,P1,English,term,A2,,
+march,P1,English,tidy,A2,,
+march,P1,English,tool,A2,,
+march,P1,English,tour,A2,,
+march,P1,English,twin,A2,,
+march,P1,English,unit,A2,,
+march,P1,English,user,A2,,
+march,P1,English,view,A2,,
+march,P1,English,wave,A2,,
+march,P1,English,weak,A2,,
+march,P1,English,wide,A2,,
+march,P1,English,wild,A2,,
+march,P1,English,wish,A2,,
+march,P1,English,allow,A2,,
+march,P1,English,alone,A2,,
+march,P1,English,ankle,A2,,
+march,P1,English,apply,A2,,
+march,P1,English,argue,A2,,
+march,P1,English,avoid,A2,,
+march,P1,English,award,A2,,
+march,P1,English,awful,A2,,
+march,P1,English,based,A2,,
+march,P1,English,birth,A2,,
+march,P1,English,blank,A2,,
+march,P1,English,blood,A2,assets/P1/blood.jpeg,🩸
+march,P1,English,board,A2,,
+march,P1,English,brain,A2,assets/P1/brain.jpeg,🧠
+march,P1,English,catch,A2,,🤾
+march,P1,English,cause,A2,,
+march,P1,English,clear,A2,,
+march,P2,,September,A2,,🗓️
+march,P2,,seventeen,A2,assets/P2/seventeen.jpeg,1️⃣7️⃣
+march,P2,,superhero,A2,assets/P2/superhero.jpeg,🦸
+march,P2,,thirtieth,A2,,3️⃣0️⃣
+march,P2,,timetable,A2,,
+march,P2,,toothache,A2,,
+march,P2,,transport,A2,,🚌
+march,P2,,binoculars,A2,,
+march,P2,,centimeter,A2,assets/P2/centimeter.jpeg,📏
+march,P2,,classrooms,A2,,
+march,P2,,microscope,A2,,🔬
+march,P2,,sandcastle,A2,,
+march,P2,,sunglasses,A2,,🕶️
+march,P2,,television,A2,,📺
+march,P2,,certificate,A2,,📜
+march,P2,,firefighter,A2,assets/P2/firefighter.jpeg,👨‍🚒
+march,P2,,temperature,A2,,🌡️
+march,P2,,twenty-first,A2,,2️⃣1️⃣
+march,P2,,twenty-sixth,A2,,2️⃣6️⃣
+march,P2,,twenty-third,A2,,2️⃣3️⃣
+march,P2,,twenty-fourth,A2,,2️⃣4️⃣
+march,P2,,twenty-second,A2,,2️⃣2️⃣
+march,P2,,twenty-seventh,A2,,2️⃣7️⃣
+march,P2,,way in,A2,assets/P2/way_in.jpeg,➡️
+march,P2,,way out,A2,assets/P2/way_out.jpeg,🚪
+march,P2,,first aid,A2,assets/P2/first_aid.jpeg,🩹
+march,P2,,ice cream,A2,,🍦
+march,P2,,long jump,A2,,🤸
+march,P2,,main hall,A2,assets/P2/main_hall.jpeg,🏛️
+march,P2,,sack race,A2,,🏃
+march,P2,,sun cream,A2,,
+march,P2,,dry leaves,A2,,
+march,P2,,pine cones,A2,,
+march,P2,,water park,A2,,🏊
+march,P2,,early years,A2,assets/P2/early_years.jpeg,
+march,P2,,hurdle race,A2,,🏃
+march,P2,,media drama,A2,assets/P2/media_drama.jpeg,🎬
+march,P2,,sore throat,A2,,
+march,P2,,yoga studio,A2,assets/P2/yoga_studio.jpeg,🧘
+march,P2,,sports field,A2,assets/P2/sports_field.jpeg,🏟️
+march,P2,,stick insect,A2,,
+march,P2,,twenty- eight,A2,,2️⃣8️⃣
+march,P2,,twenty- fifth,A2,,2️⃣5️⃣
+march,P2,,twenty- ninth,A2,,2️⃣9️⃣
+march,P2,,waiting room,A2,,
+march,P2,,javelin throw,A2,,🥇
+march,P2,,traffic light,A2,,🚦
+march,P2,,police officer,A2,assets/P2/police_officer.jpeg,👮
+march,P2,,volleyball court,A2,assets/P2/volleyball_court.jpeg,🏐
+march,P2,,in front of,A2,assets/P2/in_front_of.jpeg,
+march,P3,,ad,B1,,
+march,P3,,go,B1,,
+march,P3,,IT,B1,,
+march,P3,,age,B1,,
+march,P3,,aim,B1,,
+march,P3,,ban,B1,,
+march,P3,,bee,B1,,
+march,P3,,cap,B1,,
+march,P3,,cut,B1,,
+march,P3,,due,B1,,
+march,P3,,far,B1,,
+march,P3,,fry,B1,,
+march,P3,,fur,B1,,
+march,P3,,key,B1,,
+march,P3,,lay,B1,,
+march,P3,,lip,B1,,
+march,P3,,mad,B1,,
+march,P3,,mix,B1,,
+march,P3,,mud,B1,,
+march,P3,,net,B1,,
+march,P3,,odd,B1,,
+march,P3,,pan,B1,,
+march,P3,,pin,B1,,
+march,P3,,row,B1,,
+march,P3,,shy,B1,,
+march,P3,,tax,B1,,
+march,P3,,tin,B1,,
+march,P3,,toe,B1,,
+march,P3,,aged,B1,,
+march,P3,,base,B1,,
+march,P3,,weak,B1,,
+march,P3,,wide,B1,,
+march,P3,,wild,B1,,
+march,P3,,wish,B1,,
+march,P3,,adult,B1,,
+march,P3,,allow,B1,,
+march,P3,,alone,B1,,
+march,P3,,ankle,B1,,
+march,P3,,apply,B1,,
+march,P3,,argue,B1,,
+march,P3,,avoid,B1,,
+march,P3,,award,B1,,
+march,P3,,awful,B1,,
+march,P3,,based,B1,,
+march,P3,,birth,B1,,
+march,P3,,blank,B1,,
+march,P3,,blood,B1,,
+march,P3,,board,B1,,
+march,P3,,brain,B1,,
+march,P3,,brush,B1,,
+march,P4,,port,B1,,
+march,P4,,pray,B1,,
+march,P4,,quit,B1,,
+march,P4,,rare,B1,,
+march,P4,,rent,B1,,
+march,P4,,risk,B1,,
+march,P4,,roll,B1,,
+march,P4,,rope,B1,,
+march,P4,,rule,B1,,
+march,P4,,sand,B1,,
+march,P4,,scan,B1,,
+march,P4,,seed,B1,,
+march,P4,,sink,B1,,
+march,P4,,slow,B1,,
+march,P4,,soil,B1,,
+march,P4,,tape,B1,,
+march,P4,,tend,B1,,
+march,P4,,tiny,B1,,
+march,P4,,tube,B1,,
+march,P4,,type,B1,,
+march,P4,,tyre,B1,,
+march,P4,,ugly,B1,,
+march,P4,,used,B1,,
+march,P4,,vote,B1,,
+march,P4,,warm,B1,,
+march,P4,,warn,B1,,
+march,P4,,wing,B1,,
+march,P4,,wool,B1,,
+march,P4,,yard,B1,,
+march,P4,,admit,B1,,
+march,P4,,agent,B1,,
+march,P4,,alarm,B1,,
+march,P4,,album,B1,,
+march,P4,,annoy,B1,,
+march,P4,,aware,B1,,
+march,P4,,basic,B1,,
+march,P4,,basis,B1,,
+march,P4,,block,B1,,
+march,P4,,brand,B1,,
+march,P4,,brave,B1,,
+march,P4,,chain,B1,,
+march,P4,,cheat,B1,,
+march,P4,,chest,B1,,
+march,P4,,claim,B1,,
+march,P4,,clear,B1,,
+march,P4,,click,B1,,
+march,P4,,climb,B1,,
+march,P4,,coach,B1,,
+march,P4,,count,B1,,
+march,P4,,court,B1,,
+march,P5,,deeply,B2,,
+march,P5,,notion,B2,,
+march,P5,,partly,B2,,
+march,P5,,vision,B2,,
+march,P5,,widely,B2,,
+march,P5,,closely,B2,,
+march,P5,,largely,B2,,
+march,P5,,rapidly,B2,,
+march,P5,,upwards,B2,,
+march,P5,,warning,B2,,
+march,P5,,western,B2,,
+march,P5,,written,B2,,
+march,P5,,academic,B2,,
+march,P5,,advanced,B2,,
+march,P5,,analysis,B2,,
+march,P5,,announce,B2,,
+march,P5,,annoying,B2,,
+march,P5,,attitude,B2,,
+march,P5,,careless,B2,,
+march,P5,,category,B2,,
+march,P5,,ceremony,B2,,
+march,P5,,champion,B2,,
+march,P5,,cheerful,B2,,
+march,P5,,coloured,B2,,
+march,P5,,commonly,B2,,
+march,P5,,conclude,B2,,
+march,P5,,confused,B2,,
+march,P5,,consumer,B2,,
+march,P5,,contrast,B2,,
+march,P5,,convince,B2,,
+march,P5,,entirely,B2,,
+march,P5,,somewhat,B2,,
+march,P5,,basically,B2,,
+march,P5,,downwards,B2,,
+march,P5,,elsewhere,B2,,
+march,P5,,gradually,B2,,
+march,P5,,initially,B2,,
+march,P5,,otherwise,B2,,
+march,P5,,complicated,B2,,
+march,P5,,demonstrate,B2,,
+march,P5,,fundamental,B2,,
+march,P5,,participant,B2,,
+march,P5,,significant,B2,,
+march,P5,,surrounding,B2,,
+march,P5,,contemporary,B2,,
+march,P5,,enthusiastic,B2,,
+march,P5,,professional,B2,,
+march,P5,,psychologist,B2,,
+march,P5,,extraordinary,B2,,
+march,P5,,characteristic,B2,,
 march,P6,,achievement,B2,,
-march,P6,,temporary,B2,,
-march,P6,,prediction,B2,,
-march,P6,,illustrate,B2,,
-march,P6,,contribute,B2,,
-march,P6,,associated,B2,,
-march,P6,,entertainment,B2,,
-march,P6,,distribute,B2,,
-march,P6,,production,B2,,
-march,P6,,depressing,B2,,
-march,P6,,fully,B2,,
-march,P6,,deliberate,B2,,
-march,P6,,discipline,B2,,
-march,P6,,profession,B2,,
+march,P6,,acknowledge,B2,,
+march,P6,,appointment,B2,,
+march,P6,,appropriate,B2,,
+march,P6,,association,B2,,
+march,P6,,celebration,B2,,
+march,P6,,combination,B2,,
+march,P6,,competitive,B2,,
 march,P6,,consequence,B2,,
-march,P6,,unemployment,B2,,
+march,P6,,destination,B2,,
+march,P6,,development,B2,,
+march,P6,,examination,B2,,
+march,P6,,expectation,B2,,
+march,P6,,exploration,B2,,
+march,P6,,furthermore,B2,,
 march,P6,,improvement,B2,,
-march,P6,,phenomenon,B2,,
-march,P6,,importance,B2,,
-march,P6,,responsibility,B2,,
-march,P6,,impressive,B2,,
-march,P6,,consistent,B2,,
+march,P6,,institution,B2,,
+march,P6,,measurement,B2,,
+march,P6,,observation,B2,,
+march,P6,,performance,B2,,
+march,P6,,perspective,B2,,
+march,P6,,preparation,B2,,
+march,P6,,publication,B2,,
+march,P6,,requirement,B2,,
+march,P6,,reservation,B2,,
+march,P6,,translation,B2,,
+march,P6,,announcement,B2,,
+march,P6,,circumstance,B2,,
+march,P6,,conservative,B2,,
+march,P6,,contribution,B2,,
+march,P6,,deliberately,B2,,
+march,P6,,distribution,B2,,
+march,P6,,illustration,B2,,
+march,P6,,increasingly,B2,,
+march,P6,,intelligence,B2,,
+march,P6,,nevertheless,B2,,
+march,P6,,occasionally,B2,,
+march,P6,,presentation,B2,,
+march,P6,,unemployment,B2,,
+march,P6,,accommodation,B2,,
+march,P6,,communication,B2,,
+march,P6,,concentration,B2,,
+march,P6,,consideration,B2,,
+march,P6,,entertainment,B2,,
+march,P6,,investigation,B2,,
+march,P6,,significantly,B2,,
+march,P6,,administration,B2,,
 march,P6,,recommendation,B2,,
-march,P6,,presentation,B2,,📊
-april,K1,,white,Pre-A1,,⚪
-april,K1,,relax,Pre-A1,,🧘
-april,K1,,phone,Pre-A1,,📱
-april,K1,,guitar,Pre-A1,,🎸
-april,K1,,spend,Pre-A1,,
-april,K1,,little,Pre-A1,,
-april,K1,,start,Pre-A1,,▶️
-april,K1,,sleep,Pre-A1,,😴
-april,K1,,father,Pre-A1,,👨
-april,K1,,learn,Pre-A1,,📚
-april,K1,,party,Pre-A1,,🎉
-april,K1,,dinner,Pre-A1,,🍽️
-april,K1,,speak,Pre-A1,,
-april,K1,,quick,Pre-A1,,
-april,K1,,bottle,Pre-A1,,🍼
-april,K1,,camera,Pre-A1,,📷
-april,K1,,choose,Pre-A1,,
-april,K1,,sport,Pre-A1,,🏅
-april,K1,,spell,Pre-A1,,
-april,K1,,cousin,Pre-A1,,
-april,K1,,banana,Pre-A1,,🍌
-april,K1,,afraid,Pre-A1,,😨
-april,K1,,water,Pre-A1,,💧
-april,K1,,follow,Pre-A1,,
-april,K1,,young,Pre-A1,,🐣
-april,K1,,visit,Pre-A1,,
-april,K1,,teach,Pre-A1,,
-april,K1,,salad,Pre-A1,,🥗
-april,K1,,study,Pre-A1,,📚
-april,K1,,artist,Pre-A1,,
-april,K1,,tooth,Pre-A1,,🦷
-april,K1,,lunch,Pre-A1,,🍱
-april,K1,,hungry,Pre-A1,,😋
-april,K1,,stand,Pre-A1,,🧍
-april,K1,,photo,Pre-A1,,
-april,K1,,uncle,Pre-A1,,
-april,K1,,butter,Pre-A1,,
-april,K1,,island,Pre-A1,,🏝️
-april,K1,,cheese,Pre-A1,,🧀
-april,K1,,tired,Pre-A1,,😴
-april,K1,,night,Pre-A1,,
-april,K1,,finish,Pre-A1,,
-april,K1,,animal,Pre-A1,,
-april,K1,,sorry,Pre-A1,,😔
-april,K1,,leave,Pre-A1,,👋
-april,K1,,large,Pre-A1,,
-april,K1,,think,Pre-A1,,🤔
-april,K1,,sugar,Pre-A1,,
-april,K1,,carrot,Pre-A1,,🥕
-april,K1,,month,Pre-A1,,
-april,K2,,talk,Pre-A1,,🗣️
-april,K2,,tall,Pre-A1,,📏
-april,K2,,email,Pre-A1,,
-april,K2,,house,Pre-A1,,🏠
-april,K2,,group,Pre-A1,,
-april,K2,,nurse,Pre-A1,,👩‍⚕️
-april,K2,,guess,Pre-A1,,🤔
-april,K2,,hello,Pre-A1,,👋
-april,K2,,front,Pre-A1,,
-april,K2,,cheap,Pre-A1,,
-april,K2,,local,Pre-A1,,
-april,K2,,false,Pre-A1,,
-april,K2,,piano,Pre-A1,,
-april,K2,,jeans,Pre-A1,,
-april,K2,,early,Pre-A1,,
-april,K2,,other,Pre-A1,,
-april,K2,,trip,Pre-A1,,
-april,K2,,word,Pre-A1,,
-april,K2,,sure,Pre-A1,,
-april,K2,,floor,Pre-A1,,🟫
-april,K2,,carry,Pre-A1,,🧳
-april,K2,,hobby,Pre-A1,,
-april,K2,,break,Pre-A1,,
-april,K2,,bread,Pre-A1,,🍞
-april,K2,,class,Pre-A1,,
-april,K2,,type,Pre-A1,,
-april,K2,,model,Pre-A1,,
-april,K2,,laugh,Pre-A1,,
-april,K2,,chair,Pre-A1,,🪑
-april,K2,,final,Pre-A1,,
-april,K2,,order,Pre-A1,,🔢
-april,K2,,March,Pre-A1,,🗓️
-april,K2,,chart,Pre-A1,,📊
-april,K2,,close,Pre-A1,,
-april,K2,,money,Pre-A1,,💰
-april,K2,,north,Pre-A1,,
-april,K2,,agree,Pre-A1,,
-april,K2,,test,Pre-A1,,📝
-april,K2,,apple,Pre-A1,,🍎
-april,K2,,movie,Pre-A1,,
-april,K2,,event,Pre-A1,,📅
-april,K2,,begin,Pre-A1,,
-april,K2,,hotel,Pre-A1,,
-april,K2,,true,Pre-A1,,
-april,K2,,extra,Pre-A1,,
-april,K2,,turn,Pre-A1,,🔄
-april,K2,,text,Pre-A1,,
-april,K2,,west,Pre-A1,,
-april,K2,,April,Pre-A1,,🗓️
-april,K2,,metre,Pre-A1,,
-april,K3,,internet,A1,,
-april,K3,,meeting,A1,,
-april,K3,,exercise,A1,,🏃
-april,K3,,computer,A1,,💻
-april,K3,,welcome,A1,,🤗
-april,K3,,opinion,A1,,
-april,K3,,natural,A1,,
-april,K3,,reading,A1,,
-april,K3,,success,A1,,🏆
-april,K3,,product,A1,,
-april,K3,,theatre,A1,,🎭
-april,K3,,picture,A1,,🖼️
-april,K3,,village,A1,,🏘️
-april,K3,,partner,A1,,🤝
-april,K3,,writing,A1,,
-april,K3,,popular,A1,,
-april,K3,,routine,A1,,🔁
-april,K3,,football,A1,,⚽
-april,K3,,student,A1,,🧑‍🎓
-april,K3,,quarter,A1,,🕒
-april,K3,,ago,A1,,
-april,K3,,mistake,A1,,
-april,K3,,magazine,A1,,📰
-april,K3,,complete,A1,,
-april,K3,,interest,A1,,
-april,K3,,up,A1,,
-april,K3,,subject,A1,,
-april,K3,,meaning,A1,,💬
-april,K3,,far,A1,,
-april,K3,,daughter,A1,,
-april,K3,,special,A1,,🌟
-april,K3,,problem,A1,,❗
-april,K3,,language,A1,,
-april,K3,,visitor,A1,,🧳
-april,K3,,exciting,A1,,
-april,K3,,project,A1,,📊
-april,K3,,website,A1,,🌐
-april,K3,,describe,A1,,💬
-april,K3,,festival,A1,,🎉
-april,K3,,traffic,A1,,🚦
-april,K3,,homework,A1,,📝
-april,K3,,similar,A1,,
-april,K3,,dialogue,A1,,
-april,K3,,so,A1,,
-april,K3,,hospital,A1,,
-april,K3,,tourist,A1,,
-april,K3,,message,A1,,
-april,K3,,midnight,A1,,
-april,K3,,how,A1,,
-april,K3,,prepare,A1,,
-april,P1,Go Get Maths,calendar,A2,,
-april,P1,Science,liquid,A2,,
-april,P1,English,feed,A2,,🍼
-april,P1,Go Get Maths,o'clock,A2,,
-april,P1,Science,gas,A2,,💨
-april,P1,English,gold,A2,,
-april,P1,Go Get Maths,half past,A2,,
-april,P1,Science,ice,A2,,
-april,P1,English,mind,A2,,
-april,P1,Go Get Maths,quarter past,A2,,
-april,P1,Science,steam,A2,,
-april,P1,English,item,A2,,
-april,P1,Go Get Maths,quarter to,A2,,
-april,P1,Science,melt,A2,,
-april,P1,English,moon,A2,,🌙
-april,P1,Go Get Maths,earlier,A2,,
-april,P1,Science,freeze,A2,,
-april,P1,English,fear,A2,,
-april,P1,Go Get Maths,later,A2,,
-april,P1,Science,boil,A2,,
-april,P1,English,pack,A2,,
-april,P1,Go Get Maths,duration,A2,,
-april,P1,Science,evaporate,A2,,
-april,P1,English,lazy,A2,,
-april,P1,Go Get Maths,money,A2,,💰
-april,P1,Science,condense,A2,,
-april,P1,English,dead,A2,,
-april,P1,Go Get Maths,banknote,A2,,
-april,P1,Science,mixture,A2,,
-april,P1,English,oven,A2,,
-april,P1,Go Get Maths,baht,A2,,
-april,P1,Science,mix,A2,,🥄
-april,P1,English,hole,A2,,🕳️
-april,P1,Go Get Maths,price,A2,,
-april,P1,Science,separate,A2,,
-april,P1,English,dry,A2,assets/P1/dry.jpeg,🏜️
-april,P1,Go Get Maths,cost,A2,,
-april,P1,Science,transparent,A2,,
-april,P1,English,lead,A2,,
-april,P1,Go Get Maths,pay,A2,,
-april,P1,Science,opaque,A2,,
-april,P1,English,jazz,A2,,
-april,P1,Go Get Maths,buy,A2,,
-april,P1,Science,flexible,A2,,
-april,P1,English,lend,A2,,
-april,P1,Go Get Maths,sell,A2,,
-april,P1,Science,rigid,A2,,
-april,P1,English,link,A2,,
-april,P1,Go Get Maths,cheap,A2,,
-april,P1,Science,brittle,A2,,
-april,P1,English,lady,A2,,
-april,P1,Go Get Maths,expensive,A2,,
-april,P1,Science,absorbent,A2,,
-april,P1,English,hold,A2,,✊
-april,P1,Go Get Maths,worth,A2,,
-april,P1,Science,non-absorbent,A2,,
-april,P1,English,heat,A2,,
-april,P1,Go Get Maths,bar chart,A2,,
-april,P1,Science,texture,A2,,
-april,P1,English,ring,A2,assets/P1/ring.jpeg,💍
-april,P1,Go Get Maths,classify,A2,,
-april,P1,Science,north,A2,,
-april,P1,English,gift,A2,,🎁
-april,P1,Go Get Maths,category,A2,,
-april,P1,Science,south,A2,,
-april,P1,English,pain,A2,,
-april,P1,Go Get Maths,most,A2,,
-april,P1,Science,east,A2,,
-april,P1,English,luck,A2,,
-april,P1,Go Get Maths,least,A2,,
-april,P1,Science,west,A2,,
-april,P1,English,deal,A2,,
-april,P1,Go Get Maths,popular,A2,,
-april,P1,Science,map,A2,,🗺️
-april,P1,English,pick,A2,,
-april,P1,Go Get Maths,fraction,A2,,
-april,P1,Science,landform,A2,,
-april,P1,English,hall,A2,,
-april,P1,Go Get Maths,quarter,A2,,🕒
-april,P1,Science,plain,A2,,
-april,P1,English,role,A2,,🎭
-april,P1,Go Get Maths,equal parts,A2,,
-april,P1,Science,stream,A2,,
-april,P1,English,golf,A2,,
-april,P1,Go Get Maths,share,A2,,🤝
-april,P1,Science,soil type,A2,,
-april,P1,English,lake,A2,,🏞️
-april,P1,Go Get Maths,divide,A2,,
-april,P1,Science,mud,A2,,🟤
-april,P1,English,rise,A2,,
-april,P1,Go Get Maths,division,A2,,
-april,P1,Science,daylight,A2,,
-april,P1,English,beef,A2,,
-april,P1,Go Get Maths,show,A2,,
-april,P1,Science,solar system,A2,,🪐
-april,P1,English,joke,A2,,
-april,P1,Go Get Maths,explain,A2,,
-april,P1,Science,orbit,A2,,🪐
-april,P1,English,chef,A2,,
-april,P1,Go Get Maths,reason,A2,,
-april,P1,Science,rotate,A2,,
-april,P1,English,mail,A2,,
-april,P1,Go Get Maths,guess,A2,assets/P1/guess.jpeg,🤔
-april,P1,Science,rotation,A2,,
-april,P1,English,hurt,A2,,
-april,P1,Go Get Maths,incorrect,A2,,
-april,P1,Science,gravity,A2,,
-april,P1,English,pass,A2,,
-april,P1,Go Get Maths,true,A2,,
-april,P1,Science,satellite,A2,,
-april,P1,English,hero,A2,,
-april,P1,Go Get Maths,false,A2,,
-april,P1,Science,spacecraft,A2,,
-april,P1,English,goal,A2,,
-april,P1,Go Get Maths,hundred chart,A2,,
-april,P1,Science,rain gauge,A2,,
-april,P1,English,bowl,A2,,
-april,P1,Go Get Maths,number grid,A2,,
-april,P1,Science,thermometer,A2,,
-april,P1,English,care,A2,,💗
-april,P1,Go Get Maths,ten frame,A2,,
-april,P1,Science,wind vane,A2,,
-april,P1,English,hide,A2,assets/P1/hide.jpeg,🙈
-april,P1,Go Get Maths,five frame,A2,,
-april,P1,Science,weather chart,A2,,
-april,P1,English,loud,A2,,
-april,P1,Go Get Maths,counter,A2,,
-april,P1,Science,forecast,A2,,
-april,P1,English,knee,A2,assets/P1/knee.jpeg,🦵
-april,P1,Go Get Maths,counters,A2,,
-april,P1,Science,temperature scale,A2,,
-april,P1,English,hill,A2,,
-april,P1,Go Get Maths,dice,A2,,🎲
-april,P1,Science,water cycle,A2,,
-april,P1,English,lost,A2,,
-april,P1,Go Get Maths,domino,A2,,
-april,P1,Science,cloud type,A2,,
-april,P1,English,male,A2,,
-april,P1,Go Get Maths,dot pattern,A2,,
-april,P1,Science,rainfall,A2,,
-april,P1,English,lock,A2,,
-april,P1,Go Get Maths,number card,A2,,
-april,P1,Science,snowy,A2,,🌨️
-april,P1,English,mark,A2,,
-april,P1,Go Get Maths,math symbol,A2,,
-april,P1,Science,stormy,A2,,⛈️
-april,P1,English,rate,A2,,
-april,P1,Go Get Maths,plus sign,A2,,
-april,P1,Science,electricity,A2,,⚡
-april,P1,English,pull,A2,,
-april,P2,,comedy,A2,,
-april,P2,,degree,A2,,
-april,P2,,effect,A2,,
-april,P2,,closed,A2,,
-april,P2,,expert,A2,,🎓
-april,P2,,danger,A2,,⚠️
-april,P2,,affect,A2,,
-april,P2,,choice,A2,,
-april,P2,,usual,A2,,
-april,P2,,truck,A2,,🚚
-april,P2,,energy,A2,,⚡
-april,P2,,attack,A2,,
-april,P2,,ending,A2,,
-april,P2,,borrow,A2,,
-april,P2,,attend,A2,,
-april,P2,,worse,A2,,
-april,P2,,depend,A2,,
-april,P2,,column,A2,,🏛️
-april,P2,,virus,A2,,
-april,P2,,worry,A2,,
-april,P2,,corner,A2,,
-april,P2,,asleep,A2,,
-april,P2,,castle,A2,,🏰
-april,P2,,carpet,A2,,
-april,P2,,behave,A2,,
-april,P2,,expect,A2,,
-april,P2,,track,A2,,🛤️
-april,P2,,couple,A2,,
-april,P2,,cooker,A2,,
-april,P2,,tower,A2,,
-april,P2,,amount,A2,,
-april,P2,,direct,A2,,
-april,P2,,worst,A2,,
-april,P2,,whole,A2,,⭕
-april,P2,,author,A2,,
-april,P2,,church,A2,,
-april,P2,,belong,A2,,
-april,P2,,button,A2,,🔘
-april,P2,,bright,A2,,
-april,P2,,appear,A2,,
-april,P2,,voice,A2,,
-april,P2,,bottom,A2,,
-april,P2,,clever,A2,,
-april,P2,,employ,A2,,
-april,P2,,double,A2,,
-april,P2,,accept,A2,,
-april,P2,,wheel,A2,,🛞
-april,P2,,device,A2,,
-april,P2,,circle,A2,,⭕
-april,P2,,broken,A2,,
-april,P3,,seat,A2,,💺
-april,P3,,step,A2,,
-april,P3,,save,A2,,
-april,P3,,term,A2,,
-april,P3,,view,A2,,
-april,P3,,pass,A2,,
-april,P3,,oven,A2,,
-april,P3,,wait,A2,,⏳
-april,P3,,loud,A2,,
-april,P3,,luck,A2,,
-april,P3,,talk,A2,,🗣️
-april,P3,,seem,A2,,
-april,P3,,pull,A2,,
-april,P3,,mark,A2,,
-april,P3,,role,A2,,🎭
-april,P3,,rate,A2,,
-april,P3,,rude,A2,,
-april,P3,,shut,A2,,
-april,P3,,pain,A2,,
-april,P3,,pick,A2,,
-april,P3,,wave,A2,,
-april,P3,,mind,A2,,
-april,P3,,soft,A2,,🧸
-april,P3,,unit,A2,,
-april,P3,,suit,A2,,
-april,P3,,roof,A2,,🏠
-april,P3,,stay,A2,,🛑
-april,P3,,male,A2,,
-april,P3,,sale,A2,,
-april,P3,,ring,A2,,💍
-april,P3,,thin,A2,,📏
-april,P3,,site,A2,,
-april,P3,,pack,A2,,
-april,P3,,safe,A2,,🦺
-april,P3,,side,A2,,
-april,P3,,sort,A2,,🗂️
-april,P3,,sock,A2,,🧦
-april,P3,,need,A2,,
-april,P3,,ride,A2,,🚲
-april,P3,,sail,A2,,⛵
-april,P3,,tool,A2,,
-april,P3,,twin,A2,,
-april,P3,,tour,A2,,
-april,P3,,mail,A2,,
-april,P3,,size,A2,,
-april,P3,,neck,A2,,
-april,P3,,rise,A2,,
-april,P3,,user,A2,,
-april,P3,,push,A2,,🫸
-april,P3,,tidy,A2,,🧹
-april,P4,,cool,B1,,
-april,P4,,pipe,B1,,
-april,P4,,flag,B1,,🚩
-april,P4,,plot,B1,,
-april,P4,,clue,B1,,
-april,P4,,kick,B1,,🦵
-april,P4,,win,B1,,🏆
-april,P4,,hang,B1,,🪝
-april,P4,,coal,B1,,
-april,P4,,iron,B1,,🧺
-april,P4,,dirt,B1,,
-april,P4,,glad,B1,,
-april,P4,,kiss,B1,,
-april,P4,,file,B1,,
-april,P4,,loss,B1,,
-april,P4,,mild,B1,,
-april,P4,,drum,B1,,🥁
-april,P4,,hire,B1,,
-april,P4,,face,B1,,😀
-april,P4,,leaf,B1,,🍃
-april,P4,,poem,B1,,📜
-april,P4,,bend,B1,,🙇
-april,P4,,mall,B1,,🏬
-april,P4,,dust,B1,,
-april,P4,,path,B1,,
-april,P4,,lack,B1,,
-april,P4,,host,B1,,
-april,P4,,bake,B1,,🧁
-april,P4,,mess,B1,,🌀
-april,P4,,folk,B1,,
-april,P4,,coin,B1,,
-april,P4,,head,B1,,🧑
-april,P4,,hunt,B1,,
-april,P4,,nail,B1,,
-april,P4,,mood,B1,,
-april,P4,,flow,B1,,🌊
-april,P4,,move,B1,,
-april,P4,,drop,B1,,💧
-april,P4,,pale,B1,,
-april,P4,,pot,B1,,🍲
-april,P4,,next,B1,,➡️
-april,P4,,duty,B1,,📋
-april,P4,,calm,B1,,
-april,P4,,edge,B1,,
-april,P4,,fuel,B1,,
-april,P4,,fire,B1,,🔥
-april,P4,,bell,B1,,
-april,P4,,keen,B1,,
-april,P4,,bite,B1,,
-april,P4,,bury,B1,,
-april,P5,,eastern,B1,,
-april,P5,,symptom,B1,,
-april,P5,,illegal,B1,,
-april,P5,,respect,B1,,🙏
-april,P5,,setting,B1,,
-april,P5,,summary,B1,,
-april,P5,,diagram,B1,,
-april,P5,,poverty,B1,,
-april,P5,,mystery,B1,,🔮
-april,P5,,require,B1,,
-april,P5,,outdoor,B1,,
-april,P5,,nuclear,B1,,
-april,P5,,explode,B1,,
-april,P5,,retired,B1,,
-april,P5,,painful,B1,,
-april,P5,,primary,B1,,
-april,P5,,mixture,B1,,
-april,P5,,examine,B1,,
-april,P5,,journal,B1,,
-april,P5,,stadium,B1,,
-april,P5,,related,B1,,
-april,P5,,heating,B1,,
-april,P5,,explore,B1,,
-april,P5,,request,B1,,
-april,P5,,educate,B1,,
-april,P5,,injured,B1,,
-april,P5,,leading,B1,,
-april,P5,,dressed,B1,,
-april,P5,,release,B1,,
-april,P5,,servant,B1,,
-april,P5,,diamond,B1,,
-april,P5,,economy,B1,,
-april,P5,,measure,B1,,📏
-april,P5,,receipt,B1,,
-april,P5,,surface,B1,,
-april,P5,,relaxed,B1,,
-april,P5,,promote,B1,,
-april,P5,,dislike,B1,,
-april,P5,,leisure,B1,,
-april,P5,,violent,B1,,
-april,P5,,deliver,B1,,
-april,P5,,private,B1,,
-april,P5,,protest,B1,,
-april,P5,,leather,B1,,
-april,P5,,reflect,B1,,
-april,P5,,episode,B1,,
-april,P5,,qualify,B1,,
-april,P5,,engaged,B1,,
-april,P5,,located,B1,,
-april,P5,,package,B1,,
-april,P6,,reasonable,B2,,
-april,P6,,tropical,B2,,
-april,P6,,acknowledge,B2,,
-april,P6,,existence,B2,,
-april,P6,,appropriate,B2,,
-april,P6,,session,B2,,
-april,P6,,unexpected,B2,,
-april,P6,,division,B2,,
-april,P6,,positive,B2,,
-april,P6,,facility,B2,,
-april,P6,,forgive,B2,,
-april,P6,,negative,B2,,
-april,P6,,defence,B2,,
-april,P6,,truly,B2,,
-april,P6,,afterwards,B2,,
-april,P6,,capacity,B2,,
-april,P6,,ethical,B2,,
-april,P6,,criticism,B2,,
-april,P6,,presence,B2,,
-april,P6,,deliberately,B2,,
-april,P6,,advance,B2,,
-april,P6,,minority,B2,,
-april,P6,,executive,B2,,
-april,P6,,majority,B2,,
-april,P6,,enhance,B2,,
-april,P6,,massive,B2,,
-april,P6,,instance,B2,,
-april,P6,,specialist,B2,,
-april,P6,,ultimately,B2,,
-april,P6,,creation,B2,,
-april,P6,,pension,B2,,
-april,P6,,licence,B2,,
-april,P6,,apparently,B2,,
-april,P6,,edition,B2,,
-april,P6,,furthermore,B2,,
-april,P6,,critical,B2,,
-april,P6,,numerous,B2,,
-april,P6,,logical,B2,,
-april,P6,,constantly,B2,,
-april,P6,,priority,B2,,
-april,P6,,weakness,B2,,
-april,P6,,anxious,B2,,
-april,P6,,sequence,B2,,
-april,P6,,sentence,B2,,
-april,P6,,humorous,B2,,
-april,P6,,witness,B2,,
-april,P6,,silence,B2,,
-april,P6,,relatively,B2,,
-april,P6,,conscious,B2,,
-april,P6,,offence,B2,,
-may,K1,,bathroom,Pre-A1,,🛁
-may,K1,,afternoon,Pre-A1,,
-may,K1,,television,Pre-A1,,📺
-may,K1,,friendly,Pre-A1,,
-may,K1,,breakfast,Pre-A1,,🍳
-may,K1,,street,Pre-A1,,🛣️
-may,K1,,bedroom,Pre-A1,,🛏️
-may,K1,,beautiful,Pre-A1,,
-may,K1,,drive,Pre-A1,,🚗
-may,K1,,tennis,Pre-A1,,🎾
-may,K1,,excited,Pre-A1,,🤩
-may,K1,,actress,Pre-A1,,
-may,K1,,tomato,Pre-A1,,🍅
-may,K1,,yesterday,Pre-A1,,
-may,K1,,tomorrow,Pre-A1,,
-may,K1,,vegetable,Pre-A1,,🥦
-may,K1,,weather,Pre-A1,,🌦️
-may,K1,,today,Pre-A1,,
-may,K1,,evening,Pre-A1,,
-may,K1,,holiday,Pre-A1,,🏖️
-may,K1,,perfect,Pre-A1,,
-may,K1,,strong,Pre-A1,,💪
-may,K1,,weekend,Pre-A1,,
-may,K1,,remember,Pre-A1,,
-may,K1,,give,Pre-A1,,🎁
-may,K1,,supermarket,Pre-A1,,🛒
-may,K1,,fantastic,Pre-A1,,
-may,K1,,grandfather,Pre-A1,,👴
-may,K1,,bicycle,Pre-A1,,🚲
-may,K1,,orange,Pre-A1,,🟠
-may,K1,,country,Pre-A1,,🗺️
-may,K1,,airport,Pre-A1,,
-may,K1,,mother,Pre-A1,,👩
-may,K1,,amazing,Pre-A1,,
-may,K1,,umbrella,Pre-A1,,☂️
-may,K1,,repeat,Pre-A1,,
-may,K1,,library,Pre-A1,,📚
-may,K1,,city,Pre-A1,,🏙️
-may,K1,,live,Pre-A1,,
-may,K1,,kitchen,Pre-A1,,🍳
-may,K1,,travel,Pre-A1,,🧳
-may,K1,,parent,Pre-A1,,👨‍👩‍👧
-may,K1,,sandwich,Pre-A1,,🥪
-may,K1,,school,Pre-A1,,🏫
-may,K1,,thirsty,Pre-A1,,🥤
-may,K1,,potato,Pre-A1,,🥔
-may,K1,,chocolate,Pre-A1,,🍫
-may,K1,,morning,Pre-A1,,
-may,K1,,window,Pre-A1,,🪟
-may,K1,,grandmother,Pre-A1,,👵
-may,K2,,become,Pre-A1,,
-may,K2,,story,Pre-A1,,📖
-may,K2,,skill,Pre-A1,,
-may,K2,,detail,Pre-A1,,
-may,K2,,write,Pre-A1,,✍️
-may,K2,,August,Pre-A1,,🗓️
-may,K2,,boring,Pre-A1,,
-may,K2,,doctor,Pre-A1,,👨‍⚕️
-may,K2,,wrong,Pre-A1,,
-may,K2,,forget,Pre-A1,,
-may,K2,,river,Pre-A1,,🏞️
-may,K2,,change,Pre-A1,,🔄
-may,K2,,decide,Pre-A1,,
-may,K2,,place,Pre-A1,,📍
-may,K2,,dancer,Pre-A1,,
-may,K2,,world,Pre-A1,,🌍
-may,K2,,plane,Pre-A1,,✈️
-may,K2,,create,Pre-A1,,
-may,K2,,better,Pre-A1,,
-may,K2,,thank,Pre-A1,,
-may,K2,,autumn,Pre-A1,,
-may,K2,,style,Pre-A1,,
-may,K2,,space,Pre-A1,,🌌
-may,K2,,title,Pre-A1,,
-may,K2,,video,Pre-A1,,
-may,K2,,flight,Pre-A1,,
-may,K2,,watch,Pre-A1,,⌚
-may,K2,,piece,Pre-A1,,
-may,K2,,answer,Pre-A1,,
-may,K2,,short,Pre-A1,,📏
-may,K2,,radio,Pre-A1,,📻
-may,K2,,cinema,Pre-A1,,
-may,K2,,topic,Pre-A1,,
-may,K2,,design,Pre-A1,,🎨
-may,K2,,ready,Pre-A1,,
-may,K2,,blonde,Pre-A1,,
-may,K2,,thing,Pre-A1,,
-may,K2,,woman,Pre-A1,,
-may,K2,,centre,Pre-A1,,
-may,K2,,right,Pre-A1,,
-may,K2,,coffee,Pre-A1,,
-may,K2,,snake,Pre-A1,,🐍
-may,K2,,table,Pre-A1,,🪑
-may,K2,,south,Pre-A1,,
-may,K2,,common,Pre-A1,,
-may,K2,,share,Pre-A1,,🤝
-may,K2,,price,Pre-A1,,
-may,K2,,friend,Pre-A1,,🧑‍🤝‍🧑
-may,K2,,driver,Pre-A1,,
-may,K2,,colour,Pre-A1,,🎨
-may,K3,,fair,A2,,
-may,K3,,drop,A2,,💧
-may,K3,,burn,A2,,
-may,K3,,act,A2,,
-may,K3,,tie,A2,,👔
-may,K3,,cry,A2,,
-may,K3,,lab,A2,,
-may,K3,,wet,A2,,💧
-may,K3,,pop,A2,,
-may,K3,,kid,A2,,
-may,K3,,jam,A2,,🍓
-may,K3,,sir,A2,,
-may,K3,,chip,A2,,
-may,K3,,flu,A2,,
-may,K3,,tip,A2,,
-may,K3,,able,A2,,
-may,K3,,bin,A2,,
-may,K3,,blow,A2,,
-may,K3,,ski,A2,,
-may,K3,,bean,A2,assets/K3/bean.jpeg,🫘
-may,K3,,app,A2,,
-may,K3,,bar,A2,,📊
-may,K3,,deep,A2,,
-may,K3,,fit,A2,,
-may,K3,,chat,A2,,
-may,K3,,boil,A2,,
-may,K3,,web,A2,,
-may,K3,,bit,A2,,
-may,K3,,bone,A2,,🦴
-may,K3,,nut,A2,,
-may,K3,,copy,A2,,
-may,K3,,beat,A2,,
-may,K3,,van,A2,,🚐
-may,K3,,guy,A2,,
-may,K3,,pet,A2,,🐶
-may,K3,,camp,A2,,🏕️
-may,K3,,oil,A2,,
-may,K3,,data,A2,,📊
-may,K3,,belt,A2,,
-may,K3,,fix,A2,,
-may,K3,,fail,A2,,
-may,K3,,code,A2,,💻
-may,K3,,top,A2,,
-may,K3,,gas,A2,,💨
-may,K3,,gap,A2,,
-may,K3,,ill,A2,,🤒
-may,K3,,low,A2,,
-may,K3,,fan,A2,,🪭
-may,K3,,case,A2,,
-may,K3,,earn,A2,,
-may,P1,Go Get Maths,minus sign,A2,,
-may,P1,Science,battery,A2,assets/P1/battery.jpeg,🔋
-may,P1,English,avoid,A2,,
-may,P1,Go Get Maths,equal sign,A2,,
-may,P1,Science,bulb,A2,,
-may,P1,English,seem,A2,,
-may,P1,Go Get Maths,measuring tape,A2,,
-may,P1,Science,wire,A2,,
-may,P1,English,side,A2,assets/P1/side.jpeg,
-may,P1,Go Get Maths,timer,A2,,
-may,P1,Science,switch,A2,,🔌
-may,P1,English,catch,A2,,🤾
-may,P1,Go Get Maths,stopwatch,A2,,
-may,P1,Science,circuit,A2,,
-may,P1,English,save,A2,,
-may,P1,Go Get Maths,clockwise,A2,,
-may,P1,Science,electric,A2,,
-may,P1,English,tidy,A2,,🧹
-may,P1,Go Get Maths,anticlockwise,A2,,
-may,P1,Science,device,A2,,
-may,P1,English,blood,A2,assets/P1/blood.jpeg,🩸
-may,P1,Go Get Maths,turn,A2,,🔄
-may,P1,Science,machine,A2,,⚙️
-may,P1,English,view,A2,,
-may,P1,Go Get Maths,full turn,A2,,
-may,P1,Science,energy source,A2,,
-may,P1,English,award,A2,,
-may,P1,Go Get Maths,half turn,A2,,
-may,P1,Science,solar energy,A2,,
-may,P1,English,allow,A2,,
-may,P1,Go Get Maths,quarter turn,A2,,
-may,P1,Science,wind energy,A2,,
-may,P1,English,size,A2,assets/P1/size.jpeg,
-may,P1,Go Get Maths,slide,A2,assets/P1/slide.jpeg,🛝
-may,P1,Science,magnet pole,A2,,
-may,P1,English,tour,A2,,
-may,P1,Go Get Maths,flip,A2,,
-may,P1,Science,north pole,A2,,
-may,P1,English,roof,A2,,🏠
-may,P1,Go Get Maths,reflection,A2,,🪞
-may,P1,Science,south pole,A2,,
-may,P1,English,soap,A2,,🧼
-may,P1,Go Get Maths,mirror line,A2,,
-may,P1,Science,repel,A2,,
-may,P1,English,based,A2,,
-may,P1,Go Get Maths,repeat unit,A2,,
-may,P1,Science,friction,A2,,
-may,P1,English,sale,A2,,
-may,P1,Go Get Maths,growing pattern,A2,,
-may,P1,Science,ramp,A2,,
-may,P1,English,argue,A2,,😤
-may,P1,Go Get Maths,shrinking pattern,A2,,
-may,P1,Science,slope,A2,,📐
-may,P1,English,brain,A2,assets/P1/brain.jpeg,🧠
-may,P1,Go Get Maths,array,A2,,
-may,P1,Science,wheel,A2,assets/P1/wheel.jpeg,🛞
-may,P1,English,suit,A2,,
-may,P1,Go Get Maths,equal groups,A2,,
-may,P1,Science,axle,A2,,
-may,P1,English,apply,A2,,
-may,P1,Go Get Maths,remainder,A2,,
-may,P1,Science,lever,A2,,
-may,P1,English,site,A2,,
-may,P1,Go Get Maths,fair share,A2,,
-may,P1,Science,joint,A2,,
-may,P1,English,weak,A2,,
-may,P1,Go Get Maths,one half,A2,,
-may,P1,Science,lungs,A2,,
-may,P1,English,task,A2,,📋
-may,P1,Go Get Maths,one quarter,A2,,
-may,P1,Science,breathing,A2,,
-may,P1,English,ankle,A2,,
-may,P1,Go Get Maths,one third,A2,,
-may,P1,Science,pulse,A2,,
-may,P1,English,user,A2,,
-may,P1,Go Get Maths,two halves,A2,,
-may,P1,Science,heartbeat,A2,,💓
-may,P1,English,birth,A2,,
-may,P1,Go Get Maths,four quarters,A2,,
-may,P1,Science,bacteria,A2,,
-may,P1,English,board,A2,,📋
-may,P1,Go Get Maths,probability,A2,,
-may,P1,Science,virus,A2,,
-may,P1,English,soft,A2,,🧸
-may,P1,Go Get Maths,chance,A2,,
-may,P1,Science,hospital,A2,,
-may,P1,English,sail,A2,,⛵
-may,P1,Go Get Maths,certain,A2,,
-may,P1,Science,hygiene,A2,,
-may,P1,English,shut,A2,,
-may,P1,Go Get Maths,impossible,A2,,
-may,P1,Science,toothbrush,A2,,
-may,P1,English,twin,A2,,
-may,P1,Go Get Maths,likely,A2,,
-may,P1,Science,toothpaste,A2,,
-may,P1,English,wave,A2,,
-may,P1,Go Get Maths,unlikely,A2,,
-may,P1,Science,balanced diet,A2,,
-may,P1,English,sign,A2,,
-may,P1,Go Get Maths,twenty-one,A2,,
-may,P1,Science,protein,A2,,🍗
-may,P1,English,cause,A2,,
-may,P1,Go Get Maths,twenty-two,A2,,
-may,P1,Science,carbohydrate,A2,,🍞
-may,P1,English,sort,A2,assets/P1/sort.jpeg,🗂️
-may,P1,Go Get Maths,twenty-three,A2,,
-may,P1,Science,producer,A2,,
-may,P1,English,clear,A2,,
-may,P1,Go Get Maths,twenty-four,A2,,
-may,P1,Science,consumer,A2,,
-may,P1,English,safe,A2,,🦺
-may,P1,Go Get Maths,twenty-five,A2,,
-may,P1,Science,food chain,A2,,
-may,P1,English,seat,A2,,💺
-may,P1,Go Get Maths,twenty-six,A2,,
-may,P1,Science,food web,A2,,
-may,P1,English,blank,A2,,
-may,P1,Go Get Maths,twenty-seven,A2,,
-may,P1,Science,predator,A2,,
-may,P1,English,step,A2,,
-may,P1,Go Get Maths,twenty-eight,A2,,
-may,P1,Science,prey,A2,,
-may,P1,English,awful,A2,,
-may,P1,Go Get Maths,twenty-nine,A2,,
-may,P1,Science,migration,A2,,
-may,P1,English,term,A2,,
-may,P1,Go Get Maths,thirty-one,A2,,
-may,P1,Science,hibernation,A2,,
-may,P1,English,skin,A2,assets/P1/skin.jpeg,🧴
-may,P1,Go Get Maths,thirty-two,A2,,
-may,P1,Science,adaptation,A2,,
-may,P1,English,unit,A2,,
-may,P1,Go Get Maths,thirty-three,A2,,
-may,P1,Science,offspring,A2,,
-may,P1,English,alone,A2,,
-may,P1,Go Get Maths,thirty-four,A2,,
-may,P1,Science,parent,A2,,👨‍👩‍👧
-may,P1,English,rude,A2,,
-may,P1,Go Get Maths,thirty-five,A2,,
-may,P1,Science,adult,A2,,
-may,P1,English,wish,A2,,
-may,P1,Go Get Maths,thirty-six,A2,,
-may,P1,Science,young,A2,,🐣
-may,P1,English,wild,A2,,
-may,P1,Go Get Maths,thirty-seven,A2,,
-may,P1,Science,life stage,A2,,
-may,P1,English,wide,A2,,
-may,P1,Go Get Maths,thirty-eight,A2,,
-may,P1,Science,renewable,A2,,
-may,P1,English,tool,A2,,
-may,P2,,polite,A2,,🙇
-may,P2,,reduce,A2,,
-may,P2,,secret,A2,,
-may,P2,,season,A2,,🍂
-may,P2,,fridge,A2,,
-may,P2,,finger,A2,,☝️
-may,P2,,injury,A2,,🤕
-may,P2,,nature,A2,,🌿
-may,P2,,formal,A2,,
-may,P2,,pocket,A2,,
-may,P2,,invite,A2,,
-may,P2,,narrow,A2,,
-may,P2,,recipe,A2,,📖
-may,P2,,manage,A2,,📋
-may,P2,,mirror,A2,,
-may,P2,,review,A2,,
-may,P2,,hockey,A2,,🏒
-may,P2,,recent,A2,,
-may,P2,,flying,A2,,
-may,P2,,search,A2,,🔍
-may,P2,,leader,A2,,🧑‍💼
-may,P2,,female,A2,,
-may,P2,,insect,A2,,🐛
-may,P2,,height,A2,,
-may,P2,,memory,A2,,🧠
-may,P2,,normal,A2,,
-may,P2,,repair,A2,,
-may,P2,,runner,A2,,
-may,P2,,lovely,A2,,
-may,P2,,public,A2,,
-may,P2,,likely,A2,,
-may,P2,,notice,A2,,
-may,P2,,forest,A2,,
-may,P2,,factor,A2,,
-may,P2,,laptop,A2,,
-may,P2,,refuse,A2,,
-may,P2,,mobile,A2,,
-may,P2,,figure,A2,,
-may,P2,,invent,A2,,
-may,P2,,screen,A2,,
-may,P2,,record,A2,,⏺️
-may,P2,,scared,A2,,😨
-may,P2,,remove,A2,,
-may,P2,,method,A2,,
-may,P2,,middle,A2,,
-may,P2,,matter,A2,,
-may,P2,,palace,A2,,🏰
-may,P2,,manner,A2,,
-may,P2,,please,A2,,🙏
-may,P2,,region,A2,,
-may,P3,,blood,B1,,🩸
-may,P3,,awful,B1,,
-may,P3,,fry,B1,,
-may,P3,,board,B1,,📋
-may,P3,,fur,B1,,🧸
-may,P3,,alone,B1,,
-may,P3,,weak,B1,,
-may,P3,,age,B1,,
-may,P3,,odd,B1,,
-may,P3,,key,B1,,🔑
-may,P3,,lay,B1,,🥚
-may,P3,,blank,B1,,
-may,P3,,cut,B1,,
-may,P3,,brush,B1,,🖌️
-may,P3,,net,B1,,🥅
-may,P3,,avoid,B1,,
-may,P3,,aged,B1,,
-may,P3,,lip,B1,,
-may,P3,,go,B1,,
-may,P3,,wide,B1,,
-may,P3,,pan,B1,,
-may,P3,,IT,B1,,
-may,P3,,cap,B1,,🧢
-may,P3,,allow,B1,,
-may,P3,,wish,B1,,
-may,P3,,ad,B1,,
-may,P3,,far,B1,,
-may,P3,,tax,B1,,
-may,P3,,argue,B1,,😤
-may,P3,,toe,B1,,🦶
-may,P3,,due,B1,,
-may,P3,,base,B1,,
-may,P3,,birth,B1,,
-may,P3,,mud,B1,,🟤
-may,P3,,shy,B1,,
-may,P3,,adult,B1,,
-may,P3,,based,B1,,
-may,P3,,wild,B1,,
-may,P3,,pin,B1,,
-may,P3,,tin,B1,,🥫
-may,P3,,aim,B1,,
-may,P3,,mad,B1,,
-may,P3,,apply,B1,,
-may,P3,,brain,B1,,🧠
-may,P3,,ankle,B1,,
-may,P3,,bee,B1,,🐝
-may,P3,,row,B1,,🚣
-may,P3,,mix,B1,,🥄
-may,P3,,award,B1,,
-may,P3,,ban,B1,,
-may,P4,,aware,B1,,
-may,P4,,admit,B1,,
-may,P4,,yard,B1,,🌳
-may,P4,,seed,B1,,🌱
-may,P4,,warm,B1,,🌤️
-may,P4,,album,B1,,
-may,P4,,tube,B1,,
-may,P4,,tyre,B1,,
-may,P4,,rare,B1,,
-may,P4,,soil,B1,,🟫
-may,P4,,basis,B1,,
-may,P4,,tape,B1,,
-may,P4,,sink,B1,,🚰
-may,P4,,ugly,B1,,
-may,P4,,rent,B1,,
-may,P4,,used,B1,,
-may,P4,,chest,B1,,
-may,P4,,count,B1,,🔢
-may,P4,,tend,B1,,
-may,P4,,wool,B1,,
-may,P4,,brave,B1,,🦁
-may,P4,,cheat,B1,,
-may,P4,,vote,B1,,
-may,P4,,tiny,B1,,
-may,P4,,annoy,B1,,
-may,P4,,climb,B1,,🧗
-may,P4,,click,B1,,
-may,P4,,clear,B1,,
-may,P4,,warn,B1,,
-may,P4,,sand,B1,,
-may,P4,,block,B1,,🧱
-may,P4,,wing,B1,,🪽
-may,P4,,claim,B1,,
-may,P4,,risk,B1,,
-may,P4,,chain,B1,,
-may,P4,,quit,B1,,
-may,P4,,basic,B1,,
-may,P4,,agent,B1,,
-may,P4,,pray,B1,,
-may,P4,,type,B1,,
-may,P4,,slow,B1,,🐢
-may,P4,,port,B1,,
-may,P4,,coach,B1,,🧑‍🏫
-may,P4,,alarm,B1,,
-may,P4,,rope,B1,,
-may,P4,,roll,B1,,🎲
-may,P4,,brand,B1,,
-may,P4,,rule,B1,,📏
-may,P4,,scan,B1,,📠
-may,P4,,court,B1,,
-may,P5,,downwards,B2,,
-may,P5,,attitude,B2,,
-may,P5,,analysis,B2,,
-may,P5,,announce,B2,,
-may,P5,,upwards,B2,,
-may,P5,,warning,B2,,
-may,P5,,confused,B2,,
-may,P5,,psychologist,B2,,🧠
-may,P5,,annoying,B2,,
-may,P5,,somewhat,B2,,
-may,P5,,closely,B2,,
-may,P5,,demonstrate,B2,,
-may,P5,,otherwise,B2,,
-may,P5,,participant,B2,,
-may,P5,,convince,B2,,
-may,P5,,professional,B2,,💼
-may,P5,,complicated,B2,,
-may,P5,,characteristic,B2,,
-may,P5,,category,B2,,
-may,P5,,surrounding,B2,,
-may,P5,,initially,B2,,
-may,P5,,coloured,B2,,
-may,P5,,commonly,B2,,
-may,P5,,elsewhere,B2,,
-may,P5,,contrast,B2,,
-may,P5,,fundamental,B2,,
-may,P5,,vision,B2,,
-may,P5,,academic,B2,,
-may,P5,,champion,B2,,🏆
-may,P5,,enthusiastic,B2,,
-may,P5,,cheerful,B2,,
-may,P5,,written,B2,,
-may,P5,,deeply,B2,,
-may,P5,,advanced,B2,,
-may,P5,,conclude,B2,,
-may,P5,,basically,B2,,
-may,P5,,significant,B2,,
-may,P5,,largely,B2,,
-may,P5,,gradually,B2,,
-may,P5,,entirely,B2,,
-may,P5,,notion,B2,,
-may,P5,,western,B2,,
-may,P5,,careless,B2,,
-may,P5,,ceremony,B2,,
-may,P5,,extraordinary,B2,,
-may,P5,,widely,B2,,
-may,P5,,contemporary,B2,,
-may,P5,,partly,B2,,
-may,P5,,rapidly,B2,,
-may,P5,,consumer,B2,,
-may,P6,,aggressive,B2,,
-may,P6,,assessment,B2,,
-may,P6,,circumstance,B2,,
-may,P6,,consideration,B2,,
-may,P6,,occasionally,B2,,
-may,P6,,decoration,B2,,
-may,P6,,measurement,B2,,
-may,P6,,protection,B2,,
-may,P6,,regulation,B2,,
-may,P6,,revolution,B2,,
-may,P6,,association,B2,,
-may,P6,,institution,B2,,
-may,P6,,increasingly,B2,,
-may,P6,,sensitive,B2,,
-may,P6,,examination,B2,,
-may,P6,,significantly,B2,,
-may,P6,,distribution,B2,,
-may,P6,,psychology,B2,,
-may,P6,,opposition,B2,,
-may,P6,,illustration,B2,,
-may,P6,,selection,B2,,
-may,P6,,publication,B2,,
-may,P6,,reputation,B2,,
-may,P6,,observation,B2,,
-may,P6,,requirement,B2,,
-may,P6,,conservative,B2,,
-may,P6,,exploration,B2,,
-may,P6,,perspective,B2,,
-may,P6,,obligation,B2,,
-may,P6,,contribution,B2,,
-may,P6,,investment,B2,,
-may,P6,,administration,B2,,
-may,P6,,transition,B2,,
-may,P6,,combination,B2,,
-may,P6,,commitment,B2,,
-may,P6,,concentration,B2,,
-may,P6,,commission,B2,,
-may,P6,,initiative,B2,,
-may,P6,,nevertheless,B2,,
-may,P6,,reduction,B2,,
-may,P6,,expectation,B2,,
-may,P6,,insurance,B2,,
-may,P6,,mysterious,B2,,
-may,P6,,investigation,B2,,
-may,P6,,judgement,B2,,
-may,P6,,preparation,B2,,
-may,P6,,representative,B2,,
-may,P6,,popularity,B2,,
-may,P6,,leadership,B2,,
-may,P6,,objective,B2,,
+march,P6,,representative,B2,,
+march,P6,,responsibility,B2,,
+april,K1,,who,Pre-A1,assets/K1/who.jpeg,❓
+april,K1,,yes,Pre-A1,assets/K1/yes.jpeg,✅
+april,K1,,zip,Pre-A1,,
+april,K1,,baby,Pre-A1,assets/K1/baby.jpeg,👶
+april,K1,,ball,Pre-A1,assets/K1/ball.jpeg,⚽
+april,K1,,bear,Pre-A1,,🐻
+april,K1,,bend,Pre-A1,,🙇
+april,K1,,bike,Pre-A1,,🚲
+april,K1,,bird,Pre-A1,assets/K1/bird.jpeg,🐦
+april,K1,,blue,Pre-A1,assets/K1/blue.jpeg,🔵
+april,K1,,boat,Pre-A1,assets/K1/boat.jpeg,⛵
+april,K1,,body,Pre-A1,assets/K1/body.jpeg,🧍
+april,K1,,book,Pre-A1,assets/K1/book.jpeg,📖
+april,K1,,bush,Pre-A1,,
+april,K1,,clap,Pre-A1,assets/K1/clap.jpeg,👏
+april,K1,,coat,Pre-A1,assets/K1/coat.jpeg,🧥
+april,K1,,comb,Pre-A1,,
+april,K1,,crab,Pre-A1,,🦀
+april,K1,,deer,Pre-A1,,
+april,K1,,desk,Pre-A1,assets/K1/desk.jpeg,🪑
+april,K1,,doll,Pre-A1,assets/K1/doll.jpeg,🪆
+april,K1,,door,Pre-A1,assets/K1/door.jpeg,🚪
+april,K1,,draw,Pre-A1,assets/K1/draw.jpeg,✏️
+april,K1,,duck,Pre-A1,assets/K1/duck.jpeg,🦆
+april,K1,,ears,Pre-A1,,
+april,K1,,eyes,Pre-A1,,
+april,K1,,face,Pre-A1,assets/K1/face.jpeg,😀
+april,K1,,farm,Pre-A1,assets/K1/farm.jpeg,🚜
+april,K1,,fast,Pre-A1,,💨
+april,K1,,find,Pre-A1,assets/K1/find.jpeg,🔍
+april,K1,,fine,Pre-A1,assets/K1/fine.jpeg,👌
+april,K1,,fish,Pre-A1,assets/K1/fish.jpeg,🐟
+april,K1,,five,Pre-A1,assets/K1/five.jpg,5️⃣
+april,K1,,flap,Pre-A1,assets/K1/flap.jpeg,🪽
+april,K1,,foot,Pre-A1,assets/K1/foot.jpeg,🦶
+april,K1,,fork,Pre-A1,assets/K1/fork.jpeg,🍴
+april,K1,,four,Pre-A1,assets/K1/four.jpeg,4️⃣
+april,K1,,frog,Pre-A1,,🐸
+april,K1,,gift,Pre-A1,assets/K1/gift.jpeg,🎁
+april,K1,,girl,Pre-A1,assets/K1/girl.jpeg,👧
+april,K1,,glue,Pre-A1,,🩹
+april,K1,,goat,Pre-A1,assets/K1/goat.jpeg,🐐
+april,K1,,hair,Pre-A1,assets/K1/hair.jpeg,💇
+april,K1,,hand,Pre-A1,assets/K1/hand.jpeg,✋
+april,K1,,hard,Pre-A1,assets/K1/hard.jpg,🪨
+april,K1,,head,Pre-A1,assets/K1/head.jpeg,🧑
+april,K1,,help,Pre-A1,assets/K1/help.jpeg,🤝
+april,K1,,hill,Pre-A1,,
+april,K1,,hold,Pre-A1,,✊
+april,K1,,hoop,Pre-A1,,🏀
+april,K2,,chop,Pre-A1,,
+april,K2,,coat,Pre-A1,,🧥
+april,K2,,cold,Pre-A1,,🥶
+april,K2,,cook,Pre-A1,,👨‍🍳
+april,K2,,coop,Pre-A1,,
+april,K2,,door,Pre-A1,assets/K2/door.jpeg,🚪
+april,K2,,draw,Pre-A1,assets/K2/draw.jpeg,✏️
+april,K2,,drum,Pre-A1,assets/K2/drum.jpeg,🥁
+april,K2,,ears,Pre-A1,,
+april,K2,,echo,Pre-A1,,
+april,K2,,eyes,Pre-A1,,
+april,K2,,fall,Pre-A1,,
+april,K2,,farm,Pre-A1,,🚜
+april,K2,,feel,Pre-A1,,🤲
+april,K2,,fire,Pre-A1,,🔥
+april,K2,,fish,Pre-A1,assets/K2/fish.jpeg,🐟
+april,K2,,five,Pre-A1,assets/K2/five.jpeg,5️⃣
+april,K2,,fold,Pre-A1,,📄
+april,K2,,food,Pre-A1,assets/K2/food.jpeg,🍽️
+april,K2,,four,Pre-A1,assets/K2/four.jpeg,4️⃣
+april,K2,,frog,Pre-A1,assets/K2/frog.jpeg,🐸
+april,K2,,gate,Pre-A1,,🚪
+april,K2,,gift,Pre-A1,assets/K2/gift.jpeg,🎁
+april,K2,,girl,Pre-A1,assets/K2/girl.jpeg,👧
+april,K2,,goat,Pre-A1,,🐐
+april,K2,,gong,Pre-A1,,
+april,K2,,gray,Pre-A1,assets/K2/gray.jpeg,🩶
+april,K2,,hard,Pre-A1,,🪨
+april,K2,,hive,Pre-A1,,
+april,K2,,hole,Pre-A1,,🕳️
+april,K2,,horn,Pre-A1,,🐂
+april,K2,,hose,Pre-A1,,🚿
+april,K2,,idea,Pre-A1,assets/K2/idea.jpeg,💡
+april,K2,,iron,Pre-A1,,🧺
+april,K2,,jump,Pre-A1,assets/K2/jump.jpeg,🦘
+april,K2,,kick,Pre-A1,assets/K2/kick.jpeg,🦵
+april,K2,,kite,Pre-A1,assets/K2/kite.jpeg,🪁
+april,K2,,lake,Pre-A1,,🏞️
+april,K2,,lamb,Pre-A1,,
+april,K2,,leaf,Pre-A1,,🍃
+april,K2,,legs,Pre-A1,,
+april,K2,,look,Pre-A1,,👀
+april,K2,,loud,Pre-A1,,
+april,K2,,nest,Pre-A1,,🪹
+april,K2,,next,Pre-A1,assets/K2/next.jpeg,➡️
+april,K2,,nine,Pre-A1,assets/K2/nine.jpeg,9️⃣
+april,K2,,nose,Pre-A1,assets/K2/nose.jpeg,👃
+april,K2,,park,Pre-A1,assets/K2/park.jpeg,🏞️
+april,K2,,pick,Pre-A1,,
+april,K2,,pink,Pre-A1,assets/K2/pink.jpeg,🩷
+april,K3,,farm,A1,,🚜
+april,K3,,fast,A1,,💨
+april,K3,,fire,A1,,🔥
+april,K3,,foal,A1,,
+april,K3,,foot,A1,,🦶
+april,K3,,game,A1,assets/K3/game.jpeg,🎮
+april,K3,,gift,A1,assets/K3/gift.jpeg,🎁
+april,K3,,goat,A1,,🐐
+april,K3,,hang,A1,,🪝
+april,K3,,help,A1,,🤝
+april,K3,,hook,A1,,
+april,K3,,hose,A1,,🚿
+april,K3,,hurt,A1,,
+april,K3,,July,A1,assets/K3/july.jpeg,🗓️
+april,K3,,jump,A1,assets/K3/jump.jpeg,🦘
+april,K3,,June,A1,assets/K3/june.jpeg,🗓️
+april,K3,,kick,A1,,🦵
+april,K3,,king,A1,,🤴
+april,K3,,kite,A1,,🪁
+april,K3,,lake,A1,,🏞️
+april,K3,,line,A1,,
+april,K3,,lion,A1,,
+april,K3,,long,A1,,
+april,K3,,look,A1,,👀
+april,K3,,loud,A1,,
+april,K3,,mask,A1,assets/K3/mask.jpeg,🎭
+april,K3,,neck,A1,,
+april,K3,,nose,A1,,👃
+april,K3,,open,A1,assets/K3/open.jpeg,🚪
+april,K3,,oval,A1,assets/K3/oval.jpeg,🥚
+april,K3,,pair,A1,,
+april,K3,,park,A1,,🏞️
+april,K3,,play,A1,assets/K3/play.jpeg,🎮
+april,K3,,race,A1,,🏁
+april,K3,,rain,A1,assets/K3/rain.jpeg,🌧️
+april,K3,,read,A1,,📖
+april,K3,,ride,A1,,🚲
+april,K3,,road,A1,,🛣️
+april,K3,,rope,A1,,
+april,K3,,shoe,A1,,👟
+april,K3,,shop,A1,,🏪
+april,K3,,sick,A1,,🤒
+april,K3,,sing,A1,assets/K3/sing.jpeg,🎤
+april,K3,,sink,A1,assets/K3/sink.jpeg,🚰
+april,K3,,slow,A1,,🐢
+april,K3,,sofa,A1,assets/K3/sofa.jpeg,🛋️
+april,K3,,star,A1,assets/K3/star.jpeg,⭐
+april,K3,,swim,A1,,🏊
+april,K3,,tail,A1,,🐕
+april,K3,,talk,A1,assets/K3/talk.jpeg,🗣️
+april,P1,Go Get Maths|English,doll,A1,,🪆
+april,P1,Go Get Maths|Science|English,draw,A1,assets/P1/draw.jpeg,✏️
+april,P1,Go Get Maths|English,duck,A1,assets/P1/duck.jpeg,🦆
+april,P1,Go Get Maths,fall,A1,,
+april,P1,Go Get Maths|Science,find,A1,assets/P1/find.jpeg,🔍
+april,P1,Go Get Maths|Science|English,fish,A1,assets/P1/fish.jpeg,🐟
+april,P1,Go Get Maths,five,A1,assets/P1/five.jpeg,5️⃣
+april,P1,Go Get Maths|Science,flat,A1,assets/P1/flat.jpeg,
+april,P1,Go Get Maths,fold,A1,,📄
+april,P1,Go Get Maths|English,fork,A1,assets/P1/fork.jpeg,🍴
+april,P1,Go Get Maths,four,A1,assets/P1/four.jpeg,4️⃣
+april,P1,Go Get Maths,from,A1,assets/P1/from.jpeg,
+april,P1,Go Get Maths,full,A1,,
+april,P1,Go Get Maths,give,A1,assets/P1/give.jpeg,🎁
+april,P1,Go Get Maths|English,grid,A1,assets/P1/grid.jpeg,🔲
+april,P1,Go Get Maths|Science|English,hand,A1,assets/P1/hand.jpeg,✋
+april,P1,Go Get Maths,high,A1,,
+april,P1,Go Get Maths,icon,A1,,
+april,P1,Go Get Maths,join,A1,,
+april,P1,Go Get Maths,jump,A1,assets/P1/jump.jpeg,🦘
+april,P1,Go Get Maths|Science,leaf,A1,assets/P1/leaf.jpeg,🍃
+april,P1,Go Get Maths,left,A1,assets/P1/left.jpeg,
+april,P1,Go Get Maths,less,A1,assets/P1/less.jpeg,
+april,P1,Go Get Maths|Science,lift,A1,,🏋️
+april,P1,Go Get Maths,line,A1,,
+april,P1,Go Get Maths,loaf,A1,assets/P1/loaf.jpeg,🍞
+april,P1,Go Get Maths,long,A1,assets/P1/long.jpeg,
+april,P1,Go Get Maths,many,A1,,
+april,P1,Go Get Maths,mark,A1,,
+april,P1,Go Get Maths,mass,A1,,
+april,P1,Go Get Maths,more,A1,assets/P1/more.jpeg,
+april,P1,Go Get Maths|Science,move,A1,,
+april,P1,Go Get Maths,next,A1,assets/P1/next.jpeg,➡️
+april,P1,Go Get Maths,nine,A1,assets/P1/nine.jpeg,9️⃣
+april,P1,Go Get Maths,oval,A1,assets/P1/oval.jpeg,🥚
+april,P1,Go Get Maths,pair,A1,,
+april,P1,Go Get Maths,part,A1,assets/P1/part.jpeg,🧩
+april,P1,Go Get Maths,path,A1,,
+april,P1,Go Get Maths,pear,A1,,
+april,P1,Go Get Maths,peel,A1,assets/P1/peel.jpeg,🍌
+april,P1,Go Get Maths,plan,A1,,
+april,P1,Go Get Maths,plus,A1,assets/P1/plus.jpeg,➕
+april,P1,Go Get Maths,rare,A1,,
+april,P1,Go Get Maths,read,A1,assets/P1/read.jpeg,📖
+april,P1,Go Get Maths,rice,A1,,🍚
+april,P1,Go Get Maths,ring,A1,assets/P1/ring.jpeg,💍
+april,P1,Go Get Maths,rise,A1,,
+april,P1,Go Get Maths,road,A1,,🛣️
+april,P1,Go Get Maths,rope,A1,,
+april,P1,Go Get Maths,rose,A1,assets/P1/rose.jpeg,🌹
+april,P1,Science|English,body,A1,assets/P1/body.jpeg,🧍
+april,P1,Science,bone,A1,assets/P1/bone.jpeg,🦴
+april,P1,Science,cave,A1,assets/P1/cave.jpeg,🕳️
+april,P1,Science,chew,A1,,😋
+april,P1,Science|English,chin,A1,assets/P1/chin.jpeg,😀
+april,P1,Science|English,clap,A1,,👏
+april,P1,Science,claw,A1,assets/P1/claw.jpeg,🐾
+april,P1,Science,clay,A1,,
+april,P1,Science,cool,A1,,
+april,P1,Science,dark,A1,,
+april,P1,Science|English,drum,A1,assets/P1/drum.jpeg,🥁
+april,P1,Science,dull,A1,,
+april,P1,Science,echo,A1,,
+april,P1,Science|English,face,A1,assets/P1/face.jpeg,😀
+april,P1,Science,fang,A1,assets/P1/fang.jpeg,🦷
+april,P1,Science,fire,A1,,🔥
+april,P1,Science|English,foot,A1,assets/P1/foot.jpeg,🦶
+april,P1,Science|English,frog,A1,assets/P1/frog.jpeg,🐸
+april,P1,Science,gill,A1,assets/P1/gill.jpeg,🐟
+april,P1,Science,glow,A1,,
+april,P1,Science,good,A1,,👍
+april,P1,Science,grey,A1,,
+april,P1,Science,grow,A1,assets/P1/grow.jpeg,🌱
+april,P1,Science|English,hair,A1,assets/P1/hair.jpeg,💇
+april,P1,Science,head,A1,assets/P1/head.jpeg,🧑
+april,P1,Science,hear,A1,assets/P1/hear.jpeg,👂
+april,P1,Science,help,A1,,🤝
+april,P1,Science,hide,A1,assets/P1/hide.jpeg,🙈
+april,P1,Science,hill,A1,,
+april,P1,Science,hold,A1,,✊
+april,P1,Science,honk,A1,,
+april,P1,Science,horn,A1,assets/P1/horn.jpeg,🐂
+april,P1,Science,huge,A1,,
+april,P1,Science,knee,A1,assets/P1/knee.jpeg,🦵
+april,P1,Science,lava,A1,,
+april,P1,Science,list,A1,assets/P1/list.jpeg,📋
+april,P1,Science,loud,A1,,
+april,P1,Science,lung,A1,assets/P1/lung.jpeg,🫁
+april,P1,Science,meow,A1,,
+april,P1,Science,moon,A1,,🌙
+april,P1,Science,name,A1,assets/P1/name.jpeg,🏷️
+april,P1,Science,near,A1,,
+april,P1,English,bank,A1,,
+april,P1,English,bath,A1,,🛁
+april,P1,English,beak,A1,assets/P1/beak.jpeg,🐦
+april,P1,English,bear,A1,assets/P1/bear.jpg,🐻
+april,P1,English,bell,A1,,
+april,P1,English,belt,A1,,
+april,P1,English,bike,A1,,🚲
+april,P1,English,bird,A1,assets/P1/bird.jpeg,🐦
+april,P1,English,blow,A1,,
+april,P1,English,blue,A1,assets/P1/blue.jpeg,🔵
+april,P1,English,boat,A1,assets/P1/boat.jpeg,⛵
+april,P1,English,book,A1,assets/P1/book.jpeg,📖
+april,P1,English,boot,A1,,🥾
+april,P1,English,burn,A1,,
+april,P1,English,cage,A1,,🪤
+april,P1,English,camp,A1,,🏕️
+april,P1,English,chip,A1,,
+april,P1,English,city,A1,,🏙️
+april,P1,English,clam,A1,,
+april,P1,English,club,A1,assets/P1/club.jpeg,🎪
+april,P1,English,coat,A1,,🧥
+april,P1,English,coin,A1,,
+april,P1,English,cold,A1,,🥶
+april,P1,English,cone,A1,assets/P1/cone.jpeg,🍦
+april,P1,English,crab,A1,assets/P1/crab.jpeg,🦀
+april,P1,English,curl,A1,,
+april,P1,English,desk,A1,,🪑
+april,P1,English,dice,A1,,🎲
+april,P1,English,door,A1,assets/P1/door.jpeg,🚪
+april,P1,English,fast,A1,assets/P1/fast.jpeg,💨
+april,P1,English,feet,A1,,🦶
+april,P1,English,flag,A1,assets/P1/flag.jpeg,🚩
+april,P1,English,gate,A1,,🚪
+april,P1,English,girl,A1,assets/P1/girl.jpeg,👧
+april,P1,English,goup,A1,,
+april,P2,,baby,A1,assets/P2/baby.jpeg,👶
+april,P2,,ball,A1,,⚽
+april,P2,,bath,A1,,🛁
+april,P2,,bean,A1,,🫘
+april,P2,,bear,A1,,🐻
+april,P2,,bird,A1,,🐦
+april,P2,,blog,A1,assets/P2/blog.jpeg,📝
+april,P2,,blue,A1,,🔵
+april,P2,,boat,A1,assets/P2/boat.jpeg,⛵
+april,P2,,book,A1,,📖
+april,P2,,boot,A1,,🥾
+april,P2,,cake,A1,assets/P2/cake.jpeg,🍰
+april,P2,,camp,A1,assets/P2/camp.jpeg,🏕️
+april,P2,,chip,A1,,
+april,P2,,coat,A1,assets/P2/coat.jpeg,🧥
+april,P2,,cold,A1,,🥶
+april,P2,,cube,A1,assets/P2/cube.jpeg,🧊
+april,P2,,curl,A1,,
+april,P2,,doll,A1,,🪆
+april,P2,,door,A1,,🚪
+april,P2,,down,A1,assets/P2/down.jpeg,
+april,P2,,draw,A1,,✏️
+april,P2,,drum,A1,,🥁
+april,P2,,duck,A1,,🦆
+april,P2,,feel,A1,,🤲
+april,P2,,feet,A1,assets/P2/feet.jpeg,🦶
+april,P2,,fire,A1,,🔥
+april,P2,,fish,A1,assets/P2/fish.jpeg,🐟
+april,P2,,five,A1,assets/P2/five.jpeg,5️⃣
+april,P2,,food,A1,,🍽️
+april,P2,,fork,A1,,🍴
+april,P2,,girl,A1,,👧
+april,P2,,glue,A1,assets/P2/glue.jpeg,🩹
+april,P2,,grey,A1,,
+april,P2,,hail,A1,assets/P2/hail.jpeg,🌨️
+april,P2,,hair,A1,,💇
+april,P2,,hand,A1,,✋
+april,P2,,head,A1,,🧑
+april,P2,,help,A1,assets/P2/help.jpeg,🤝
+april,P2,,high,A1,assets/P2/high.jpeg,
+april,P2,,home,A1,assets/P2/home.jpeg,🏠
+april,P2,,hoop,A1,,🏀
+april,P2,,hose,A1,assets/P2/hose.jpeg,🚿
+april,P2,,hour,A1,assets/P2/hour.jpeg,🕐
+april,P2,,July,A1,,🗓️
+april,P2,,June,A1,,🗓️
+april,P2,,king,A1,,🤴
+april,P2,,leaf,A1,assets/P2/leaf.jpeg,🍃
+april,P2,,lift,A1,,🏋️
+april,P2,,like,A1,assets/P2/like.jpeg,
+april,P3,,fire,A2,,🔥
+april,P3,,flag,A2,,🚩
+april,P3,,food,A2,,🍽️
+april,P3,,gift,A2,,🎁
+april,P3,,girl,A2,,👧
+april,P3,,good,A2,assets/P3/good.jpeg,👍
+april,P3,,hair,A2,,💇
+april,P3,,hall,A2,,
+april,P3,,hand,A2,,✋
+april,P3,,head,A2,,🧑
+april,P3,,help,A2,assets/P3/help.jpeg,🤝
+april,P3,,hike,A2,assets/P3/hike.jpeg,🥾
+april,P3,,home,A2,assets/P3/home.jpeg,🏠
+april,P3,,iron,A2,assets/P3/iron.jpeg,🧺
+april,P3,,king,A2,assets/P3/king.jpeg,🤴
+april,P3,,kite,A2,,🪁
+april,P3,,kiwi,A2,,🥝
+april,P3,,lazy,A2,assets/P3/lazy.jpeg,
+april,P3,,leaf,A2,assets/P3/leaf.jpeg,🍃
+april,P3,,mall,A2,assets/P3/mall.jpeg,🏬
+april,P3,,maze,A2,assets/P3/maze.jpeg,🌀
+april,P3,,moon,A2,,🌙
+april,P3,,nest,A2,assets/P3/nest.jpeg,🪹
+april,P3,,okra,A2,,🫑
+april,P3,,palm,A2,assets/P3/palm.jpeg,🤚
+april,P3,,pawn,A2,assets/P3/pawn.jpeg,♟️
+april,P3,,peel,A2,,🍌
+april,P3,,pile,A2,,📚
+april,P3,,pink,A2,assets/P3/pink.jpeg,🩷
+april,P3,,race,A2,,🏁
+april,P3,,rail,A2,,
+april,P3,,rice,A2,,🍚
+april,P3,,road,A2,assets/P3/road.jpeg,🛣️
+april,P3,,rook,A2,assets/P3/rook.jpeg,♜
+april,P3,,salt,A2,assets/P3/salt.jpeg,🧂
+april,P3,,sand,A2,,
+april,P3,,seed,A2,assets/P3/seed.jpeg,🌱
+april,P3,,shop,A2,,🏪
+april,P3,,sign,A2,,
+april,P3,,skin,A2,,🧴
+april,P3,,snow,A2,,❄️
+april,P3,,soap,A2,,🧼
+april,P3,,souk,A2,assets/P3/souk.jpeg,🏪
+april,P3,,star,A2,,⭐
+april,P3,,stem,A2,assets/P3/stem.jpeg,🌱
+april,P3,,stir,A2,assets/P3/stir.jpeg,🥄
+april,P3,,task,A2,assets/P3/task.jpeg,📋
+april,P3,,tent,A2,,⛺
+april,P3,,text,A2,,
+april,P3,,tile,A2,,
+april,P4,,hill,A2,,
+april,P4,,horn,A2,,🐂
+april,P4,,huge,A2,assets/P4/huge.jpeg,
+april,P4,,jeep,A2,,
+april,P4,,king,A2,,🤴
+april,P4,,lake,A2,,🏞️
+april,P4,,land,A2,,🏞️
+april,P4,,lash,A2,assets/P4/lash.jpeg,🌊
+april,P4,,leap,A2,assets/P4/leap.jpeg,🦘
+april,P4,,lift,A2,assets/P4/lift.jpeg,🏋️
+april,P4,,lion,A2,,
+april,P4,,long,A2,,
+april,P4,,loud,A2,,
+april,P4,,menu,A2,assets/P4/menu.jpeg,📋
+april,P4,,milk,A2,,🥛
+april,P4,,neat,A2,assets/P4/neat.jpeg,✨
+april,P4,,nest,A2,,🪹
+april,P4,,note,A2,,
+april,P4,,oven,A2,,
+april,P4,,peel,A2,assets/P4/peel.jpeg,🍌
+april,P4,,pile,A2,assets/P4/pile.jpeg,📚
+april,P4,,poet,A2,,✍️
+april,P4,,pond,A2,,
+april,P4,,pour,A2,assets/P4/pour.JPG,🫗
+april,P4,,prop,A2,,🎬
+april,P4,,quay,A2,,⚓
+april,P4,,reed,A2,assets/P4/reed.jpeg,🌾
+april,P4,,road,A2,assets/P4/road.jpeg,🛣️
+april,P4,,roar,A2,assets/P4/roar.jpeg,🦁
+april,P4,,roof,A2,,🏠
+april,P4,,sail,A2,assets/P4/sail.jpeg,⛵
+april,P4,,skin,A2,,🧴
+april,P4,,skip,A2,assets/P4/skip.jpeg,🤸
+april,P4,,song,A2,,
+april,P4,,sore,A2,assets/P4/sore.jpeg,🤕
+april,P4,,spin,A2,,🌀
+april,P4,,spot,A2,,
+april,P4,,stir,A2,assets/P4/stir.jpeg,🥄
+april,P4,,surf,A2,,🏄
+april,P4,,swim,A2,,🏊
+april,P4,,tail,A2,,🐕
+april,P4,,tear,A2,assets/P4/tear.jpeg,😢
+april,P4,,tent,A2,assets/P4/tent.jpeg,⛺
+april,P4,,tidy,A2,assets/P4/tidy.jpeg,🧹
+april,P4,,trap,A2,,
+april,P4,,trip,A2,,
+april,P4,,turn,A2,assets/P4/turn.jpeg,🔄
+april,P4,,tusk,A2,,
+april,P4,,walk,A2,,🚶
+april,P4,,wall,A2,assets/P4/wall.jpeg,🧱
+april,P5,,soft,B1,,🧸
+april,P5,,some,B1,assets/P5/some.jpeg,
+april,P5,,stay,B1,assets/P5/stay.jpeg,🛑
+april,P5,,stir,B1,,🥄
+april,P5,,swap,B1,assets/P5/swap.jpeg,🔄
+april,P5,,thin,B1,,📏
+april,P5,,tidy,B1,assets/P5/tidy.jpeg,🧹
+april,P5,,tofu,B1,assets/P5/tofu.jpeg,🧊
+april,P5,,type,B1,,
+april,P5,,warm,B1,,🌤️
+april,P5,,wash,B1,,🧼
+april,P5,,wear,B1,,
+april,P5,,wing,B1,,🪽
+april,P5,,year,B1,assets/P5/year.jpeg,📅
+april,P5,,above,B1,assets/P5/above.jpeg,
+april,P5,,angry,B1,assets/P5/angry.jpeg,😠
+april,P5,,argue,B1,assets/P5/argue.jpeg,😤
+april,P5,,blurb,B1,assets/P5/blurb.jpeg,
+april,P5,,board,B1,,📋
+april,P5,,boots,B1,,🥾
+april,P5,,bored,B1,assets/P5/bored.jpeg,😑
+april,P5,,brave,B1,assets/P5/brave.jpeg,🦁
+april,P5,,build,B1,assets/P5/build.jpeg,🔨
+april,P5,,bumpy,B1,,
+april,P5,,carry,B1,assets/P5/carry.jpeg,🧳
+april,P5,,click,B1,,
+april,P5,,cloud,B1,,☁️
+april,P5,,coast,B1,,
+april,P5,,cover,B1,assets/P5/cover.jpeg,📕
+april,P5,,cross,B1,assets/P5/cross.jpeg,❌
+april,P5,,cycle,B1,assets/P5/cycle.jpeg,🔁
+april,P5,,dairy,B1,assets/P5/dairy.jpeg,🥛
+april,P5,,delay,B1,,
+april,P5,,disco,B1,assets/P5/disco.jpeg,🪩
+april,P5,,dream,B1,,💭
+april,P5,,dunes,B1,,
+april,P5,,early,B1,,
+april,P5,,email,B1,,
+april,P5,,empty,B1,,
+april,P5,,enjoy,B1,assets/P5/enjoy.jpeg,😄
+april,P5,,event,B1,assets/P5/event.jpeg,📅
+april,P5,,fewer,B1,assets/P5/fewer.jpeg,
+april,P5,,float,B1,,🏊
+april,P5,,foggy,B1,,🌫️
+april,P5,,graph,B1,assets/P5/graph.jpeg,📈
+april,P5,,hurry,B1,,
+april,P5,,juicy,B1,,
+april,P5,,label,B1,,🏷️
+april,P5,,local,B1,,
+april,P5,,lunch,B1,,🍱
+april,P6,,wing,B1,,🪽
+april,P6,,worm,B1,,
+april,P6,,alien,B1,,
+april,P6,,anger,B1,,
+april,P6,,blade,B1,assets/P6/blade.jpeg,
+april,P6,,bract,B1,,
+april,P6,,buyer,B1,,
+april,P6,,cabin,B1,assets/P6/cabin.jpeg,🛖
+april,P6,,coach,B1,assets/P6/coach.jpeg,🧑‍🏫
+april,P6,,coder,B1,assets/P6/coder.jpeg,🧑‍💻
+april,P6,,coral,B1,,
+april,P6,,donor,B1,assets/P6/donor.jpeg,🎁
+april,P6,,drama,B1,assets/P6/drama.jpeg,🎭
+april,P6,,flood,B1,,
+april,P6,,fruit,B1,,🍓
+april,P6,,funny,B1,,
+april,P6,,genre,B1,,
+april,P6,,glass,B1,,🥛
+april,P6,,goods,B1,,
+april,P6,,idiom,B1,assets/P6/idiom.jpeg,💬
+april,P6,,judge,B1,assets/P6/judge.jpeg,👨‍⚖️
+april,P6,,knife,B1,,
+april,P6,,leash,B1,,🦮
+april,P6,,limit,B1,,
+april,P6,,lucky,B1,,🍀
+april,P6,,metal,B1,,
+april,P6,,misty,B1,assets/P6/misty.jpeg,🌫️
+april,P6,,money,B1,,💰
+april,P6,,motto,B1,assets/P6/motto.jpeg,📜
+april,P6,,music,B1,,🎵
+april,P6,,nasty,B1,,
+april,P6,,noisy,B1,,
+april,P6,,ocean,B1,,
+april,P6,,party,B1,,🎉
+april,P6,,peace,B1,,☮️
+april,P6,,polyp,B1,,
+april,P6,,power,B1,assets/P6/power.jpeg,⚡
+april,P6,,price,B1,,
+april,P6,,purse,B1,,
+april,P6,,queue,B1,assets/P6/queue.jpeg,🚶
+april,P6,,rhyme,B1,,🎵
+april,P6,,river,B1,,🏞️
+april,P6,,scale,B1,,⚖️
+april,P6,,shape,B1,,🔷
+april,P6,,shark,B1,,
+april,P6,,sharp,B1,,🔪
+april,P6,,shell,B1,,🐚
+april,P6,,silly,B1,,
+april,P6,,snack,B1,,
+april,P6,,snail,B1,,🐌
+may,K1,,he,Pre-A1,assets/K1/he.jpeg,👦
+may,K1,,in,Pre-A1,,📥
+may,K1,,my,Pre-A1,assets/K1/my.jpeg,🙋
+may,K1,,no,Pre-A1,assets/K1/no.jpeg,❌
+may,K1,,on,Pre-A1,,🔛
+may,K1,,ox,Pre-A1,,
+may,K1,,ant,Pre-A1,,🐜
+may,K1,,arm,Pre-A1,assets/K1/arm.jpeg,💪
+may,K1,,bag,Pre-A1,assets/K1/bag.jpeg,🎒
+may,K1,,bee,Pre-A1,assets/K1/bee.jpeg,🐝
+may,K1,,big,Pre-A1,assets/K1/big.jpeg,🐘
+may,K1,,box,Pre-A1,assets/K1/box.jpeg,📦
+may,K1,,boy,Pre-A1,assets/K1/boy.jpeg,👦
+may,K1,,bus,Pre-A1,assets/K1/bus.jpeg,🚌
+may,K1,,cap,Pre-A1,assets/K1/cap.jpeg,🧢
+may,K1,,car,Pre-A1,,🚗
+may,K1,,cat,Pre-A1,assets/K1/cat.jpeg,🐱
+may,K1,,cow,Pre-A1,,🐄
+may,K1,,cup,Pre-A1,assets/K1/cup.jpeg,☕
+may,K1,,cut,Pre-A1,,
+may,K1,,dad,Pre-A1,assets/K1/dad.jpeg,👨
+may,K1,,dig,Pre-A1,,🪏
+may,K1,,dip,Pre-A1,,🥣
+may,K1,,dog,Pre-A1,assets/K1/dog.jpeg,🐶
+may,K1,,egg,Pre-A1,assets/K1/egg.jpeg,🥚
+may,K1,,fan,Pre-A1,assets/K1/fan.jpeg,🪭
+may,K1,,fly,Pre-A1,,🕊️
+may,K1,,fox,Pre-A1,,🦊
+may,K1,,hat,Pre-A1,assets/K1/hat.jpeg,🎩
+may,K1,,hop,Pre-A1,,🦘
+may,K1,,jam,Pre-A1,assets/K1/jam.jpg,🍓
+may,K1,,leg,Pre-A1,assets/K1/leg.jpeg,🦵
+may,K1,,mat,Pre-A1,,
+may,K1,,mom,Pre-A1,assets/K1/mom.jpeg,👩
+may,K1,,net,Pre-A1,,🥅
+may,K1,,new,Pre-A1,assets/K1/new.jpeg,✨
+may,K1,,nut,Pre-A1,,
+may,K1,,old,Pre-A1,assets/K1/old.jpeg,👴
+may,K1,,owl,Pre-A1,,🦉
+may,K1,,pen,Pre-A1,,🖊️
+may,K1,,pig,Pre-A1,,
+may,K1,,pot,Pre-A1,,🍲
+may,K1,,red,Pre-A1,assets/K1/red.jpeg,🔴
+may,K1,,row,Pre-A1,,🚣
+may,K1,,run,Pre-A1,assets/K1/run.jpeg,🏃
+may,K1,,she,Pre-A1,assets/K1/she.jpeg,👧
+may,K1,,six,Pre-A1,,6️⃣
+may,K1,,sky,Pre-A1,,🌤️
+may,K1,,sun,Pre-A1,,☀️
+may,K1,,ten,Pre-A1,,🔟
+may,K2,,bag,Pre-A1,assets/K2/bag.jpeg,🎒
+may,K2,,bed,Pre-A1,assets/K2/bed.jpeg,🛏️
+may,K2,,bee,Pre-A1,,🐝
+may,K2,,big,Pre-A1,,🐘
+may,K2,,boy,Pre-A1,assets/K2/boy.jpeg,👦
+may,K2,,bus,Pre-A1,assets/K2/bus.jpeg,🚌
+may,K2,,cap,Pre-A1,,🧢
+may,K2,,cat,Pre-A1,assets/K2/cat.jpeg,🐱
+may,K2,,cow,Pre-A1,,🐄
+may,K2,,dad,Pre-A1,assets/K2/dad.jpeg,👨
+may,K2,,dim,Pre-A1,,
+may,K2,,dog,Pre-A1,assets/K2/dog.jpeg,🐶
+may,K2,,dry,Pre-A1,,🏜️
+may,K2,,eat,Pre-A1,,🍽️
+may,K2,,egg,Pre-A1,assets/K2/egg.jpeg,🥚
+may,K2,,fat,Pre-A1,,
+may,K2,,fly,Pre-A1,assets/K2/fly.jpeg,🕊️
+may,K2,,fox,Pre-A1,assets/K2/fox.jpeg,🦊
+may,K2,,hat,Pre-A1,,🎩
+may,K2,,hay,Pre-A1,,
+may,K2,,hen,Pre-A1,,🐔
+may,K2,,hot,Pre-A1,,🔥
+may,K2,,log,Pre-A1,assets/K2/log.jpeg,🪵
+may,K2,,mom,Pre-A1,assets/K2/mom.jpeg,👩
+may,K2,,mud,Pre-A1,,🟤
+may,K2,,one,Pre-A1,assets/K2/one.jpeg,1️⃣
+may,K2,,pen,Pre-A1,assets/K2/pen.jpeg,🖊️
+may,K2,,pig,Pre-A1,,
+may,K2,,red,Pre-A1,assets/K2/red.jpeg,🔴
+may,K2,,run,Pre-A1,assets/K2/run.jpeg,🏃
+may,K2,,sad,Pre-A1,assets/K2/sad.jpeg,😢
+may,K2,,see,Pre-A1,assets/K2/see.jpeg,👀
+may,K2,,six,Pre-A1,assets/K2/six.jpeg,6️⃣
+may,K2,,sky,Pre-A1,,🌤️
+may,K2,,sun,Pre-A1,,☀️
+may,K2,,ten,Pre-A1,assets/K2/ten.jpeg,🔟
+may,K2,,two,Pre-A1,assets/K2/two.jpeg,2️⃣
+may,K2,,wet,Pre-A1,,💧
+may,K2,,arms,Pre-A1,assets/K2/arms.jpeg,💪
+may,K2,,baby,Pre-A1,assets/K2/baby.jpeg,👶
+may,K2,,ball,Pre-A1,assets/K2/ball.jpeg,⚽
+may,K2,,barn,Pre-A1,,
+may,K2,,beak,Pre-A1,,🐦
+may,K2,,belt,Pre-A1,,
+may,K2,,bird,Pre-A1,assets/K2/bird.jpeg,🐦
+may,K2,,book,Pre-A1,assets/K2/book.jpeg,📖
+may,K2,,bowl,Pre-A1,,
+may,K2,,cake,Pre-A1,assets/K2/cake.jpeg,🍰
+may,K2,,calf,Pre-A1,,
+may,K2,,cars,Pre-A1,,
+may,K3,,in,A1,assets/K3/in.jpeg,📥
+may,K3,,on,A1,assets/K3/on.jpeg,🔛
+may,K3,,bat,A1,,
+may,K3,,bed,A1,assets/K3/bed.jpeg,🛏️
+may,K3,,bow,A1,assets/K3/bow.jpeg,🎀
+may,K3,,bus,A1,,🚌
+may,K3,,car,A1,,🚗
+may,K3,,cut,A1,,
+may,K3,,dad,A1,assets/K3/dad.jpeg,👨
+may,K3,,dry,A1,,🏜️
+may,K3,,ear,A1,,👂
+may,K3,,eye,A1,,👁️
+may,K3,,fly,A1,,🕊️
+may,K3,,hat,A1,assets/K3/hat.jpeg,🎩
+may,K3,,hit,A1,,
+may,K3,,hot,A1,assets/K3/hot.jpeg,🔥
+may,K3,,leg,A1,,🦵
+may,K3,,May,A1,assets/K3/may.jpeg,🗓️
+may,K3,,mom,A1,assets/K3/mom.jpeg,👩
+may,K3,,net,A1,,🥅
+may,K3,,pan,A1,,
+may,K3,,pen,A1,,🖊️
+may,K3,,pot,A1,,🍲
+may,K3,,rat,A1,,
+may,K3,,run,A1,assets/K3/run.jpeg,🏃
+may,K3,,sad,A1,assets/K3/sad.jpeg,😢
+may,K3,,sit,A1,assets/K3/sit.jpeg,🪑
+may,K3,,sky,A1,,🌤️
+may,K3,,toy,A1,,🧸
+may,K3,,vet,A1,,
+may,K3,,zoo,A1,,🦁
+may,K3,,bird,A1,,🐦
+may,K3,,bite,A1,,
+may,K3,,boat,A1,,⛵
+may,K3,,book,A1,assets/K3/book.jpeg,📖
+may,K3,,bowl,A1,,
+may,K3,,cake,A1,assets/K3/cake.jpeg,🍰
+may,K3,,cape,A1,,
+may,K3,,card,A1,assets/K3/card.jpeg,💌
+may,K3,,care,A1,,💗
+may,K3,,chef,A1,,
+may,K3,,clap,A1,assets/K3/clap.jpeg,👏
+may,K3,,coat,A1,assets/K3/coat.jpeg,🧥
+may,K3,,cold,A1,assets/K3/cold.jpeg,🥶
+may,K3,,comb,A1,,
+may,K3,,cook,A1,,👨‍🍳
+may,K3,,deer,A1,,
+may,K3,,door,A1,assets/K3/door.jpeg,🚪
+may,K3,,draw,A1,,✏️
+may,K3,,drum,A1,assets/K3/drum.jpeg,🥁
+may,P1,Go Get Maths,act,A1,,
+may,P1,Go Get Maths,add,A1,assets/P1/add.jpeg,➕
+may,P1,Go Get Maths|English,ant,A1,,🐜
+may,P1,Go Get Maths,bag,A1,assets/P1/bag.jpeg,🎒
+may,P1,Go Get Maths|Science|English,bee,A1,assets/P1/bee.jpeg,🐝
+may,P1,Go Get Maths|Science,big,A1,assets/P1/big.jpeg,🐘
+may,P1,Go Get Maths|English,box,A1,assets/P1/box.jpeg,📦
+may,P1,Go Get Maths|English,bus,A1,assets/P1/bus.jpeg,🚌
+may,P1,Go Get Maths|English,can,A1,assets/P1/can.jpeg,🥫
+may,P1,Go Get Maths|Science|English,car,A1,assets/P1/car.jpeg,🚗
+may,P1,Go Get Maths|Science,cat,A1,assets/P1/cat.jpeg,🐱
+may,P1,Go Get Maths,cut,A1,,
+may,P1,Go Get Maths|Science|English,egg,A1,assets/P1/egg.jpeg,🥚
+may,P1,Go Get Maths,few,A1,,
+may,P1,Go Get Maths|English,fly,A1,assets/P1/fly.jpeg,🕊️
+may,P1,Go Get Maths,gap,A1,,
+may,P1,Go Get Maths|English,hat,A1,assets/P1/hat.jpeg,🎩
+may,P1,Go Get Maths|English,hop,A1,assets/P1/hop.jpeg,🦘
+may,P1,Go Get Maths,key,A1,,🔑
+may,P1,Go Get Maths,log,A1,assets/P1/log.jpeg,🪵
+may,P1,Go Get Maths|English,low,A1,,
+may,P1,Go Get Maths,one,A1,assets/P1/one.jpeg,1️⃣
+may,P1,Go Get Maths|English,pen,A1,assets/P1/pen.jpeg,🖊️
+may,P1,Go Get Maths|Science|English,pot,A1,assets/P1/pot.jpeg,🍲
+may,P1,Go Get Maths,put,A1,assets/P1/put.jpeg,📥
+may,P1,Go Get Maths,rod,A1,,
+may,P1,Go Get Maths,row,A1,,🚣
+may,P1,Go Get Maths,set,A1,,
+may,P1,Go Get Maths,sit,A1,assets/P1/sit.jpeg,🪑
+may,P1,Go Get Maths,six,A1,assets/P1/six.jpeg,6️⃣
+may,P1,Go Get Maths,sum,A1,assets/P1/sum.jpeg,🧮
+may,P1,Go Get Maths,ten,A1,assets/P1/ten.jpeg,🔟
+may,P1,Go Get Maths|English,tie,A1,,👔
+may,P1,Go Get Maths,top,A1,,
+may,P1,Go Get Maths,two,A1,assets/P1/two.jpeg,2️⃣
+may,P1,Go Get Maths|English,ball,A1,assets/P1/ball.jpeg,⚽
+may,P1,Go Get Maths|English,band,A1,,
+may,P1,Go Get Maths,bead,A1,,📿
+may,P1,Go Get Maths,bond,A1,assets/P1/bond.jpeg,🔗
+may,P1,Go Get Maths,book,A1,assets/P1/book.jpeg,📖
+may,P1,Go Get Maths,bowl,A1,,
+may,P1,Go Get Maths,cake,A1,assets/P1/cake.jpeg,🍰
+may,P1,Go Get Maths,card,A1,,💌
+may,P1,Go Get Maths,coin,A1,,
+may,P1,Go Get Maths,comb,A1,,
+may,P1,Go Get Maths,cone,A1,assets/P1/cone.jpeg,🍦
+may,P1,Go Get Maths,crab,A1,assets/P1/crab.jpeg,🦀
+may,P1,Go Get Maths,cube,A1,,🧊
+may,P1,Go Get Maths,data,A1,,📊
+may,P1,Go Get Maths,desk,A1,,🪑
+may,P1,Science,no,A1,,❌
+may,P1,Science,air,A1,assets/P1/air.jpeg,💨
+may,P1,Science|English,arm,A1,assets/P1/arm.jpeg,💪
+may,P1,Science,ash,A1,,
+may,P1,Science,bad,A1,,👎
+may,P1,Science,cup,A1,,☕
+may,P1,Science,day,A1,,
+may,P1,Science|English,den,A1,,
+may,P1,Science,dig,A1,,🪏
+may,P1,Science|English,dog,A1,assets/P1/dog.jpeg,🐶
+may,P1,Science,dry,A1,assets/P1/dry.jpeg,🏜️
+may,P1,Science|English,ear,A1,assets/P1/ear.jpeg,👂
+may,P1,Science,eat,A1,assets/P1/eat.jpeg,🍽️
+may,P1,Science|English,eye,A1,assets/P1/eye.jpeg,👁️
+may,P1,Science|English,far,A1,,
+may,P1,Science|English,fin,A1,assets/P1/fin.jpeg,🐟
+may,P1,Science,fox,A1,assets/P1/fox.jpeg,🦊
+may,P1,Science|English,fur,A1,assets/P1/fur.jpeg,🧸
+may,P1,Science,gem,A1,,
+may,P1,Science|English,hot,A1,assets/P1/hot.jpeg,🔥
+may,P1,Science|English,leg,A1,assets/P1/leg.jpeg,🦵
+may,P1,Science,nap,A1,,😴
+may,P1,Science,paw,A1,assets/P1/paw.jpeg,🐾
+may,P1,Science|English,red,A1,,🔴
+may,P1,Science,run,A1,,🏃
+may,P1,Science|English,see,A1,assets/P1/see.jpeg,👀
+may,P1,Science,sip,A1,,🥤
+may,P1,Science|English,sky,A1,,🌤️
+may,P1,Science,sun,A1,,☀️
+may,P1,Science,tap,A1,,
+may,P1,Science,toe,A1,assets/P1/toe.jpeg,🦶
+may,P1,Science,tub,A1,,
+may,P1,Science,wet,A1,assets/P1/wet.jpeg,💧
+may,P1,Science,yes,A1,,✅
+may,P1,Science|English,baby,A1,assets/P1/baby.jpeg,👶
+may,P1,Science,back,A1,assets/P1/back.jpeg,
+may,P1,Science,bark,A1,,
+may,P1,Science,bath,A1,,🛁
+may,P1,Science,beak,A1,assets/P1/beak.jpeg,🐦
+may,P1,Science,bear,A1,assets/P1/bear.jpg,🐻
+may,P1,Science,bell,A1,,
+may,P1,Science,bend,A1,,🙇
+may,P1,Science,bird,A1,assets/P1/bird.jpeg,🐦
+may,P1,Science,blow,A1,,
+may,P1,English,in,A1,assets/P1/in.jpeg,📥
+may,P1,English,on,A1,assets/P1/on.jpeg,🔛
+may,P1,English,bat,A1,,
+may,P1,English,bed,A1,,🛏️
+may,P1,English,boy,A1,assets/P1/boy.jpeg,👦
+may,P1,English,bug,A1,,
+may,P1,English,gym,A1,,🏋️
+may,P1,English,hen,A1,assets/P1/hen.jpeg,🐔
+may,P1,English,hit,A1,,
+may,P1,English,lip,A1,,
+may,P1,English,oil,A1,,
+may,P1,English,owl,A1,,🦉
+may,P1,English,pie,A1,,🥧
+may,P1,English,rag,A1,assets/P1/rag.jpeg,🧻
+may,P1,English,sad,A1,assets/P1/sad.jpeg,😢
+may,P1,English,sea,A1,,
+may,P1,English,tea,A1,assets/P1/tea.jpeg,🍵
+may,P1,English,toy,A1,assets/P1/toy.jpeg,🧸
+may,P1,English,van,A1,assets/P1/van.jpeg,🚐
+may,P1,English,yak,A1,,🐃
+may,P2,,in,A1,assets/P2/in.jpeg,📥
+may,P2,,art,A1,assets/P2/art.jpeg,🎨
+may,P2,,bag,A1,,🎒
+may,P2,,bar,A1,,📊
+may,P2,,bat,A1,,
+may,P2,,bed,A1,,🛏️
+may,P2,,bee,A1,assets/P2/bee.jpeg,🐝
+may,P2,,bin,A1,,
+may,P2,,box,A1,assets/P2/box.jpeg,📦
+may,P2,,bus,A1,assets/P2/bus.jpeg,🚌
+may,P2,,cot,A1,,
+may,P2,,cow,A1,assets/P2/cow.jpeg,🐄
+may,P2,,Dad,A1,,👨
+may,P2,,day,A1,,
+may,P2,,ear,A1,,👂
+may,P2,,eat,A1,assets/P2/eat.jpeg,🍽️
+may,P2,,egg,A1,,🥚
+may,P2,,eye,A1,,👁️
+may,P2,,fly,A1,assets/P2/fly.jpeg,🕊️
+may,P2,,fog,A1,,
+may,P2,,gym,A1,assets/P2/gym.jpeg,🏋️
+may,P2,,hat,A1,assets/P2/hat.jpeg,🎩
+may,P2,,hen,A1,,🐔
+may,P2,,hop,A1,,🦘
+may,P2,,hot,A1,,🔥
+may,P2,,key,A1,,🔑
+may,P2,,log,A1,,🪵
+may,P2,,map,A1,assets/P2/map.jpeg,🗺️
+may,P2,,May,A1,,🗓️
+may,P2,,mud,A1,,🟤
+may,P2,,net,A1,,🥅
+may,P2,,old,A1,,👴
+may,P2,,owl,A1,assets/P2/owl.jpeg,🦉
+may,P2,,pen,A1,assets/P2/pen.jpeg,🖊️
+may,P2,,pet,A1,,🐶
+may,P2,,pie,A1,assets/P2/pie.jpg,🥧
+may,P2,,pot,A1,,🍲
+may,P2,,red,A1,,🔴
+may,P2,,row,A1,assets/P2/row.jpeg,🚣
+may,P2,,run,A1,,🏃
+may,P2,,sad,A1,,😢
+may,P2,,sea,A1,,
+may,P2,,sky,A1,assets/P2/sky.jpeg,🌤️
+may,P2,,tea,A1,,🍵
+may,P2,,ten,A1,assets/P2/ten.jpeg,🔟
+may,P2,,tie,A1,assets/P2/tie.jpeg,👔
+may,P2,,toe,A1,assets/P2/toe.jpeg,🦶
+may,P2,,wet,A1,,💧
+may,P2,,win,A1,,🏆
+may,P2,,zip,A1,,
+may,P3,,app,A2,,
+may,P3,,bad,A2,assets/P3/bad.jpeg,👎
+may,P3,,bed,A2,,🛏️
+may,P3,,bin,A2,,
+may,P3,,box,A2,,📦
+may,P3,,boy,A2,,👦
+may,P3,,car,A2,,🚗
+may,P3,,cry,A2,,
+may,P3,,cup,A2,assets/P3/cup.jpeg,☕
+may,P3,,dig,A2,assets/P3/dig.jpeg,🪏
+may,P3,,dye,A2,assets/P3/dye.jpeg,🎨
+may,P3,,eye,A2,,👁️
+may,P3,,hen,A2,assets/P3/hen.jpeg,🐔
+may,P3,,ice,A2,,
+may,P3,,leg,A2,,🦵
+may,P3,,map,A2,,🗺️
+may,P3,,pen,A2,,🖊️
+may,P3,,pet,A2,assets/P3/pet.jpeg,🐶
+may,P3,,pot,A2,,🍲
+may,P3,,red,A2,assets/P3/red.jpeg,🔴
+may,P3,,sea,A2,,
+may,P3,,sky,A2,,🌤️
+may,P3,,sun,A2,,☀️
+may,P3,,tea,A2,,🍵
+may,P3,,wet,A2,,💧
+may,P3,,win,A2,assets/P3/win.jpeg,🏆
+may,P3,,abra,A2,assets/P3/abra.jpeg,
+may,P3,,baby,A2,,👶
+may,P3,,bake,A2,assets/P3/bake.jpeg,🧁
+may,P3,,ball,A2,assets/P3/ball.jpeg,⚽
+may,P3,,bear,A2,,🐻
+may,P3,,bike,A2,,🚲
+may,P3,,bird,A2,,🐦
+may,P3,,blog,A2,,📝
+may,P3,,blue,A2,assets/P3/blue.jpeg,🔵
+may,P3,,boat,A2,,⛵
+may,P3,,book,A2,,📖
+may,P3,,cage,A2,assets/P3/cage.jpeg,🪤
+may,P3,,camp,A2,assets/P3/camp.jpeg,🏕️
+may,P3,,city,A2,assets/P3/city.jpeg,🏙️
+may,P3,,code,A2,assets/P3/code.jpeg,💻
+may,P3,,coin,A2,,
+may,P3,,cold,A2,assets/P3/cold.jpeg,🥶
+may,P3,,dish,A2,assets/P3/dish.jpeg,🍽️
+may,P3,,draw,A2,,✏️
+may,P3,,drop,A2,assets/P3/drop.jpeg,💧
+may,P3,,farm,A2,,🚜
+may,P3,,feed,A2,assets/P3/feed.jpeg,🍼
+may,P3,,feet,A2,,🦶
+may,P3,,film,A2,,🎬
+may,P4,,ht,A2,,
+may,P4,,ant,A2,,🐜
+may,P4,,bee,A2,,🐝
+may,P4,,bow,A2,,🎀
+may,P4,,bus,A2,,🚌
+may,P4,,dam,A2,,
+may,P4,,den,A2,,
+may,P4,,dip,A2,assets/P4/dip.jpeg,🥣
+may,P4,,egg,A2,,🥚
+may,P4,,fig,A2,assets/P4/fig.jpeg,🍈
+may,P4,,gas,A2,,💨
+may,P4,,hen,A2,,🐔
+may,P4,,hop,A2,assets/P4/hop.jpeg,🦘
+may,P4,,hot,A2,,🔥
+may,P4,,ill,A2,,🤒
+may,P4,,key,A2,assets/P4/key.jpeg,🔑
+may,P4,,lay,A2,assets/P4/lay.JPG,🥚
+may,P4,,map,A2,,🗺️
+may,P4,,mix,A2,assets/P4/mix.jpeg,🥄
+may,P4,,owl,A2,,🦉
+may,P4,,pea,A2,,
+may,P4,,pen,A2,,🖊️
+may,P4,,row,A2,,🚣
+may,P4,,sea,A2,,
+may,P4,,tin,A2,assets/P4/tin.jpeg,🥫
+may,P4,,zoo,A2,,🦁
+may,P4,,ball,A2,,⚽
+may,P4,,bang,A2,assets/P4/bang.jpeg,💥
+may,P4,,bike,A2,,🚲
+may,P4,,boat,A2,,⛵
+may,P4,,book,A2,,📖
+may,P4,,boot,A2,,🥾
+may,P4,,camp,A2,,🏕️
+may,P4,,chin,A2,,😀
+may,P4,,coil,A2,assets/P4/coil.jpeg,🌀
+may,P4,,cook,A2,assets/P4/cook.jpeg,👨‍🍳
+may,P4,,crab,A2,,🦀
+may,P4,,dish,A2,assets/P4/dish.jpeg,🍽️
+may,P4,,dive,A2,,
+may,P4,,fast,A2,,💨
+may,P4,,film,A2,assets/P4/film.jpeg,🎬
+may,P4,,fish,A2,,🐟
+may,P4,,fold,A2,assets/P4/fold.jpeg,📄
+may,P4,,gasp,A2,assets/P4/gasp.jpeg,😮
+may,P4,,gate,A2,assets/P4/gate.jpeg,🚪
+may,P4,,gong,A2,,
+may,P4,,hall,A2,,
+may,P4,,hand,A2,,✋
+may,P4,,hard,A2,,🪨
+may,P4,,hike,A2,,🥾
+may,P5,,dry,B1,,🏜️
+may,P5,,fry,B1,,
+may,P5,,icy,B1,,
+may,P5,,map,B1,,🗺️
+may,P5,,mix,B1,,🥄
+may,P5,,sew,B1,,🪡
+may,P5,,war,B1,,⚔️
+may,P5,,wet,B1,,💧
+may,P5,,zip,B1,,
+may,P5,,army,B1,,🎖️
+may,P5,,bake,B1,,🧁
+may,P5,,blow,B1,,
+may,P5,,boil,B1,,
+may,P5,,care,B1,assets/P5/care.jpeg,💗
+may,P5,,chew,B1,,😋
+may,P5,,coat,B1,,🧥
+may,P5,,cool,B1,,
+may,P5,,cozy,B1,,
+may,P5,,data,B1,assets/P5/data.jpeg,📊
+may,P5,,fats,B1,,
+may,P5,,file,B1,,
+may,P5,,film,B1,,🎬
+may,P5,,flow,B1,,🌊
+may,P5,,fold,B1,,📄
+may,P5,,from,B1,assets/P5/from.jpeg,
+may,P5,,hang,B1,assets/P5/hang.jpeg,🪝
+may,P5,,hike,B1,assets/P5/hike.jpeg,🥾
+may,P5,,hole,B1,,🕳️
+may,P5,,into,B1,assets/P5/into.jpeg,
+may,P5,,jail,B1,,🔒
+may,P5,,jive,B1,assets/P5/jive.jpeg,💃
+may,P5,,land,B1,,🏞️
+may,P5,,late,B1,,
+may,P5,,lean,B1,assets/P5/lean.jpeg,🚶
+may,P5,,less,B1,assets/P5/less.jpeg,
+may,P5,,logo,B1,assets/P5/logo.jpeg,🏷️
+may,P5,,make,B1,assets/P5/make.jpeg,🔨
+may,P5,,meal,B1,,
+may,P5,,melt,B1,,
+may,P5,,more,B1,assets/P5/more.jpeg,
+may,P5,,pack,B1,,
+may,P5,,park,B1,,🏞️
+may,P5,,pour,B1,,🫗
+may,P5,,rain,B1,,🌧️
+may,P5,,roll,B1,assets/P5/roll.jpeg,🎲
+may,P5,,save,B1,,
+may,P5,,scan,B1,,📠
+may,P5,,slip,B1,assets/P5/slip.jpeg,🤸
+may,P5,,slow,B1,,🐢
+may,P5,,snow,B1,,❄️
+may,P6,,art,B1,,🎨
+may,P6,,fig,B1,,🍈
+may,P6,,fin,B1,,🐟
+may,P6,,job,B1,,
+may,P6,,law,B1,assets/P6/law.jpeg,⚖️
+may,P6,,map,B1,,🗺️
+may,P6,,spy,B1,assets/P6/spy.jpeg,🕵️
+may,P6,,tip,B1,,
+may,P6,,beak,B1,,🐦
+may,P6,,bunk,B1,assets/P6/bunk.jpeg,🛏️
+may,P6,,card,B1,,💌
+may,P6,,care,B1,assets/P6/care.jpeg,💗
+may,P6,,cash,B1,,
+may,P6,,city,B1,assets/P6/city.jpeg,🏙️
+may,P6,,claw,B1,,🐾
+may,P6,,coin,B1,,
+may,P6,,cost,B1,,
+may,P6,,crab,B1,,🦀
+may,P6,,crew,B1,,
+may,P6,,debt,B1,,
+may,P6,,deer,B1,,
+may,P6,,duty,B1,assets/P6/duty.jpeg,📋
+may,P6,,fire,B1,,🔥
+may,P6,,fund,B1,,
+may,P6,,goal,B1,,
+may,P6,,gold,B1,,
+may,P6,,hope,B1,assets/P6/hope.jpeg,🤞
+may,P6,,jazz,B1,,
+may,P6,,joke,B1,,
+may,P6,,list,B1,,📋
+may,P6,,loan,B1,,
+may,P6,,love,B1,,❤️
+may,P6,,nest,B1,,🪹
+may,P6,,newt,B1,,
+may,P6,,plan,B1,,
+may,P6,,poem,B1,,📜
+may,P6,,reef,B1,,
+may,P6,,rock,B1,,🪨
+may,P6,,role,B1,assets/P6/role.jpeg,🎭
+may,P6,,rope,B1,,
+may,P6,,scan,B1,assets/P6/scan.jpeg,📠
+may,P6,,seal,B1,,🦭
+may,P6,,ship,B1,,🚢
+may,P6,,shop,B1,,🏪
+may,P6,,spin,B1,assets/P6/spin.jpeg,🌀
+may,P6,,star,B1,assets/P6/star.jpeg,⭐
+may,P6,,tail,B1,,🐕
+may,P6,,toad,B1,,
+may,P6,,tour,B1,,
+may,P6,,town,B1,,🏘️
