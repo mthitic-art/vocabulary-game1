@@ -23,6 +23,7 @@ Usage
 """
 
 import os
+import re
 import sys
 import json
 import argparse
@@ -30,7 +31,8 @@ import datetime
 from openpyxl import load_workbook
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-from emoji_map import emoji_for   # noqa: E402  คลัง emoji สำรอง (tools/emoji_map.py)
+from emoji_map import emoji_for       # noqa: E402  คลัง emoji สำรอง (tools/emoji_map.py)
+from fix_vocabulary import load_thai  # noqa: E402  คำแปลไทยจาก data/clues.json
 
 LEVELS = ["K1", "K2", "K3", "P1", "P2", "P3", "P4", "P5", "P6"]
 SCHOOL_YEAR_MONTHS = [
@@ -201,11 +203,15 @@ EMOJI = {
 
 
 def slug(word: str) -> str:
-    """apple -> apple ; air steward -> air_steward"""
-    return "".join(
-        c for c in word.lower().replace(" ", "_").replace("-", "_")
-        if c.isalnum() or c == "_"
-    )
+    """apple -> apple ; air steward -> air_steward ; twenty- eight -> twenty_eight
+
+    ต้องให้ผลตรงกับ slugify() ใน tools/fix_vocabulary.py เป๊ะ ๆ
+    ไม่งั้นสองสคริปต์จะจับคู่ไฟล์ภาพได้ไม่เหมือนกัน (เคยทำให้ภาพหายไป 39 คำ)
+    """
+    t = str(word).strip().lower()
+    t = re.sub(r"[^\w\s-]", "", t)      # ตัดเครื่องหมายวรรคตอน
+    t = re.sub(r"[\s-]+", "_", t)       # ช่องว่าง/ขีด ติดกันกี่ตัวก็เป็น _ เดียว
+    return t.strip("_")
 
 
 # ── ค้นหาไฟล์ภาพ "ของจริง" แทนการเดานามสกุล ──────────────────────────
@@ -213,6 +219,7 @@ def slug(word: str) -> str:
 # ทำให้เบราว์เซอร์ต้องยิง 404 ทิ้งก่อนทุกภาพ และ preload ใช้ไม่ได้เลย
 IMG_EXTS_PREFERRED = (".webp", ".jpeg", ".jpg", ".png", ".avif", ".gif")
 _ASSET_INDEX = None
+_THAI = {}
 
 
 def _assets_root(out_path: str) -> str:
@@ -317,9 +324,11 @@ def convert(xlsx_path, out_path, months=None, split=False):
     become available months. The remaining school-year months are emitted as
     empty level collections so the UI/schema is complete without inventing data.
     """
-    global _ASSET_INDEX
+    global _ASSET_INDEX, _THAI
     assets_dir = _assets_root(out_path)
     _ASSET_INDEX = build_asset_index(assets_dir)
+    _THAI = load_thai(out_path)
+    print("  คำแปลไทยที่อ่านได้จาก clues.json:", len(_THAI), "คำ")
     print("  ภาพที่พบจริงในโฟลเดอร์ assets:",
           {k: len(v) for k, v in sorted(_ASSET_INDEX.items())})
 
@@ -380,6 +389,9 @@ def convert(xlsx_path, out_path, months=None, split=False):
                 real_img = image_for(lv, w)
                 if real_img:
                     item["image"] = real_img
+                th = _THAI.get(key)
+                if th:
+                    item["th"] = th     # คำแปลไทย → ปุ่มเสียง ไทย ของ K1-K3
                 em = EMOJI.get(key) or emoji_for(w)
                 if em:
                     item["emoji"] = em

@@ -66,12 +66,37 @@ def _ext_rank(ext: str) -> int:
     return order.index(ext) if ext in order else 99
 
 
+def load_thai(json_path: str) -> dict:
+    """อ่านคำแปลไทยจาก data/clues.json → { "apple": "แอปเปิล", ... }
+
+    clues.json มีคำแปลไทยครบ 886 คำอยู่แล้ว แต่ vocabulary.json ไม่เคยมีฟิลด์ th
+    ทำให้ thaiOf() ใน game.js คืนค่าว่างเสมอ และปุ่มเสียงไทย 🇹🇭 ของ K1-K3
+    ไม่เคยแสดงเลย ฟังก์ชันนี้ย้ายคำแปลมาไว้ที่เดียวกับคำศัพท์
+    """
+    clues_path = os.path.join(os.path.dirname(json_path), "clues.json")
+    if not os.path.exists(clues_path):
+        print("  !  ไม่พบ", clues_path, "— ข้ามการเติมคำแปลไทย")
+        return {}
+    with open(clues_path, encoding="utf-8") as f:
+        data = json.load(f)
+    table = {}
+    for _level, entries in (data.get("levels") or {}).items():
+        for e in entries:
+            w = str(e.get("word", "")).strip().lower()
+            th = str(e.get("th", "")).strip()
+            if w and th:
+                table.setdefault(w, th)
+    return table
+
+
 def fix(json_path: str, assets_dir: str, dry_run: bool = False):
     with open(json_path, encoding="utf-8") as f:
         data = json.load(f)
 
     index = build_asset_index(assets_dir)
     print("ไฟล์ภาพที่พบ:", {k: len(v) for k, v in sorted(index.items())})
+    thai = load_thai(json_path)
+    print("คำแปลไทยที่อ่านได้จาก clues.json:", len(thai), "คำ")
 
     stats = Counter()
     still_blank = []
@@ -104,6 +129,12 @@ def fix(json_path: str, assets_dir: str, dry_run: bool = False):
                         e["emoji"] = emo
                         stats["emoji_added"] += 1
 
+                if not e.get("th"):
+                    th = thai.get(str(word).strip().lower())
+                    if th:
+                        e["th"] = th
+                        stats["thai_added"] += 1
+
                 if not e.get("image") and not e.get("emoji"):
                     stats["no_visual"] += 1
                     still_blank.append(f"{month}/{level}/{word}")
@@ -116,6 +147,7 @@ def fix(json_path: str, assets_dir: str, dry_run: bool = False):
     print(f"  แก้นามสกุลภาพให้ถูก        : {stats['image_fixed']:>5}")
     print(f"  ลบ image ที่ไม่มีไฟล์จริง  : {stats['image_removed']:>5}")
     print(f"  เติม emoji ใหม่            : {stats['emoji_added']:>5}")
+    print(f"  เติมคำแปลไทย (th)          : {stats['thai_added']:>5}")
     print(f"  มีภาพจริงใช้ได้            : {stats['has_image']:>5}")
     print(f"  ไม่มีทั้งภาพและ emoji      : {stats['no_visual']:>5}  (เกมจะใช้โหมดการ์ดคำ)")
 

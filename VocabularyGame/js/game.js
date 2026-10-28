@@ -1292,7 +1292,7 @@ function showK1Instructions(g){
         <button class="btn" id="startNow">▶️ Start / เริ่มเลย</button>
         <button class="btn alt" onclick="goHome()">🏠 Home</button>
       </div>
-      <img class="howto-mascot" src="assets/questy.png" alt=""
+      <img class="howto-mascot" src="assets/questy.webp" alt=""
         onerror="this.remove()">
     </div></div>`;
   document.getElementById('startNow').onclick = () => {
